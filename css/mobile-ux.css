@@ -1,0 +1,1157 @@
+/* ============================================
+   MOBILE UX - COMPLETE REDESIGN
+   Frutiger Aero Mobile App Experience
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* ============================================
+       MOBILE HOME SCREEN
+       ============================================ */
+    
+    /* Hide desktop elements */
+    .vista-desktop-icon-recycle,
+    .vista-glass-start-btn,
+    .vista-glass-notification,
+    .vista-glass-startmenu,
+    #welcome-window {
+        display: none !important;
+    }
+    
+    /* Body adjustments */
+    .vista-desktop-refined {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 70px; /* Space for tab bar */
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Background */
+    #frutiger-background {
+        position: fixed;
+        z-index: 0;
+    }
+    
+    /* Mobile Home Screen Container */
+    .mobile-home-screen {
+        position: relative;
+        z-index: 1;
+        padding: 20px 15px 40px 15px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Hero Profile Card */
+    .mobile-hero-card {
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 20px;
+        padding: 15px 18px 12px 18px;
+        margin-bottom: 12px;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.6),
+            0 1px 0 rgba(255, 255, 255, 0.9),
+            0 0 40px rgba(255, 255, 255, 0.15);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    /* Ensure nested content in hero card is transparent */
+    .mobile-hero-card > * {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    .mobile-hero-card:active {
+        transform: scale(0.98);
+    }
+    
+    .mobile-hero-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 10px;
+        border: 3px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mobile-hero-name {
+        font-family: var(--font-segoe-semilight);
+        font-size: 28px;
+        font-weight: 300;
+        color: #000;
+        margin-bottom: 5px;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    
+    .mobile-hero-title {
+        font-family: var(--font-segoe-semilight);
+        font-size: 16px;
+        font-weight: 300;
+        color: #000;
+        margin-bottom: 8px;
+        text-shadow: 
+            0 1px 1px rgba(255, 255, 255, 0.6),
+            0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-hero-location {
+        font-family: var(--font-segoe-semilight);
+        font-size: 14px;
+        font-weight: 300;
+        color: #7B2CBF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
+    
+    .mobile-hero-welcome {
+        font-family: var(--font-segoe-semilight);
+        font-size: 15px;
+        font-weight: 300;
+        color: #000;
+        line-height: 1.6;
+        text-align: center;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    /* Action Cards Grid */
+    .mobile-action-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 0;
+    }
+    
+    /* 6 cards layout - 2 columns, 3 rows */
+    .mobile-action-grid .mobile-action-card:nth-child(5),
+    .mobile-action-grid .mobile-action-card:nth-child(6) {
+        grid-column: span 1;
+    }
+    
+    .mobile-action-card {
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 16px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.6),
+            0 1px 0 rgba(255, 255, 255, 0.9),
+            0 0 30px rgba(255, 255, 255, 0.15);
+        position: relative;
+        overflow: hidden;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ensure nested content in action cards is transparent */
+    .mobile-action-card > * {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    .mobile-action-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        pointer-events: none;
+    }
+    
+    .mobile-action-card:active {
+        transform: scale(0.95);
+        box-shadow: 
+            0 2px 10px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    .mobile-action-card-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 12px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
+    
+    .mobile-action-card-title {
+        font-family: var(--font-segoe-semilight);
+        font-size: 18px;
+        font-weight: 300;
+        color: #000;
+        text-shadow: 
+            0 1px 1px rgba(255, 255, 255, 0.8),
+            0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-action-card-subtitle {
+        font-family: var(--font-segoe-semilight);
+        font-size: 14px;
+        font-weight: 300;
+        color: #000;
+        margin-top: 4px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
+    
+    /* Hide desktop windows on mobile */
+    .vista-glass-window {
+        display: none !important;
+    }
+    
+    /* Hide desktop taskbar on mobile */
+    .vista-glass-taskbar {
+        display: none !important;
+    }
+    
+    /* Show mobile windows */
+    .mobile-window {
+        display: block !important;
+    }
+    
+    /* Remove any background from content loaded into mobile sections that might block translucency */
+    .mobile-content-section .vista-glass-content {
+        background: rgba(255, 255, 255, 0.20) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    /* Ensure nested divs don't block the translucent background - but allow content areas */
+    .mobile-content-section > div:not(.vista-glass-content):not([class*="content-section"]),
+    .mobile-hero-card > div:not([class*="button"]):not([class*="tag"]):not([class*="image"]):not([class*="icon"]),
+    .mobile-action-card > div:not([class*="button"]):not([class*="tag"]):not([class*="icon"]) {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* But preserve content-section styling for readability */
+    .mobile-content-section .content-section {
+        background: rgba(255, 255, 255, 0.20) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Ensure wrapper divs and containers are transparent unless they're content areas */
+    .mobile-hero-card > div[style*="background"]:not([class*="content"]),
+    .mobile-action-card > div[style*="background"]:not([class*="content"]) {
+        background: transparent !important;
+    }
+    
+    /* Make sure text containers don't have backgrounds */
+    .mobile-hero-card p,
+    .mobile-hero-card h1,
+    .mobile-hero-card h2,
+    .mobile-hero-card h3,
+    .mobile-action-card p,
+    .mobile-action-card h1,
+    .mobile-action-card h2,
+    .mobile-action-card h3 {
+        background: transparent !important;
+    }
+    
+    /* Social Media Icons in Hero Card */
+    .mobile-hero-card .mobile-social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-top: 5px;
+        padding-top: 5px;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .mobile-social-icon {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+    
+    .mobile-social-icon-img {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px;
+        min-height: 42px;
+        max-width: 42px;
+        max-height: 42px;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+    
+    /* Make Instagram and Twitter icons smaller */
+    .mobile-social-icon[aria-label="Instagram"],
+    .mobile-social-icon[aria-label="Twitter"] {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .mobile-social-icon[aria-label="Instagram"] .mobile-social-icon-img,
+    .mobile-social-icon[aria-label="Twitter"] .mobile-social-icon-img {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px;
+        min-height: 38px;
+        max-width: 38px;
+        max-height: 38px;
+    }
+    
+    /* Make GitHub icon larger to match visual size of other icons */
+    .mobile-social-icon[aria-label="GitHub"] {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .mobile-social-icon[aria-label="GitHub"] .mobile-social-icon-img {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px;
+        min-height: 56px;
+        max-width: 56px;
+        max-height: 56px;
+        object-fit: contain;
+    }
+    
+    .mobile-social-icon:hover,
+    .mobile-social-icon:active {
+        transform: translateY(-2px) scale(1.1);
+    }
+    
+    /* ============================================
+       BOTTOM SHEET MODALS
+       ============================================ */
+    
+    .mobile-bottom-sheet-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 9998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+    
+    .mobile-bottom-sheet-backdrop.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .mobile-bottom-sheet {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+        box-shadow: 
+            0 -4px 30px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        z-index: 9999;
+        max-height: 90vh;
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Bottom sheet content should match desktop content opacity */
+    .mobile-bottom-sheet-content {
+        background: rgba(255, 255, 255, 0.20) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    .mobile-bottom-sheet.active {
+        transform: translateY(0);
+    }
+    
+    .mobile-bottom-sheet-handle {
+        width: 40px;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        margin: 12px auto;
+        cursor: grab;
+    }
+    
+    .mobile-bottom-sheet-handle:active {
+        cursor: grabbing;
+    }
+    
+    .mobile-bottom-sheet-header {
+        padding: 0 20px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .mobile-bottom-sheet-title {
+        font-family: var(--font-segoe-semilight);
+        font-size: 26px;
+        font-weight: 300;
+        color: #000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 2px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-bottom-sheet-title img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .mobile-bottom-sheet-close {
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        color: #1a1a1a;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-bottom-sheet-close:active {
+        background: rgba(0, 0, 0, 0.1);
+        transform: scale(0.95);
+    }
+    
+    .mobile-bottom-sheet-content {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 20px;
+    }
+    
+    /* Ensure text in bottom sheet is visible */
+    .mobile-bottom-sheet-content p {
+        font-size: 18px !important;
+        color: #000 !important;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    .mobile-bottom-sheet-content li {
+        font-size: 18px !important;
+        color: #000 !important;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    .mobile-bottom-sheet-content span:not([class*="icon"]):not([class*="tag"]),
+    .mobile-bottom-sheet-content div:not([class*="button"]):not([class*="tag"]) {
+        color: #000 !important;
+    }
+    
+    .mobile-bottom-sheet-content h1 {
+        font-size: 32px !important;
+        color: #000 !important;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    
+    .mobile-bottom-sheet-content h2 {
+        font-size: 26px !important;
+        color: #000 !important;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 2px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-bottom-sheet-content h3 {
+        font-size: 20px !important;
+        color: #000 !important;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-bottom-sheet-content strong {
+        color: #000 !important;
+        font-weight: 400;
+        font-size: 19px !important;
+    }
+    
+    .mobile-bottom-sheet-content a:not([class*="button"]) {
+        color: #0078D7 !important;
+        text-shadow: none;
+        font-size: 18px !important;
+    }
+    
+    /* ============================================
+       TAB NAVIGATION
+       ============================================ */
+    
+    .mobile-tab-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(to bottom,
+            rgba(20, 20, 20, 0.85) 0%,
+            rgba(15, 15, 15, 0.90) 50%,
+            rgba(10, 10, 10, 0.95) 100%
+        );
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 
+            0 -2px 8px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            inset 0 0 30px rgba(255, 255, 255, 0.05),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+        z-index: 10000;
+    }
+    
+    .mobile-tab-bar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0.12) 30%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+        border-radius: 0;
+    }
+    
+    .mobile-tab-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 4px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        border-radius: 3px;
+        min-width: 0;
+        position: relative;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    
+    .mobile-tab-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.12);
+        opacity: 0;
+        transition: opacity 0.15s;
+        pointer-events: none;
+    }
+    
+    .mobile-tab-item:active::before {
+        opacity: 1;
+    }
+    
+    .mobile-tab-item:active {
+        transform: scale(0.98);
+    }
+    
+    .mobile-tab-item-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 4px;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+        transition: transform 0.15s ease;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .mobile-tab-item-label {
+        font-family: var(--font-segoe-semilight);
+        font-size: 10px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.9);
+        white-space: nowrap;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.15s ease;
+    }
+    
+    .mobile-tab-item.active {
+        background: rgba(255, 255, 255, 0.18);
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 
+            inset 0 1px 2px rgba(255, 255, 255, 0.2),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .mobile-tab-item.active::before {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.18);
+    }
+    
+    .mobile-tab-item.active .mobile-tab-item-label {
+        color: rgba(255, 255, 255, 1);
+    }
+    
+    /* ============================================
+       MOBILE CONTENT SECTIONS
+       ============================================ */
+    
+    .mobile-content-section {
+        display: none;
+        padding: 25px 20px;
+        max-width: 100%;
+        margin: 10px;
+        padding-bottom: 80px; /* Space for tab bar */
+        /* Match desktop window background exactly - MUST be translucent */
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        box-shadow: 
+            0 12px 36px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 0 40px rgba(255, 255, 255, 0.15) !important;
+        border-radius: 0 !important;
+        box-shadow: 
+            0 12px 36px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 0 40px rgba(255, 255, 255, 0.15) !important;
+        min-height: calc(100vh - 100px);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    
+    /* Force translucent background on active sections */
+    .mobile-content-section.active {
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Content inside mobile sections should have lower opacity like desktop content */
+    .mobile-content-section .vista-glass-content,
+    .mobile-content-section > div:not([class*="button"]):not([class*="tag"]) {
+        background: rgba(255, 255, 255, 0.20) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Portfolio-style translucency for About and CV content boxes */
+    .mobile-content-section#mobile-content-about .content-section,
+    .mobile-content-section#mobile-content-cv .content-section,
+    .mobile-content-section#mobile-content-about .skills-section,
+    .mobile-content-section#mobile-content-cv .skills-section,
+    .mobile-content-section#mobile-content-cv section {
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.30) 0%,
+            rgba(255, 255, 255, 0.20) 100%
+        ) !important;
+        backdrop-filter: blur(15px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-radius: 8px !important;
+        padding: 20px !important;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Skills grid container - translucent background */
+    .mobile-content-section#mobile-content-about .skills-grid,
+    .mobile-content-section#mobile-content-cv .skills-grid {
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.30) 0%,
+            rgba(255, 255, 255, 0.20) 100%
+        ) !important;
+        backdrop-filter: blur(15px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-radius: 8px !important;
+        padding: 20px !important;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        position: relative;
+        overflow: hidden;
+        margin-top: 15px !important;
+    }
+    
+    /* Glossy highlight for content boxes */
+    .mobile-content-section#mobile-content-about .content-section::before,
+    .mobile-content-section#mobile-content-cv .content-section::before,
+    .mobile-content-section#mobile-content-about .skills-section::before,
+    .mobile-content-section#mobile-content-cv .skills-section::before,
+    .mobile-content-section#mobile-content-about .skills-grid::before,
+    .mobile-content-section#mobile-content-cv .skills-grid::before,
+    .mobile-content-section#mobile-content-cv section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 100%
+        );
+        border-radius: 8px 8px 0 0;
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    
+    /* Headings should NOT have translucent background - keep them transparent */
+    .mobile-content-section#mobile-content-about .content-section h2,
+    .mobile-content-section#mobile-content-cv .content-section h2,
+    .mobile-content-section#mobile-content-about .content-section h3,
+    .mobile-content-section#mobile-content-cv .content-section h3,
+    .mobile-content-section#mobile-content-about .skills-section h2,
+    .mobile-content-section#mobile-content-cv .skills-section h2,
+    .mobile-content-section#mobile-content-cv section h2,
+    .mobile-content-section#mobile-content-cv section h3 {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 0 !important;
+        margin: 0 0 15px 0 !important;
+    }
+    
+    /* CV header should not have translucent background */
+    .mobile-content-section#mobile-content-cv header {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Skills grid items in About/CV */
+    .mobile-content-section#mobile-content-about .skill-item,
+    .mobile-content-section#mobile-content-cv .skill-item {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    .mobile-content-section.active {
+        display: block !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    .mobile-content-section h1 {
+        font-family: var(--font-segoe-semilight);
+        font-size: 32px;
+        font-weight: 300;
+        color: #000;
+        margin-bottom: 20px;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    
+    .mobile-content-section h2 {
+        font-family: var(--font-segoe-semilight);
+        font-size: 26px;
+        font-weight: 300;
+        color: #000;
+        margin: 25px 0 15px;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 2px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-content-section h3 {
+        font-family: var(--font-segoe-semilight);
+        font-size: 20px;
+        font-weight: 300;
+        color: #000;
+        margin: 20px 0 12px;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mobile-content-section p {
+        font-family: var(--font-segoe-semilight);
+        font-size: 18px;
+        font-weight: 300;
+        color: #000;
+        line-height: 1.7;
+        margin-bottom: 15px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Ensure all text elements in mobile content are visible */
+    .mobile-content-section li {
+        font-size: 18px !important;
+        color: #000 !important;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    .mobile-content-section span:not([class*="icon"]):not([class*="tag"]),
+    .mobile-content-section div:not([class*="button"]):not([class*="tag"]) {
+        color: #000 !important;
+    }
+    
+    .mobile-content-section strong {
+        color: #000 !important;
+        font-weight: 400;
+        font-size: 19px !important;
+    }
+    
+    .mobile-content-section a:not([class*="button"]) {
+        color: #0078D7 !important;
+        text-shadow: none;
+        font-size: 18px !important;
+    }
+    
+    /* Mobile buttons - ensure purple glossy style */
+    .mobile-content-section .vista-glass-button,
+    .mobile-content-section .vista-glass-button-primary,
+    .mobile-bottom-sheet-content .vista-glass-button,
+    .mobile-bottom-sheet-content .vista-glass-button-primary {
+        background: linear-gradient(to bottom,
+            rgba(180, 130, 230, 0.90) 0%,
+            rgba(160, 110, 210, 0.85) 55%,
+            rgba(140, 90, 190, 0.80) 55%,
+            rgba(120, 70, 170, 0.90) 100%
+        ) !important;
+        backdrop-filter: blur(10px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+            0 0 15px rgba(160, 110, 210, 0.4) !important;
+    }
+    
+    .mobile-content-section .vista-glass-button:hover,
+    .mobile-content-section .vista-glass-button-primary:hover,
+    .mobile-bottom-sheet-content .vista-glass-button:hover,
+    .mobile-bottom-sheet-content .vista-glass-button-primary:hover {
+        background: linear-gradient(to bottom,
+            rgba(180, 130, 230, 0.90) 0%,
+            rgba(160, 110, 210, 0.85) 55%,
+            rgba(140, 90, 190, 0.80) 55%,
+            rgba(120, 70, 170, 0.90) 100%
+        ) !important;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+            0 0 25px rgba(180, 130, 230, 0.6) !important;
+        transform: translateY(-1px) !important;
+    }
+    
+    /* Skill names - keep readable */
+    .mobile-content-section .skill-name,
+    .mobile-content-section .skill-item span {
+        color: #000 !important;
+        font-size: 16px !important;
+    }
+    
+    /* Portfolio project titles */
+    .mobile-content-section .portfolio-project-card h3 {
+        color: #000 !important;
+        font-size: 20px !important;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 1px 3px rgba(0, 0, 0, 0.12) !important;
+    }
+    
+    /* Section labels and metadata */
+    .mobile-content-section p strong,
+    .mobile-content-section li strong {
+        color: #000 !important;
+        font-size: 19px !important;
+    }
+    
+    /* Skills Grid on Mobile */
+    .mobile-skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 20px 0;
+    }
+    
+    .mobile-skill-item {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .mobile-skill-item img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .mobile-skill-item span {
+        font-family: var(--font-segoe-semilight);
+        font-size: 13px;
+        font-weight: 300;
+        color: #1a1a1a;
+    }
+    
+    /* Project Cards on Mobile */
+    .mobile-project-card {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Contact Form on Mobile */
+    .mobile-form-input,
+    .mobile-form-textarea {
+        width: 100%;
+        padding: 14px;
+        font-family: var(--font-segoe-semilight);
+        font-size: 16px; /* Prevents iOS zoom */
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(200, 220, 240, 0.5);
+        border-radius: 12px;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+    }
+    
+    .mobile-form-button {
+        width: 100%;
+        padding: 16px;
+        font-family: var(--font-segoe-semilight);
+        font-size: 16px;
+        font-weight: 400;
+        background: linear-gradient(to bottom,
+            rgba(180, 130, 230, 0.90) 0%,
+            rgba(160, 110, 210, 0.85) 55%,
+            rgba(140, 90, 190, 0.80) 55%,
+            rgba(120, 70, 170, 0.90) 100%
+        );
+        backdrop-filter: blur(10px) saturate(180%);
+        -webkit-backdrop-filter: blur(10px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+            0 0 15px rgba(160, 110, 210, 0.4);
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .mobile-form-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        border-radius: 12px 12px 0 0;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+    
+    .mobile-form-button:hover,
+    .mobile-form-button:active {
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+            0 0 25px rgba(180, 130, 230, 0.6);
+        transform: translateY(-1px);
+    }
+    
+    .mobile-form-button:active {
+        transform: scale(0.98) translateY(0);
+    }
+    
+    /* Swipe Indicators */
+    .swipe-indicator {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 10;
+    }
+    
+    .swipe-indicator-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transition: all 0.3s ease;
+    }
+    
+    .swipe-indicator-dot.active {
+        background: rgba(255, 255, 255, 0.9);
+        width: 20px;
+        border-radius: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-action-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .mobile-hero-card {
+        padding: 20px;
+    }
+    
+    .mobile-hero-name {
+        font-size: 24px;
+    }
+    
+    .mobile-hero-welcome {
+        font-size: 14px;
+        padding-top: 12px;
+        margin-top: 12px;
+    }
+    
+    .mobile-skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mobile-tab-bar {
+        height: 55px;
+    }
+    
+    .mobile-tab-item-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .mobile-tab-item-label {
+        font-size: 9px;
+    }
+}
+
+/* Touch-friendly adjustments */
+@media (hover: none) and (pointer: coarse) {
+    .mobile-action-card,
+    .mobile-tab-item,
+    .mobile-form-button {
+        min-height: 44px;
+    }
+    
+    /* Remove hover effects on touch */
+    .mobile-action-card:hover {
+        transform: none;
+    }
+}
+

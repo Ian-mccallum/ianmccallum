@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Ian McCallum</title>
+    <link rel="icon" type="image/png" href="img/IMlogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vista-design-system.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="vista-desktop">
+    <!-- GIF Background -->
+    <div id="frutiger-background" class="fixed inset-0 z-0">
+        <img id="background-gif" class="background-gif" src="20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
+        <div class="video-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Vista Taskbar -->
+    <div class="vista-taskbar">
+        <button id="vista-start-button" class="vista-start-button">
+            <i class="fab fa-windows"></i>
+        </button>
+        <div class="vista-taskbar-items">
+            <a href="index.html" class="vista-taskbar-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="vista-taskbar-item">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="portfolio.html" class="vista-taskbar-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="vista-taskbar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="vista-system-tray">
+            <div class="vista-tray-item"><i class="fas fa-volume-up"></i></div>
+            <div class="vista-tray-item"><i class="fas fa-wifi"></i></div>
+            <div class="vista-tray-time" id="vista-time"></div>
+        </div>
+    </div>
+
+    <!-- Vista Start Menu -->
+    <div id="vista-start-menu" class="vista-start-menu">
+        <div class="vista-start-menu-left">
+            <a href="index.html" class="vista-start-item"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="about.html" class="vista-start-item"><i class="fas fa-user"></i><span>About Ian</span></a>
+            <a href="portfolio.html" class="vista-start-item"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+            <a href="cv.html" class="vista-start-item"><i class="fas fa-file-alt"></i><span>CV / Resume</span></a>
+            <a href="testimonials.html" class="vista-start-item"><i class="fas fa-quote-left"></i><span>Testimonials</span></a>
+            <a href="photos.html" class="vista-start-item"><i class="fas fa-images"></i><span>Photos</span></a>
+            <a href="contact.html" class="vista-start-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+        </div>
+        <div class="vista-start-menu-right">
+            <a href="about.html" class="vista-start-item"><i class="fas fa-user"></i><span>Ian McCallum</span></a>
+            <a href="portfolio.html" class="vista-start-item"><i class="fas fa-folder"></i><span>Portfolio</span></a>
+            <a href="cv.html" class="vista-start-item"><i class="fas fa-file"></i><span>CV</span></a>
+            <a href="contact.html" class="vista-start-item"><i class="fas fa-cog"></i><span>Contact</span></a>
+        </div>
+    </div>
+
+    <!-- Main Content - Vista Windows -->
+    <div class="vista-windows-container">
+        <div class="vista-window" style="max-width: 900px; margin: 80px auto;">
+            <div class="vista-title-bar">
+                <div class="vista-title-text">
+                    <i class="fas fa-quote-left me-2"></i>
+                    Testimonials & Praise
+                </div>
+                <div class="vista-window-controls">
+                    <button class="vista-control-btn minimize"><i class="fas fa-minus"></i></button>
+                    <button class="vista-control-btn maximize"><i class="fas fa-square"></i></button>
+                    <button class="vista-control-btn close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="vista-window-content">
+                <h2 class="vista-h2 mb-4 vista-text-animate">
+                    <i class="fas fa-star me-2"></i>
+                    What People Say
+                </h2>
+
+                <div class="vista-testimonial-grid">
+                    <div class="vista-testimonial-card">
+                        <div class="vista-testimonial-quote">
+                            "Working with Ian to build my photography website was a great experience. He took the time to understand my vision and translated it into a website that looks great and is easy to navigate. The layout and attention to detail makes my brand look very professional. I highly recommend Ian to anyone looking for a high quality and custom website."
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; margin-top: 20px;">
+                            <img src="img/other/IMG_7878.JPG" alt="Timmy Miller" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--vista-blue); object-fit: cover;">
+                            <div>
+                                <div class="vista-testimonial-author">Timmy Miller</div>
+                                <p class="vista-body-text" style="color: var(--vista-text-muted); margin: 5px 0;">Photographer</p>
+                                <a href="https://tmmphotos.com" target="_blank" style="color: var(--vista-blue); text-decoration: none; font-size: 13px;">TMM Photography</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/gif-background.js"></script>
+    <script src="js/vista-system.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

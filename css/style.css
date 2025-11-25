@@ -1,0 +1,3119 @@
+/* ============================================
+   WINDOWS VISTA AERO GLASS - MAIN STYLES
+   Complete Vista/XP Aesthetic Redesign
+   ============================================ */
+
+/* Import Vista fonts */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700;800&display=swap');
+
+/* ============================================
+   FRUTIGER AERO COLOR PALETTE
+   ============================================ */
+:root {
+    /* Sky Blues - Primary */
+    --sky-blue: #00BFFF;
+    --bright-blue: #1E90FF;
+    --light-blue: #87CEEB;
+    --azure: #007FFF;
+    --ocean-blue: #0066CC;
+    
+    /* Nature Greens */
+    --fresh-green: #00FF7F;
+    --lime-green: #7FFF00;
+    --emerald: #00C853;
+    --forest-green: #228B22;
+    --mint: #98FB98;
+    
+    /* Accent Colors */
+    --glowing-orange: #FF8C00;
+    --sunset-orange: #FF6B35;
+    --metallic-silver: #C0C0C0;
+    --pearl-white: #F8F8FF;
+    
+    /* Glassmorphism Colors */
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Text Colors - Enhanced for visibility */
+    --text-dark: #0a0a0a;
+    --text-light: #ffffff;
+    --text-muted: rgba(10, 10, 10, 0.8);
+    --text-on-glass: #1a1a1a;
+    
+    /* Background Gradients */
+    --sky-gradient: linear-gradient(135deg, #87CEEB 0%, #00BFFF 50%, #1E90FF 100%);
+    --nature-gradient: linear-gradient(135deg, #7FFF00 0%, #00FF7F 50%, #00C853 100%);
+    --sunset-gradient: linear-gradient(135deg, #FF8C00 0%, #FF6B35 50%, #FF4500 100%);
+    --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+    
+    /* Shadows & Glows */
+    --glow-blue: 0 0 20px rgba(0, 191, 255, 0.5);
+    --glow-green: 0 0 20px rgba(0, 255, 127, 0.5);
+    --glow-orange: 0 0 20px rgba(255, 140, 0, 0.5);
+    --soft-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Dark mode - Keep Frutiger Aero but slightly darker */
+[data-theme="dark"] {
+    --sky-blue: #0099CC;
+    --bright-blue: #0066CC;
+    --light-blue: #5F9EA0;
+    --fresh-green: #00CC66;
+    --lime-green: #66CC00;
+    --glass-bg: rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-dark: #f0f0f0;
+    --text-light: #ffffff;
+}
+
+/* ============================================
+   BASE STYLES - FRUTIGER AERO
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Calibri', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Force content visibility - ensure content is above background */
+section, .hero, .page-content, .container, 
+.profile-container, .bio-text, .navigation-links,
+.social-links, footer, .footer {
+    position: relative !important;
+    z-index: 10 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* ============================================
+   GIF BACKGROUND - FRUTIGER AERO
+   ============================================ */
+#frutiger-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: #87CEEB; /* Fallback color */
+}
+
+.background-gif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    /* Ensure GIF covers full background */
+    /* Optimize for performance */
+    will-change: contents;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Force full coverage */
+    min-width: 100vw;
+    min-height: 100vh;
+    /* Prevent image from being selectable */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Video overlay for better content visibility (optional) */
+.video-overlay {
+    background: linear-gradient(to bottom,
+        rgba(135, 206, 235, 0.1) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Fallback if video doesn't load */
+.video-fallback {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, 
+        #87CEEB 0%,
+        #00BFFF 30%,
+        #1E90FF 60%,
+        #4682B4 100%
+    );
+    z-index: 1;
+}
+
+/* ============================================
+   BASE SKY GRADIENT
+   ============================================ */
+.sky-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        #87CEEB 0%, 
+        #00BFFF 25%, 
+        #1E90FF 50%, 
+        #4682B4 75%,
+        #5F9EA0 100%
+    );
+    z-index: 1;
+}
+
+/* ============================================
+   ANIMATED CLOUDS LAYER
+   ============================================ */
+.clouds-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    filter: blur(40px);
+    will-change: transform;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    filter: blur(30px);
+}
+
+/* Cloud shapes and positions */
+.cloud-1 {
+    width: 200px;
+    height: 100px;
+    top: 10%;
+    left: -10%;
+    animation: cloudFloat1 40s linear infinite;
+}
+
+.cloud-1::before {
+    width: 150px;
+    height: 80px;
+    top: -30px;
+    left: 30px;
+}
+
+.cloud-1::after {
+    width: 120px;
+    height: 70px;
+    top: 20px;
+    left: 80px;
+}
+
+.cloud-2 {
+    width: 250px;
+    height: 120px;
+    top: 20%;
+    left: -15%;
+    animation: cloudFloat2 50s linear infinite;
+    animation-delay: -5s;
+}
+
+.cloud-2::before {
+    width: 180px;
+    height: 100px;
+    top: -40px;
+    left: 40px;
+}
+
+.cloud-2::after {
+    width: 140px;
+    height: 80px;
+    top: 30px;
+    left: 100px;
+}
+
+.cloud-3 {
+    width: 180px;
+    height: 90px;
+    top: 15%;
+    left: -12%;
+    animation: cloudFloat3 45s linear infinite;
+    animation-delay: -10s;
+}
+
+.cloud-3::before {
+    width: 130px;
+    height: 70px;
+    top: -25px;
+    left: 25px;
+}
+
+.cloud-3::after {
+    width: 110px;
+    height: 60px;
+    top: 15px;
+    left: 70px;
+}
+
+.cloud-4 {
+    width: 220px;
+    height: 110px;
+    top: 30%;
+    left: -18%;
+    animation: cloudFloat4 55s linear infinite;
+    animation-delay: -15s;
+}
+
+.cloud-4::before {
+    width: 160px;
+    height: 90px;
+    top: -35px;
+    left: 35px;
+}
+
+.cloud-4::after {
+    width: 130px;
+    height: 75px;
+    top: 25px;
+    left: 90px;
+}
+
+.cloud-5 {
+    width: 190px;
+    height: 95px;
+    top: 25%;
+    left: -14%;
+    animation: cloudFloat5 48s linear infinite;
+    animation-delay: -20s;
+}
+
+.cloud-5::before {
+    width: 140px;
+    height: 75px;
+    top: -30px;
+    left: 30px;
+}
+
+.cloud-5::after {
+    width: 115px;
+    height: 65px;
+    top: 20px;
+    left: 75px;
+}
+
+.cloud-6 {
+    width: 210px;
+    height: 105px;
+    top: 35%;
+    left: -16%;
+    animation: cloudFloat6 52s linear infinite;
+    animation-delay: -25s;
+}
+
+.cloud-6::before {
+    width: 155px;
+    height: 85px;
+    top: -32px;
+    left: 32px;
+}
+
+.cloud-6::after {
+    width: 125px;
+    height: 72px;
+    top: 22px;
+    left: 82px;
+}
+
+.cloud-7 {
+    width: 170px;
+    height: 85px;
+    top: 40%;
+    left: -13%;
+    animation: cloudFloat7 43s linear infinite;
+    animation-delay: -30s;
+}
+
+.cloud-7::before {
+    width: 125px;
+    height: 68px;
+    top: -28px;
+    left: 28px;
+}
+
+.cloud-7::after {
+    width: 105px;
+    height: 58px;
+    top: 18px;
+    left: 68px;
+}
+
+.cloud-8 {
+    width: 240px;
+    height: 115px;
+    top: 45%;
+    left: -19%;
+    animation: cloudFloat8 58s linear infinite;
+    animation-delay: -35s;
+}
+
+.cloud-8::before {
+    width: 175px;
+    height: 95px;
+    top: -38px;
+    left: 38px;
+}
+
+.cloud-8::after {
+    width: 145px;
+    height: 82px;
+    top: 28px;
+    left: 95px;
+}
+
+/* Cloud floating animations */
+@keyframes cloudFloat1 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(-10px); }
+    100% { transform: translateX(calc(100vw + 200px)) translateY(0); }
+}
+
+@keyframes cloudFloat2 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(15px); }
+    100% { transform: translateX(calc(100vw + 250px)) translateY(0); }
+}
+
+@keyframes cloudFloat3 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(-8px); }
+    100% { transform: translateX(calc(100vw + 180px)) translateY(0); }
+}
+
+@keyframes cloudFloat4 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(12px); }
+    100% { transform: translateX(calc(100vw + 220px)) translateY(0); }
+}
+
+@keyframes cloudFloat5 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(-6px); }
+    100% { transform: translateX(calc(100vw + 190px)) translateY(0); }
+}
+
+@keyframes cloudFloat6 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(10px); }
+    100% { transform: translateX(calc(100vw + 210px)) translateY(0); }
+}
+
+@keyframes cloudFloat7 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(-7px); }
+    100% { transform: translateX(calc(100vw + 170px)) translateY(0); }
+}
+
+@keyframes cloudFloat8 {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(14px); }
+    100% { transform: translateX(calc(100vw + 240px)) translateY(0); }
+}
+
+/* ============================================
+   DISTANT FUTURISTIC CITY SILHOUETTE
+   ============================================ */
+.city-silhouette {
+    position: absolute;
+    bottom: 35%;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 3;
+    background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(30, 60, 100, 0.3) 30%,
+        rgba(60, 100, 150, 0.2) 60%,
+        transparent 100%
+    );
+    clip-path: polygon(
+        0% 100%, 2% 95%, 5% 90%, 8% 85%, 12% 80%, 15% 75%,
+        18% 70%, 22% 65%, 25% 60%, 28% 55%, 32% 50%, 35% 45%,
+        38% 40%, 42% 35%, 45% 30%, 48% 25%, 52% 20%, 55% 15%,
+        58% 10%, 62% 8%, 65% 5%, 68% 3%, 72% 2%, 75% 1%,
+        78% 0%, 82% 1%, 85% 2%, 88% 3%, 92% 5%, 95% 8%,
+        98% 10%, 100% 12%, 100% 100%
+    );
+    opacity: 0.6;
+    transform: scale(0.7);
+    transform-origin: center bottom;
+}
+
+/* ============================================
+   FLOWING WATER/OCEAN LAYER
+   ============================================ */
+.water-layer {
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    z-index: 4;
+    overflow: hidden;
+}
+
+#waterCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.water-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+        rgba(0, 191, 255, 0.3) 0%,
+        rgba(30, 144, 255, 0.4) 50%,
+        rgba(0, 191, 255, 0.3) 100%
+    );
+    animation: waterShimmer 3s ease-in-out infinite;
+}
+
+@keyframes waterShimmer {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* ============================================
+   ROLLING HILLS (FOREGROUND)
+   ============================================ */
+.hills-foreground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.hill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    will-change: transform;
+}
+
+.hill-1 {
+    height: 60%;
+    background: linear-gradient(to top, 
+        #00C853 0%, 
+        #00FF7F 30%, 
+        #7FFF00 60%,
+        #98FB98 100%
+    );
+    clip-path: polygon(
+        0% 100%, 3% 98%, 7% 95%, 12% 92%, 18% 88%, 25% 85%,
+        32% 82%, 40% 80%, 48% 78%, 55% 80%, 62% 82%, 70% 85%,
+        77% 88%, 83% 92%, 88% 95%, 93% 98%, 97% 99%, 100% 100%
+    );
+    animation: hillWave1 8s ease-in-out infinite;
+    opacity: 0.95;
+}
+
+.hill-2 {
+    height: 45%;
+    background: linear-gradient(to top, 
+        #228B22 0%, 
+        #00C853 40%, 
+        #00FF7F 70%,
+        #7FFF00 100%
+    );
+    clip-path: polygon(
+        0% 100%, 5% 97%, 10% 93%, 16% 90%, 23% 87%, 30% 84%,
+        38% 81%, 46% 79%, 54% 81%, 62% 84%, 70% 87%, 77% 90%,
+        84% 93%, 90% 97%, 95% 99%, 100% 100%
+    );
+    animation: hillWave2 10s ease-in-out infinite;
+    opacity: 0.85;
+    left: -2%;
+    width: 104%;
+}
+
+.hill-3 {
+    height: 35%;
+    background: linear-gradient(to top, 
+        #2F4F2F 0%, 
+        #228B22 35%, 
+        #00C853 65%,
+        #00FF7F 100%
+    );
+    clip-path: polygon(
+        0% 100%, 4% 96%, 9% 92%, 15% 89%, 22% 86%, 29% 83%,
+        37% 80%, 45% 78%, 53% 80%, 61% 83%, 69% 86%, 76% 89%,
+        82% 92%, 88% 96%, 94% 99%, 100% 100%
+    );
+    animation: hillWave3 12s ease-in-out infinite;
+    opacity: 0.75;
+    left: -1%;
+    width: 102%;
+}
+
+@keyframes hillWave1 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(2px) translateY(-3px); }
+    50% { transform: translateX(0) translateY(-5px); }
+    75% { transform: translateX(-2px) translateY(-3px); }
+}
+
+@keyframes hillWave2 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-1px) translateY(-2px); }
+    50% { transform: translateX(0) translateY(-4px); }
+    75% { transform: translateX(1px) translateY(-2px); }
+}
+
+@keyframes hillWave3 {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(1px) translateY(-1px); }
+    50% { transform: translateX(0) translateY(-3px); }
+    75% { transform: translateX(-1px) translateY(-1px); }
+}
+
+/* All background layers are now in the single AI-generated image */
+
+/* ============================================
+   STEP 6: SWIMMING FISH ANIMATION
+   ============================================ */
+.fish-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    pointer-events: none;
+}
+
+.fish {
+    position: absolute;
+    width: 65px;
+    height: 40px;
+    will-change: transform;
+}
+
+/* Fish body shape using clip-path */
+.fish {
+    clip-path: polygon(0% 50%, 15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%);
+}
+
+/* Tail fin */
+.fish::after {
+    content: '';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 24px;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+/* Eye */
+.fish::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px currentColor;
+}
+
+/* Blue-Turquoise Fish */
+.fish-blue {
+    background: linear-gradient(135deg, #00BFFF 0%, #1E90FF 50%, #00CED1 100%);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fish-blue::before {
+    box-shadow: inset 0 0 0 2px #00BFFF;
+}
+
+.fish-blue::after {
+    background: linear-gradient(135deg, #00BFFF 0%, #87CEEB 100%);
+}
+
+/* Green-Emerald Fish */
+.fish-green {
+    background: linear-gradient(135deg, #00FF7F 0%, #7FFF00 50%, #00C853 100%);
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.4), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fish-green::before {
+    box-shadow: inset 0 0 0 2px #00FF7F;
+}
+
+.fish-green::after {
+    background: linear-gradient(135deg, #00FF7F 0%, #98FB98 100%);
+}
+
+/* Orange-Sunset Fish */
+.fish-orange {
+    background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 50%, #FFA500 100%);
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fish-orange::before {
+    box-shadow: inset 0 0 0 2px #FF8C00;
+}
+
+.fish-orange::after {
+    background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
+}
+
+/* Purple-Blue Fish */
+.fish-purple {
+    background: linear-gradient(135deg, #9370DB 0%, #4169E1 50%, #00BFFF 100%);
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.4), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fish-purple::before {
+    box-shadow: inset 0 0 0 2px #9370DB;
+}
+
+.fish-purple::after {
+    background: linear-gradient(135deg, #9370DB 0%, #E6E6FA 100%);
+}
+
+/* Fish positions and animations */
+.fish-1 { top: 20%; left: -10%; animation: fishSwim1 22s ease-in-out infinite; }
+.fish-2 { top: 30%; left: -10%; animation: fishSwim2 25s ease-in-out infinite 3s; }
+.fish-3 { top: 45%; left: -10%; animation: fishSwim3 20s ease-in-out infinite 6s; }
+.fish-4 { top: 60%; left: -10%; animation: fishSwim4 24s ease-in-out infinite 2s; }
+.fish-5 { top: 25%; right: -10%; animation: fishSwim5 23s ease-in-out infinite 4s; }
+.fish-6 { top: 40%; right: -10%; animation: fishSwim6 26s ease-in-out infinite 1s; }
+.fish-7 { top: 55%; right: -10%; animation: fishSwim7 21s ease-in-out infinite 5s; }
+.fish-8 { top: 35%; left: -10%; animation: fishSwim8 27s ease-in-out infinite 2.5s; }
+.fish-9 { top: 50%; right: -10%; animation: fishSwim9 19s ease-in-out infinite 4.5s; }
+.fish-10 { top: 65%; left: -10%; animation: fishSwim10 25s ease-in-out infinite 1.5s; }
+.fish-11 { top: 28%; right: -10%; animation: fishSwim11 24s ease-in-out infinite 6s; }
+.fish-12 { top: 70%; right: -10%; animation: fishSwim12 22s ease-in-out infinite 3.5s; }
+
+/* Fish swimming animations - curved paths */
+@keyframes fishSwim1 {
+    0% { transform: translateX(0) translateY(0) rotate(0deg) scale(0.9); }
+    25% { transform: translateX(25vw) translateY(-30px) rotate(10deg) scale(1); }
+    50% { transform: translateX(50vw) translateY(-20px) rotate(0deg) scale(1.1); }
+    75% { transform: translateX(75vw) translateY(-35px) rotate(-8deg) scale(1); }
+    100% { transform: translateX(110vw) translateY(-10px) rotate(0deg) scale(0.9); }
+}
+
+@keyframes fishSwim2 {
+    0% { transform: translateX(0) translateY(0) rotate(0deg) scale(0.95); }
+    25% { transform: translateX(30vw) translateY(25px) rotate(-12deg) scale(1.05); }
+    50% { transform: translateX(50vw) translateY(15px) rotate(0deg) scale(1); }
+    75% { transform: translateX(70vw) translateY(30px) rotate(10deg) scale(0.95); }
+    100% { transform: translateX(110vw) translateY(5px) rotate(0deg) scale(0.9); }
+}
+
+@keyframes fishSwim3 {
+    0% { transform: translateX(0) translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateX(28vw) translateY(-25px) rotate(8deg) scale(1.1); }
+    50% { transform: translateX(52vw) translateY(-15px) rotate(0deg) scale(0.95); }
+    75% { transform: translateX(78vw) translateY(-30px) rotate(-10deg) scale(1); }
+    100% { transform: translateX(110vw) translateY(-5px) rotate(0deg) scale(0.9); }
+}
+
+@keyframes fishSwim4 {
+    0% { transform: translateX(0) translateY(0) rotate(0deg) scale(0.9); }
+    25% { transform: translateX(32vw) translateY(20px) rotate(-8deg) scale(1); }
+    50% { transform: translateX(48vw) translateY(10px) rotate(0deg) scale(1.05); }
+    75% { transform: translateX(72vw) translateY(25px) rotate(12deg) scale(1); }
+    100% { transform: translateX(110vw) translateY(0px) rotate(0deg) scale(0.95); }
+}
+
+@keyframes fishSwim5 {
+    0% { transform: translateX(0) translateY(0) rotate(180deg) scale(0.95); }
+    25% { transform: translateX(-25vw) translateY(-28px) rotate(190deg) scale(1); }
+    50% { transform: translateX(-50vw) translateY(-18px) rotate(180deg) scale(1.1); }
+    75% { transform: translateX(-75vw) translateY(-32px) rotate(172deg) scale(1); }
+    100% { transform: translateX(-110vw) translateY(-8px) rotate(180deg) scale(0.9); }
+}
+
+@keyframes fishSwim6 {
+    0% { transform: translateX(0) translateY(0) rotate(180deg) scale(1); }
+    25% { transform: translateX(-30vw) translateY(22px) rotate(192deg) scale(1.05); }
+    50% { transform: translateX(-48vw) translateY(12px) rotate(180deg) scale(0.95); }
+    75% { transform: translateX(-72vw) translateY(28px) rotate(168deg) scale(1); }
+    100% { transform: translateX(-110vw) translateY(3px) rotate(180deg) scale(0.9); }
+}
+
+@keyframes fishSwim7 {
+    0% { transform: translateX(0) translateY(0) rotate(180deg) scale(0.95); }
+    25% { transform: translateX(-28vw) translateY(-22px) rotate(188deg) scale(1.1); }
+    50% { transform: translateX(-52vw) translateY(-12px) rotate(180deg) scale(1); }
+    75% { transform: translateX(-78vw) translateY(-28px) rotate(172deg) scale(0.95); }
+    100% { transform: translateX(-110vw) translateY(-3px) rotate(180deg) scale(0.9); }
+}
+
+@keyframes fishSwim8 {
+    0% { transform: translateX(0) translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateX(26vw) translateY(18px) rotate(-10deg) scale(1.05); }
+    50% { transform: translateX(50vw) translateY(8px) rotate(0deg) scale(0.95); }
+    75% { transform: translateX(74vw) translateY(22px) rotate(10deg) scale(1); }
+    100% { transform: translateX(110vw) translateY(-2px) rotate(0deg) scale(0.9); }
+}
+
+@keyframes fishSwim9 {
+    0% { transform: translateX(0) translateY(0) rotate(180deg) scale(0.9); }
+    25% { transform: translateX(-32vw) translateY(-20px) rotate(192deg) scale(1); }
+    50% { transform: translateX(-50vw) translateY(-10px) rotate(180deg) scale(1.1); }
+    75% { transform: translateX(-76vw) translateY(-24px) rotate(168deg) scale(1); }
+    100% { transform: translateX(-110vw) translateY(-4px) rotate(180deg) scale(0.95); }
+}
+
+@keyframes fishSwim10 {
+    0% { transform: translateX(0) translateY(0) rotate(0deg) scale(0.95); }
+    25% { transform: translateX(30vw) translateY(-15px) rotate(12deg) scale(1.1); }
+    50% { transform: translateX(54vw) translateY(-5px) rotate(0deg) scale(1); }
+    75% { transform: translateX(70vw) translateY(-20px) rotate(-10deg) scale(0.95); }
+    100% { transform: translateX(110vw) translateY(-8px) rotate(0deg) scale(0.9); }
+}
+
+@keyframes fishSwim11 {
+    0% { transform: translateX(0) translateY(0) rotate(180deg) scale(1); }
+    25% { transform: translateX(-26vw) translateY(24px) rotate(188deg) scale(0.95); }
+    50% { transform: translateX(-50vw) translateY(14px) rotate(180deg) scale(1.05); }
+    75% { transform: translateX(-74vw) translateY(26px) rotate(172deg) scale(1); }
+    100% { transform: translateX(-110vw) translateY(6px) rotate(180deg) scale(0.9); }
+}
+
+@keyframes fishSwim12 {
+    0% { transform: translateX(0) translateY(0) rotate(180deg) scale(0.9); }
+    25% { transform: translateX(-34vw) translateY(-18px) rotate(190deg) scale(1); }
+    50% { transform: translateX(-48vw) translateY(-8px) rotate(180deg) scale(1.1); }
+    75% { transform: translateX(-72vw) translateY(-22px) rotate(170deg) scale(1); }
+    100% { transform: translateX(-110vw) translateY(-6px) rotate(180deg) scale(0.95); }
+}
+
+/* ============================================
+   STEP 7: GLASS BUBBLES SYSTEM
+   ============================================ */
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -4;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+    will-change: transform, opacity;
+}
+
+.bubble-1 { width: 35px; height: 35px; left: 8%; animation: bubbleFloat 22s ease-in-out infinite; }
+.bubble-2 { width: 50px; height: 50px; left: 15%; animation: bubbleFloat 28s ease-in-out infinite 2s; }
+.bubble-3 { width: 42px; height: 42px; left: 25%; animation: bubbleFloat 25s ease-in-out infinite 4s; }
+.bubble-4 { width: 38px; height: 38px; left: 35%; animation: bubbleFloat 30s ease-in-out infinite 1s; }
+.bubble-5 { width: 55px; height: 55px; left: 45%; animation: bubbleFloat 26s ease-in-out infinite 3s; }
+.bubble-6 { width: 40px; height: 40px; left: 55%; animation: bubbleFloat 24s ease-in-out infinite 5s; }
+.bubble-7 { width: 48px; height: 48px; left: 65%; animation: bubbleFloat 29s ease-in-out infinite 2.5s; }
+.bubble-8 { width: 36px; height: 36px; left: 75%; animation: bubbleFloat 27s ease-in-out infinite 4.5s; }
+.bubble-9 { width: 52px; height: 52px; left: 20%; animation: bubbleFloat 31s ease-in-out infinite 1.5s; }
+.bubble-10 { width: 44px; height: 44px; left: 40%; animation: bubbleFloat 23s ease-in-out infinite 6s; }
+.bubble-11 { width: 39px; height: 39px; left: 60%; animation: bubbleFloat 28s ease-in-out infinite 3.5s; }
+.bubble-12 { width: 46px; height: 46px; left: 80%; animation: bubbleFloat 25s ease-in-out infinite 2s; }
+.bubble-13 { width: 41px; height: 41px; left: 12%; animation: bubbleFloat 29s ease-in-out infinite 4s; }
+.bubble-14 { width: 49px; height: 49px; left: 50%; animation: bubbleFloat 26s ease-in-out infinite 1.5s; }
+.bubble-15 { width: 37px; height: 37px; left: 88%; animation: bubbleFloat 32s ease-in-out infinite 5.5s; }
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0.8) rotate(0deg);
+        opacity: 0.3;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(50vh) translateX(50px) scale(1.2) rotate(180deg);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) translateX(-50px) scale(0.8) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-shadow: 
+        0 2px 4px rgba(255, 255, 255, 0.9),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+/* Authentic Windows Vista Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+        0 0 60px rgba(0, 191, 255, 0.2);
+    border-radius: 12px;
+}
+
+.glass-strong {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.2),
+        inset 0 2px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15),
+        0 0 80px rgba(0, 191, 255, 0.3),
+        inset 0 0 100px rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+/* Vista Glass Card - Enhanced Aero Glass */
+.vista-glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.2),
+        inset 0 2px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15),
+        0 0 80px rgba(0, 191, 255, 0.3),
+        inset 0 0 100px rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    animation: vistaFloat 6s ease-in-out infinite;
+}
+
+.vista-glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
+    animation: vistaGlow 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ============================================
+   ANIMATIONS - FRUTIGER AERO
+   ============================================ */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(0, 191, 255, 0.5),
+                    0 0 40px rgba(0, 191, 255, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(0, 191, 255, 0.8),
+                    0 0 60px rgba(0, 191, 255, 0.5);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes bubbleRise {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes waterRipple {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes vistaFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes vistaGlow {
+    0%, 100% { opacity: 0.5; transform: rotate(0deg); }
+    50% { opacity: 1; transform: rotate(180deg); }
+}
+
+/* ============================================
+   THEME TOGGLE - GLASSMORPHIC
+   ============================================ */
+.theme-toggle {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid var(--glass-border);
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: var(--soft-shadow), var(--glow-green);
+    animation: none;
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    color: var(--bright-blue);
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+    transition: var(--transition-smooth);
+}
+
+/* ============================================
+   BACK LINK - GLASSMORPHIC
+   ============================================ */
+.back-link {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    padding: 12px 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid var(--glass-border);
+    border-radius: 30px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    z-index: 1000;
+    box-shadow: var(--soft-shadow);
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   HERO SECTION - FRUTIGER AERO
+   ============================================ */
+.hero {
+    min-height: 100vh;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative !important;
+    z-index: 10 !important;
+    padding: 2rem;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: transparent !important;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 2px solid var(--glass-border);
+    border-radius: 30px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 0 80px rgba(0, 191, 255, 0.3);
+    position: relative !important;
+    overflow: hidden;
+    z-index: 101 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.profile-img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 191, 255, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    margin: 0 auto 2rem;
+    display: block;
+    transition: var(--transition-smooth);
+    position: relative;
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(0, 255, 127, 0.6),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   VISTA AERO GLASS TEXT - Windows Vista/XP Style
+   ============================================ */
+.bio-text {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+    /* Vista Glass Text Container */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+        0 0 40px rgba(0, 191, 255, 0.2);
+    animation: vistaTextFadeIn 1s ease-out, vistaGlassPulse 4s ease-in-out infinite;
+}
+
+.bio-text h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    /* Vista Glass Text Effect */
+    background: linear-gradient(135deg, 
+        rgba(30, 144, 255, 0.9) 0%, 
+        rgba(0, 191, 255, 0.9) 30%,
+        rgba(0, 255, 127, 0.9) 70%,
+        rgba(127, 255, 0, 0.9) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    /* Vista/XP Text Shadow - Multiple Layers */
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 4px 8px rgba(0, 191, 255, 0.6))
+            drop-shadow(0 0 20px rgba(0, 191, 255, 0.4))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    animation: vistaShimmer 3s linear infinite, vistaTextGlow 2s ease-in-out infinite;
+    background-size: 200% auto;
+    position: relative;
+    /* XP-style embossed effect */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.5),
+        0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bio-text h1::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, 
+        rgba(30, 144, 255, 0.3) 0%, 
+        rgba(0, 191, 255, 0.3) 50%,
+        rgba(0, 255, 127, 0.3) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(10px);
+    animation: vistaShimmer 3s linear infinite reverse;
+}
+
+.bio-text p {
+    font-size: 1.4rem;
+    color: var(--text-dark) !important;
+    margin: 0.5rem 0;
+    font-weight: 600;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    /* Vista Glass Text with XP embossed shadow */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 2px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.6),
+        0 0 25px rgba(0, 191, 255, 0.4),
+        1px 1px 2px rgba(0, 0, 0, 0.3),
+        -1px -1px 1px rgba(255, 255, 255, 0.5) !important;
+    animation: vistaTextFadeIn 1.2s ease-out 0.2s both, vistaTextFloat 4s ease-in-out infinite;
+    position: relative;
+    /* Glass text background */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+}
+
+.bio-text .location {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    /* Vista Glass Text */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 4px rgba(255, 255, 255, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 0.2);
+    animation: vistaTextFadeIn 1.4s ease-out 0.4s both, vistaLocationPulse 3s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: inline-flex;
+}
+
+.bio-text .location::before {
+    content: '🌍';
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 5px rgba(0, 191, 255, 0.5));
+}
+
+/* ============================================
+   NAVIGATION LINKS - GLASSMORPHIC BUBBLES
+   ============================================ */
+.navigation-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.navigation-links .nav-link {
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    transition: var(--transition-smooth);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+        0 0 30px rgba(0, 191, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Vista Glass Text */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 2px rgba(255, 255, 255, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 0.2);
+    animation: vistaNavFadeIn 0.8s ease-out both;
+}
+
+.navigation-links .nav-link:nth-child(1) { animation-delay: 0.1s; }
+.navigation-links .nav-link:nth-child(2) { animation-delay: 0.2s; }
+.navigation-links .nav-link:nth-child(3) { animation-delay: 0.3s; }
+.navigation-links .nav-link:nth-child(4) { animation-delay: 0.4s; }
+
+.navigation-links .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 127, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: var(--transition-smooth);
+}
+
+.navigation-links .nav-link:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.navigation-links .nav-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--soft-shadow), var(--glow-green);
+    border-color: rgba(0, 255, 127, 0.5);
+    color: var(--fresh-green);
+}
+
+.navigation-links .nav-link i {
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-smooth);
+}
+
+/* ============================================
+   DROPDOWN MENU - GLASSMORPHIC
+   ============================================ */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 2px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1rem;
+    min-width: 200px;
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-10px);
+    transition: var(--transition-smooth);
+    z-index: 100;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+    color: var(--text-dark);
+    padding: 0.75rem 1.25rem;
+    border-radius: 15px;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 255, 127, 0.2);
+    color: var(--fresh-green);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3);
+}
+
+/* ============================================
+   SOCIAL LINKS - GLASSMORPHIC BUBBLES
+   ============================================ */
+.social-links {
+    margin-top: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.social-links h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    /* Vista Glass Text */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 4px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.6),
+        0 0 25px rgba(0, 191, 255, 0.4),
+        1px 1px 2px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    display: inline-block;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    animation: vistaTextFadeIn 1.6s ease-out 0.6s both, vistaTitleGlow 3s ease-in-out infinite;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    color: var(--bright-blue);
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    box-shadow: var(--soft-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.4) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: var(--transition-smooth);
+}
+
+.social-icon:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+.social-icon:hover {
+    transform: translateY(-8px) scale(1.15) rotate(10deg);
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+    border-color: rgba(0, 191, 255, 0.6);
+    color: var(--bright-blue);
+}
+
+.social-icon i {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 5px rgba(0, 191, 255, 0.5));
+}
+
+/* ============================================
+   BUTTONS - GLASSMORPHIC WITH GLOW
+   ============================================ */
+.btn-primary {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-light);
+    padding: 1rem 2.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition-smooth);
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: var(--transition-smooth);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--soft-shadow), var(--glow-green);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-outline-primary {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 2px solid var(--bright-blue);
+    color: var(--bright-blue);
+    padding: 1rem 2.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: var(--soft-shadow);
+}
+
+.btn-outline-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.btn-outline-primary:hover {
+    color: var(--text-light);
+    border-color: var(--fresh-green);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+}
+
+.btn-outline-primary:hover::before {
+    width: 100%;
+}
+
+/* ============================================
+   CARDS - GLASSMORPHIC
+   ============================================ */
+.card-modern,
+.portfolio-item,
+.testimonial-item,
+.contact-item,
+.hobby-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 2px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 2rem;
+    box-shadow: var(--soft-shadow);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-modern::before,
+.portfolio-item::before,
+.testimonial-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.card-modern:hover::before,
+.portfolio-item:hover::before,
+.testimonial-item:hover::before {
+    opacity: 1;
+}
+
+.card-modern:hover,
+.portfolio-item:hover,
+.testimonial-item:hover,
+.contact-item:hover,
+.hobby-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--soft-shadow), var(--glow-green);
+    border-color: rgba(0, 255, 127, 0.4);
+}
+
+/* ============================================
+   SKILLS SECTION - FRUTIGER AERO
+   ============================================ */
+.skills-section {
+    margin: 3rem 0;
+}
+
+.skills-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skill-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+    box-shadow: var(--soft-shadow);
+    position: relative;
+        overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px) scale(1.05) rotate(2deg);
+    border-color: rgba(0, 191, 255, 0.5);
+    box-shadow: var(--soft-shadow), var(--glow-blue);
+}
+
+.skill-icon {
+    font-size: 4rem;
+        margin-bottom: 1rem;
+    transition: var(--transition-smooth);
+    display: block;
+    filter: drop-shadow(0 4px 15px rgba(0, 191, 255, 0.4));
+    position: relative;
+    z-index: 1;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 6px 20px rgba(0, 191, 255, 0.6));
+}
+
+.skill-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+}
+
+.typescript-icon {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(49, 120, 198, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 2px solid currentColor;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(49, 120, 198, 0.3);
+}
+
+/* ============================================
+   PORTFOLIO ITEMS
+   ============================================ */
+.portfolio-content h3 {
+    color: var(--bright-blue) !important;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    text-shadow: 
+        0 3px 6px rgba(255, 255, 255, 0.95),
+        0 0 25px rgba(0, 191, 255, 0.6),
+        2px 2px 4px rgba(0, 0, 0, 0.2) !important;
+    font-weight: 700;
+}
+
+.portfolio-details {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.portfolio-details li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--text-dark) !important;
+    text-shadow: 
+        0 2px 4px rgba(255, 255, 255, 0.95),
+        0 0 15px rgba(255, 255, 255, 0.6),
+        1px 1px 2px rgba(0, 0, 0, 0.2) !important;
+    font-weight: 500;
+}
+
+.portfolio-details li i {
+    color: var(--fresh-green);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 5px rgba(0, 255, 127, 0.5));
+}
+
+.tech-stack {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    }
+
+    .tech-stack .badge {
+    padding: 0.6rem 1.2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    color: var(--bright-blue);
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tech-stack .badge:hover {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    color: var(--text-light);
+    transform: scale(1.1);
+    box-shadow: var(--glow-blue);
+}
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonial-item.featured {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    border: none;
+    color: var(--text-light);
+}
+
+.testimonial-item.featured h3,
+.testimonial-item.featured p {
+    color: var(--text-light);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.quote-icon {
+    font-size: 3.5rem;
+    color: var(--bright-blue);
+    margin-bottom: 1.5rem;
+    opacity: 0.4;
+    filter: drop-shadow(0 4px 15px rgba(0, 191, 255, 0.5));
+}
+
+.testimonial-item.featured .quote-icon {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+.contact-item i {
+    font-size: 3rem;
+    color: var(--bright-blue);
+    margin-bottom: 1.5rem;
+    transition: var(--transition-smooth);
+    filter: drop-shadow(0 4px 15px rgba(0, 191, 255, 0.5));
+}
+
+.contact-item:hover i {
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 6px 20px rgba(0, 191, 255, 0.7));
+}
+
+.contact-form-container {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 2px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 3rem;
+    box-shadow: var(--soft-shadow);
+}
+
+.form-control {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--glass-border);
+    color: var(--text-dark);
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: var(--bright-blue);
+    color: var(--text-dark);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3), var(--glow-blue);
+    outline: none;
+}
+
+/* ============================================
+   CV PAGE
+   ============================================ */
+.cv-document {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 2px solid var(--glass-border);
+    border-radius: 30px;
+    box-shadow: 
+        var(--soft-shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 0 60px rgba(0, 191, 255, 0.2);
+}
+
+.cv-header {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid var(--bright-blue);
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.cv-header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    border-radius: 2px;
+}
+
+.cv-header h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    text-shadow: none;
+}
+
+.cv-section {
+    margin-bottom: 3rem;
+}
+
+.cv-section h2 {
+    color: var(--bright-blue);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--glass-border);
+    position: relative;
+}
+
+.cv-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    border-radius: 2px;
+}
+
+.cv-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--glass-border);
+    padding-left: 2rem;
+    transition: var(--transition-smooth);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+.cv-item:hover {
+    border-left-color: var(--bright-blue);
+    background: rgba(0, 191, 255, 0.1);
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(0, 191, 255, 0.2);
+}
+
+.cv-document .skills-section {
+    margin-top: 1.5rem;
+}
+
+.cv-document .skills-grid {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* ============================================
+   PHOTO GALLERY
+   ============================================ */
+.photo-gallery {
+    margin: 0 -10px;
+}
+
+.gallery-item {
+    position: relative;
+    margin: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--soft-shadow);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--glass-border);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--soft-shadow), var(--glow-green);
+    border-color: rgba(0, 255, 127, 0.5);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 1.5rem;
+    color: white;
+        opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition-smooth);
+    }
+
+.gallery-item:hover .gallery-overlay {
+        opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: auto;
+    color: var(--text-dark) !important;
+    font-size: 1rem;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    /* Vista Glass Text */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 4px rgba(255, 255, 255, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 -4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative !important;
+    z-index: 100 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    animation: vistaFooterFadeIn 1.8s ease-out 0.8s both;
+}
+
+.footer p {
+    /* Vista Glass Text Container */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+}
+
+/* ============================================
+   PAGE CONTENT
+   ============================================ */
+.page-content {
+    padding-top: 120px;
+    min-height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    position: relative !important;
+    z-index: 100 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-muted {
+    color: var(--text-dark) !important;
+    opacity: 0.8;
+    font-family: 'Segoe UI', 'Calibri', sans-serif;
+    /* Vista Glass Text */
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.8),
+        0 2px 2px rgba(255, 255, 255, 0.6),
+        1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .bio-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .profile-img {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .profile-container {
+    padding: 2rem;
+    }
+    
+    .navigation-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    
+    .theme-toggle,
+    .back-link {
+        top: 15px;
+    }
+    
+    .theme-toggle {
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .back-link {
+        left: 15px;
+        padding: 10px 18px;
+        font-size: 0.9rem;
+} 
+
+.cv-document {
+    padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bio-text h1 {
+    font-size: 2rem;
+    }
+    
+    .profile-img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+}
+
+.social-icon {
+        width: 60px;
+        height: 60px;
+    font-size: 1.5rem;
+    }
+}
+
+/* ============================================
+   SCROLLBAR STYLING - FRUTIGER AERO
+   ============================================ */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--fresh-green) 0%, var(--bright-blue) 100%);
+}
+
+/* ============================================
+   AUTHENTIC WINDOWS VISTA / FRUTIGER AERO 3D SCENE
+   ============================================ */
+.frutiger-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    overflow: hidden;
+    perspective: 2000px;
+    perspective-origin: 50% 50%;
+}
+
+.frutiger-scene * {
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* ============================================
+   REALISTIC OCEAN/WATER LAYER
+   ============================================ */
+.ocean-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.water-surface {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+        rgba(0, 191, 255, 0.4) 0%,
+        rgba(30, 144, 255, 0.5) 30%,
+        rgba(0, 100, 200, 0.6) 60%,
+        rgba(0, 50, 150, 0.7) 100%
+    );
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.1) 2px,
+            rgba(255, 255, 255, 0.1) 4px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(255, 255, 255, 0.08) 3px,
+            rgba(255, 255, 255, 0.08) 6px
+        );
+    animation: waterFlow 8s linear infinite;
+    box-shadow: 
+        inset 0 0 100px rgba(0, 191, 255, 0.3),
+        0 -20px 60px rgba(0, 191, 255, 0.2);
+}
+
+@keyframes waterFlow {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 100px 0, 0 50px; }
+}
+
+.water-depth {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to bottom,
+        rgba(0, 50, 150, 0.3) 0%,
+        rgba(0, 30, 100, 0.5) 50%,
+        rgba(0, 20, 80, 0.7) 100%
+    );
+    filter: blur(2px);
+}
+
+/* ============================================
+   REALISTIC CSS FISH
+   ============================================ */
+.fish {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    z-index: 2;
+    animation: fishSwim 20s linear infinite;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4));
+}
+
+.fish-body {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(135deg,
+        #FF6B6B 0%,
+        #FF8E53 30%,
+        #FFA07A 50%,
+        #FFB347 70%,
+        #FFD700 100%
+    );
+    border-radius: 50% 40% 40% 50%;
+    box-shadow: 
+        inset -5px 0 10px rgba(0, 0, 0, 0.2),
+        inset 5px 0 10px rgba(255, 255, 255, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.fish-tail {
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #FF8E53;
+    filter: drop-shadow(2px 0 4px rgba(0, 0, 0, 0.3));
+    animation: tailWiggle 0.3s ease-in-out infinite;
+}
+
+@keyframes tailWiggle {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    50% { transform: translateY(-50%) rotate(10deg); }
+}
+
+.fish-fin-top {
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid rgba(255, 140, 83, 0.8);
+    animation: finMove 0.4s ease-in-out infinite;
+}
+
+.fish-fin-bottom {
+    position: absolute;
+    left: 20px;
+    bottom: 5px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid rgba(255, 140, 83, 0.8);
+    animation: finMove 0.5s ease-in-out infinite 0.1s;
+}
+
+@keyframes finMove {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.2); }
+}
+
+.fish-eye {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: 
+        inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+        0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.fish-1 {
+    bottom: 15%;
+    left: 10%;
+    animation-duration: 25s;
+    animation-delay: 0s;
+}
+
+.fish-1 .fish-body {
+    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #2E8B57 100%);
+}
+
+.fish-1 .fish-tail {
+    border-left-color: #44A08D;
+}
+
+.fish-2 {
+    bottom: 25%;
+    left: 20%;
+    animation-duration: 30s;
+    animation-delay: 3s;
+    transform: scaleX(-1);
+}
+
+.fish-2 .fish-body {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFA07A 100%);
+}
+
+.fish-2 .fish-tail {
+    border-left-color: #FF8E53;
+}
+
+.fish-3 {
+    bottom: 18%;
+    left: 50%;
+    animation-duration: 22s;
+    animation-delay: 6s;
+}
+
+.fish-3 .fish-body {
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 50%, #6B46C1 100%);
+}
+
+.fish-3 .fish-tail {
+    border-left-color: #764BA2;
+}
+
+.fish-4 {
+    bottom: 28%;
+    left: 70%;
+    animation-duration: 28s;
+    animation-delay: 2s;
+    transform: scaleX(-1);
+}
+
+.fish-4 .fish-body {
+    background: linear-gradient(135deg, #F093FB 0%, #F5576C 50%, #FF6B6B 100%);
+}
+
+.fish-4 .fish-tail {
+    border-left-color: #F5576C;
+}
+
+.fish-5 {
+    bottom: 20%;
+    left: 85%;
+    animation-duration: 26s;
+    animation-delay: 4s;
+}
+
+.fish-5 .fish-body {
+    background: linear-gradient(135deg, #FFD89B 0%, #FF6B6B 50%, #FF8E53 100%);
+}
+
+.fish-5 .fish-tail {
+    border-left-color: #FF6B6B;
+}
+
+@keyframes fishSwim {
+    0% {
+        transform: translateX(-150px) translateY(0);
+    }
+    25% {
+        transform: translateX(calc(25vw - 50px)) translateY(-15px);
+    }
+    50% {
+        transform: translateX(calc(50vw - 50px)) translateY(8px);
+    }
+    75% {
+        transform: translateX(calc(75vw - 50px)) translateY(-12px);
+    }
+    100% {
+        transform: translateX(calc(100vw + 150px)) translateY(0);
+    }
+}
+
+/* Fish scale pattern */
+.fish-body::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    width: 30px;
+    height: 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 3px,
+        rgba(255, 255, 255, 0.2) 3px,
+        rgba(255, 255, 255, 0.2) 6px
+    );
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+/* ============================================
+   REALISTIC FLOATING BUBBLES
+   ============================================ */
+.floating-bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: radial-gradient(circle at 30% 30%,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.4) 20%,
+        rgba(135, 206, 235, 0.3) 40%,
+        rgba(0, 191, 255, 0.2) 60%,
+        transparent 80%
+    );
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: bubbleRise 20s linear infinite;
+    box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.5),
+        inset -10px -10px 20px rgba(0, 0, 0, 0.1),
+        inset 20px 20px 30px rgba(255, 255, 255, 0.4),
+        0 0 50px rgba(0, 191, 255, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.bubble-1 {
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 0s;
+}
+
+.bubble-2 {
+    left: 25%;
+    width: 35px;
+    height: 35px;
+    animation-delay: 2s;
+}
+
+.bubble-3 {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 4s;
+}
+
+.bubble-4 {
+    left: 55%;
+    width: 45px;
+    height: 45px;
+    animation-delay: 1s;
+}
+
+.bubble-5 {
+    left: 70%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 3s;
+}
+
+.bubble-6 {
+    left: 85%;
+    width: 55px;
+    height: 55px;
+    animation-delay: 5s;
+}
+
+.bubble-7 {
+    left: 15%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 6s;
+}
+
+.bubble-8 {
+    left: 90%;
+        width: 40px;
+        height: 40px;
+    animation-delay: 7s;
+}
+
+.bubble-3, .bubble-6 {
+    background: radial-gradient(circle at 30% 30%,
+        rgba(0, 255, 127, 0.5) 0%,
+        rgba(0, 255, 127, 0.3) 20%,
+        rgba(135, 206, 235, 0.25) 40%,
+        transparent 70%
+    );
+    border-color: rgba(0, 255, 127, 0.5);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 127, 0.5),
+        inset -10px -10px 20px rgba(0, 0, 0, 0.1),
+        inset 20px 20px 30px rgba(0, 255, 127, 0.4),
+        0 0 50px rgba(0, 255, 127, 0.4);
+}
+
+/* ============================================
+   REALISTIC 3D CITY SKYLINE
+   ============================================ */
+.city-skyline-3d {
+    position: absolute;
+    bottom: 35%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    transform: perspective(2000px) rotateX(15deg);
+    transform-origin: bottom;
+    z-index: 2;
+}
+
+.skyscraper {
+    position: absolute;
+    bottom: 0;
+    width: 6%;
+    background: linear-gradient(to top,
+        rgba(20, 20, 40, 0.9) 0%,
+        rgba(40, 60, 100, 0.8) 20%,
+        rgba(60, 100, 150, 0.7) 40%,
+        rgba(80, 140, 200, 0.6) 60%,
+        rgba(100, 180, 240, 0.5) 80%,
+        rgba(135, 206, 235, 0.4) 100%
+    );
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    border-right: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        inset -10px 0 30px rgba(0, 0, 0, 0.3),
+        inset 10px 0 30px rgba(255, 255, 255, 0.2),
+        0 0 40px rgba(0, 191, 255, 0.3);
+    transform-style: preserve-3d;
+}
+
+.skyscraper-1 {
+    left: 3%;
+    height: 45%;
+    animation: buildingGlow 4s ease-in-out infinite;
+}
+
+.skyscraper-2 {
+    left: 11%;
+    height: 65%;
+    animation: buildingGlow 5s ease-in-out infinite 0.5s;
+}
+
+.skyscraper-3 {
+    left: 19%;
+    height: 55%;
+    animation: buildingGlow 4.5s ease-in-out infinite 1s;
+}
+
+.skyscraper-4 {
+    left: 27%;
+    height: 75%;
+    animation: buildingGlow 5.5s ease-in-out infinite 1.5s;
+}
+
+.skyscraper-5 {
+    left: 35%;
+    height: 50%;
+    animation: buildingGlow 4.2s ease-in-out infinite 0.3s;
+}
+
+.skyscraper-6 {
+    left: 43%;
+    height: 70%;
+    animation: buildingGlow 5.2s ease-in-out infinite 0.8s;
+}
+
+.skyscraper-7 {
+    left: 51%;
+    height: 60%;
+    animation: buildingGlow 4.8s ease-in-out infinite 1.2s;
+}
+
+.skyscraper-8 {
+    left: 59%;
+    height: 80%;
+    animation: buildingGlow 6s ease-in-out infinite 2s;
+}
+
+.building-windows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 8px,
+            rgba(255, 255, 100, 0.3) 8px,
+            rgba(255, 255, 100, 0.3) 10px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 255, 100, 0.3) 15px,
+            rgba(255, 255, 100, 0.3) 17px
+        );
+    animation: windowLights 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes windowLights {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+.building-reflection {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    transform: skewX(-10deg);
+    animation: reflectionMove 8s ease-in-out infinite;
+}
+
+@keyframes reflectionMove {
+    0%, 100% { transform: skewX(-10deg) translateX(0); opacity: 0.3; }
+    50% { transform: skewX(-10deg) translateX(-20px); opacity: 0.6; }
+}
+
+@keyframes buildingGlow {
+    0%, 100% { 
+        box-shadow: 
+            inset -10px 0 30px rgba(0, 0, 0, 0.3),
+            inset 10px 0 30px rgba(255, 255, 255, 0.2),
+            0 0 40px rgba(0, 191, 255, 0.3);
+    }
+    50% { 
+        box-shadow: 
+            inset -10px 0 30px rgba(0, 0, 0, 0.3),
+            inset 10px 0 30px rgba(255, 255, 255, 0.3),
+            0 0 60px rgba(0, 191, 255, 0.6);
+    }
+}
+
+/* ============================================
+   REALISTIC 3D GLOBE/PLANET
+   ============================================ */
+.globe-3d {
+    position: absolute;
+    top: 15%;
+    right: 8%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    animation: globeFloat 15s ease-in-out infinite;
+    z-index: 3;
+}
+
+.globe-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: 
+        radial-gradient(circle at 30% 30%,
+            rgba(0, 255, 127, 0.4) 0%,
+            rgba(0, 200, 83, 0.35) 15%,
+            rgba(0, 191, 255, 0.3) 30%,
+            rgba(30, 144, 255, 0.25) 45%,
+            rgba(70, 130, 180, 0.2) 60%,
+            transparent 75%
+        ),
+        radial-gradient(circle at 70% 50%,
+            rgba(0, 200, 83, 0.3) 0%,
+            rgba(0, 191, 255, 0.25) 20%,
+            transparent 40%
+        );
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        inset -30px -30px 60px rgba(0, 0, 0, 0.4),
+        inset 30px 30px 60px rgba(255, 255, 255, 0.3),
+        0 0 80px rgba(0, 191, 255, 0.5),
+        0 0 120px rgba(0, 255, 127, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.globe-highlight {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.3) 40%,
+        transparent 70%
+    );
+    animation: highlightMove 10s ease-in-out infinite;
+}
+
+@keyframes highlightMove {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10px, -10px) scale(1.1); }
+}
+
+@keyframes globeFloat {
+    0%, 100% { 
+        transform: translateY(0) rotateY(0deg) scale(1);
+    }
+    50% { 
+        transform: translateY(-25px) rotateY(10deg) scale(1.05);
+    }
+}
+
+/* ============================================
+   REALISTIC NATURE ELEMENTS
+   ============================================ */
+.nature-layer {
+    position: absolute;
+    bottom: 35%;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    z-index: 1;
+}
+
+.tree-realistic {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 120px solid rgba(0, 150, 50, 0.6);
+    filter: drop-shadow(0 5px 15px rgba(0, 100, 0, 0.4));
+    animation: treeSway 8s ease-in-out infinite;
+}
+
+.tree-realistic::before {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -30px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 100px solid rgba(0, 180, 60, 0.6);
+}
+
+.tree-realistic::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -20px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 80px solid rgba(0, 200, 70, 0.6);
+}
+
+.tree-1 {
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.tree-2 {
+    left: 25%;
+    animation-delay: 1s;
+    transform: scale(0.9);
+}
+
+.tree-3 {
+    left: 85%;
+    animation-delay: 0.5s;
+    transform: scale(1.1);
+}
+
+@keyframes treeSway {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(3px) rotate(0.5deg); }
+    75% { transform: translateX(-3px) rotate(-0.5deg); }
+}
+
+.grass-patch {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 30px;
+    background: linear-gradient(to top,
+        rgba(0, 150, 50, 0.5) 0%,
+        rgba(0, 200, 70, 0.4) 50%,
+        transparent 100%
+    );
+    border-radius: 50% 50% 0 0;
+    filter: blur(2px);
+}
+
+.grass-1 {
+    left: 10%;
+    animation: grassWave 6s ease-in-out infinite;
+}
+
+.grass-2 {
+    left: 80%;
+    animation: grassWave 7s ease-in-out infinite 1s;
+}
+
+@keyframes grassWave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.1); }
+}
+
+
+/* ============================================
+   WATER DROPLET EFFECTS
+   ============================================ */
+.water-droplet {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(135, 206, 235, 0.6) 0%, rgba(0, 191, 255, 0.3) 100%);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    animation: waterRipple 2s ease-out infinite;
+    pointer-events: none;
+}
+
+/* ============================================
+   NATURE DECORATIVE ELEMENTS
+   ============================================ */
+.nature-accent {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ============================================
+   GLOBAL TEXT VISIBILITY ENHANCEMENT
+   ============================================ */
+/* Ensure all text is highly visible and content is above background */
+/* Ensure all content is visible and above background */
+.hero, .page-content, .cv-document, 
+.portfolio-item, .testimonial-item, 
+.contact-item, .hobby-item,
+.card-modern, .about-section,
+.container, section, article, main {
+    color: var(--text-dark) !important;
+    position: relative !important;
+    z-index: 100 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.hero *, .page-content *, .cv-document *,
+.portfolio-item *, .testimonial-item *,
+.contact-item *, .hobby-item *,
+.card-modern *, .about-section *,
+.container *, section *, article *, main * {
+    color: inherit !important;
+    position: relative !important;
+    z-index: inherit !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Strong text shadows for all content */
+.hero p, .hero span, .hero div,
+.page-content p, .page-content span, .page-content div,
+.cv-document p, .cv-document span, .cv-document div,
+.portfolio-item p, .testimonial-item p,
+.contact-item p, .hobby-item p {
+    text-shadow: 
+        0 2px 4px rgba(255, 255, 255, 0.95),
+        0 0 15px rgba(255, 255, 255, 0.7),
+        1px 1px 3px rgba(0, 0, 0, 0.2) !important;
+    font-weight: 500;
+}
+
+/* ============================================
+   PERFORMANCE & RESPONSIVE DESIGN
+   ============================================ */
+
+/* Performance optimizations */
+.cloud, .hill {
+    will-change: transform, opacity;
+}
+
+#waterCanvas {
+    will-change: contents;
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 768px) {
+    /* Reduce number of clouds */
+    .cloud-5, .cloud-6, .cloud-7, .cloud-8 {
+        display: none;
+    }
+    
+    /* Smaller clouds */
+    .cloud {
+        filter: blur(30px);
+    }
+    
+    .cloud-1, .cloud-2, .cloud-3, .cloud-4 {
+        transform: scale(0.8);
+    }
+    
+    /* Adjust city silhouette */
+    .city-silhouette {
+        height: 150px;
+        bottom: 30%;
+        transform: scale(0.6);
+    }
+    
+    /* Adjust water layer */
+    .water-layer {
+        height: 12%;
+        bottom: 22%;
+    }
+    
+    /* Adjust hill heights */
+    .hills-foreground {
+        height: 22%;
+    }
+    
+    .hill-1 { height: 55%; }
+    .hill-2 { height: 40%; }
+    .hill-3 { height: 30%; }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Reduce some clouds */
+    .cloud-7, .cloud-8 {
+        display: none;
+    }
+    
+    /* Slightly smaller clouds */
+    .cloud {
+        transform: scale(0.9);
+    }
+    
+    /* Adjust layers */
+    .city-silhouette {
+        height: 180px;
+    }
+    
+    .water-layer {
+        height: 13%;
+    }
+    
+    .hills-foreground {
+        height: 23%;
+    }
+}
+
+/* ============================================
+   FINAL POLISH - LIGHT RAYS & ATMOSPHERIC EFFECTS
+   ============================================ */
+.frutiger-background-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(135, 206, 235, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 6;
+    animation: lightRays 15s ease-in-out infinite;
+}
+
+@keyframes lightRays {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+*:focus-visible {
+    outline: 3px solid var(--bright-blue);
+    outline-offset: 3px;
+    border-radius: 5px;
+} 

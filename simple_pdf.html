@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ian McCallum - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #2980b9;
+        }
+        
+        /* Section Styles */
+        section {
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #e74c3c;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .position {
+            color: #3498db;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* CV Item Styles */
+        .cv-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .cv-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+        }
+        
+        .d-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .d-flex span:last-child {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* List Styles */
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+        
+        li::marker {
+            color: #3498db;
+        }
+        
+        /* Skills List */
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skills-list li {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Technical Skills */
+        .tech-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .tech-category {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .tech-category strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 20px;
+                font-size: 12px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 16px;
+            }
+            
+            h3 {
+                font-size: 14px;
+            }
+            
+            .cv-item {
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .skills-list li {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+            
+            @page {
+                margin: 0.5in;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .d-flex {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .tech-skills {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Ian McCallum</h1>
+        <div class="contact-info">
+            <span>Naperville, IL</span> •
+            <span><a href="mailto:mccallum.ian@icloud.com">mccallum.ian@icloud.com</a></span><br>
+            <span><a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank">LinkedIn</a></span> •
+            <span><a href="https://ianinnovates.com" target="_blank">Personal Website</a></span>
+        </div>
+    </header>
+
+    <!-- Objective -->
+    <section>
+        <h2>Objective</h2>
+        <p>Motivated high school senior with a passion for technology, entrepreneurship, and creative expression. Dedicated to leveraging technical expertise, leadership experience, and a strong work ethic to excel in challenging roles and achieve long-term professional goals.</p>
+    </section>
+
+    <!-- Education -->
+    <section>
+        <h2>Education</h2>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Metea Valley High School</h3>
+                <span>Naperville, IL</span>
+            </div>
+            <div class="d-flex">
+                <span>Graduation Year: 2026</span>
+                <span>GPA: 3.86 (Unweighted) | 4.24 (Weighted)</span>
+            </div>
+            <p><strong>Honors:</strong> Member of National Honor Society, Soccer Sportsmanship Award</p>
+            <p><strong>AP Courses:</strong> AP European History, AP Psychology, AP U.S. History, AP English 3</p>
+            <p><strong>Additional Coursework:</strong> Honors Biology, Honors Spanish, Honors English</p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li>Fast learner</li>
+            <li>Excellent interpersonal skills</li>
+            <li>Self-motivated</li>
+            <li>Strong work ethic</li>
+            <li>People-oriented</li>
+            <li>Enthusiastic</li>
+        </ul>
+    </section>
+
+    <!-- Work Experience -->
+    <section>
+        <h2>Work Experience</h2>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Coldwell Banker Dan Firks</h3>
+                <span>June 2025 – Present</span>
+            </div>
+            <p class="position">Real Estate Runner</p>
+            <ul>
+                <li>Drove and helped set up open houses for one of the most successful real estate teams in the area.</li>
+                <li>Assisted with property preparation and staging to ensure optimal presentation to potential buyers.</li>
+                <li>Developed strong organizational and time management skills while coordinating multiple property showings.</li>
+            </ul>
+        </div>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Target</h3>
+                <span>June 2024 – Present</span>
+            </div>
+            <p class="position">Food Department Team Member</p>
+            <ul>
+                <li>Delivered excellent customer service in a fast-paced environment.</li>
+                <li>Stocked shelves, managed inventory, and maintained department organization.</li>
+                <li>Developed strong interpersonal and multitasking abilities.</li>
+            </ul>
+        </div>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Youth Soccer Referee</h3>
+                <span>2021 – Present</span>
+            </div>
+            <p class="position">Self-Employed</p>
+            <ul>
+                <li>Officiated youth soccer games, enhancing decision-making and conflict resolution skills.</li>
+                <li>Built confidence and managed high-pressure situations to ensure fair gameplay.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Entrepreneurial and Technical Projects -->
+    <section>
+        <h2>Entrepreneurial and Technical Projects</h2>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Beat the Clock - Automation Consulting Agency</h3>
+                <span>December 2024 – Present</span>
+            </div>
+            <p class="position">Founder</p>
+            <ul>
+                <li>Created a service to help businesses streamline operations using tools like Zapier and Make.</li>
+                <li>Exploring artificial intelligence integration with technologies like ChatGPT and Cursor.ai to enhance efficiency.</li>
+            </ul>
+        </div>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Freelance Website Development</h3>
+                <span>2023 – Present</span>
+            </div>
+            <p class="position">Web Developer</p>
+            <ul>
+                <li>Coded a custom website for a sports photographer, showcasing portfolio and booking capabilities.</li>
+                <li>Developed personal brand website to establish online presence and professional identity.</li>
+                <li>Built business website for Beat the Clock consulting agency with modern design and functionality.</li>
+                <li>Created a comprehensive marketing agency website with React-based prequalification assessment tool to evaluate client readiness.</li>
+                <li>Currently developing a website for a brand scaler, focusing on conversion optimization and user experience.</li>
+            </ul>
+        </div>
+        <div class="cv-item">
+            <div class="d-flex">
+                <h3>Vokel - YouTube Channel and Twitch Stream</h3>
+                <span>2019 – 2021</span>
+            </div>
+            <p class="position">Creator</p>
+            <ul>
+                <li>Grew a gaming-focused YouTube channel to nearly 500 subscribers and achieved Twitch Affiliate status.</li>
+                <li>Developed advanced video editing and content creation skills using Adobe Premiere Pro and After Effects.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section>
+        <h2>Technical Skills</h2>
+        <div class="tech-skills">
+            <div class="tech-category">
+                <strong>Programming Languages:</strong>
+                HTML, CSS, JavaScript, React
+            </div>
+            <div class="tech-category">
+                <strong>Technology Tools:</strong>
+                Zapier, Make, ChatGPT, Cursor.ai
+            </div>
+            <div class="tech-category">
+                <strong>Creative Tools:</strong>
+                Adobe Photoshop, Lightroom, Premiere Pro, After Effects
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership and Extracurricular Activities -->
+    <section>
+        <h2>Leadership and Extracurricular Activities</h2>
+        <div class="cv-item">
+            <h3>UNICEF Club at Metea Valley High School</h3>
+            <p class="position">Board Member</p>
+            <ul>
+                <li>Helped manage club and create activities to support fundraising initiatives for children in need.</li>
+            </ul>
+        </div>
+        <div class="cv-item">
+            <h3>JV Soccer Team</h3>
+            <p class="position">Player</p>
+            <ul>
+                <li>Contributed to team success with dedication and strong sportsmanship, earning the Soccer Sportsmanship Award.</li>
+            </ul>
+        </div>
+        <div class="cv-item">
+            <h3>National Honor Society</h3>
+            <p class="position">Member</p>
+            <ul>
+                <li>Recognized for academic excellence, leadership, and community service.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Hobbies and Interests -->
+    <section>
+        <h2>Hobbies and Interests</h2>
+        <div class="cv-item">
+            <ul>
+                <li><strong>Weightlifting:</strong> Developing physical and mental discipline through regular fitness training.</li>
+                <li><strong>Photography & Photo Editing:</strong> Capturing and editing visuals using Adobe Lightroom and Photoshop to create stunning, storytelling imagery.</li>
+                <li><strong>Fishing:</strong> Exploring nature and enjoying serene outdoor experiences rooted in childhood traditions.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section>
+        <h2>Achievements</h2>
+        <div class="cv-item">
+            <ul>
+                <li>Soccer Sportsmanship Award</li>
+                <li>AP Scholar with Honor Award</li>
+                <li>Seal of Biliteracy</li>
+                <li>UNICEF Participation Award</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- References -->
+    <section>
+        <h2>References</h2>
+        <p>Available upon request.</p>
+    </section>
+</body>
+</html> 

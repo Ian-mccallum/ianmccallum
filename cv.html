@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Ian McCallum</title>
+    <link rel="icon" type="image/png" href="img/IMlogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vista-design-system.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="vista-desktop">
+    <!-- GIF Background -->
+    <div id="frutiger-background" class="fixed inset-0 z-0">
+        <img id="background-gif" class="background-gif" src="20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
+        <div class="video-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Vista Taskbar -->
+    <div class="vista-taskbar">
+        <button id="vista-start-button" class="vista-start-button">
+            <i class="fab fa-windows"></i>
+        </button>
+        <div class="vista-taskbar-items">
+            <a href="index.html" class="vista-taskbar-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="vista-taskbar-item">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="portfolio.html" class="vista-taskbar-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="vista-taskbar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="vista-system-tray">
+            <div class="vista-tray-item"><i class="fas fa-volume-up"></i></div>
+            <div class="vista-tray-item"><i class="fas fa-wifi"></i></div>
+            <div class="vista-tray-time" id="vista-time"></div>
+        </div>
+    </div>
+
+    <!-- Vista Start Menu -->
+    <div id="vista-start-menu" class="vista-start-menu">
+        <div class="vista-start-menu-left">
+            <a href="index.html" class="vista-start-item"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="about.html" class="vista-start-item"><i class="fas fa-user"></i><span>About Ian</span></a>
+            <a href="portfolio.html" class="vista-start-item"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+            <a href="cv.html" class="vista-start-item"><i class="fas fa-file-alt"></i><span>CV / Resume</span></a>
+            <a href="testimonials.html" class="vista-start-item"><i class="fas fa-quote-left"></i><span>Testimonials</span></a>
+            <a href="photos.html" class="vista-start-item"><i class="fas fa-images"></i><span>Photos</span></a>
+            <a href="contact.html" class="vista-start-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+        </div>
+        <div class="vista-start-menu-right">
+            <a href="about.html" class="vista-start-item"><i class="fas fa-user"></i><span>Ian McCallum</span></a>
+            <a href="portfolio.html" class="vista-start-item"><i class="fas fa-folder"></i><span>Portfolio</span></a>
+            <a href="cv.html" class="vista-start-item"><i class="fas fa-file"></i><span>CV</span></a>
+            <a href="contact.html" class="vista-start-item"><i class="fas fa-cog"></i><span>Contact</span></a>
+        </div>
+    </div>
+
+    <!-- Main Content - Vista Window -->
+    <div class="vista-windows-container">
+        <div class="vista-window" style="max-width: 900px; margin: 80px auto;">
+            <div class="vista-title-bar">
+                <div class="vista-title-text">
+                    <i class="fas fa-file-alt me-2"></i>
+                    Curriculum Vitae - Ian McCallum
+                </div>
+                <div class="vista-window-controls">
+                    <button class="vista-control-btn minimize"><i class="fas fa-minus"></i></button>
+                    <button class="vista-control-btn maximize"><i class="fas fa-square"></i></button>
+                    <button class="vista-control-btn close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="vista-window-content">
+                <!-- CV Header -->
+                <header class="vista-cv-header text-center mb-4">
+                    <h1 class="vista-h1 vista-glass-text">Ian McCallum</h1>
+                    <div class="vista-body-text" style="margin-top: 10px;">
+                        <span>Naperville, IL</span> • 
+                        <a href="mailto:mccallum.ian@icloud.com" style="color: var(--vista-blue); text-decoration: none;">mccallum.ian@icloud.com</a><br>
+                        <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" style="color: var(--vista-blue); text-decoration: none;">LinkedIn</a> • 
+                        <a href="https://ianinnovates.com" target="_blank" style="color: var(--vista-blue); text-decoration: none;">Personal Website</a>
+                    </div>
+                </header>
+
+                <!-- Objective -->
+                <section class="vista-content-section">
+                    <h2 class="vista-h2 mb-3">
+                        <i class="fas fa-bullseye me-2"></i>
+                        Objective
+                    </h2>
+                    <p class="vista-body-text">
+                        Motivated high school senior with a passion for technology, entrepreneurship, and creative expression. Dedicated to leveraging technical expertise, leadership experience, and a strong work ethic to excel in challenging roles and achieve long-term professional goals.
+                    </p>
+                </section>
+
+                <!-- Education -->
+                <section class="vista-content-section">
+                    <h2 class="vista-h2 mb-3">
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        Education
+                    </h2>
+                    <div class="vista-info-item" style="margin-bottom: 15px;">
+                        <i class="fas fa-school vista-icon"></i>
+                        <div>
+                            <strong>Metea Valley High School</strong>
+                            <p>Naperville, IL • Graduation Year: 2026</p>
+                            <p>GPA: 3.86 (Unweighted) | 4.24 (Weighted)</p>
+                            <p><strong>Honors:</strong> Member of National Honor Society, Soccer Sportsmanship Award</p>
+                            <p><strong>AP Courses:</strong> AP European History, AP Psychology, AP U.S. History, AP English 3</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills -->
+                <section class="vista-content-section">
+                    <h2 class="vista-h2 mb-3">
+                        <i class="fas fa-tools me-2"></i>
+                        Skills
+                    </h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span class="vista-badge">Fast learner</span>
+                        <span class="vista-badge">Excellent interpersonal skills</span>
+                        <span class="vista-badge">Self-motivated</span>
+                        <span class="vista-badge">Strong work ethic</span>
+                        <span class="vista-badge">People-oriented</span>
+                        <span class="vista-badge">Enthusiastic</span>
+                    </div>
+                </section>
+
+                <!-- Work Experience -->
+                <section class="vista-content-section">
+                    <h2 class="vista-h2 mb-3">
+                        <i class="fas fa-briefcase me-2"></i>
+                        Work Experience
+                    </h2>
+                    
+                    <div class="vista-info-item" style="margin-bottom: 20px;">
+                        <i class="fas fa-building vista-icon"></i>
+                        <div>
+                            <strong>Coldwell Banker Dan Firks</strong>
+                            <p style="color: var(--vista-text-muted); font-size: 12px;">June 2025 – Present</p>
+                            <p><strong>Real Estate Runner</strong></p>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Drove and helped set up open houses for one of the most successful real estate teams in the area.</li>
+                                <li>Assisted with property preparation and staging to ensure optimal presentation to potential buyers.</li>
+                                <li>Developed strong organizational and time management skills while coordinating multiple property showings.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="vista-info-item" style="margin-bottom: 20px;">
+                        <i class="fas fa-shopping-cart vista-icon"></i>
+                        <div>
+                            <strong>Target</strong>
+                            <p style="color: var(--vista-text-muted); font-size: 12px;">June 2024 – Present</p>
+                            <p><strong>Food Department Team Member</strong></p>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Delivered excellent customer service in a fast-paced environment.</li>
+                                <li>Stocked shelves, managed inventory, and maintained department organization.</li>
+                                <li>Handled multiple customer interactions daily, improving communication and problem-solving skills.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Download CV Button -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="Ian McCallum - CV.pdf" download class="vista-button vista-button-primary">
+                        <i class="fas fa-download"></i>
+                        <span>Download PDF CV</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/gif-background.js"></script>
+    <script src="js/vista-system.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

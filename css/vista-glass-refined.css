@@ -1,0 +1,913 @@
+/* ============================================
+   REFINED VISTA GLASS & SKEUOMORPHISM
+   Enhanced Glass Effects & Realistic Depth
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap');
+
+/* Refined Vista Colors - Frutiger Aero Archive Style */
+:root {
+    /* Glass Backgrounds - Off-white like Frutiger Aero Archive */
+    --glass-bg-light: rgba(250, 250, 248, 0.95);
+    --glass-bg-medium: rgba(248, 248, 246, 0.92);
+    --glass-bg-dark: rgba(245, 245, 243, 0.90);
+    
+    /* Content Background - Off-white */
+    --content-bg: rgba(252, 252, 250, 0.98);
+    
+    /* Glass Borders - Subtle but Visible */
+    --glass-border-light: rgba(255, 255, 255, 0.7);
+    --glass-border-medium: rgba(200, 220, 240, 0.5);
+    --glass-border-dark: rgba(150, 180, 210, 0.4);
+    
+    /* Title Bar Gradient - Lighter glossy blue with sharp transition */
+    --titlebar-gradient: linear-gradient(to bottom,
+        rgba(140, 200, 255, 0.85) 0%,
+        rgba(100, 160, 220, 0.88) 55%,
+        rgba(80, 140, 200, 0.88) 55%,
+        rgba(70, 130, 190, 0.90) 100%
+    );
+    
+    /* Blue header text - white for contrast */
+    --header-text: rgba(255, 255, 255, 0.95);
+    
+    /* Shadows - Multiple Layers for Depth */
+    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-stronger: 0 12px 36px rgba(0, 0, 0, 0.25);
+    
+    /* Inner Highlights - Skeuomorphic */
+    --inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    --inner-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    --inner-border: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    
+    /* Taskbar */
+    --taskbar-bg: rgba(0, 120, 215, 0.95);
+    --taskbar-border: rgba(255, 255, 255, 0.25);
+    
+    /* Start Menu */
+    --startmenu-bg: rgba(35, 35, 35, 0.94);
+    --startmenu-border: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================
+   REFINED GLASS WINDOW - Translucent & Glossy White
+   ============================================ */
+.vista-glass-window {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    box-shadow: 
+        var(--shadow-stronger),
+        var(--inner-highlight),
+        var(--inner-shadow),
+        var(--inner-border),
+        0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 0 40px rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    position: relative;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+}
+
+/* Maximized windows - remove translucency */
+.vista-glass-window[data-maximized="true"] {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(5px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(5px) saturate(120%) !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+}
+
+/* Refined Title Bar - Lighter glossy blue header with bubbly reflection */
+.vista-glass-titlebar {
+    background: var(--titlebar-gradient) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: move;
+    user-select: none;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(100, 160, 220, 0.35);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.vista-glass-titlebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+}
+
+.vista-glass-titlebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 16px;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.35) 100%
+    );
+    border-radius: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    width: 90%;
+}
+
+.vista-glass-title {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--header-text);
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        0 0 1px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.2px;
+    position: relative;
+    z-index: 2;
+}
+
+.vista-glass-controls {
+    display: flex;
+    gap: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.vista-glass-control-btn {
+    width: 30px;
+    height: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    transition: all 0.15s ease;
+    color: var(--header-text);
+    font-size: 11px;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    min-width: 30px;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Vista-style button background on hover */
+.vista-glass-control-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vista-glass-control-btn:hover::before {
+    opacity: 1;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Glossy border effect */
+.vista-glass-control-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* Vista-style control buttons - icons */
+.vista-glass-control-btn i {
+    font-size: 11px;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+}
+
+/* Minimize button - dash icon */
+.vista-glass-control-btn.minimize i {
+    font-size: 10px;
+    font-weight: 900;
+}
+
+/* Maximize button - square icon (outline) */
+.vista-glass-control-btn.maximize i {
+    font-size: 8px;
+    font-weight: 400;
+}
+
+/* Close button - X icon */
+.vista-glass-control-btn.close i {
+    font-size: 11px;
+    font-weight: 900;
+}
+
+/* Close button - red background on hover */
+.vista-glass-control-btn.close:hover {
+    background: #E81123 !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+.vista-glass-control-btn.close:hover::before {
+    background: #E81123 !important;
+    opacity: 1;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.vista-glass-control-btn.close:hover i {
+    color: white !important;
+}
+
+/* Minimize/Maximize buttons - light background on hover */
+.vista-glass-control-btn.minimize:hover,
+.vista-glass-control-btn.maximize:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+.vista-glass-control-btn.minimize:hover::before,
+.vista-glass-control-btn.maximize:hover::before {
+    background: rgba(255, 255, 255, 0.2) !important;
+    opacity: 1;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Window Content - Translucent & Glossy White */
+.vista-glass-content {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    position: relative;
+    min-height: 200px;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+}
+
+/* Maximized window content - remove translucency */
+.vista-glass-window[data-maximized="true"] .vista-glass-content {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(2px) saturate(110%) !important;
+    -webkit-backdrop-filter: blur(2px) saturate(110%) !important;
+}
+
+/* ============================================
+   REFINED TASKBAR
+   ============================================ */
+.vista-glass-taskbar {
+    position: fixed !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom,
+        rgba(20, 20, 20, 0.85) 0%,
+        rgba(15, 15, 15, 0.90) 50%,
+        rgba(10, 10, 10, 0.95) 100%
+    );
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 -2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 0 30px rgba(255, 255, 255, 0.05),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    gap: 4px;
+    position: relative;
+}
+
+/* Vista Taskbar Gloss Effect - Black glossy top highlight */
+.vista-glass-taskbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.08) 30%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.vista-glass-start-btn {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+    position: relative;
+}
+
+.vista-glass-start-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.vista-glass-start-btn:hover::before {
+    opacity: 1;
+}
+
+.vista-glass-start-btn i {
+    font-size: 22px;
+    color: white;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    position: relative;
+    z-index: 1;
+}
+
+.vista-glass-quicklaunch {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 6px;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    height: 32px;
+}
+
+.vista-glass-quicklaunch-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    position: relative;
+}
+
+.vista-glass-quicklaunch-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.vista-glass-quicklaunch-icon:hover::before {
+    opacity: 1;
+}
+
+.vista-glass-quicklaunch-icon i {
+    color: white;
+    font-size: 18px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    position: relative;
+    z-index: 1;
+}
+
+.vista-glass-taskbar-items {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+    padding: 0 4px;
+}
+
+.vista-glass-taskbar-item {
+    min-width: 140px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    position: relative;
+    text-decoration: none;
+}
+
+.vista-glass-taskbar-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.vista-glass-taskbar-item:hover::before {
+    opacity: 1;
+}
+
+.vista-glass-taskbar-item.active {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.vista-glass-taskbar-item.active::before {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.vista-glass-taskbar-item i {
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.vista-glass-taskbar-item span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Notification Area */
+.vista-glass-notification {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    height: 100%;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    z-index: 2;
+}
+
+.vista-glass-tray-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    border-radius: 2px;
+    transition: all 0.15s;
+    position: relative;
+    text-decoration: none;
+}
+
+.vista-glass-tray-icon:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.vista-glass-tray-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.12);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.vista-glass-tray-icon:hover::before {
+    opacity: 1;
+}
+
+.vista-glass-tray-icon i {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+.vista-glass-tray-time {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: white;
+    padding: 0 6px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+/* ============================================
+   REFINED START MENU
+   ============================================ */
+.vista-glass-startmenu {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    width: 280px;
+    max-height: 500px;
+    background: var(--startmenu-bg);
+    backdrop-filter: blur(25px) saturate(150%);
+    -webkit-backdrop-filter: blur(25px) saturate(150%);
+    border: 1px solid var(--startmenu-border);
+    border-radius: 0;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10001;
+    display: none;
+    overflow: hidden;
+}
+
+.vista-glass-startmenu.show {
+    display: flex;
+    animation: vistaStartMenuSlide 0.2s ease-out;
+}
+
+@keyframes vistaStartMenuSlide {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vista-glass-startmenu-left {
+    width: 200px;
+    padding: 8px 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vista-glass-startmenu-right {
+    width: 80px;
+    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.vista-glass-startitem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+    position: relative;
+}
+
+.vista-glass-startitem::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.vista-glass-startitem:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.vista-glass-startitem:hover::before {
+    opacity: 1;
+}
+
+.vista-glass-startitem i {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.vista-glass-startitem span {
+    position: relative;
+    z-index: 1;
+}
+
+.vista-glass-startitem .arrow {
+    margin-left: auto;
+    font-size: 10px;
+    opacity: 0.6;
+    position: relative;
+    z-index: 1;
+}
+
+.vista-glass-startsearch {
+    margin: 8px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    width: calc(100% - 16px);
+}
+
+.vista-glass-startsearch::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.vista-glass-power-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    transition: all 0.15s;
+    border-radius: 3px;
+}
+
+.vista-glass-power-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.vista-glass-power-btn:hover::before {
+    opacity: 1;
+}
+
+.vista-glass-power-btn i {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   REFINED BUTTONS & FORM ELEMENTS
+   ============================================ */
+.vista-glass-button {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    background: linear-gradient(to bottom,
+        rgba(180, 130, 230, 0.90) 0%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.80) 55%,
+        rgba(120, 70, 170, 0.90) 100%
+    );
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 15px rgba(160, 110, 210, 0.4);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.vista-glass-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 4px 4px 0 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.vista-glass-button:hover {
+    background: linear-gradient(to bottom,
+        rgba(200, 150, 250, 0.95) 0%,
+        rgba(180, 130, 230, 0.90) 55%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.95) 100%
+    );
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(180, 130, 230, 0.5);
+    transform: translateY(-1px);
+}
+
+.vista-glass-button:hover::before {
+    opacity: 0.8;
+}
+
+.vista-glass-button-primary {
+    background: linear-gradient(to bottom,
+        rgba(180, 130, 230, 0.90) 0%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.80) 55%,
+        rgba(120, 70, 170, 0.90) 100%
+    );
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 15px rgba(160, 110, 210, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.vista-glass-button-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 4px 4px 0 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.vista-glass-button-primary:hover {
+    background: linear-gradient(to bottom,
+        rgba(200, 150, 250, 0.95) 0%,
+        rgba(180, 130, 230, 0.90) 55%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.95) 100%
+    );
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(180, 130, 230, 0.5);
+    transform: translateY(-1px);
+}
+
+.vista-glass-button-primary:hover::before {
+    opacity: 0.8;
+}
+
+.vista-glass-input,
+.vista-glass-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(200, 220, 240, 0.5);
+    border-radius: 4px;
+    color: #1a1a1a;
+    transition: all 0.2s;
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.08),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.vista-glass-input:focus,
+.vista-glass-textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    border-color: #0078D7;
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6),
+        0 1px 0 rgba(255, 255, 255, 0.7),
+        0 0 8px rgba(0, 120, 215, 0.3);
+}
+
+/* ============================================
+   BODY & DESKTOP
+   ============================================ */
+.vista-desktop-refined {
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .vista-glass-window {
+        width: 95% !important;
+        left: 2.5% !important;
+        transform: none !important;
+    }
+    
+    .vista-glass-startmenu {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+

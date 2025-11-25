@@ -1,0 +1,161 @@
+/* ============================================
+   TEXT SIZING ENHANCEMENTS
+   Increase text sizes across the entire site
+   ============================================ */
+
+/* Base body text - increase from 13px to 16px */
+body,
+.vista-desktop-refined,
+.vista-glass-content {
+    font-size: 16px !important;
+}
+
+/* Paragraphs - increase from 13px to 16px */
+p,
+.vista-glass-content p,
+.content-section p,
+.vista-body-text,
+.vista-glass-content p[style*="font-size: 13px"],
+.vista-glass-content p[style*="font-size: 12px"],
+.vista-glass-content p[style*="font-size: 11px"] {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+/* Small text - increase from 10-12px to 14-15px */
+small,
+.vista-glass-tray-time,
+.vista-glass-startsearch,
+.skill-name,
+.skill-tag,
+span[style*="font-size: 11px"],
+span[style*="font-size: 12px"],
+span[style*="font-size: 10px"] {
+    font-size: 14px !important;
+}
+
+/* Headings - increase proportionally */
+h1,
+h1[style*="font-size: 28px"],
+h1[style*="font-size: 32px"] {
+    font-size: 36px !important;
+}
+
+h2,
+h2[style*="font-size: 24px"],
+h2[style*="font-size: 20px"] {
+    font-size: 28px !important;
+}
+
+h3,
+h3[style*="font-size: 18px"] {
+    font-size: 22px !important;
+}
+
+h4 {
+    font-size: 18px !important;
+}
+
+/* Window titles - increase from 12px to 15px */
+.vista-glass-title {
+    font-size: 15px !important;
+}
+
+/* Taskbar and start menu items - increase from 12px to 14px */
+.vista-glass-taskbar-item,
+.vista-glass-startitem,
+.vista-glass-taskbar-item span,
+.vista-glass-startitem span {
+    font-size: 14px !important;
+}
+
+/* Form labels and inputs - increase from 12px to 15px */
+label,
+.vista-glass-input,
+.vista-glass-textarea,
+label[style*="font-size: 12px"] {
+    font-size: 15px !important;
+}
+
+/* Button text - ensure buttons have readable text */
+.vista-glass-button,
+.vista-glass-button-primary,
+.btn-primary,
+.btn-outline-primary,
+a[style*="font-size: 13px"],
+a[style*="font-size: 12px"],
+button[style*="font-size: 13px"],
+button[style*="font-size: 12px"] {
+    font-size: 15px !important;
+    padding: 10px 20px !important;
+}
+
+/* Skill tags - increase from 10px to 13px */
+.skill-tag {
+    font-size: 14px !important;
+    padding: 8px 14px !important;
+}
+
+/* Project card text - increase sizes */
+.portfolio-project-card p,
+.portfolio-project-card p[style*="font-size: 13px"],
+.portfolio-project-card p[style*="font-size: 12px"] {
+    font-size: 16px !important;
+}
+
+.portfolio-project-card h3,
+.portfolio-project-card h3[style*="font-size: 18px"] {
+    font-size: 22px !important;
+}
+
+.portfolio-project-card p[style*="font-size: 12px"] {
+    font-size: 15px !important;
+}
+
+/* Contact information - increase sizes */
+.vista-glass-content > div p,
+.vista-glass-content > div span,
+.vista-glass-content p[style*="font-size: 13px"],
+.vista-glass-content p[style*="font-size: 12px"],
+.vista-glass-content span[style*="font-size: 11px"],
+.vista-glass-content span[style*="font-size: 12px"] {
+    font-size: 15px !important;
+}
+
+/* Links - ensure they're readable */
+a,
+a[style*="font-size: 13px"],
+a[style*="font-size: 12px"] {
+    font-size: 15px !important;
+}
+
+/* List items - increase size */
+li,
+ul li,
+ol li,
+li[style*="font-size: 12px"] {
+    font-size: 16px !important;
+}
+
+/* Table text - increase size */
+td,
+th {
+    font-size: 15px !important;
+}
+
+/* Desktop icon labels */
+.vista-desktop-icon-recycle span {
+    font-size: 13px !important;
+}
+
+/* CV/Resume specific text */
+.vista-glass-content strong {
+    font-size: 17px !important;
+}
+
+/* Testimonial text */
+.vista-testimonial-quote,
+.vista-testimonial-author {
+    font-size: 16px !important;
+}
+
