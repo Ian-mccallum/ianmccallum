@@ -828,7 +828,7 @@
         -webkit-backdrop-filter: none !important;
     }
     
-    /* Portfolio-style translucency for About and CV content boxes */
+    /* Portfolio-style translucency for About, CV, and Contact content boxes */
     .mobile-content-section#mobile-content-about .content-section,
     .mobile-content-section#mobile-content-cv .content-section,
     .mobile-content-section#mobile-content-about .skills-section,
@@ -850,6 +850,37 @@
         position: relative;
         overflow: hidden;
         margin-bottom: 20px !important;
+    }
+    
+    /* Contact page - apply same styling to contact information and form sections */
+    .mobile-content-section#mobile-content-contact .vista-glass-content > div:first-child,
+    .mobile-content-section#mobile-content-contact .vista-glass-content > div:nth-child(2) {
+        background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.30) 0%,
+            rgba(255, 255, 255, 0.20) 100%
+        ) !important;
+        backdrop-filter: blur(15px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-radius: 8px !important;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Keep nested divs transparent */
+    .mobile-content-section#mobile-content-contact .vista-glass-content > div > div {
+        background: transparent !important;
+    }
+    
+    /* Ensure form inputs and buttons maintain their styling */
+    .mobile-content-section#mobile-content-contact .vista-glass-input,
+    .mobile-content-section#mobile-content-contact .vista-glass-textarea,
+    .mobile-content-section#mobile-content-contact .vista-glass-button {
+        background: rgba(255, 255, 255, 0.25) !important;
     }
     
     /* Skills grid container - translucent background */
@@ -880,7 +911,9 @@
     .mobile-content-section#mobile-content-cv .skills-section::before,
     .mobile-content-section#mobile-content-about .skills-grid::before,
     .mobile-content-section#mobile-content-cv .skills-grid::before,
-    .mobile-content-section#mobile-content-cv section::before {
+    .mobile-content-section#mobile-content-cv section::before,
+    .mobile-content-section#mobile-content-contact .vista-glass-content > div:first-child::before,
+    .mobile-content-section#mobile-content-contact .vista-glass-content > div:nth-child(2)::before {
         content: '';
         position: absolute;
         top: 0;

@@ -353,6 +353,16 @@
 
             <div class="content-section" style="margin-bottom: 30px;">
                 <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-lightbulb" style="margin-right: 8px; color: #0078D7;"></i>
+                    Current Focus
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    I am currently focusing on learning Python and prompt engineering. These skills are essential for building more advanced automation solutions and leveraging AI effectively in my projects.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
                     <i class="fas fa-rocket" style="margin-right: 8px; color: #0078D7;"></i>
                     Current Projects
                 </h2>
@@ -664,7 +674,7 @@
                     <div>
                         <i class="fas fa-envelope" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
                         <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 4px;">Email</p>
-                        <a href="mailto:mccallum.ian@icloud.com" style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #0078D7; text-decoration: none;">mccallum.ian@icloud.com</a>
+                        <a href="mailto:ian@beatyourclock.com" style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a>
                     </div>
                     <div>
                         <i class="fas fa-phone" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
@@ -684,11 +694,12 @@
                     <i class="fas fa-paper-plane" style="margin-right: 8px; color: #0078D7;"></i>
                     Send a Message
                 </h2>
-                <form action="https://formsubmit.co/mccallumian199@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="New Contact Form Submission">
+                <form action="https://formsubmit.co/ian@beatyourclock.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="true">
                     <input type="hidden" name="_next" value="#thank-you-window">
+                    <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I'll get back to you as soon as possible.">
 
                     <div style="margin-bottom: 18px;">
                         <label style="display: block; font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #333; margin-bottom: 6px;">Your Name</label>
@@ -758,7 +769,7 @@
                 <h1 style="font-family: var(--font-segoe-semilight); font-size: 32px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Ian McCallum</h1>
                 <div style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #666; margin-top: 10px;">
                     <span>Naperville, IL</span> • 
-                    <a href="mailto:mccallum.ian@icloud.com" style="color: #0078D7; text-decoration: none;">mccallum.ian@icloud.com</a><br>
+                    <a href="mailto:ian@beatyourclock.com" style="color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a><br>
                     <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" style="color: #0078D7; text-decoration: none;">LinkedIn</a> • 
                     <a href="https://ianinnovates.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
                 </div>
@@ -1274,26 +1285,75 @@
             }
         });
 
-        // Handle form submission to open thank-you window
-        document.querySelectorAll('form').forEach(form => {
+        // Handle form submission with FormSubmit
+        document.querySelectorAll('form[action*="formsubmit.co"]').forEach(form => {
             form.addEventListener('submit', function(e) {
-                const nextInput = this.querySelector('input[name="_next"]');
-                if (nextInput && nextInput.value === '#thank-you-window') {
-                    e.preventDefault();
-                    // Submit form via fetch
-                    const formData = new FormData(this);
-                    fetch(this.action, {
-                        method: 'POST',
-                        body: formData
-                    }).then(() => {
-                        if (window.vistaWindowManager) {
+                e.preventDefault();
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton ? submitButton.innerHTML : '';
+                
+                // Show loading state
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
+                }
+                
+                // Submit form via fetch to FormSubmit
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Reset form
+                        this.reset();
+                        
+                        // Show thank you window
+                        const nextInput = this.querySelector('input[name="_next"]');
+                        if (nextInput && nextInput.value === '#thank-you-window') {
+                            if (window.vistaWindowManager) {
+                                window.vistaWindowManager.closeWindow('contact-window');
+                                window.vistaWindowManager.openWindow('thank-you-window');
+                            }
+                        } else if (window.vistaWindowManager) {
+                            // Fallback: try to open thank-you window anyway
                             window.vistaWindowManager.closeWindow('contact-window');
                             window.vistaWindowManager.openWindow('thank-you-window');
                         }
-                    }).catch(err => {
-                        console.error('Form submission error:', err);
-                    });
-                }
+                        
+                        // On mobile, show thank you window
+                        if (window.mobileUXManager && window.mobileUXManager.isMobile) {
+                            setTimeout(() => {
+                                if (window.vistaWindowManager) {
+                                    window.vistaWindowManager.openWindow('thank-you-window');
+                                }
+                            }, 100);
+                        }
+                    } else {
+                        // Check if FormSubmit returned an error
+                        return response.json().then(data => {
+                            throw new Error(data.message || 'Form submission failed');
+                        }).catch(() => {
+                            throw new Error('Form submission failed');
+                        });
+                    }
+                }).catch(err => {
+                    console.error('Form submission error:', err);
+                    
+                    // Show error message
+                    alert('Sorry, there was an error sending your message. Please try again or contact me directly at ian@beatyourclock.com');
+                    
+                    // Restore button
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }
+                });
             });
         });
     </script>
