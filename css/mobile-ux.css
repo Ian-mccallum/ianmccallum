@@ -81,7 +81,7 @@
         object-fit: cover !important;
         object-position: 35% center !important; /* Position video slightly to the right */
         z-index: 1 !important;
-        transform: scale(1.1) !important; /* Scale up to ensure full width coverage */
+        transform: scale(1.0) !important; /* Minimum scale to cover page */
         margin: 0 !important;
     }
     
