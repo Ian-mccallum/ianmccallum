@@ -127,9 +127,10 @@
     .mobile-home-screen {
         position: relative;
         z-index: 1;
-        padding: 20px 15px 40px 15px;
+        padding: 20px 15px 100px 15px; /* Increased bottom padding for extra scroll space */
         max-width: 100%;
         margin: 0 auto;
+        min-height: calc(100vh + 60px); /* Ensure there's extra space to scroll */
     }
     
     /* Hero Profile Card */
@@ -930,6 +931,41 @@
         display: block !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
+    }
+    
+    /* Fix buttons at bottom of about page on iOS */
+    .mobile-content-section#mobile-content-about {
+        padding-bottom: 120px !important; /* Extra space at bottom for buttons */
+    }
+    
+    .mobile-content-section#mobile-content-about div[style*="display: flex"][style*="gap: 15px"][style*="margin-top: 30px"],
+    .mobile-content-section#mobile-content-about div[style*="display: flex"][style*="gap: 15px"] {
+        position: relative !important;
+        z-index: 10 !important;
+        pointer-events: auto !important;
+        margin-bottom: 30px !important;
+        padding-bottom: 20px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+    }
+    
+    .mobile-content-section#mobile-content-about .vista-glass-button,
+    .mobile-content-section#mobile-content-about .vista-glass-button-primary,
+    .mobile-content-section#mobile-content-about a[class*="vista-glass-button"] {
+        position: relative !important;
+        z-index: 11 !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
+        cursor: pointer !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
+    
+    /* Ensure no overlay is blocking buttons */
+    .mobile-content-section#mobile-content-about::after {
+        display: none !important;
     }
     
     .mobile-content-section h1 {

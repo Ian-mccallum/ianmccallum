@@ -257,12 +257,27 @@ class MobileUXManager {
         // Close any open bottom sheets
         this.closeBottomSheet();
         
+        // Reset scroll position for all sections before switching
+        document.querySelectorAll('.mobile-content-section').forEach(section => {
+            section.scrollTop = 0;
+        });
+        
+        // Reset window scroll position
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
         // Show home screen or content section
         const homeScreen = document.getElementById('mobile-home-screen');
         if (tab === 'home') {
             if (homeScreen) {
                 homeScreen.style.display = 'block';
                 homeScreen.classList.add('active');
+                // Scroll to top of home screen
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                    homeScreen.scrollIntoView({ behavior: 'instant', block: 'start' });
+                }, 50);
             }
         } else {
             // Hide home screen
@@ -293,9 +308,21 @@ class MobileUXManager {
                 contentSection.style.overflowY = 'auto';
                 contentSection.style.overflowX = 'hidden';
                 
+                // Scroll to top of the new tab
+                setTimeout(() => {
+                    contentSection.scrollTop = 0;
+                    contentSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                }, 50);
+                
                 // Load content if not already loaded
                 if (contentSection.dataset.loaded !== 'true') {
                     this.loadTabContent(tab);
+                } else {
+                    // Even if already loaded, scroll to top
+                    setTimeout(() => {
+                        contentSection.scrollTop = 0;
+                        contentSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }, 50);
                 }
             }
         }
@@ -329,6 +356,31 @@ class MobileUXManager {
                         // Otherwise open as bottom sheet (skills, etc.)
                         this.openBottomSheet(action);
                     }
+                }
+            }
+        });
+        
+        // Handle data-window buttons on mobile - convert to tab switches
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[data-window]');
+            if (link && this.isMobile) {
+                e.preventDefault();
+                e.stopPropagation();
+                const windowId = link.getAttribute('data-window');
+                // Convert window IDs to tab names
+                let tab = null;
+                if (windowId === 'portfolio-window') {
+                    tab = 'portfolio';
+                } else if (windowId === 'cv-window') {
+                    tab = 'cv';
+                } else if (windowId === 'contact-window') {
+                    tab = 'contact';
+                } else if (windowId === 'about-window') {
+                    tab = 'about';
+                }
+                
+                if (tab && (this.tabs.includes(tab) || this.dynamicTabs.includes(tab))) {
+                    this.switchTab(tab);
                 }
             }
         });
