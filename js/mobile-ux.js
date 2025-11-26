@@ -52,7 +52,7 @@ class MobileUXManager {
                         ${location}
                     </p>
                     <p class="mobile-hero-welcome">
-                        Welcome to my portfolio! I'm a 17-year-old senior at Metea Valley High School, passionate about technology, entrepreneurship, and innovation. Explore my work, skills, and projects through the windows below.
+                        Welcome to my site! I'm a 17-year-old senior at Metea Valley High School, passionate about technology, entrepreneurship, and innovation. Explore my work, skills, and projects through the windows below.
                     </p>
                     <div class="mobile-social-icons">
                         <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="Instagram">
