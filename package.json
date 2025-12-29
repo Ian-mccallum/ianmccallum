@@ -1,0 +1,23 @@
+{
+  "name": "ianinnovates",
+  "version": "1.0.0",
+  "description": "Personal brand website - Enterprise-grade architecture",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "build": "node scripts/build.js",
+    "build:legacy": "node scripts/build.js",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "personal-website",
+    "portfolio",
+    "vista-ui",
+    "frutiger-aero"
+  ],
+  "author": "Ian McCallum",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
+

@@ -1,0 +1,440 @@
+/* ============================================
+   WEB 2.0 GLOSS ENHANCEMENTS
+   Based on Frutiger Aero Archive Blog Post
+   https://frutigeraeroarchive.org/blog/posts/20_09_2025
+   ============================================ */
+
+/* Segoe UI Semilight Font - Use system font if available */
+/* Segoe UI Semilight is available on Windows systems */
+:root {
+    --font-segoe-semilight: "Segoe UI Semilight", "Segoe UI Light", "Segoe UI", Tahoma, Arial, sans-serif;
+    --font-segoe: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+/* ============================================
+   GLOSSY BUTTONS WITH SHINE EFFECT
+   Based on WinZip 2008 style
+   ============================================ */
+.vista-glass-button,
+.vista-glass-button-primary,
+.btn-primary,
+.btn-outline-primary {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bootstrap btn-primary - Glossy Purple */
+.btn-primary {
+    background: linear-gradient(to bottom,
+        rgba(180, 130, 230, 0.90) 0%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.80) 55%,
+        rgba(120, 70, 170, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 15px rgba(160, 110, 210, 0.4) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.btn-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 4px 4px 0 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to bottom,
+        rgba(200, 150, 250, 0.95) 0%,
+        rgba(180, 130, 230, 0.90) 55%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.95) 100%
+    ) !important;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(180, 130, 230, 0.5) !important;
+    transform: translateY(-1px);
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.btn-primary:hover::before {
+    opacity: 0.8;
+}
+
+.btn-outline-primary {
+    background: linear-gradient(to bottom,
+        rgba(170, 120, 220, 0.30) 0%,
+        rgba(150, 100, 200, 0.25) 100%
+    ) !important;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(160, 110, 210, 0.6) !important;
+    color: rgba(160, 110, 210, 0.95) !important;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 8px rgba(150, 100, 200, 0.2);
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(to bottom,
+        rgba(180, 130, 230, 0.50) 0%,
+        rgba(160, 110, 210, 0.45) 100%
+    ) !important;
+    border-color: rgba(170, 120, 220, 0.8) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(170, 120, 220, 0.3);
+}
+
+/* Main gradient for glossy purple buttons */
+.vista-glass-button {
+    background: linear-gradient(to bottom,
+        rgba(170, 120, 220, 0.85) 0%,
+        rgba(150, 100, 200, 0.80) 55%,
+        rgba(130, 80, 180, 0.75) 55%,
+        rgba(110, 60, 160, 0.85) 100%
+    );
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 0 12px rgba(150, 100, 200, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Shine/Reflection effect using ::before - Purple glossy */
+.vista-glass-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 4px 4px 0 0;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.vista-glass-button:hover {
+    background: linear-gradient(to bottom,
+        rgba(190, 140, 240, 0.90) 0%,
+        rgba(170, 120, 220, 0.85) 55%,
+        rgba(150, 100, 200, 0.80) 55%,
+        rgba(130, 80, 180, 0.90) 100%
+    );
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(170, 120, 220, 0.4);
+    transform: translateY(-1px);
+}
+
+.vista-glass-button:hover::before {
+    opacity: 0.7;
+}
+
+/* Primary button with glossy purple gradient */
+.vista-glass-button-primary {
+    background: linear-gradient(to bottom,
+        rgba(180, 130, 230, 0.90) 0%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.80) 55%,
+        rgba(120, 70, 170, 0.90) 100%
+    );
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 15px rgba(160, 110, 210, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.vista-glass-button-primary::before {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    opacity: 0.6;
+}
+
+.vista-glass-button-primary:hover {
+    background: linear-gradient(to bottom,
+        rgba(200, 150, 250, 0.95) 0%,
+        rgba(180, 130, 230, 0.90) 55%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140, 90, 190, 0.95) 100%
+    );
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(180, 130, 230, 0.5);
+    transform: translateY(-1px);
+}
+
+.vista-glass-button-primary:hover::before {
+    opacity: 0.8;
+}
+
+/* ============================================
+   REFINED GLASS EFFECTS
+   Reduced blur to 1-2px as recommended
+   ============================================ */
+.vista-glass-window {
+    backdrop-filter: blur(2px) saturate(150%);
+    -webkit-backdrop-filter: blur(2px) saturate(150%);
+}
+
+.vista-glass-content {
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+.vista-glass-taskbar {
+    backdrop-filter: blur(2px) saturate(160%);
+    -webkit-backdrop-filter: blur(2px) saturate(160%);
+}
+
+.vista-glass-startmenu {
+    backdrop-filter: blur(2px) saturate(150%);
+    -webkit-backdrop-filter: blur(2px) saturate(150%);
+}
+
+/* ============================================
+   TYPOGRAPHY - SEGOE UI SEMILIGHT
+   ============================================ */
+body,
+.vista-desktop-refined {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.vista-glass-title {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.vista-glass-taskbar-item {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+}
+
+.vista-glass-startitem {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+}
+
+.vista-glass-tray-time {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+}
+
+/* ============================================
+   REFLECTIONS UNDER OBJECTS
+   Using -webkit-box-reflect for WebKit browsers
+   ============================================ */
+.vista-desktop-icon-recycle img,
+.vista-icon-img {
+    -webkit-box-reflect: below 2px linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 100%
+    );
+}
+
+/* For non-WebKit browsers, use a pseudo-element */
+.vista-desktop-icon-recycle::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 100%
+    );
+    transform: scaleY(-1);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ============================================
+   ENHANCED BUTTON HOVER EFFECTS
+   (Hover styles are now defined above with the button definitions)
+   ============================================ */
+
+/* ============================================
+   FORM ELEMENTS - GLOSSY STYLE
+   ============================================ */
+.vista-glass-input,
+.vista-glass-textarea {
+    font-family: var(--font-segoe-semilight);
+    font-weight: 300;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.5) 100%
+    );
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.6),
+        0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.vista-glass-input:focus,
+.vista-glass-textarea:focus {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.7) 100%
+    );
+    border-color: #0078D7;
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.12),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.7),
+        0 1px 0 rgba(255, 255, 255, 0.8),
+        0 0 8px rgba(0, 120, 215, 0.3);
+}
+
+/* ============================================
+   TASKBAR ITEMS - GLOSSY EFFECT
+   ============================================ */
+.vista-glass-taskbar-item {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.08) 55%,
+        rgba(255, 255, 255, 0.05) 55%,
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.vista-glass-taskbar-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    border-radius: 3px 3px 0 0;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.vista-glass-taskbar-item.active {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.18) 55%,
+        rgba(255, 255, 255, 0.15) 55%,
+        rgba(255, 255, 255, 0.18) 100%
+    );
+}
+
+.vista-glass-taskbar-item.active::before {
+    opacity: 0.5;
+}
+
+/* ============================================
+   START MENU ITEMS - GLOSSY EFFECT
+   ============================================ */
+.vista-glass-startitem {
+    position: relative;
+}
+
+.vista-glass-startitem::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+}
+
+.vista-glass-startitem:hover::after {
+    opacity: 1;
+}
+
+/* ============================================
+   WINDOW TITLE BAR - ENHANCED GLOSS
+   ============================================ */
+.vista-glass-titlebar {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(240, 248, 255, 0.95) 55%,
+        rgba(220, 235, 250, 0.92) 55%,
+        rgba(200, 225, 245, 0.9) 100%
+    );
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.vista-glass-titlebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+

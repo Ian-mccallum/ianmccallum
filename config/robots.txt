@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://ianinnovates.com/sitemap.xml
+
+# Prevent indexing of thank you page
+Disallow: /thank-you 

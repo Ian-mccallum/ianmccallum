@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Ian McCallum | Young Entrepreneur</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover Ian McCallum's journey as a tech innovator, entrepreneur, and student leader from Naperville, IL.">
+    <meta name="keywords" content="Ian McCallum, tech innovator, entrepreneur, Naperville, Illinois">
+    <meta name="author" content="Ian McCallum">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/vista-glass-refined.css">
+    <link rel="stylesheet" href="/css/vista-icons.css">
+    <link rel="stylesheet" href="/css/web2-gloss-enhancements.css">
+    <link rel="stylesheet" href="/css/page-content-enhancements.css">
+    <link rel="stylesheet" href="/css/text-sizing-enhancements.css">
+    <link rel="stylesheet" href="/css/mobile-responsive.css">
+    <link rel="stylesheet" href="/css/mobile-ux.css">
+    <link rel="stylesheet" href="/css/vintage-instagram.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="vista-desktop-refined">
+    <!-- Frutiger Aero GIF Background -->
+    <div id="frutiger-background" class="fixed inset-0 z-0">
+        <img 
+            id="background-gif" 
+            class="background-gif"
+            src="/assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" 
+            alt="Frutiger Aero Background"
+        >
+        <div class="video-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Desktop Icons -->
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 10; display: flex; flex-direction: column; gap: 30px;">
+        <div class="vista-desktop-icon-recycle" style="display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 4px; border-radius: 2px; transition: all 0.15s; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); user-select: none; max-width: 80px;">
+            <img src="/img/icons/vista/trashbin1.ico" alt="Recycle Bin" class="vista-icon-img vista-desktop-icon-img" style="width: 48px; height: 48px;">
+            <span style="font-family: 'Segoe UI', sans-serif; font-size: 11px; text-align: center; font-weight: 400;">Recycle Bin</span>
+                    </div>
+                </div>
+
+
+    <!-- Vista Taskbar -->
+    <div class="vista-glass-taskbar">
+        <button id="vista-start-btn" class="vista-glass-start-btn">
+            <img src="/img/icons/vista/vista_get_started.ico" alt="Start" class="vista-icon-img vista-taskbar-icon-img" style="width: 24px; height: 24px;">
+    </button>
+        <div class="vista-glass-taskbar-items">
+            <a href="index.html" class="vista-glass-taskbar-item active">
+                <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="vista-glass-taskbar-item">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>About</span>
+            </a>
+            <a href="portfolio.html" class="vista-glass-taskbar-item">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="vista-glass-taskbar-item">
+                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="vista-glass-notification">
+            <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+            <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+            <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+            </a>
+            <div class="vista-glass-tray-icon">
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <div class="vista-glass-tray-icon">
+                <i class="fas fa-wifi"></i>
+            </div>
+            <div class="vista-glass-tray-time" id="vista-time">11:03 PM</div>
+        </div>
+    </div>
+
+    <!-- Welcome Window (Highest Priority) -->
+    <div id="welcome-window" class="vista-glass-window" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); width: 600px; max-height: calc(100vh - 140px); overflow-y: auto; z-index: 200;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_get_started.ico" alt="Welcome" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Welcome - Ian McCallum
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="profile-image" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 15px;">
+                <h1 style="font-family: var(--font-segoe-semilight); font-size: 28px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">Ian McCallum</h1>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #666; margin-bottom: 5px;">Tech Innovator & Young Entrepreneur</p>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #999;">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #7B2CBF;"></i>
+                    <span style="color: #7B2CBF;">Naperville, Illinois</span>
+                </p>
+            </div>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; text-align: center; margin-bottom: 25px;">
+                    Welcome to my site! I'm a 17-year-old senior at Metea Valley High School, passionate about technology, entrepreneurship, and innovation. Explore my work, skills, and projects through the windows below.
+                </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" data-window="about-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 15px;">
+                    <i class="fas fa-user"></i>
+                    <span>About Me</span>
+                </a>
+                <a href="#" data-window="portfolio-window" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 15px;">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#" data-window="contact-window" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 15px;">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Preview Window -->
+    <div class="vista-glass-window" style="position: fixed; top: 100px; left: 100px; width: 500px; max-height: calc(100vh - 160px); overflow-y: auto; z-index: 190;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                About Me - Preview
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 25px;">
+            <h2 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                <i class="fas fa-info-circle" style="margin-right: 8px; color: #0078D7;"></i>
+                Quick Introduction
+            </h2>
+            <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.7; margin-bottom: 15px;">
+                Hello! I'm a 17-year-old senior at Metea Valley High School, and I'm excited to share a little bit about who I am, what I do, and what I love. I currently live in the suburbs of Chicago, but I was born in the city and spent the first five years of my life there.
+            </p>
+            <div style="margin-top: 20px;">
+                <a href="#" data-window="about-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px;">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>View Full About</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Preview Window -->
+    <div class="vista-glass-window" style="position: fixed; top: 120px; right: 100px; width: 500px; max-height: calc(100vh - 180px); overflow-y: auto; z-index: 180;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Portfolio - Preview
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 25px;">
+            <h2 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                <i class="fas fa-briefcase" style="margin-right: 8px; color: #0078D7;"></i>
+                Featured Projects
+            </h2>
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px;">Beat the Clock</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; line-height: 1.6;">
+                    Automation consulting agency helping businesses streamline operations.
+                </p>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px;">Freelance Web Development</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; line-height: 1.6;">
+                    Responsive, scalable websites for sports photography and marketing agencies.
+                </p>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="#" data-window="portfolio-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px;">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>View Full Portfolio</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Window -->
+    <div class="vista-glass-window" style="position: fixed; bottom: 80px; left: 150px; width: 450px; max-height: 400px; overflow-y: auto; z-index: 170;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_info.ico" alt="Skills" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Skills & Technologies
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 25px;">
+            <div class="skills-grid" style="grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px;">
+                <div class="skill-item">
+                    <img src="/assets/html5.png" alt="HTML" class="skill-icon">
+                    <span class="skill-name">HTML</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/assets/css.png" alt="CSS" class="skill-icon" style="width: 80px; height: 80px;">
+                    <span class="skill-name">CSS</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/assets/js.jpg" alt="JavaScript" class="skill-icon">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/assets/reactjs.png" alt="React" class="skill-icon" style="width: 64px; height: 64px;">
+                    <span class="skill-name">React</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/assets/nodejs.png" alt="Node.js" class="skill-icon" style="width: 64px; height: 64px;">
+                    <span class="skill-name">Node.js</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/assets/ts.png" alt="TypeScript" class="skill-icon" style="width: 96px; height: 96px;">
+                    <span class="skill-name">TypeScript</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-icon">
+                    <span class="skill-name">Premiere</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-icon">
+                    <span class="skill-name">After Effects</span>
+                </div>
+                <div class="skill-item">
+                    <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-icon">
+                    <span class="skill-name">Photoshop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Page Windows (Hidden by Default) -->
+    
+    <!-- About Window -->
+    <div id="about-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                About Ian McCallum
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <div style="display: flex; align-items: center; gap: 30px; margin-bottom: 30px;">
+                <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="profile-image" style="width: 150px; height: 150px; border-radius: 8px; object-fit: cover;">
+                <div>
+                    <h1 style="font-family: var(--font-segoe-semilight); font-size: 32px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">Ian McCallum</h1>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #666; margin-bottom: 5px;">Tech Innovator & Young Entrepreneur</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #666;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i>
+                        Naperville, Illinois
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-info-circle" style="margin-right: 8px; color: #0078D7;"></i>
+                    Introduction
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Hello! I'm a 17-year-old senior at Metea Valley High School, and I'm excited to share a little bit about who I am, what I do, and what I love. I currently live in the suburbs of Chicago, but I was born in the city and spent the first five years of my life there. At home, I'm surrounded by my three energetic younger sisters, my supportive parents, and our adorable dog Zoey. Together, we've created countless memories—some chaotic and some peaceful—that have shaped the person I've become.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-tree" style="margin-right: 8px; color: #0078D7;"></i>
+                    Early Influences
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Growing up, I had the privilege of visiting my grandparents' home in the Northwoods of Wisconsin. Picture peaceful lakes, towering pines, and jaw-dropping autumn colors that look like they've been painted by Mother Nature herself. Spending time up there taught me to appreciate the serenity of the outdoors, fueling my curiosity and love for the natural world. Even now, whenever I find a chance to escape the hustle of suburban life, I'm drawn to exploring lakes, forests, and other hidden pockets of nature.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-chart-line" style="margin-right: 8px; color: #0078D7;"></i>
+                    Personal Growth
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Although I'm only 17, I've always been someone who thinks big and dreams of bigger. One of my main goals is to start my own business and achieve financial freedom one day. I'd say my strongest trait is my work ethic—when something captures my attention, I pour myself into it until I see results. I was diagnosed with ADHD, which I initially struggled to accept, but I've learned to see it as my superpower. It can be challenging at times, but it also allows me to become hyperfocused on subjects I'm passionate about—turning those passions into real accomplishments.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-code" style="margin-right: 8px; color: #0078D7;"></i>
+                    Technical Journey
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    I've been coding since I was ten years old, starting with the basics of HTML, CSS, and JavaScript. At school, my favorite classes have been AP European History, AP Psychology, and Web Design. AP Euro taught me the art of studying and retaining mountains of information, while AP Psych opened my eyes to the reasons behind human behavior. Web Design inspired me to return to that childhood passion of building digital projects. Another big part of my learning curve has been my foray into investing. During the pandemic, when I was just 12, I began exploring the world of cryptocurrency. Today, I hold Bitcoin, Ethereum, Chainlink, Polygon, and a few other altcoins.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-briefcase" style="margin-right: 8px; color: #0078D7;"></i>
+                    Work Experience
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    For over a year now, I've been working part-time at Target in the food department. This experience taught me what it's like to juggle physical work (think hauling groceries and stocking shelves) while also handling customer needs. Dealing with several customers a day really honed my people skills and showed me how important a friendly attitude can be—even in fast-paced, sometimes stressful situations.
+                </p>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    On the weekends, you might also find me on the sidelines, whistle in hand, reffing kids' soccer games, both indoor and outdoor. I started reffing when I was 11, and I quickly learned that, no matter what decision you make, not everyone will be happy. Having parents yell at you from the stands definitely builds confidence—I realized I'm in control of the game, and if someone's upset, that's okay.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-users" style="margin-right: 8px; color: #0078D7;"></i>
+                    Community Involvement
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    In addition to my part-time jobs, I'm also active in school clubs. One of my favorites is UNICEF, where I've served as a board member for two years. I help create fun activities that raise awareness and fundraise money for the club's mission of helping children in need. I'm thankful to be part of something that makes a positive difference in the world and allows me to sharpen my creative skills at the same time.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-lightbulb" style="margin-right: 8px; color: #0078D7;"></i>
+                    Current Focus
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    I am currently focusing on learning Python and prompt engineering. These skills are essential for building more advanced automation solutions and leveraging AI effectively in my projects.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-rocket" style="margin-right: 8px; color: #0078D7;"></i>
+                    Current Projects
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Right now, I'm working on launching an automation consulting agency called "Beat the Clock." The idea is to help businesses save time by integrating different services through tools like Zapier and Make. My next goal is to incorporate artificial intelligence into this project because I genuinely believe AI is the future. Whether I'm coding, researching new tech, or brainstorming marketing ideas, I love the thrill of pushing my own boundaries.
+                </p>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Additionally, I'm in the early stages of starting a nonprofit organization focused on cleaning up garbage and keeping my city clean. This initiative stems from my love for the outdoors and my desire to give back to the community that has shaped me. I believe that small actions can lead to big changes, and I'm excited to organize volunteer events, partner with local businesses, and create awareness campaigns that inspire others to take pride in our shared environment.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-heart" style="margin-right: 8px; color: #0078D7;"></i>
+                    Hobbies & Interests
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 20px;">
+                    Below, I've detailed some of my favorite hobbies and interests. I hope you enjoy getting to know me a bit better!
+                </p>
+
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; margin-top: 20px;">Soccer</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Soccer has been part of my life for as long as I can remember, thanks to my dad, who's been crazy about the sport forever. I've played on high school and club teams, and there's nothing quite like the rush of a good match, the smell of the grass, and the bond you form with your teammates. Soccer gives me an outlet to channel my energy and push myself physically, all while having a blast with friends.
+                </p>
+
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; margin-top: 20px;">Weightlifting</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Weightlifting is a newer passion of mine, but one that's quickly become important. My dad, who's been lifting since his college days, encouraged me to start. I love feeling my strength grow every time I add more weight or bust out a few extra reps. It's not just about muscle—it's also about self-discipline. When life gets overwhelming, hitting the gym helps clear my head and remind me that I'm capable of breaking my own limits.
+                </p>
+
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; margin-top: 20px;">Fishing</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Fishing holds a special place in my heart, largely because it connects me back to my childhood and my family. Growing up, I was lucky to have a pond just a few steps away from my house. My closest friends also enjoyed fishing, so we spent countless afternoons casting lines and sharing laughs. As we got older and gained access to cars, we started exploring nearby lakes, always chasing the next big catch. My grandpa also played a huge role in this hobby. He lives near a beautiful lake in Wisconsin and would take me out on his boat whenever I visited, buying me lures and teaching me different techniques. Every cast brings a mix of anticipation and relaxation—two feelings I treasure.
+                </p>
+
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; margin-top: 20px;">Photography & Videography</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    My interest in photography and videography sprouted back in eighth grade, during a Visual Media class that opened my eyes to how powerful and creative these mediums can be. I now own a Canon EOS Rebel DSLR, which I use to capture the beauty of everyday life—from the stunning fall colors in Wisconsin to candid moments with my friends. Recently, I added a camcorder to my toolkit, letting me record more dynamic and playful videos of our hangouts and explorations. For me, taking photos and shooting videos is all about storytelling. I love freezing special moments in time and creating something that I can look back on years later with a smile.
+                </p>
+
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; margin-top: 20px;">Video Editing & YouTube Content Creation</h3>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    During quarantine, I decided to share my passion for gaming by starting a YouTube channel called "Vokel." While I was at it, I also began streaming on Twitch under the same name. Reaching Twitch Affiliate status and growing my YouTube subscriber count to nearly 500 was incredibly exciting—it showed me that creativity and persistence do pay off. In the process, I developed a strong interest in video editing, learning programs like Adobe After Effects and Premiere Pro. I even had the chance to edit videos for a YouTuber with over 2,000 subscribers. Video editing is like a puzzle: you take all the scattered pieces of footage and shape them into a coherent story. It's both challenging and deeply rewarding, especially when you see the final product and know you've put your unique spin on it.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 15px; font-style: italic;">
+                    Thank you for taking the time to learn about me, my journey, and my hobbies. Whether I'm on the soccer field, behind a camera, or working away on my business, I always do my best to combine passion with hard work. If you'd like to connect, chat, or simply say hello, feel free to reach out. I'm always open to meeting new people, exploring new ideas, and embracing fresh opportunities!
+                </p>
+            </div>
+
+            <div class="skills-section" style="margin-top: 30px; margin-bottom: 30px;">
+                <h2 class="content-section" style="font-family: var(--font-segoe-semilight); font-size: 20px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-tools" style="margin-right: 8px; color: #0078D7;"></i>
+                    Skills & Technologies
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <img src="/assets/html5.png" alt="HTML" class="skill-icon">
+                        <span class="skill-name">HTML</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/assets/css.png" alt="CSS" class="skill-icon" style="width: 80px; height: 80px;">
+                        <span class="skill-name">CSS</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/assets/js.jpg" alt="JavaScript" class="skill-icon">
+                        <span class="skill-name">JavaScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/assets/reactjs.png" alt="React" class="skill-icon" style="width: 64px; height: 64px;">
+                        <span class="skill-name">React</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/assets/nodejs.png" alt="Node.js" class="skill-icon" style="width: 64px; height: 64px;">
+                        <span class="skill-name">Node.js</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/assets/ts.png" alt="TypeScript" class="skill-icon" style="width: 96px; height: 96px;">
+                        <span class="skill-name">TypeScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-icon">
+                        <span class="skill-name">Premiere Pro</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-icon">
+                        <span class="skill-name">After Effects</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-icon">
+                        <span class="skill-name">Photoshop</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/explorer.ico" alt="Automation" class="skill-icon">
+                        <span class="skill-name">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <a href="#" data-window="portfolio-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-briefcase"></i>
+                    <span>View Portfolio</span>
+                </a>
+                <a href="#" data-window="cv-window" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Download CV</span>
+                </a>
+                <a href="#" data-window="contact-window" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Window -->
+    <div id="portfolio-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 900px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Portfolio - My Projects & Work
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <h2 style="font-family: var(--font-segoe-semilight); font-size: 24px; font-weight: 300; color: #1a1a1a; margin-bottom: 25px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                <i class="fas fa-building" style="margin-right: 10px; color: #0078D7;"></i>
+                Business Ventures
+            </h2>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px;">
+                <!-- Beat the Clock -->
+                <div class="portfolio-project-card">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Beat the Clock</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 12px;">Founder & Automation Specialist</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #333; line-height: 1.6; margin-bottom: 15px;">
+                        An automation consulting agency helping businesses streamline their operations and increase efficiency through modern technology solutions.
+                    </p>
+                    
+                    <!-- Video Demo -->
+                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px; transform: translateY(-8%); object-fit: cover;">
+                            <source src="/assets/btcdemo.mov" type="video/quicktime">
+                            <source src="/assets/btcdemo.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span class="skill-tag">
+                            <img src="/img/icons/zapier.png" alt="Zapier" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
+                            Zapier
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/img/icons/make.png" alt="Make" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
+                            Make
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/img/icons/chatgpt.png" alt="ChatGPT" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
+                            ChatGPT
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/img/icons/python.png" alt="Python" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
+                            Python
+                        </span>
+                    </div>
+                    <a href="https://beatyourclock.com" target="_blank" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px; margin-top: 10px;">
+                        <i class="fas fa-clock"></i>
+                        <span>Visit Website</span>
+                    </a>
+                </div>
+
+                <!-- Freelance Web Development -->
+                <div class="portfolio-project-card">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Freelance Website Development</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 12px;">Web Developer & Designer</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #333; line-height: 1.6; margin-bottom: 15px;">
+                        Coded and designed responsive, scalable, dynamic websites for various businesses including sports photography and marketing agencies.
+                    </p>
+                    
+                    <!-- Photography Website Video Demo -->
+                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                            <source src="/assets/tmmphotos.mov" type="video/quicktime">
+                            <source src="/assets/tmmphotos.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <a href="https://tmmphotos.com" target="_blank" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px;">
+                            <i class="fas fa-camera"></i>
+                            <span>View Website</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Marketing Agency Website Video Demo -->
+                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                            <source src="/assets/nicsmarketingdemo.mov" type="video/quicktime">
+                            <source src="/assets/nicsmarketingdemo.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <a href="https://nicsmarketing.co" target="_blank" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px;">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>View Website</span>
+                        </a>
+                    </div>
+                    
+                    <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span class="skill-tag">
+                            <img src="/assets/html5.png" alt="HTML" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            HTML
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/css.png" alt="CSS" class="skill-tag-icon" style="width: 24px; height: 24px;">
+                            CSS
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/js.jpg" alt="JavaScript" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            JavaScript
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/reactjs.png" alt="React" class="skill-tag-icon" style="width: 20px; height: 20px;">
+                            React
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/nodejs.png" alt="Node.js" class="skill-tag-icon" style="width: 20px; height: 20px;">
+                            Node.js
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/ts.png" alt="TypeScript" class="skill-tag-icon" style="width: 28px; height: 28px;">
+                            TypeScript
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-family: var(--font-segoe-semilight); font-size: 24px; font-weight: 300; color: #1a1a1a; margin-bottom: 25px; margin-top: 40px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                <i class="fas fa-video" style="margin-right: 10px; color: #0078D7;"></i>
+                Growing Creatives
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                <!-- Vokel YouTube -->
+                <div class="portfolio-project-card">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Vokel - YouTube Channel</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 12px;">Content Creator & Editor</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #333; line-height: 1.6; margin-bottom: 15px;">
+                        Built and grew a gaming-focused YouTube channel, demonstrating strong content creation and community building skills.
+                    </p>
+                    
+                    <!-- Vokel YouTube Image -->
+                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
+                        <img src="/assets/vokelyt.png" alt="Vokel YouTube Channel" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                    </div>
+                    
+                    <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span class="skill-tag">
+                            <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            Adobe Premiere Pro
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            After Effects
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            Photoshop
+                        </span>
+                    </div>
+                    <a href="https://www.youtube.com/vokelgg" target="_blank" rel="noopener" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px; margin-top: 10px;">
+                        <i class="fab fa-youtube"></i>
+                        <span>Visit Channel</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Window -->
+    <div id="contact-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 700px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Contact - Get In Touch
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 20px; font-weight: 300; color: #1a1a1a; margin-bottom: 20px;">
+                    <i class="fas fa-address-card" style="margin-right: 8px; color: #0078D7;"></i>
+                    Contact Information
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div>
+                        <i class="fas fa-envelope" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
+                        <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 4px;">Email</p>
+                        <a href="mailto:ian@beatyourclock.com" style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
+                        <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 4px;">Phone</p>
+                        <p style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #333;">Request for phone</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
+                        <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 4px;">Location</p>
+                        <p style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #333;">Naperville, Illinois</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 20px; font-weight: 300; color: #1a1a1a; margin-bottom: 20px;">
+                    <i class="fas fa-paper-plane" style="margin-right: 8px; color: #0078D7;"></i>
+                    Send a Message
+                </h2>
+                <form action="https://formsubmit.co/0ed1f1e4ecbbc5dfdabd82a30c91360b" method="POST">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_next" value="#thank-you-window">
+                    <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I'll get back to you as soon as possible.">
+
+                    <div style="margin-bottom: 18px;">
+                        <label style="display: block; font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #333; margin-bottom: 6px;">Your Name</label>
+                        <input type="text" name="name" required class="vista-glass-input">
+                    </div>
+
+                    <div style="margin-bottom: 18px;">
+                        <label style="display: block; font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #333; margin-bottom: 6px;">Your Email</label>
+                        <input type="email" name="email" required class="vista-glass-input">
+    </div>
+
+                    <div style="margin-bottom: 18px;">
+                        <label style="display: block; font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #333; margin-bottom: 6px;">Subject</label>
+                        <input type="text" name="subject" required class="vista-glass-input">
+                </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #333; margin-bottom: 6px;">Message</label>
+                        <textarea name="message" required rows="5" class="vista-glass-textarea"></textarea>
+                    </div>
+
+                    <button type="submit" class="vista-glass-button vista-glass-button-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+                </div>
+
+            <div style="margin-top: 30px; text-align: center;">
+                <h3 style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-share-alt" style="margin-right: 8px; color: #0078D7;"></i>
+                    Connect With Me
+                </h3>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
+                        <i class="fab fa-instagram" style="font-size: 28px; color: #0078D7;"></i>
+                        <span style="font-family: var(--font-segoe-semilight); font-size: 11px; font-weight: 300; color: #333;">Instagram</span>
+                    </a>
+                    <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
+                        <i class="fab fa-twitter" style="font-size: 28px; color: #0078D7;"></i>
+                        <span style="font-family: var(--font-segoe-semilight); font-size: 11px; font-weight: 300; color: #333;">Twitter</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
+                        <i class="fab fa-linkedin-in" style="font-size: 28px; color: #0078D7;"></i>
+                        <span style="font-family: var(--font-segoe-semilight); font-size: 11px; font-weight: 300; color: #333;">LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- CV Window -->
+    <div id="cv-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Curriculum Vitae - Ian McCallum
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <header style="text-align: center; margin-bottom: 30px;">
+                <h1 style="font-family: var(--font-segoe-semilight); font-size: 32px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Ian McCallum</h1>
+                <div style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #666; margin-top: 10px;">
+                    <span>Naperville, IL</span> • 
+                    <a href="mailto:ian@beatyourclock.com" style="color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a><br>
+                    <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" style="color: #0078D7; text-decoration: none;">LinkedIn</a> • 
+                    <a href="https://ianinnovates.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
+                </div>
+            </header>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-bullseye" style="margin-right: 8px; color: #0078D7;"></i>
+                    Objective
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8;">
+                    Motivated high school senior with a passion for technology, entrepreneurship, and creative expression. Dedicated to leveraging technical expertise, leadership experience, and a strong work ethic to excel in challenging roles and achieve long-term professional goals.
+                </p>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-graduation-cap" style="margin-right: 8px; color: #0078D7;"></i>
+                    Education
+                </h2>
+                <div style="margin-bottom: 15px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Metea Valley High School</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">Naperville, IL</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #333; margin-bottom: 5px;">Graduation Year: 2026</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #333; margin-bottom: 5px;">GPA: 3.86 (Unweighted) | 4.24 (Weighted)</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #333; margin-bottom: 5px;"><strong>Honors:</strong> Member of National Honor Society, Soccer Sportsmanship Award</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #333; margin-bottom: 5px;"><strong>AP Courses:</strong> AP European History, AP Psychology, AP U.S. History, AP English 3</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #333;"><strong>Additional Coursework:</strong> Honors Biology, Honors Spanish, Honors English</p>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-tools" style="margin-right: 8px; color: #0078D7;"></i>
+                    Skills
+                </h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <span class="vista-badge">Fast learner</span>
+                    <span class="vista-badge">Excellent interpersonal skills</span>
+                    <span class="vista-badge">Self-motivated</span>
+                    <span class="vista-badge">Strong work ethic</span>
+                    <span class="vista-badge">People-oriented</span>
+                    <span class="vista-badge">Enthusiastic</span>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-briefcase" style="margin-right: 8px; color: #0078D7;"></i>
+                    Work Experience
+                </h2>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Coldwell Banker Dan Firks</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">June 2025 – Present</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Real Estate Runner</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Drove and helped set up open houses for one of the most successful real estate teams in the area.</li>
+                        <li>Assisted with property preparation and staging to ensure optimal presentation to potential buyers.</li>
+                        <li>Developed strong organizational and time management skills while coordinating multiple property showings.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Target</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">June 2024 – Present</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Food Department Team Member</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Delivered excellent customer service in a fast-paced environment.</li>
+                        <li>Stocked shelves, managed inventory, and maintained department organization.</li>
+                        <li>Developed strong interpersonal and multitasking abilities.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Youth Soccer Referee</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">2021 – Present</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Self-Employed</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Officiated youth soccer games, enhancing decision-making and conflict resolution skills.</li>
+                        <li>Built confidence and managed high-pressure situations to ensure fair gameplay.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-lightbulb" style="margin-right: 8px; color: #0078D7;"></i>
+                    Entrepreneurial and Technical Projects
+                </h2>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Beat the Clock - Automation Consulting Agency</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">December 2024 – Present</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Founder</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Created a service to help businesses streamline operations using tools like Zapier and Make.</li>
+                        <li>Exploring artificial intelligence integration with technologies like ChatGPT and Cursor.ai to enhance efficiency.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Freelance Website Development</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">2023 – Present</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Web Developer</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Coded a custom website for a sports photographer, showcasing portfolio and booking capabilities.</li>
+                        <li>Developed personal brand website to establish online presence and professional identity.</li>
+                        <li>Built business website for Beat the Clock consulting agency with modern design and functionality.</li>
+                        <li>Created a comprehensive marketing agency website with React-based prequalification assessment tool to evaluate client readiness.</li>
+                        <li>Currently developing a website for a brand scaler, focusing on conversion optimization and user experience.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Vokel - YouTube Channel and Twitch Stream</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">2019 – 2021</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Creator</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Grew a gaming-focused YouTube channel to nearly 500 subscribers and achieved Twitch Affiliate status.</li>
+                        <li>Developed advanced video editing and content creation skills using Adobe Premiere Pro and After Effects.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-code" style="margin-right: 8px; color: #0078D7;"></i>
+                    Technical Skills
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 10px;">
+                    <strong>Programming Languages:</strong> HTML, CSS, JavaScript, React
+                </p>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; margin-bottom: 10px;">
+                    <strong>Technology Tools:</strong> Zapier, Make, ChatGPT, Cursor.ai
+                </p>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8;">
+                    <strong>Creative Tools:</strong> Adobe Photoshop, Lightroom, Premiere Pro, After Effects
+                </p>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-users" style="margin-right: 8px; color: #0078D7;"></i>
+                    Leadership and Extracurricular Activities
+                </h2>
+                
+                <div style="margin-bottom: 15px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">UNICEF Club at Metea Valley High School</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 5px;"><strong>Board Member</strong></p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">Helped manage club and create activities to support fundraising initiatives for children in need.</p>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">JV Soccer Team</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 5px;"><strong>Player</strong></p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">Contributed to team success with dedication and strong sportsmanship, earning the Soccer Sportsmanship Award.</p>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">National Honor Society</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 5px;"><strong>Member</strong></p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">Recognized for academic excellence, leadership, and community service.</p>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-heart" style="margin-right: 8px; color: #0078D7;"></i>
+                    Hobbies and Interests
+                </h2>
+                <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                    <li style="margin-bottom: 10px;"><strong>Weightlifting:</strong> Developing physical and mental discipline through regular fitness training.</li>
+                    <li style="margin-bottom: 10px;"><strong>Photography & Photo Editing:</strong> Capturing and editing visuals using Adobe Lightroom and Photoshop to create stunning, storytelling imagery.</li>
+                    <li style="margin-bottom: 10px;"><strong>Fishing:</strong> Exploring nature and enjoying serene outdoor experiences rooted in childhood traditions.</li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-trophy" style="margin-right: 8px; color: #0078D7;"></i>
+                    Achievements
+                </h2>
+                <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                    <li>Soccer Sportsmanship Award</li>
+                    <li>AP Scholar with Honor Award</li>
+                    <li>Seal of Biliteracy</li>
+                    <li>UNICEF Participation Award</li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 22px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px;">
+                    <i class="fas fa-user-friends" style="margin-right: 8px; color: #0078D7;"></i>
+                    References
+                </h2>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8;">
+                    Available upon request.
+                </p>
+    </section>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="Ian McCallum - CV.pdf" download class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-download"></i>
+                    <span>Download PDF CV</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Window -->
+    <div id="testimonials-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_collab.ico" alt="Testimonials" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Testimonials & Praise
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <h2 style="font-family: var(--font-segoe-semilight); font-size: 24px; font-weight: 300; color: #1a1a1a; margin-bottom: 25px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                <i class="fas fa-star" style="margin-right: 10px; color: #0078D7;"></i>
+                What People Say
+            </h2>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                <div class="portfolio-project-card">
+                    <div style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #333; line-height: 1.8; font-style: italic; margin-bottom: 20px;">
+                        "Working with Ian to build my photography website was a great experience. He took the time to understand my vision and translated it into a website that looks great and is easy to navigate. The layout and attention to detail makes my brand look very professional. I highly recommend Ian to anyone looking for a high quality and custom website."
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 20px;">
+                        <img src="/img/other/IMG_7878.JPG" alt="Timmy Miller" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #0078D7; object-fit: cover;">
+                        <div>
+                            <div style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Timmy Miller</div>
+                            <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin: 5px 0;">Photographer</p>
+                            <a href="https://tmmphotos.com" target="_blank" style="color: #0078D7; text-decoration: none; font-size: 13px;">TMM Photography</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-project-card">
+                    <div style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #333; line-height: 1.8; font-style: italic; margin-bottom: 20px;">
+                        "Working with Ian was a fantastic and smooth experience from start to finish. He took the time to understand exactly what I wanted, brought great ideas to the table, and made a huge impact on my business. Ian delivered a website that looks incredible and functions flawlessly. I've received so many compliments on the site, and I genuinely couldn't be happier—I'd personally recommend Ian to anyone looking for a talented, reliable web designer."
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 20px;">
+                        <img src="/img/other/placeholder.png" alt="Nicolas Villalobos" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #0078D7; object-fit: cover;">
+                        <div>
+                            <div style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Nicolas Villalobos</div>
+                            <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin: 5px 0;">Digital Marketing Expert & Founder</p>
+                            <a href="#" target="_blank" style="color: #0078D7; text-decoration: none; font-size: 13px;">Nics Marketing</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photos Window -->
+    <div id="photos-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_movie.ico" alt="Photos" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Photo Gallery
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="padding: 20px;">
+            <div class="vintage-instagram-header" style="text-align: center; margin-bottom: 25px;">
+                <h2 style="font-family: var(--font-segoe-semilight); font-size: 24px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-camera" style="margin-right: 10px; color: #0078D7;"></i>
+                    @ianmccalum
+                </h2>
+                <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px; margin-top: 10px;">
+                    <i class="fab fa-instagram"></i>
+                    <span>Follow on Instagram</span>
+                </a>
+            </div>
+
+            <div class="vintage-instagram-grid">
+                <div class="vintage-photo-item">
+                    <div class="vintage-photo-frame" data-photo="img/IMG_4666.JPG" data-alt="Photo 1">
+                        <img src="/img/IMG_4666.JPG" alt="Photo 1" class="vintage-photo-img">
+                        <div class="vintage-photo-overlay">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="vintage-photo-item">
+                    <div class="vintage-photo-frame" data-photo="img/IMG_3486.JPG" data-alt="Photo 2">
+                        <img src="/img/IMG_3486.JPG" alt="Photo 2" class="vintage-photo-img">
+                        <div class="vintage-photo-overlay">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="vintage-photo-item">
+                    <div class="vintage-photo-frame" data-photo="img/IMG_3800.JPG" data-alt="Photo 3">
+                        <img src="/img/IMG_3800.JPG" alt="Photo 3" class="vintage-photo-img">
+                        <div class="vintage-photo-overlay">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="vintage-photo-item">
+                    <div class="vintage-photo-frame" data-photo="img/IMG_7830.JPG" data-alt="Photo 4">
+                        <img src="/img/IMG_7830.JPG" alt="Photo 4" class="vintage-photo-img">
+                        <div class="vintage-photo-overlay">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Window -->
+    <div id="thank-you-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 600px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_info.ico" alt="Thank You" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                Message Sent Successfully
+            </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="vista-glass-content" style="text-align: center; padding: 60px 40px;">
+            <div style="font-size: 80px; color: #107C10; margin-bottom: 30px; animation: vistaCheckPulse 2s ease-in-out infinite;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 style="font-family: var(--font-segoe-semilight); font-size: 32px; font-weight: 300; color: #1a1a1a; margin-bottom: 20px;">Thank You!</h1>
+            <p style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #333; margin-bottom: 40px;">
+                Your message has been sent successfully. I'll get back to you as soon as possible.
+            </p>
+            <a href="#" data-window="index-window" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                <i class="fas fa-home"></i>
+                <span>Return to Homepage</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Vista Start Menu -->
+    <div id="vista-startmenu" class="vista-glass-startmenu">
+        <div class="vista-glass-startmenu-left">
+            <a href="index.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>About</span>
+            </a>
+            <a href="portfolio.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Portfolio</span>
+            </a>
+            <a href="cv.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>CV</span>
+            </a>
+            <a href="testimonials.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_collab.ico" alt="Testimonials" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Testimonials</span>
+            </a>
+            <a href="photos.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_movie.ico" alt="Photos" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Photos</span>
+            </a>
+            <a href="contact.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Contact</span>
+            </a>
+            <div class="vista-glass-startitem">
+                <img src="/img/icons/vista/explorer.ico" alt="All Programs" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>All Programs</span>
+                <i class="fas fa-chevron-right arrow"></i>
+            </div>
+            <input type="text" class="vista-glass-startsearch" placeholder="Start Search">
+        </div>
+        <div class="vista-glass-startmenu-right">
+            <a href="about.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="Ian" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Ian McCallum</span>
+            </a>
+            <a href="portfolio.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Portfolio</span>
+            </a>
+            <a href="cv.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>CV</span>
+            </a>
+            <a href="contact.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+                <span>Contact</span>
+            </a>
+            <button class="vista-glass-power-btn">
+                <img src="/img/icons/vista/vista_pc_1.ico" alt="Power" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+            </button>
+        </div>
+        </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/gif-background.js"></script>
+    <script src="/js/vista-icons.js"></script>
+    <script src="/js/mobile-ux.js"></script>
+    <script src="/js/window-manager.js"></script>
+    <script>
+        // Start Menu Toggle
+        document.getElementById('vista-start-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('vista-startmenu').classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('vista-startmenu');
+            const button = document.getElementById('vista-start-btn');
+            if (!menu.contains(e.target) && !button.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Update Time
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const displayMinutes = minutes.toString().padStart(2, '0');
+            
+            document.getElementById('vista-time').textContent = `${displayHours}:${displayMinutes} ${ampm}`;
+            
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        // Window controls are now handled by window-manager.js
+
+        // Make all windows draggable
+        document.querySelectorAll('.vista-glass-titlebar').forEach(titlebar => {
+            titlebar.addEventListener('mousedown', function(e) {
+                const window = this.closest('.vista-glass-window');
+                let isDragging = false;
+                let currentX, currentY, initialX, initialY;
+                let xOffset = 0, yOffset = 0;
+
+                // Get initial position
+                const rect = window.getBoundingClientRect();
+                xOffset = rect.left;
+                yOffset = rect.top;
+
+                function dragStart(e) {
+                    if (e.target.closest('.vista-glass-controls')) return;
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                    if (e.target === this || this.contains(e.target)) {
+                        isDragging = true;
+                        window.style.zIndex = '1000'; // Bring to front when dragging
+                    }
+                }
+
+                function drag(e) {
+                    if (isDragging) {
+                        e.preventDefault();
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                        xOffset = currentX;
+                        yOffset = currentY;
+                        window.style.left = currentX + 'px';
+                        window.style.top = currentY + 'px';
+                        window.style.transform = '';
+                        window.style.right = '';
+                    }
+                }
+
+                function dragEnd() {
+                    initialX = currentX;
+                    initialY = currentY;
+                    isDragging = false;
+                }
+
+                dragStart(e);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', dragEnd);
+            });
+        });
+
+        // Handle data-window links
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[data-window]');
+            if (link) {
+                e.preventDefault();
+                const windowId = link.getAttribute('data-window');
+                if (window.vistaWindowManager) {
+                    window.vistaWindowManager.openWindow(windowId);
+                }
+            }
+        });
+
+        // Handle form submission with FormSubmit
+        document.querySelectorAll('form[action*="formsubmit.co"]').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton ? submitButton.innerHTML : '';
+                
+                // Show loading state
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
+                }
+                
+                // Submit form via fetch to FormSubmit
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Reset form
+                        this.reset();
+                        
+                        // Show thank you window
+                        const nextInput = this.querySelector('input[name="_next"]');
+                        if (nextInput && nextInput.value === '#thank-you-window') {
+                            if (window.vistaWindowManager) {
+                                window.vistaWindowManager.closeWindow('contact-window');
+                                window.vistaWindowManager.openWindow('thank-you-window');
+                            }
+                        } else if (window.vistaWindowManager) {
+                            // Fallback: try to open thank-you window anyway
+                            window.vistaWindowManager.closeWindow('contact-window');
+                            window.vistaWindowManager.openWindow('thank-you-window');
+                        }
+                        
+                        // On mobile, show thank you window
+                        if (window.mobileUXManager && window.mobileUXManager.isMobile) {
+                            setTimeout(() => {
+                                if (window.vistaWindowManager) {
+                                    window.vistaWindowManager.openWindow('thank-you-window');
+                                }
+                            }, 100);
+                        }
+                    } else {
+                        // Check if FormSubmit returned an error
+                        return response.json().then(data => {
+                            throw new Error(data.message || 'Form submission failed');
+                        }).catch(() => {
+                            throw new Error('Form submission failed');
+                        });
+                    }
+                }).catch(err => {
+                    console.error('Form submission error:', err);
+                    
+                    // Show error message
+                    alert('Sorry, there was an error sending your message. Please try again or contact me directly at ian@beatyourclock.com');
+                    
+                    // Restore button
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Photo Lightbox Modal -->
+    <div id="photo-lightbox" class="photo-lightbox">
+        <div class="photo-lightbox-backdrop"></div>
+        <button class="photo-lightbox-close" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="photo-lightbox-content">
+            <img id="lightbox-image" src="" alt="" class="photo-lightbox-img">
+        </div>
+    </div>
+    
+    <script>
+        // Photo Lightbox Functionality - Use event delegation for dynamically loaded content
+        (function() {
+            // Wait for DOM to be ready
+            function initLightbox() {
+                const lightbox = document.getElementById('photo-lightbox');
+                if (!lightbox) {
+                    console.error('Lightbox element not found');
+                    return;
+                }
+                
+                const lightboxImg = document.getElementById('lightbox-image');
+                if (!lightboxImg) {
+                    console.error('Lightbox image element not found');
+                    return;
+                }
+                
+                const lightboxBackdrop = lightbox.querySelector('.photo-lightbox-backdrop');
+                const closeBtn = lightbox.querySelector('.photo-lightbox-close');
+                
+                // Use event delegation to handle clicks on photos (even if loaded dynamically)
+                document.addEventListener('click', function(e) {
+                    const photoFrame = e.target.closest('.vintage-photo-frame');
+                    if (photoFrame) {
+                        // Don't open if clicking on overlay icons
+                        if (e.target.closest('.vintage-photo-overlay')) {
+                            return;
+                        }
+                        
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const photoSrc = photoFrame.getAttribute('data-photo');
+                        const photoAlt = photoFrame.getAttribute('data-alt') || 'Photo';
+                        
+                        console.log('Photo clicked:', photoSrc); // Debug
+                        
+                        if (photoSrc) {
+                            lightboxImg.src = photoSrc;
+                            lightboxImg.alt = photoAlt;
+                            lightbox.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                            console.log('Lightbox opened'); // Debug
+                        }
+                    }
+                });
+                
+                // Close lightbox
+                function closeLightbox() {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeLightbox);
+                }
+                if (lightboxBackdrop) {
+                    lightboxBackdrop.addEventListener('click', closeLightbox);
+                }
+                
+                // Close on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                        closeLightbox();
+                    }
+                });
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initLightbox);
+            } else {
+                initLightbox();
+            }
+        })();
+    </script>
+    
+    <style>
+        @keyframes vistaCheckPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</body>
+</html> 

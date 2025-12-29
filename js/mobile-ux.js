@@ -56,16 +56,16 @@ class MobileUXManager {
                     </p>
                     <div class="mobile-social-icons">
                         <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="Instagram">
-                            <img src="insta.png" alt="Instagram" class="mobile-social-icon-img">
+                            <img src="assets/insta.png" alt="Instagram" class="mobile-social-icon-img">
                         </a>
                         <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="Twitter">
-                            <img src="twitter.png" alt="Twitter" class="mobile-social-icon-img">
+                            <img src="assets/twitter.png" alt="Twitter" class="mobile-social-icon-img">
                         </a>
                         <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="LinkedIn">
-                            <img src="link.ico" alt="LinkedIn" class="mobile-social-icon-img">
+                            <img src="assets/link.ico" alt="LinkedIn" class="mobile-social-icon-img">
                         </a>
                         <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="GitHub">
-                            <img src="github.png" alt="GitHub" class="mobile-social-icon-img">
+                            <img src="assets/github.png" alt="GitHub" class="mobile-social-icon-img">
                         </a>
                     </div>
                 </div>

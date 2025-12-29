@@ -1,0 +1,89 @@
+/* ============================================
+   VISTA ICON SYSTEM
+   Integration with Frutiger Aero Archive Icons
+   ============================================ */
+
+/* Icon Base Styles */
+.vista-icon-img {
+    display: inline-block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Desktop Icon Styles */
+.vista-desktop-icon-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* Taskbar Icon Styles */
+.vista-taskbar-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Start Menu Icon Styles */
+.vista-startmenu-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Hide Font Awesome fallback icons when Vista icons are present */
+.vista-icon-img + i[class*="fa-"] {
+    display: none !important;
+}
+
+/* Ensure Font Awesome icons are hidden by default when they're fallbacks */
+.vista-desktop-icon-img + i,
+.vista-taskbar-icon-img + i,
+.vista-quicklaunch-icon-img + i,
+.vista-startmenu-icon-img + i,
+.vista-window-icon-img + i {
+    display: none !important;
+}
+
+/* Only show Font Awesome if the image fails to load */
+.vista-icon-img[style*="display: none"] + i[class*="fa-"] {
+    display: inline-block !important;
+}
+
+/* Window Title Icon Styles */
+.vista-window-icon-img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* Quick Launch Icon Styles */
+.vista-quicklaunch-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Fallback for missing icons */
+.vista-icon-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    font-size: 14px;
+    color: white;
+}
+
+/* Icon hover effects */
+.vista-icon-img:hover {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.1);
+    transform: scale(1.05);
+    transition: all 0.2s;
+}
+

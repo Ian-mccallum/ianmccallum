@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Note: Build output (css/, js/, img/, *.html, etc.) is tracked in git
+# for Vercel deployment. Source files in src/ are the source of truth.
+# Always edit files in src/ and run `npm run build` before committing.

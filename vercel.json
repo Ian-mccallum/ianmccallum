@@ -10,32 +10,36 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/src/pages/index.html"
+    },
+    {
       "source": "/about",
-      "destination": "/about.html"
+      "destination": "/src/pages/about.html"
     },
     {
       "source": "/cv",
-      "destination": "/cv.html"
+      "destination": "/src/pages/cv.html"
     },
     {
       "source": "/photos",
-      "destination": "/photos.html"
+      "destination": "/src/pages/photos.html"
     },
     {
       "source": "/portfolio",
-      "destination": "/portfolio.html"
+      "destination": "/src/pages/portfolio.html"
     },
     {
       "source": "/testimonials",
-      "destination": "/testimonials.html"
+      "destination": "/src/pages/testimonials.html"
     },
     {
       "source": "/contact",
-      "destination": "/contact.html"
+      "destination": "/src/pages/contact.html"
     },
     {
       "source": "/thank-you",
-      "destination": "/thank-you.html"
+      "destination": "/src/pages/thank-you.html"
     }
   ]
 }

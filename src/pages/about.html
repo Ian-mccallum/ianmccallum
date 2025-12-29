@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Ian McCallum</title>
+    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/vista-glass-refined.css">
+    <link rel="stylesheet" href="/css/vista-icons.css">
+    <link rel="stylesheet" href="/css/web2-gloss-enhancements.css">
+    <link rel="stylesheet" href="/css/page-content-enhancements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="vista-desktop-refined">
+    <!-- GIF Background -->
+    <div id="frutiger-background" class="fixed inset-0 z-0">
+        <img id="background-gif" class="background-gif" src="/assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
+        <div class="video-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Vista Taskbar -->
+    <div class="vista-glass-taskbar">
+        <button id="vista-start-btn" class="vista-glass-start-btn">
+            <img src="/img/icons/vista/vista_get_started.ico" alt="Start" class="vista-icon-img vista-taskbar-icon-img" style="width: 24px; height: 24px;">
+        </button>
+        <div class="vista-glass-taskbar-items">
+            <a href="index.html" class="vista-glass-taskbar-item">
+                <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>Home</span>
+            </a>
+            <div class="vista-glass-taskbar-item active">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>About</span>
+                    </div>
+            <a href="portfolio.html" class="vista-glass-taskbar-item">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="vista-glass-taskbar-item">
+                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <span>Contact</span>
+            </a>
+                    </div>
+        <div class="vista-glass-notification">
+            <div class="vista-glass-tray-icon"><i class="fas fa-volume-up"></i></div>
+            <div class="vista-glass-tray-icon"><i class="fas fa-wifi"></i></div>
+            <div class="vista-glass-tray-time" id="vista-time"></div>
+                    </div>
+                    </div>
+
+    <!-- Vista Start Menu -->
+    <div id="vista-startmenu" class="vista-glass-startmenu">
+        <div class="vista-glass-startmenu-left">
+            <a href="index.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/home.png" alt="Home" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Home</span>
+            </a>
+            <div class="vista-glass-startitem">
+                <img src="/img/icons/vista/about.png" alt="About" class="vista-icon-img vista-startmenu-icon-img">
+                <span>About</span>
+                    </div>
+            <a href="portfolio.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/portfolio.png" alt="Portfolio" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Portfolio</span>
+            </a>
+            <a href="cv.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/cv.png" alt="CV" class="vista-icon-img vista-startmenu-icon-img">
+                <span>CV</span>
+            </a>
+            <a href="testimonials.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/testimonials.png" alt="Testimonials" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Testimonials</span>
+            </a>
+            <a href="photos.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/photos.png" alt="Photos" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Photos</span>
+            </a>
+            <a href="contact.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/contact.png" alt="Contact" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Contact</span>
+            </a>
+            <div class="vista-glass-startitem">
+                <img src="/img/icons/vista/all-programs.png" alt="All Programs" class="vista-icon-img vista-startmenu-icon-img">
+                <span>All Programs</span>
+                <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+            <input type="text" class="vista-glass-startsearch" placeholder="Start Search">
+                        </div>
+        <div class="vista-glass-startmenu-right">
+            <div class="vista-glass-startitem">
+                <img src="/img/icons/vista/about.png" alt="Ian" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Ian McCallum</span>
+                        </div>
+            <a href="portfolio.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/portfolio.png" alt="Portfolio" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Portfolio</span>
+            </a>
+            <a href="cv.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/cv.png" alt="CV" class="vista-icon-img vista-startmenu-icon-img">
+                <span>CV</span>
+            </a>
+            <a href="contact.html" class="vista-glass-startitem">
+                <img src="/img/icons/vista/contact.png" alt="Contact" class="vista-icon-img vista-startmenu-icon-img">
+                <span>Contact</span>
+            </a>
+            <button class="vista-glass-power-btn">
+                <img src="/img/icons/vista/power.png" alt="Power" class="vista-icon-img vista-startmenu-icon-img">
+            </button>
+                        </div>
+                        </div>
+
+    <!-- About Window -->
+    <div class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100;">
+        <div class="vista-glass-titlebar">
+            <div class="vista-glass-title">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                About Ian McCallum
+                        </div>
+            <div class="vista-glass-controls">
+                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+        <div class="vista-glass-content" style="padding: 30px;">
+            <div style="display: flex; align-items: center; gap: 30px; margin-bottom: 30px;">
+                <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="profile-image" style="width: 150px; height: 150px; border-radius: 8px; object-fit: cover;">
+                <div>
+                    <h1 style="font-family: 'Segoe UI', sans-serif; font-size: 32px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">Ian McCallum</h1>
+                    <p style="font-family: 'Segoe UI', sans-serif; font-size: 16px; color: #666; margin-bottom: 5px;">Tech Innovator & Young Entrepreneur</p>
+                    <p style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #666;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i>
+                        Naperville, Illinois
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-info-circle" style="margin-right: 8px; color: #0078D7;"></i>
+                    Introduction
+                </h2>
+                <p style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #333; line-height: 1.8; margin-bottom: 15px;">
+                    Hello! I'm a 17-year-old senior at Metea Valley High School, and I'm excited to share a little bit about who I am, what I do, and what I love. I currently live in the suburbs of Chicago, but I was born in the city and spent the first five years of my life there. At home, I'm surrounded by my three energetic younger sisters, my supportive parents, and our adorable dog Zoey.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-graduation-cap" style="margin-right: 8px; color: #0078D7;"></i>
+                    Education & Background
+                </h2>
+                <p style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #333; line-height: 1.8;">
+                    I'm currently a senior at Metea Valley High School in Aurora, Illinois, where I've been able to explore my interests in technology, entrepreneurship, and leadership. My journey in tech started early, and I've been fortunate to work on various projects that combine innovation with real-world applications.
+                </p>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 30px;">
+                <h2 style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-lightbulb" style="margin-right: 8px; color: #0078D7;"></i>
+                    Current Focus
+                </h2>
+                <p style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #333; line-height: 1.8;">
+                    I am currently focusing on learning Python and prompt engineering. These skills are essential for building more advanced automation solutions and leveraging AI effectively in my projects.
+                </p>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section" style="margin-top: 30px; margin-bottom: 30px;">
+                <h2 class="content-section" style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
+                    <i class="fas fa-tools" style="margin-right: 8px; color: #0078D7;"></i>
+                    Skills & Technologies
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <img src="/assets/html5.png" alt="HTML" class="skill-icon">
+                        <span class="skill-name">HTML</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/dreamweaver2.ico" alt="CSS" class="skill-icon">
+                        <span class="skill-name">CSS</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/flash1.ico" alt="JavaScript" class="skill-icon">
+                        <span class="skill-name">JavaScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/flash2.ico" alt="React" class="skill-icon">
+                        <span class="skill-name">React</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-icon">
+                        <span class="skill-name">Premiere Pro</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-icon">
+                        <span class="skill-name">After Effects</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-icon">
+                        <span class="skill-name">Photoshop</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/explorer.ico" alt="Web Development" class="skill-icon">
+                        <span class="skill-name">Web Dev</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="/img/icons/vista/explorer.ico" alt="Automation" class="skill-icon">
+                        <span class="skill-name">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <a href="portfolio.html" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-briefcase"></i>
+                    <span>View Portfolio</span>
+                </a>
+                <a href="cv.html" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Download CV</span>
+                </a>
+                <a href="contact.html" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 13px;">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/vista-icons.js"></script>
+    <script>
+        document.getElementById('vista-start-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('vista-startmenu').classList.toggle('show');
+        });
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('vista-startmenu');
+            const button = document.getElementById('vista-start-btn');
+            if (!menu.contains(e.target) && !button.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const displayMinutes = minutes.toString().padStart(2, '0');
+            document.getElementById('vista-time').textContent = `${displayHours}:${displayMinutes} ${ampm}`;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        document.querySelectorAll('.vista-glass-control-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const window = this.closest('.vista-glass-window');
+                if (this.classList.contains('close')) {
+                    window.style.display = 'none';
+                } else if (this.classList.contains('minimize')) {
+                    window.style.transform = 'scale(0.8)';
+                    window.style.opacity = '0.5';
+                } else if (this.classList.contains('maximize')) {
+                    if (window.style.width === '100vw') {
+                        window.style.width = '';
+                        window.style.height = '';
+                        window.style.top = '';
+                        window.style.left = '';
+                        window.style.transform = '';
+                    } else {
+                        window.style.width = '100vw';
+                        window.style.height = 'calc(100vh - 40px)';
+                        window.style.top = '0';
+                        window.style.left = '0';
+                        window.style.transform = 'translateX(0)';
+                    }
+                }
+            });
+        });
+
+        document.querySelector('.vista-glass-titlebar').addEventListener('mousedown', function(e) {
+            const window = this.closest('.vista-glass-window');
+            let isDragging = false;
+            let currentX, currentY, initialX, initialY;
+            let xOffset = 0, yOffset = 0;
+
+            function dragStart(e) {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - initialY;
+                if (e.target === this || this.contains(e.target)) {
+                    isDragging = true;
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    window.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                }
+            }
+
+            function dragEnd() {
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+            }
+
+            dragStart(e);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', dragEnd);
+        });
+    </script>
+</body>
+</html> 

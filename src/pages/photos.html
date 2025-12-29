@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos | Ian McCallum</title>
+    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/vista-design-system.css">
+    <link rel="stylesheet" href="/css/vintage-instagram.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="vista-desktop">
+    <!-- GIF Background -->
+    <div id="frutiger-background" class="fixed inset-0 z-0">
+        <img id="background-gif" class="background-gif" src="/assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
+        <div class="video-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Vista Taskbar -->
+    <div class="vista-taskbar">
+        <button id="vista-start-button" class="vista-start-button">
+            <i class="fab fa-windows"></i>
+        </button>
+        <div class="vista-taskbar-items">
+            <a href="index.html" class="vista-taskbar-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="vista-taskbar-item">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="portfolio.html" class="vista-taskbar-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="vista-taskbar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="vista-system-tray">
+            <div class="vista-tray-item"><i class="fas fa-volume-up"></i></div>
+            <div class="vista-tray-item"><i class="fas fa-wifi"></i></div>
+            <div class="vista-tray-time" id="vista-time"></div>
+        </div>
+    </div>
+
+    <!-- Vista Start Menu -->
+    <div id="vista-start-menu" class="vista-start-menu">
+        <div class="vista-start-menu-left">
+            <a href="index.html" class="vista-start-item"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="about.html" class="vista-start-item"><i class="fas fa-user"></i><span>About Ian</span></a>
+            <a href="portfolio.html" class="vista-start-item"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+            <a href="cv.html" class="vista-start-item"><i class="fas fa-file-alt"></i><span>CV / Resume</span></a>
+            <a href="testimonials.html" class="vista-start-item"><i class="fas fa-quote-left"></i><span>Testimonials</span></a>
+            <a href="photos.html" class="vista-start-item"><i class="fas fa-images"></i><span>Photos</span></a>
+            <a href="contact.html" class="vista-start-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+        </div>
+        <div class="vista-start-menu-right">
+            <a href="about.html" class="vista-start-item"><i class="fas fa-user"></i><span>Ian McCallum</span></a>
+            <a href="portfolio.html" class="vista-start-item"><i class="fas fa-folder"></i><span>Portfolio</span></a>
+            <a href="cv.html" class="vista-start-item"><i class="fas fa-file"></i><span>CV</span></a>
+            <a href="contact.html" class="vista-start-item"><i class="fas fa-cog"></i><span>Contact</span></a>
+        </div>
+    </div>
+
+    <!-- Main Content - Vista Windows -->
+    <div class="vista-windows-container">
+        <div class="vista-window" style="max-width: 900px; margin: 80px auto;">
+            <div class="vista-title-bar">
+                <div class="vista-title-text">
+                    <i class="fas fa-images me-2"></i>
+                    Photo Gallery
+                </div>
+                <div class="vista-window-controls">
+                    <button class="vista-control-btn minimize"><i class="fas fa-minus"></i></button>
+                    <button class="vista-control-btn maximize"><i class="fas fa-square"></i></button>
+                    <button class="vista-control-btn close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="vista-window-content" style="padding: 20px;">
+                <div class="vintage-instagram-header" style="text-align: center; margin-bottom: 25px;">
+                    <h2 class="vista-h2 mb-3 vista-text-animate">
+                        <i class="fas fa-camera me-2"></i>
+                        @ianmccalum
+                    </h2>
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-button vista-button-primary">
+                        <i class="fab fa-instagram"></i>
+                        <span>Follow on Instagram</span>
+                    </a>
+                </div>
+
+                <div class="vintage-instagram-grid">
+                    <div class="vintage-photo-item">
+                        <div class="vintage-photo-frame" data-photo="img/IMG_4666.JPG" data-alt="Photo 1">
+                            <img src="/img/IMG_4666.JPG" alt="Photo 1" class="vintage-photo-img">
+                            <div class="vintage-photo-overlay">
+                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-comment"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vintage-photo-item">
+                        <div class="vintage-photo-frame" data-photo="img/IMG_3486.JPG" data-alt="Photo 2">
+                            <img src="/img/IMG_3486.JPG" alt="Photo 2" class="vintage-photo-img">
+                            <div class="vintage-photo-overlay">
+                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-comment"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vintage-photo-item">
+                        <div class="vintage-photo-frame" data-photo="img/IMG_3800.JPG" data-alt="Photo 3">
+                            <img src="/img/IMG_3800.JPG" alt="Photo 3" class="vintage-photo-img">
+                            <div class="vintage-photo-overlay">
+                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-comment"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vintage-photo-item">
+                        <div class="vintage-photo-frame" data-photo="img/IMG_7830.JPG" data-alt="Photo 4">
+                            <img src="/img/IMG_7830.JPG" alt="Photo 4" class="vintage-photo-img">
+                            <div class="vintage-photo-overlay">
+                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-comment"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Lightbox Modal -->
+    <div id="photo-lightbox" class="photo-lightbox">
+        <div class="photo-lightbox-backdrop"></div>
+        <button class="photo-lightbox-close" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="photo-lightbox-content">
+            <img id="lightbox-image" src="" alt="" class="photo-lightbox-img">
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/gif-background.js"></script>
+    <script src="/js/vista-system.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        // Photo Lightbox Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('photo-lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const lightboxBackdrop = lightbox.querySelector('.photo-lightbox-backdrop');
+            const closeBtn = lightbox.querySelector('.photo-lightbox-close');
+            const photoFrames = document.querySelectorAll('.vintage-photo-frame');
+            
+            // Open lightbox when photo is clicked
+            photoFrames.forEach(frame => {
+                frame.addEventListener('click', function(e) {
+                    // Don't open if clicking on overlay icons
+                    if (e.target.closest('.vintage-photo-overlay')) return;
+                    
+                    const photoSrc = this.getAttribute('data-photo');
+                    const photoAlt = this.getAttribute('data-alt') || 'Photo';
+                    
+                    lightboxImg.src = photoSrc;
+                    lightboxImg.alt = photoAlt;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            closeBtn.addEventListener('click', closeLightbox);
+            lightboxBackdrop.addEventListener('click', closeLightbox);
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
