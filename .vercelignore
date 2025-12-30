@@ -1,0 +1,24 @@
+# Vercel ignore file
+# Files that don't need to be deployed
+
+# Source files (served via rewrites, but don't need to be in root)
+# Actually, we do need these for rewrites to work, so don't ignore
+
+# Build artifacts (if using legacy build)
+node_modules/
+.git/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Scripts
+scripts/
+
+# Config source (we use root vercel.json)
+config/
+
+# Archive
+src/assets/archive/
+
