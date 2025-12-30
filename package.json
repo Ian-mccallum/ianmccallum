@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx serve . -l 3000",
-    "build": "node scripts/build.js",
+    "build": "echo 'No build needed - using Vercel rewrites' && exit 0",
     "build:legacy": "node scripts/build.js",
     "serve": "npx serve ."
   },
