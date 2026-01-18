@@ -3,19 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos | Ian McCallum</title>
-    <link rel="icon" type="image/png" href="assets/IMlogo.png">
+    <title>Photos | Ian McCallum - Photo Gallery</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Browse Ian McCallum's photo gallery featuring personal photos and memories from Naperville, Illinois and beyond.">
+    <meta name="keywords" content="Ian McCallum, photos, gallery, Naperville, Illinois">
+    <meta name="author" content="Ian McCallum">
+    
+    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ianmccallum.com/photos">
+    <link rel="author" href="https://ianmccallum.com/about">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://ianmccallum.com/photos">
+    <meta property="og:title" content="Photos | Ian McCallum - Photo Gallery">
+    <meta property="og:description" content="Browse Ian McCallum's photo gallery featuring personal photos and memories from Naperville, Illinois and beyond.">
+    <meta property="og:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta property="profile:first_name" content="Ian">
+    <meta property="profile:last_name" content="McCallum">
+    <meta property="profile:username" content="Ian McCallum">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ianmccallum.com/photos">
+    <meta name="twitter:title" content="Photos | Ian McCallum - Photo Gallery">
+    <meta name="twitter:description" content="Browse Ian McCallum's photo gallery featuring personal photos and memories from Naperville, Illinois and beyond.">
+    <meta name="twitter:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta name="twitter:creator" content="@ian_mccaIlum">
+    
+    <!-- Structured Data: ProfilePage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Ian McCallum",
+        "url": "https://ianmccallum.com"
+      }
+    }
+    </script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/vista-design-system.css">
-    <link rel="stylesheet" href="css/vintage-instagram.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/vista-design-system.css">
+    <link rel="stylesheet" href="/css/vintage-instagram.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="vista-desktop">
     <!-- GIF Background -->
     <div id="frutiger-background" class="fixed inset-0 z-0">
-        <img id="background-gif" class="background-gif" src="assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
+        <img id="background-gif" class="background-gif" src="/assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
         <div class="video-overlay absolute inset-0"></div>
     </div>
 
@@ -97,7 +139,7 @@
                 <div class="vintage-instagram-grid">
                     <div class="vintage-photo-item">
                         <div class="vintage-photo-frame" data-photo="img/IMG_4666.JPG" data-alt="Photo 1">
-                            <img src="img/IMG_4666.JPG" alt="Photo 1" class="vintage-photo-img">
+                            <img src="/img/IMG_4666.JPG" alt="Photo 1" class="vintage-photo-img">
                             <div class="vintage-photo-overlay">
                                 <i class="fas fa-heart"></i>
                                 <i class="fas fa-comment"></i>
@@ -106,7 +148,7 @@
                     </div>
                     <div class="vintage-photo-item">
                         <div class="vintage-photo-frame" data-photo="img/IMG_3486.JPG" data-alt="Photo 2">
-                            <img src="img/IMG_3486.JPG" alt="Photo 2" class="vintage-photo-img">
+                            <img src="/img/IMG_3486.JPG" alt="Photo 2" class="vintage-photo-img">
                             <div class="vintage-photo-overlay">
                                 <i class="fas fa-heart"></i>
                                 <i class="fas fa-comment"></i>
@@ -115,7 +157,7 @@
                     </div>
                     <div class="vintage-photo-item">
                         <div class="vintage-photo-frame" data-photo="img/IMG_3800.JPG" data-alt="Photo 3">
-                            <img src="img/IMG_3800.JPG" alt="Photo 3" class="vintage-photo-img">
+                            <img src="/img/IMG_3800.JPG" alt="Photo 3" class="vintage-photo-img">
                             <div class="vintage-photo-overlay">
                                 <i class="fas fa-heart"></i>
                                 <i class="fas fa-comment"></i>
@@ -124,7 +166,7 @@
                     </div>
                     <div class="vintage-photo-item">
                         <div class="vintage-photo-frame" data-photo="img/IMG_7830.JPG" data-alt="Photo 4">
-                            <img src="img/IMG_7830.JPG" alt="Photo 4" class="vintage-photo-img">
+                            <img src="/img/IMG_7830.JPG" alt="Photo 4" class="vintage-photo-img">
                             <div class="vintage-photo-overlay">
                                 <i class="fas fa-heart"></i>
                                 <i class="fas fa-comment"></i>
@@ -149,9 +191,9 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/gif-background.js"></script>
-    <script src="js/vista-system.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/js/gif-background.js"></script>
+    <script src="/js/vista-system.js"></script>
+    <script src="/js/main.js"></script>
     <script>
         // Photo Lightbox Functionality
         document.addEventListener('DOMContentLoaded', function() {

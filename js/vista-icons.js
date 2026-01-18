@@ -6,7 +6,7 @@
 
 class VistaIconSystem {
     constructor() {
-        this.iconBasePath = 'img/icons/vista/';
+        this.iconBasePath = '/img/icons/vista/';
         this.fallbackIcons = {
             // Desktop Icons
             'recycle-bin': 'fas fa-trash',

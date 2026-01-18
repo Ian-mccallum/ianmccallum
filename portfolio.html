@@ -3,43 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Ian McCallum</title>
-    <link rel="icon" type="image/png" href="assets/IMlogo.png">
+    <title>Portfolio | Ian McCallum - Web Developer & Entrepreneur</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="View Ian McCallum's portfolio of web development projects, automation solutions, and creative work including Beat the Clock and Vokel YouTube channel.">
+    <meta name="keywords" content="Ian McCallum, portfolio, web development, automation, Beat the Clock, Vokel, projects">
+    <meta name="author" content="Ian McCallum">
+    
+    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ianmccallum.com/portfolio">
+    <link rel="author" href="https://ianmccallum.com/about">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://ianmccallum.com/portfolio">
+    <meta property="og:title" content="Portfolio | Ian McCallum - Web Developer & Entrepreneur">
+    <meta property="og:description" content="View Ian McCallum's portfolio of web development projects, automation solutions, and creative work including Beat the Clock and Vokel YouTube channel.">
+    <meta property="og:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta property="profile:first_name" content="Ian">
+    <meta property="profile:last_name" content="McCallum">
+    <meta property="profile:username" content="Ian McCallum">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ianmccallum.com/portfolio">
+    <meta name="twitter:title" content="Portfolio | Ian McCallum - Web Developer & Entrepreneur">
+    <meta name="twitter:description" content="View Ian McCallum's portfolio of web development projects, automation solutions, and creative work including Beat the Clock and Vokel YouTube channel.">
+    <meta name="twitter:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta name="twitter:creator" content="@ian_mccaIlum">
+    
+    <!-- Structured Data: ProfilePage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Ian McCallum",
+        "url": "https://ianmccallum.com"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data: Organization Schema (Beat the Clock) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Beat the Clock",
+      "founder": {
+        "@type": "Person",
+        "name": "Ian McCallum"
+      },
+      "url": "https://beatyourclock.com"
+    }
+    </script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/vista-glass-refined.css">
-    <link rel="stylesheet" href="css/vista-icons.css">
-    <link rel="stylesheet" href="css/web2-gloss-enhancements.css">
-    <link rel="stylesheet" href="css/page-content-enhancements.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/vista-glass-refined.css">
+    <link rel="stylesheet" href="/css/vista-icons.css">
+    <link rel="stylesheet" href="/css/web2-gloss-enhancements.css">
+    <link rel="stylesheet" href="/css/page-content-enhancements.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="vista-desktop-refined">
     <!-- GIF Background -->
     <div id="frutiger-background" class="fixed inset-0 z-0">
-        <img id="background-gif" class="background-gif" src="assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
+        <img id="background-gif" class="background-gif" src="/assets/20251124_1315_Remix Video_remix_01kavmnrbpec59aep90j7an7yk.gif" alt="Frutiger Aero Background">
         <div class="video-overlay absolute inset-0"></div>
     </div>
 
     <!-- Vista Taskbar -->
     <div class="vista-glass-taskbar">
         <button id="vista-start-btn" class="vista-glass-start-btn">
-            <img src="img/icons/vista/vista_get_started.ico" alt="Start" class="vista-icon-img vista-taskbar-icon-img" style="width: 24px; height: 24px;">
+            <img src="/img/icons/vista/vista_get_started.ico" alt="Start" class="vista-icon-img vista-taskbar-icon-img" style="width: 24px; height: 24px;">
     </button>
         <div class="vista-glass-taskbar-items">
             <a href="index.html" class="vista-glass-taskbar-item">
-                <img src="img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>Home</span>
             </a>
             <a href="about.html" class="vista-glass-taskbar-item">
-                <img src="img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>About</span>
             </a>
             <div class="vista-glass-taskbar-item active">
-                <img src="img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>Portfolio</span>
                                 </div>
             <a href="contact.html" class="vista-glass-taskbar-item">
-                <img src="img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
+                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>Contact</span>
             </a>
         </div>
@@ -76,7 +132,7 @@
     <div class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100;">
         <div class="vista-glass-titlebar">
             <div class="vista-glass-title">
-                <img src="img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
+                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
                 Portfolio - My Projects & Work
             </div>
             <div class="vista-glass-controls">
@@ -101,19 +157,19 @@
                     </p>
                     <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
                         <span class="skill-tag">
-                            <img src="img/icons/zapier.png" alt="Zapier" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src='img/icons/vista/explorer.ico'">
+                            <img src="/img/icons/zapier.png" alt="Zapier" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
                             Zapier
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/make.png" alt="Make" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src='img/icons/vista/explorer.ico'">
+                            <img src="/img/icons/make.png" alt="Make" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
                             Make
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/chatgpt.png" alt="ChatGPT" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src='img/icons/vista/explorer.ico'">
+                            <img src="/img/icons/chatgpt.png" alt="ChatGPT" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
                             ChatGPT
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/python.png" alt="Python" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src='img/icons/vista/explorer.ico'">
+                            <img src="/img/icons/python.png" alt="Python" class="skill-tag-icon" style="width: 14px; height: 14px;" onerror="this.src="/img/icons/vista/explorer.ico'">
                             Python
                         </span>
                     </div>
@@ -132,19 +188,19 @@
                     </p>
                     <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
                         <span class="skill-tag">
-                            <img src="assets/html5.png" alt="HTML" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/assets/html5.png" alt="HTML" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             HTML
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/vista/dreamweaver2.ico" alt="CSS" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/img/icons/vista/dreamweaver2.ico" alt="CSS" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             CSS
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/vista/flash1.ico" alt="JavaScript" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/img/icons/vista/flash1.ico" alt="JavaScript" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             JavaScript
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/vista/flash2.ico" alt="React" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/img/icons/vista/flash2.ico" alt="React" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             React
                         </span>
                                 </div>
@@ -176,15 +232,15 @@
                     </p>
                     <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
                         <span class="skill-tag">
-                            <img src="img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             Adobe Premiere Pro
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             After Effects
                         </span>
                         <span class="skill-tag">
-                            <img src="img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-tag-icon" style="width: 14px; height: 14px;">
+                            <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-tag-icon" style="width: 14px; height: 14px;">
                             Photoshop
                         </span>
                     </div>
@@ -203,39 +259,39 @@
                 </h2>
                 <div class="skills-grid">
                     <div class="skill-item">
-                        <img src="assets/html5.png" alt="HTML" class="skill-icon">
+                        <img src="/assets/html5.png" alt="HTML" class="skill-icon">
                         <span class="skill-name">HTML</span>
                     </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/dreamweaver2.ico" alt="CSS" class="skill-icon">
+                        <img src="/img/icons/vista/dreamweaver2.ico" alt="CSS" class="skill-icon">
                         <span class="skill-name">CSS</span>
                     </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/flash1.ico" alt="JavaScript" class="skill-icon">
+                        <img src="/img/icons/vista/flash1.ico" alt="JavaScript" class="skill-icon">
                         <span class="skill-name">JavaScript</span>
                     </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/flash2.ico" alt="React" class="skill-icon">
+                        <img src="/img/icons/vista/flash2.ico" alt="React" class="skill-icon">
                         <span class="skill-name">React</span>
                     </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-icon">
+                        <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-icon">
                         <span class="skill-name">Premiere Pro</span>
                     </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-icon">
+                        <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-icon">
                         <span class="skill-name">After Effects</span>
                                 </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-icon">
+                        <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-icon">
                         <span class="skill-name">Photoshop</span>
                             </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/explorer.ico" alt="Web Development" class="skill-icon">
+                        <img src="/img/icons/vista/explorer.ico" alt="Web Development" class="skill-icon">
                         <span class="skill-name">Web Dev</span>
                         </div>
                     <div class="skill-item">
-                        <img src="img/icons/vista/explorer.ico" alt="Automation" class="skill-icon">
+                        <img src="/img/icons/vista/explorer.ico" alt="Automation" class="skill-icon">
                         <span class="skill-name">Automation</span>
                     </div>
                 </div>
@@ -244,7 +300,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/vista-icons.js"></script>
+    <script src="/js/vista-icons.js"></script>
     <script>
         // Start Menu Toggle
         document.getElementById('vista-start-btn').addEventListener('click', function(e) {

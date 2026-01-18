@@ -56,48 +56,48 @@ class MobileUXManager {
                     </p>
                     <div class="mobile-social-icons">
                         <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="Instagram">
-                            <img src="assets/insta.png" alt="Instagram" class="mobile-social-icon-img">
+                            <img src="/assets/insta.png" alt="Instagram" class="mobile-social-icon-img">
                         </a>
                         <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="Twitter">
-                            <img src="assets/twitter.png" alt="Twitter" class="mobile-social-icon-img">
+                            <img src="/assets/twitter.png" alt="Twitter" class="mobile-social-icon-img">
                         </a>
                         <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="LinkedIn">
-                            <img src="assets/link.ico" alt="LinkedIn" class="mobile-social-icon-img">
+                            <img src="/assets/link.ico" alt="LinkedIn" class="mobile-social-icon-img">
                         </a>
                         <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="GitHub">
-                            <img src="assets/github.png" alt="GitHub" class="mobile-social-icon-img">
+                            <img src="/assets/github.png" alt="GitHub" class="mobile-social-icon-img">
                         </a>
                     </div>
                 </div>
                 
                 <div class="mobile-action-grid">
                     <div class="mobile-action-card" data-action="about">
-                        <img src="img/icons/vista/vista_personalization.ico" alt="About" class="mobile-action-card-icon">
+                        <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="mobile-action-card-icon">
                         <div class="mobile-action-card-title">About Me</div>
                         <div class="mobile-action-card-subtitle">My Story</div>
                     </div>
                     <div class="mobile-action-card" data-action="portfolio">
-                        <img src="img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="mobile-action-card-icon">
+                        <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="mobile-action-card-icon">
                         <div class="mobile-action-card-title">Portfolio</div>
                         <div class="mobile-action-card-subtitle">My Work</div>
                     </div>
                     <div class="mobile-action-card" data-action="cv">
-                        <img src="img/icons/vista/vista_book_1.ico" alt="CV" class="mobile-action-card-icon">
+                        <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="mobile-action-card-icon">
                         <div class="mobile-action-card-title">CV</div>
                         <div class="mobile-action-card-subtitle">Resume</div>
                     </div>
                     <div class="mobile-action-card" data-action="photos">
-                        <img src="img/icons/vista/vista_movie.ico" alt="Photos" class="mobile-action-card-icon">
+                        <img src="/img/icons/vista/vista_movie.ico" alt="Photos" class="mobile-action-card-icon">
                         <div class="mobile-action-card-title">Photos</div>
                         <div class="mobile-action-card-subtitle">Gallery</div>
                     </div>
                     <div class="mobile-action-card" data-action="testimonials">
-                        <img src="img/icons/vista/vista_collab.ico" alt="Testimonials" class="mobile-action-card-icon">
+                        <img src="/img/icons/vista/vista_collab.ico" alt="Testimonials" class="mobile-action-card-icon">
                         <div class="mobile-action-card-title">Testimonials</div>
                         <div class="mobile-action-card-subtitle">Reviews</div>
                     </div>
                     <div class="mobile-action-card" data-action="contact">
-                        <img src="img/icons/vista/thunderbird1.ico" alt="Contact" class="mobile-action-card-icon">
+                        <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="mobile-action-card-icon">
                         <div class="mobile-action-card-title">Contact</div>
                         <div class="mobile-action-card-subtitle">Get In Touch</div>
                     </div>
@@ -119,23 +119,23 @@ class MobileUXManager {
             tabBar.className = 'mobile-tab-bar';
             tabBar.innerHTML = `
                 <div class="mobile-tab-item active" data-tab="home">
-                    <img src="img/icons/vista/vista_get_started.ico" alt="Home" class="mobile-tab-item-icon">
+                    <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="mobile-tab-item-icon">
                     <span class="mobile-tab-item-label">Home</span>
                 </div>
                 <div class="mobile-tab-item" data-tab="about">
-                    <img src="img/icons/vista/vista_personalization.ico" alt="About" class="mobile-tab-item-icon">
+                    <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="mobile-tab-item-icon">
                     <span class="mobile-tab-item-label">About</span>
                 </div>
                 <div class="mobile-tab-item" data-tab="portfolio">
-                    <img src="img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="mobile-tab-item-icon">
+                    <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="mobile-tab-item-icon">
                     <span class="mobile-tab-item-label">Portfolio</span>
                 </div>
                 <div class="mobile-tab-item" data-tab="cv">
-                    <img src="img/icons/vista/vista_book_1.ico" alt="CV" class="mobile-tab-item-icon">
+                    <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="mobile-tab-item-icon">
                     <span class="mobile-tab-item-label">CV</span>
                 </div>
                 <div class="mobile-tab-item" data-tab="contact">
-                    <img src="img/icons/vista/thunderbird1.ico" alt="Contact" class="mobile-tab-item-icon">
+                    <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="mobile-tab-item-icon">
                     <span class="mobile-tab-item-label">Contact</span>
                 </div>
             `;
@@ -188,8 +188,8 @@ class MobileUXManager {
         
         // Get metadata for the tab
         const metadata = {
-            'testimonials': { name: 'Testimonials', icon: 'img/icons/vista/vista_collab.ico' },
-            'photos': { name: 'Photos', icon: 'img/icons/vista/vista_movie.ico' }
+            'testimonials': { name: 'Testimonials', icon: '/img/icons/vista/vista_collab.ico' },
+            'photos': { name: 'Photos', icon: '/img/icons/vista/vista_movie.ico' }
         };
         
         const tabData = metadata[tab];

@@ -12,11 +12,11 @@ class VistaWindowManager {
         // Detect mobile/touch device
         this.isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
         this.windowMetadata = {
-            'cv-window': { name: 'CV', icon: 'img/icons/vista/vista_book_1.ico' },
-            'testimonials-window': { name: 'Testimonials', icon: 'img/icons/vista/vista_collab.ico' },
-            'photos-window': { name: 'Photos', icon: 'img/icons/vista/vista_photo_gallery.ico' },
-            'thank-you-window': { name: 'Thank You', icon: 'img/icons/vista/vista_info.ico' },
-            'welcome-window': { name: 'Welcome', icon: 'img/icons/vista/vista_get_started.ico' }
+            'cv-window': { name: 'CV', icon: '/img/icons/vista/vista_book_1.ico' },
+            'testimonials-window': { name: 'Testimonials', icon: '/img/icons/vista/vista_collab.ico' },
+            'photos-window': { name: 'Photos', icon: '/img/icons/vista/vista_photo_gallery.ico' },
+            'thank-you-window': { name: 'Thank You', icon: '/img/icons/vista/vista_info.ico' },
+            'welcome-window': { name: 'Welcome', icon: '/img/icons/vista/vista_get_started.ico' }
         };
         
         // Don't initialize desktop window manager on mobile

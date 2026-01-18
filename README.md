@@ -4,30 +4,23 @@ Enterprise-grade personal brand website with Windows Vista/Frutiger Aero aesthet
 
 ## 🏗️ Architecture
 
-This project follows enterprise-level organization principles:
+This project follows enterprise-level organization principles with clear separation between source code and build output.
+
+**📖 See [docs/ENTERPRISE_STRUCTURE.md](./docs/ENTERPRISE_STRUCTURE.md) for complete structure documentation.**
+
+### Quick Overview
 
 ```
 /
-├── src/
-│   ├── pages/              # HTML entry points (source)
-│   ├── js/
-│   │   ├── core/           # Core system modules
-│   │   ├── features/       # Feature modules (backgrounds, icons, mobile, effects)
-│   │   └── main.js         # Main application entry
-│   ├── css/
-│   │   ├── base/           # Base styles
-│   │   ├── components/     # Component styles
-│   │   ├── themes/         # Theme-specific styles
-│   │   └── utilities/      # Utility styles
-│   └── assets/
-│       ├── images/         # All images (photos, logos, backgrounds)
-│       ├── videos/         # Video files
-│       ├── icons/          # Icon files
-│       └── fonts/          # Font files
-├── config/                 # Configuration files (source)
-├── docs/                   # Documentation
-├── scripts/                # Build and utility scripts
-└── [root HTML files]       # Deployed HTML files (copied from src/pages/)
+├── src/                    # ⭐ SOURCE CODE (Single Source of Truth)
+│   ├── pages/             # HTML entry points
+│   ├── js/                # JavaScript modules (core/features/)
+│   ├── css/               # Stylesheets (base/components/themes/utilities/)
+│   └── assets/            # All static assets (images/videos/icons/fonts/)
+├── config/                # Configuration files (source)
+├── scripts/               # Build and utility scripts
+├── docs/                  # Documentation
+└── [build output]         # Generated files in root (for deployment)
 ```
 
 ## 🚀 Quick Start
@@ -43,11 +36,19 @@ This project follows enterprise-level organization principles:
    ```bash
    npm run build
    ```
-   This copies HTML files from `src/pages/` to root and config files from `config/` to root.
+   Or for a clean build:
+   ```bash
+   npm run build:clean
+   ```
+   This copies HTML files from `src/pages/` to root, flattens CSS/JS, and copies assets/config.
 
 3. **Serve locally**:
    ```bash
    npm run serve
+   ```
+   Or for development with auto-reload:
+   ```bash
+   npm run dev
    ```
 
 ### File Organization
@@ -89,20 +90,30 @@ This project follows enterprise-level organization principles:
 
 ## 🔧 Build Process
 
-The build process:
+The build process (`npm run build`):
 1. Copies HTML files from `src/pages/` to root
-2. Copies config files from `config/` to root
-3. All asset paths are already updated to use `src/assets/` structure
+2. Flattens CSS from `src/css/{category}/` to `css/`
+3. Flattens JS from `src/js/{category}/` to `js/`
+4. Copies assets from `src/assets/` to `img/` and `assets/`
+5. Copies config files from `config/` to root
+
+**Note**: Always edit files in `src/`, never edit build output in root.
 
 ## 📝 Path Conventions
 
-All paths in the codebase follow these conventions:
+**All paths use absolute paths from root (`/`)** to ensure compatibility with both Vercel rewrites and build output:
 
+- **CSS**: `/css/{filename}.css`
+- **JavaScript**: `/js/{filename}.js`
+- **Images**: `/img/{path}` or `/assets/{filename}`
+- **Icons**: `/img/icons/vista/{filename}`
+- **Videos**: `/assets/{filename}`
+- **Fonts**: `/fonts/{filename}`
+
+**Source files are organized as:**
 - **CSS**: `src/css/{category}/{filename}.css`
 - **JavaScript**: `src/js/{category}/{filename}.js`
-- **Images**: `src/assets/images/{type}/{filename}`
-- **Icons**: `src/assets/icons/{category}/{filename}`
-- **Videos**: `src/assets/videos/{filename}`
+- **Assets**: `src/assets/{type}/{category}/{filename}`
 
 ## 🚢 Deployment
 
@@ -114,8 +125,21 @@ This site is configured for Vercel deployment:
 
 ## 📚 Documentation
 
-See `docs/` directory for detailed documentation:
-- Architecture decisions
+Comprehensive documentation is available in the `docs/` directory:
+
+### Core Documentation
+- **[ENTERPRISE_STRUCTURE.md](./docs/ENTERPRISE_STRUCTURE.md)** - Complete structure guide
+- **[DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Deployment guide (rewrites & build)
+- **[ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - Architecture decisions
+- **[STRUCTURE.md](./docs/STRUCTURE.md)** - Detailed structure documentation
+
+### Additional Documentation
+- **[SEO_AEO_PLAN.md](./docs/SEO_AEO_PLAN.md)** - SEO & Answer Engine Optimization plan
+- **[SEO_IMPLEMENTATION_STATUS.md](./docs/SEO_IMPLEMENTATION_STATUS.md)** - SEO implementation status
+- **[ARCHITECTURE_PLAN.md](./docs/ARCHITECTURE_PLAN.md)** - Reorganization plan
+- **[REORGANIZATION_SUMMARY.md](./docs/REORGANIZATION_SUMMARY.md)** - Summary of changes
+- **[BUILD_SYSTEM_ANALYSIS.md](./docs/BUILD_SYSTEM_ANALYSIS.md)** - Build system analysis
+- **[WORKFLOW.md](./docs/WORKFLOW.md)** - Development workflow
 - Design system documentation
 - Setup guides
 - Feature documentation

@@ -135,7 +135,7 @@
     
     /* Hero Profile Card */
     .mobile-hero-card {
-        background: rgba(255, 255, 255, 0.57) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
@@ -187,11 +187,10 @@
     
     .mobile-hero-title {
         font-family: var(--font-segoe-semilight);
-        font-size: 30px;
-        font-weight: 525;
+        font-size: 16px;
+        font-weight: 300;
         color: #000;
         margin-bottom: 8px;
-        letter-spacing: 0.5px;
         text-shadow: 
             0 1px 1px rgba(255, 255, 255, 0.6),
             0 1px 3px rgba(0, 0, 0, 0.12);
@@ -199,8 +198,8 @@
     
     .mobile-hero-location {
         font-family: var(--font-segoe-semilight);
-        font-size: 18px;
-        font-weight: 500;
+        font-size: 14px;
+        font-weight: 300;
         color: #7B2CBF;
         display: flex;
         align-items: center;
@@ -249,7 +248,7 @@
     }
     
     .mobile-action-card {
-        background: rgba(255, 255, 255, 0.57) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
@@ -346,7 +345,7 @@
     
     /* Remove any background from content loaded into mobile sections that might block translucency */
     .mobile-content-section .vista-glass-content {
-        background: rgba(255, 255, 255, 0.30) !important;
+        background: rgba(255, 255, 255, 0.20) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         box-shadow: 
@@ -496,7 +495,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(255, 255, 255, 0.57) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         border-top-left-radius: 24px;
@@ -517,7 +516,7 @@
     
     /* Bottom sheet content should match desktop content opacity */
     .mobile-bottom-sheet-content {
-        background: rgba(255, 255, 255, 0.30) !important;
+        background: rgba(255, 255, 255, 0.20) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
@@ -789,7 +788,7 @@
         margin: 10px;
         padding-bottom: 80px; /* Space for tab bar */
         /* Match desktop window background exactly - MUST be translucent */
-        background: rgba(255, 255, 255, 0.57) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
@@ -816,7 +815,7 @@
     
     /* Force translucent background on active sections */
     .mobile-content-section.active {
-        background: rgba(255, 255, 255, 0.57) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
@@ -824,7 +823,7 @@
     /* Content inside mobile sections should have lower opacity like desktop content */
     .mobile-content-section .vista-glass-content,
     .mobile-content-section > div:not([class*="button"]):not([class*="tag"]) {
-        background: rgba(255, 255, 255, 0.30) !important;
+        background: rgba(255, 255, 255, 0.20) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
@@ -1086,7 +1085,7 @@
     }
     
     .mobile-content-section#mobile-content-testimonials .portfolio-project-card {
-        background: rgba(255, 255, 255, 0.57) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
