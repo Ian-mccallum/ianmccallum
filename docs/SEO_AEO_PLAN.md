@@ -403,6 +403,8 @@ This plan uses world-class SEO and Answer Engine Optimization (AEO) principles t
 - Monitor search performance for "Ian McCallum"
 - Track impressions, clicks, position
 
+**📖 See [GOOGLE_SEARCH_CONSOLE_GUIDE.md](./GOOGLE_SEARCH_CONSOLE_GUIDE.md) for detailed step-by-step instructions**
+
 ### Step 9.2: Set Up Google Analytics
 **Priority**: High  
 **Action**: 

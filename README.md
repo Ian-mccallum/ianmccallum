@@ -132,6 +132,8 @@ Comprehensive documentation is available in the `docs/` directory:
 - **[DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Deployment guide (rewrites & build)
 - **[ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - Architecture decisions
 - **[STRUCTURE.md](./docs/STRUCTURE.md)** - Detailed structure documentation
+- **[SEO_AEO_PLAN.md](./docs/SEO_AEO_PLAN.md)** - SEO & Answer Engine Optimization plan
+- **[GOOGLE_SEARCH_CONSOLE_GUIDE.md](./docs/GOOGLE_SEARCH_CONSOLE_GUIDE.md)** - Google Search Console setup guide
 
 ### Additional Documentation
 - **[SEO_AEO_PLAN.md](./docs/SEO_AEO_PLAN.md)** - SEO & Answer Engine Optimization plan
