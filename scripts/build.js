@@ -8,6 +8,11 @@ const fs = require('fs');
 const path = require('path');
 
 function copyRecursive(src, dest) {
+  if (!fs.existsSync(src)) {
+    console.warn(`   ⚠ Skipping missing path: ${src}`);
+    return;
+  }
+
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
@@ -27,6 +32,10 @@ function copyRecursive(src, dest) {
 }
 
 function copyFile(src, dest) {
+  if (!fs.existsSync(src)) {
+    console.warn(`   ⚠ Skipping missing file: ${src}`);
+    return;
+  }
   const destDir = path.dirname(dest);
   if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });

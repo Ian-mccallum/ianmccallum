@@ -13,11 +13,7 @@ docs/
 *.md
 !README.md
 
-# Scripts
-scripts/
-
-# Config source (we use root vercel.json)
-config/
+# scripts/ and config/ must NOT be ignored — npm run build needs them on Vercel
 
 # Archive
 src/assets/archive/
