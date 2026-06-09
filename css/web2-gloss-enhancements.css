@@ -270,31 +270,28 @@ body,
 
 /* ============================================
    REFLECTIONS UNDER OBJECTS
-   Using -webkit-box-reflect for WebKit browsers
+   Scoped to taskbar/start menu only — NOT desktop wallpaper icons.
+   Global .vista-icon-img reflect caused ghost images on stacked desktop icons.
    ============================================ */
-.vista-desktop-icon-recycle img,
-.vista-icon-img {
-    -webkit-box-reflect: below 2px linear-gradient(to bottom, 
-        rgba(255, 255, 255, 0.3) 0%, 
+.vista-glass-taskbar .vista-icon-img,
+.vista-glass-startmenu .vista-icon-img,
+.vista-glass-window .vista-window-icon-img {
+    -webkit-box-reflect: below 1px linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.22) 0%,
         transparent 100%
     );
 }
 
-/* For non-WebKit browsers, use a pseudo-element */
-.vista-desktop-icon-recycle::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: linear-gradient(to bottom,
-        rgba(255, 255, 255, 0.2) 0%,
-        transparent 100%
-    );
-    transform: scaleY(-1);
-    opacity: 0.5;
-    pointer-events: none;
+/* Desktop wallpaper column: never reflect (stacked icons overlap) */
+#vista-desktop-icons img,
+#vista-desktop-icons .vista-icon-img,
+#vista-desktop-icons .icon-img {
+    -webkit-box-reflect: none !important;
+}
+
+#vista-desktop-icons .vista-desktop-icon-recycle::after {
+    display: none !important;
+    content: none !important;
 }
 
 /* ============================================

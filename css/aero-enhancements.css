@@ -97,45 +97,84 @@
 .bubbles-container { z-index: 4 !important; pointer-events: none; }
 .fish-container    { z-index: 4 !important; pointer-events: none; }
 
-/* ── 6. DESKTOP ICONS: staggered float + glass socket ───────────────── */
-@keyframes iconFloat {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-5px); }
+/* ── 6. DESKTOP ICONS: clarity-first (no bleed onto stacked icons) ─── */
+#vista-desktop-icons {
+    gap: 12px !important;
 }
 
-.vista-desktop-icon .icon-img {
+#vista-desktop-icons .vista-desktop-icon {
+    gap: 4px;
+    padding: 4px 6px;
+    width: 88px;
+    isolation: isolate;
+}
+
+#vista-desktop-icons img {
+    -webkit-box-reflect: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+}
+
+#vista-desktop-icons .vista-desktop-icon .icon-img,
+#vista-desktop-icons .vista-desktop-icon .vista-icon-img {
     width: 48px !important;
     height: 48px !important;
-    padding: 5px;
-    background: radial-gradient(ellipse at 35% 25%,
-        rgba(255,255,255,0.30) 0%,
-        rgba(255,255,255,0.10) 55%,
-        rgba(255,255,255,0.04) 100%
-    );
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.28);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
-    box-sizing: content-box;
-    animation: iconFloat 4s ease-in-out infinite;
+    padding: 0 !important;
+    margin: 0;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    filter: none !important;
+    -webkit-box-reflect: none !important;
+    animation: none !important;
     transition: transform 0.12s ease;
+    object-fit: contain;
 }
 
-/* Stagger so icons ripple, not all move together */
-#vista-desktop-icons .vista-desktop-icon:nth-child(1) .icon-img { animation-delay: 0.0s; }
-#vista-desktop-icons .vista-desktop-icon:nth-child(2) .icon-img { animation-delay: 0.7s; }
-#vista-desktop-icons .vista-desktop-icon:nth-child(3) .icon-img { animation-delay: 1.4s; }
-#vista-desktop-icons .vista-desktop-icon:nth-child(4) .icon-img { animation-delay: 2.1s; }
-#vista-desktop-icons .vista-desktop-icon:nth-child(5) .icon-img { animation-delay: 2.8s; }
-#vista-desktop-icons .vista-desktop-icon:nth-child(6) .icon-img { animation-delay: 3.5s; }
-#vista-desktop-icons .vista-desktop-icon:nth-child(7) .icon-img { animation-delay: 4.2s; }
-
-.vista-desktop-icon:hover .icon-img {
-    transform: scale(1.12) translateY(-3px);
-    animation-play-state: paused;
+#vista-desktop-icons .vista-desktop-icon:hover .icon-img,
+#vista-desktop-icons .vista-desktop-icon:hover .vista-icon-img {
+    transform: scale(1.06);
+    filter: none !important;
+    animation: none !important;
 }
 
-.vista-desktop-icon span {
+#vista-desktop-icons .vista-desktop-icon span {
+    display: inline-block;
+    max-width: none;
+    width: max-content;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.58);
     text-shadow: none;
+    box-shadow: none;
+    -webkit-box-reflect: none !important;
+}
+
+#vista-desktop-icons .vista-desktop-icon:hover span,
+#vista-desktop-icons .vista-desktop-icon.selected span {
+    background: rgba(0, 45, 95, 0.72);
+}
+
+#vista-desktop-icons .vista-desktop-icon-recycle::after {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #vista-desktop-icons .vista-desktop-icon .icon-img,
+    #vista-desktop-icons .vista-desktop-icon .vista-icon-img,
+    #vista-desktop-icons .vista-desktop-icon:hover .icon-img,
+    #vista-desktop-icons .vista-desktop-icon:hover .vista-icon-img {
+        animation: none !important;
+        transition: none;
+    }
 }
 
 /* ── 7. AERO SKILL BARS ──────────────────────────────────────────────── */
@@ -263,94 +302,716 @@
 
 .vista-status-bar i { font-size: 9px; opacity: 0.65; }
 
-/* ── 9. BOOT SCREEN ──────────────────────────────────────────────────── */
+/* ── 9. BOOT SCREEN — Frutiger Aero startup ritual ───────────────────── */
 #vista-boot {
     position: fixed;
     inset: 0;
     z-index: 99999;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
-    background: radial-gradient(ellipse at 50% 38%,
-        rgba(0,38,95,0.99)  0%,
-        rgba(0,14,48,1.00)  55%,
-        rgba(0, 4,18,1.00)  100%
-    );
-    pointer-events: all;
-    cursor: default;
-    transition: opacity 0.65s ease;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000818;
+    isolation: isolate;
 }
-#vista-boot.fade-out { opacity: 0; pointer-events: none; }
+
+#vista-boot.boot-exit {
+    animation: bootRevealOut 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: none;
+}
+
+#vista-boot.boot-exit .boot-content {
+    animation: bootContentOut 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Sky layers ── */
+.boot-sky {
+    --mx: 0;
+    --my: 0;
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 100% 70% at calc(50% + var(--mx) * 4%) calc(105% + var(--my) * 2%), rgba(60, 220, 90, 0.42) 0%, transparent 52%),
+        radial-gradient(ellipse 80% 55% at calc(18% + var(--mx) * 3%) calc(22% + var(--my) * 2%), rgba(255, 120, 220, 0.28) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at calc(82% - var(--mx) * 3%) calc(28% - var(--my) * 2%), rgba(80, 200, 255, 0.32) 0%, transparent 50%),
+        linear-gradient(180deg, #0044aa 0%, #002868 38%, #001040 68%, #000818 100%);
+}
+
+.boot-sun {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 32%, #fffef0 0%, #ffe680 25%, #ffb040 55%, rgba(255, 120, 40, 0) 72%);
+    box-shadow:
+        0 0 60px rgba(255, 200, 80, 0.55),
+        0 0 120px rgba(255, 160, 40, 0.35),
+        0 0 200px rgba(255, 100, 60, 0.2);
+    animation: bootSunPulse 4s ease-in-out infinite;
+    opacity: 0;
+    animation: bootSunIn 1s ease 0.1s forwards, bootSunPulse 4s ease-in-out 1.1s infinite;
+}
+
+.boot-aurora {
+    position: absolute;
+    inset: -20%;
+    filter: blur(52px);
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+.boot-aurora-a {
+    opacity: 0.72;
+    background:
+        radial-gradient(ellipse 50% 38% at 22% 62%, rgba(0, 255, 200, 0.55), transparent 68%),
+        radial-gradient(ellipse 42% 32% at 78% 28%, rgba(100, 180, 255, 0.6), transparent 62%);
+    animation: bootAuroraDrift 8s ease-in-out infinite alternate;
+    transform: translate(calc(var(--mx) * 12px), calc(var(--my) * 8px));
+}
+
+.boot-aurora-b {
+    opacity: 0.65;
+    background:
+        radial-gradient(ellipse 48% 40% at 58% 72%, rgba(200, 100, 255, 0.5), transparent 68%),
+        radial-gradient(ellipse 38% 28% at 32% 22%, rgba(0, 220, 255, 0.45), transparent 62%);
+    animation: bootAuroraDrift 10s ease-in-out 1.2s infinite alternate-reverse;
+    transform: translate(calc(var(--mx) * -10px), calc(var(--my) * 6px));
+}
+
+.boot-aurora-c {
+    opacity: 0.55;
+    background:
+        radial-gradient(ellipse 45% 35% at 70% 45%, rgba(255, 220, 80, 0.4), transparent 65%),
+        radial-gradient(ellipse 40% 30% at 15% 75%, rgba(80, 255, 120, 0.45), transparent 60%);
+    animation: bootAuroraDrift 12s ease-in-out 0.6s infinite alternate;
+    transform: translate(calc(var(--mx) * 8px), calc(var(--my) * -10px));
+}
+
+.boot-color-wash {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        125deg,
+        rgba(255, 0, 128, 0.08) 0%,
+        rgba(0, 200, 255, 0.1) 25%,
+        rgba(120, 255, 80, 0.08) 50%,
+        rgba(180, 80, 255, 0.1) 75%,
+        rgba(255, 180, 0, 0.07) 100%
+    );
+    background-size: 300% 300%;
+    animation: bootColorWash 10s ease-in-out infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.boot-rays {
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(from 195deg at 50% -5%,
+        transparent 0deg,
+        rgba(255, 255, 200, 0.07) 18deg,
+        transparent 38deg,
+        rgba(120, 220, 255, 0.09) 62deg,
+        transparent 88deg,
+        rgba(200, 140, 255, 0.06) 110deg,
+        transparent 140deg
+    );
+    animation: bootRaysSpin 18s linear infinite;
+    opacity: 0.85;
+}
+
+.boot-streak {
+    position: absolute;
+    height: 2px;
+    border-radius: 2px;
+    filter: blur(1px);
+    opacity: 0;
+    animation: bootStreakFly 3.5s ease-in-out infinite;
+}
+
+.boot-streak-a {
+    top: 32%;
+    left: -20%;
+    width: 45%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 220, 0.7), transparent);
+    animation-delay: 0.5s;
+}
+
+.boot-streak-b {
+    top: 58%;
+    left: -15%;
+    width: 38%;
+    background: linear-gradient(90deg, transparent, rgba(255, 140, 220, 0.65), transparent);
+    animation-delay: 2.1s;
+}
+
+.boot-horizon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32%;
+    background: linear-gradient(to top,
+        rgba(40, 180, 70, 0.45) 0%,
+        rgba(30, 140, 55, 0.22) 35%,
+        rgba(0, 80, 160, 0.08) 65%,
+        transparent 100%
+    );
+    animation: bootHorizonGlow 3.5s ease-in-out infinite alternate;
+}
+
+.boot-grass {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 18%;
+    background:
+        repeating-linear-gradient(95deg, transparent 0px, transparent 8px, rgba(60, 200, 80, 0.15) 8px, rgba(60, 200, 80, 0.15) 9px),
+        repeating-linear-gradient(85deg, transparent 0px, transparent 12px, rgba(40, 160, 60, 0.12) 12px, rgba(40, 160, 60, 0.12) 13px);
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    animation: bootGrassSway 5s ease-in-out infinite alternate;
+}
+
+.boot-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.boot-particle {
+    position: absolute;
+    left: var(--px);
+    top: var(--py);
+    width: var(--ps);
+    height: var(--ps);
+    border-radius: 50%;
+    background: hsla(var(--ph), 90%, 65%, 0.85);
+    box-shadow: 0 0 calc(var(--ps) * 2) hsla(var(--ph), 90%, 55%, 0.7);
+    animation: bootParticleFloat var(--pt) ease-in-out var(--pd) infinite alternate;
+}
+
+.boot-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.boot-bubble {
+    position: absolute;
+    bottom: -40px;
+    left: var(--x);
+    width: var(--s);
+    height: var(--s);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    box-shadow:
+        inset 0 -2px 6px rgba(0, 0, 0, 0.15),
+        0 0 14px var(--bubble-glow, rgba(100, 200, 255, 0.35));
+    animation: bootBubbleRise 5s ease-in-out var(--d) infinite;
+}
+
+.boot-bubble-cyan {
+    --bubble-glow: rgba(0, 220, 255, 0.45);
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9) 0%, transparent 40%),
+        radial-gradient(circle at 50% 65%, rgba(0, 210, 255, 0.55) 0%, rgba(0, 100, 180, 0.2) 100%);
+}
+
+.boot-bubble-lime {
+    --bubble-glow: rgba(120, 255, 80, 0.45);
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9) 0%, transparent 40%),
+        radial-gradient(circle at 50% 65%, rgba(140, 255, 100, 0.5) 0%, rgba(40, 140, 40, 0.2) 100%);
+}
+
+.boot-bubble-magenta {
+    --bubble-glow: rgba(255, 100, 220, 0.45);
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9) 0%, transparent 40%),
+        radial-gradient(circle at 50% 65%, rgba(255, 120, 220, 0.5) 0%, rgba(140, 40, 120, 0.2) 100%);
+}
+
+.boot-bubble-gold {
+    --bubble-glow: rgba(255, 200, 60, 0.5);
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9) 0%, transparent 40%),
+        radial-gradient(circle at 50% 65%, rgba(255, 220, 80, 0.55) 0%, rgba(180, 120, 20, 0.2) 100%);
+}
+
+.boot-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 75% 65% at 50% 45%, transparent 25%, rgba(0, 5, 25, 0.5) 100%);
+    pointer-events: none;
+}
+
+.boot-lens-flare {
+    position: absolute;
+    pointer-events: none;
+    filter: blur(6px);
+}
+
+.boot-lens-flare-a {
+    top: 14%;
+    left: 50%;
+    width: 380px;
+    height: 140px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(255, 240, 180, 0.2) 0%, rgba(255, 180, 80, 0.08) 40%, transparent 70%);
+    opacity: 0;
+    animation: bootFlareIn 1s ease 0.3s forwards, bootFlarePulseA 3s ease-in-out 1.3s infinite;
+}
+
+.boot-lens-flare-b {
+    top: 42%;
+    left: 72%;
+    width: 200px;
+    height: 80px;
+    background: radial-gradient(ellipse at center, rgba(180, 120, 255, 0.25) 0%, transparent 70%);
+    opacity: 0;
+    animation: bootFlareIn 1.2s ease 0.8s forwards, bootFlarePulse 4s ease-in-out 2s infinite;
+}
+
+/* ── Center content ── */
+.boot-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    animation: bootContentIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.boot-orb {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    margin-bottom: 6px;
+}
+
+.boot-orb-ring {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg,
+        rgba(0, 220, 255, 0.7),
+        rgba(120, 255, 80, 0.7),
+        rgba(255, 200, 60, 0.7),
+        rgba(255, 100, 200, 0.7),
+        rgba(140, 100, 255, 0.7),
+        rgba(0, 220, 255, 0.7)
+    );
+    mask: radial-gradient(circle, transparent 58%, black 60%);
+    -webkit-mask: radial-gradient(circle, transparent 58%, black 60%);
+    animation: bootRingSpin 4s linear infinite;
+    opacity: 0.85;
+}
+
+.boot-orb-halo {
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 220, 255, 0.4) 0%, transparent 70%);
+    animation: bootOrbPulse 2.5s ease-in-out infinite;
+}
+
+.boot-orb-halo-b {
+    inset: -32px;
+    background: radial-gradient(circle, rgba(200, 100, 255, 0.28) 0%, transparent 70%);
+    animation: bootOrbPulse 3.2s ease-in-out 0.8s infinite reverse;
+}
+
+.boot-orb-glass {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.1) 22%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(0, 160, 255, 0.55) 0%, rgba(120, 60, 200, 0.35) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+        0 8px 40px rgba(0, 180, 255, 0.5),
+        0 0 60px rgba(180, 80, 255, 0.25),
+        inset 0 2px 5px rgba(255, 255, 255, 0.65),
+        inset 0 -3px 8px rgba(0, 40, 120, 0.35);
+    animation: bootOrbFloat 3.5s ease-in-out infinite, bootOrbHue 6s ease-in-out infinite;
+}
+
+.boot-orb-mark {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 27px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    color: rgba(255, 255, 255, 0.98);
+    text-shadow:
+        0 0 12px rgba(0, 200, 255, 0.8),
+        0 1px 3px rgba(0, 60, 120, 0.5);
+}
+
+.boot-orb-shine {
+    position: absolute;
+    top: 10%;
+    left: 16%;
+    width: 40%;
+    height: 24%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.85) 0%, transparent 70%);
+    transform: rotate(-25deg);
+}
 
 .boot-logo-text {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    font-size: 30px;
+    font-size: 33px;
     font-weight: 200;
-    color: white;
-    letter-spacing: 8px;
+    letter-spacing: 9px;
     text-transform: lowercase;
-    text-shadow:
-        0 0 28px rgba(100,185,255,0.85),
-        0 0 60px rgba(80,160,255,0.40);
+    background: linear-gradient(135deg, #ffffff 0%, #80e8ff 30%, #a0ff90 55%, #ffb0f0 80%, #ffffff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 20px rgba(100, 220, 255, 0.7)) drop-shadow(0 0 40px rgba(180, 100, 255, 0.35));
+    animation: bootIn 0.7s ease 0.55s forwards, bootLogoShimmer 4s ease-in-out 1.2s infinite;
     opacity: 0;
-    animation: bootIn 0.55s ease 0.30s forwards;
 }
 
 .boot-logo-sub {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(180, 240, 255, 0.75);
+    letter-spacing: 5px;
     text-transform: uppercase;
-    margin-top: -18px;
+    margin-top: -10px;
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.4);
     opacity: 0;
-    animation: bootIn 0.55s ease 0.65s forwards;
+    animation: bootIn 0.6s ease 0.85s forwards;
+}
+
+.boot-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 10px;
+    width: min(300px, 78vw);
+}
+
+.boot-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    opacity: 0;
+    animation: bootIn 0.4s ease 1s forwards;
+}
+
+.boot-progress-label {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(160, 220, 255, 0.65);
+}
+
+.boot-percent {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(120, 255, 200, 0.95);
+    text-shadow: 0 0 10px rgba(0, 255, 180, 0.5);
+    font-variant-numeric: tabular-nums;
 }
 
 .boot-progress-track {
-    width: 200px;
-    height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    border: 1px solid rgba(255,255,255,0.10);
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.45);
     overflow: hidden;
     opacity: 0;
-    animation: bootIn 0.4s ease 0.90s forwards;
+    animation: bootIn 0.45s ease 1.05s forwards;
 }
 
 .boot-progress-fill {
+    position: relative;
     height: 100%;
     width: 0%;
-    border-radius: 2px;
-    background: linear-gradient(to right,
-        rgba(0,155,255,0.92),
-        rgba(0,225,255,1.00),
-        rgba(80,205,255,0.92)
+    border-radius: 3px;
+    background: linear-gradient(90deg,
+        #00c8ff 0%,
+        #50ff90 25%,
+        #ffe040 50%,
+        #ff80d0 75%,
+        #9080ff 100%
     );
-    box-shadow: 0 0 14px rgba(0,205,255,0.85);
-    animation: bootBar 1.15s cubic-bezier(0.4,0,0.2,1) 1.05s forwards;
+    background-size: 200% 100%;
+    box-shadow:
+        0 0 20px rgba(0, 220, 255, 0.9),
+        0 0 40px rgba(120, 255, 100, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    animation:
+        bootBar 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.15s forwards,
+        bootProgressHue 2s linear 1.15s infinite;
+}
+
+.boot-progress-glow {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    height: 14px;
+    width: 0%;
+    border-radius: 8px;
+    background: radial-gradient(ellipse at right, rgba(0, 255, 220, 0.6) 0%, transparent 70%);
+    filter: blur(4px);
+    animation: bootBar 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.15s forwards;
+    pointer-events: none;
+}
+
+.boot-progress-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+        transparent 0%,
+        transparent 38%,
+        rgba(255, 255, 255, 0.55) 50%,
+        transparent 62%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: bootShimmer 1.1s ease-in-out 1.2s infinite;
+    pointer-events: none;
 }
 
 .boot-status-text {
     font-family: 'Segoe UI', sans-serif;
-    font-size: 10px;
-    color: rgba(255,255,255,0.28);
-    letter-spacing: 0.6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(160, 220, 255, 0.9);
+    letter-spacing: 0.3px;
+    min-height: 16px;
+    text-align: center;
     opacity: 0;
-    animation: bootIn 0.4s ease 1.05s forwards;
+    animation: bootIn 0.5s ease 1.15s forwards;
+    transition: opacity 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
 
-@keyframes bootIn  { to { opacity: 1; } }
+.boot-skip-hint {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+    opacity: 0;
+    animation: bootIn 0.5s ease 2.2s forwards;
+}
+
+/* ── Boot keyframes ── */
+@keyframes bootIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes bootBar {
-    0%   { width: 0%;   }
-    28%  { width: 22%;  }
-    52%  { width: 52%;  }
-    72%  { width: 72%;  }
-    88%  { width: 86%;  }
+    0%   { width: 0%; }
+    18%  { width: 18%; }
+    38%  { width: 42%; }
+    58%  { width: 63%; }
+    78%  { width: 82%; }
+    92%  { width: 94%; }
     100% { width: 100%; }
+}
+
+@keyframes bootShimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes bootProgressHue {
+    0%   { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes bootLogoShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+@keyframes bootBubbleRise {
+    0%   { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
+    8%   { opacity: 0.9; }
+    50%  { transform: translateY(-52vh) scale(1.05) translateX(8px); }
+    85%  { opacity: 0.55; }
+    100% { transform: translateY(-108vh) scale(1.1) translateX(-6px); opacity: 0; }
+}
+
+@keyframes bootParticleFloat {
+    from { transform: translate(0, 0) scale(1); opacity: 0.4; }
+    to   { transform: translate(12px, -18px) scale(1.4); opacity: 0.95; }
+}
+
+@keyframes bootAuroraDrift {
+    from { transform: translate(calc(var(--mx) * 12px), calc(var(--my) * 8px)) scale(1); }
+    to   { transform: translate(calc(3% + var(--mx) * 12px), calc(-2% + var(--my) * 8px)) scale(1.08); }
+}
+
+@keyframes bootRaysSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes bootRaysPulse {
+    0%, 100% { opacity: 0.7; }
+    50%      { opacity: 1; }
+}
+
+@keyframes bootHorizonGlow {
+    from { opacity: 0.75; filter: brightness(1); }
+    to   { opacity: 1; filter: brightness(1.15); }
+}
+
+@keyframes bootGrassSway {
+    from { transform: skewX(-1deg); }
+    to   { transform: skewX(1deg); }
+}
+
+@keyframes bootColorWash {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+@keyframes bootStreakFly {
+    0%   { transform: translateX(0); opacity: 0; }
+    15%  { opacity: 0.8; }
+    85%  { opacity: 0.6; }
+    100% { transform: translateX(280vw); opacity: 0; }
+}
+
+@keyframes bootSunIn {
+    to { opacity: 1; }
+}
+
+@keyframes bootSunPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); filter: brightness(1); }
+    50%      { transform: translateX(-50%) scale(1.06); filter: brightness(1.12); }
+}
+
+@keyframes bootFlareIn {
+    to { opacity: 1; }
+}
+
+@keyframes bootFlarePulseA {
+    0%, 100% { opacity: 0.65; transform: translateX(-50%) scale(1); }
+    50%      { opacity: 1; transform: translateX(-50%) scale(1.06); }
+}
+
+@keyframes bootFlarePulse {
+    0%, 100% { opacity: 0.65; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes bootRingSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes bootOrbFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+@keyframes bootOrbPulse {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.14); }
+}
+
+@keyframes bootOrbHue {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50%      { filter: hue-rotate(25deg); }
+}
+
+@keyframes bootContentIn {
+    from { opacity: 0; transform: scale(0.94) translateY(12px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes bootContentOut {
+    to { opacity: 0; transform: scale(0.96) translateY(-8px); }
+}
+
+@keyframes bootRevealOut {
+    0% {
+        clip-path: circle(150% at 50% 45%);
+        opacity: 1;
+    }
+    100% {
+        clip-path: circle(0% at 50% 42%);
+        opacity: 0;
+    }
+}
+
+@keyframes bootFadeOut {
+    to { opacity: 0; }
+}
+
+@keyframes bootBarReduced {
+    to { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #vista-boot.boot-exit {
+        animation: bootFadeOut 0.35s ease forwards;
+    }
+
+    .boot-aurora,
+    .boot-bubble,
+    .boot-particle,
+    .boot-orb-glass,
+    .boot-orb-halo,
+    .boot-orb-ring,
+    .boot-lens-flare,
+    .boot-rays,
+    .boot-color-wash,
+    .boot-streak,
+    .boot-sun,
+    .boot-grass,
+    .boot-progress-shimmer,
+    .boot-logo-text {
+        animation: none !important;
+    }
+
+    .boot-logo-text {
+        opacity: 1;
+        background: #fff;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    .boot-content {
+        animation: bootIn 0.3s ease forwards;
+    }
+
+    .boot-progress-fill,
+    .boot-progress-glow {
+        animation: bootBarReduced 1.2s ease 0.3s forwards;
+    }
 }
 
 /* ── 10. RIGHT-CLICK CONTEXT MENU ────────────────────────────────────── */

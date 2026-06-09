@@ -12,6 +12,15 @@
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
+/* Desktop icons: no shadows or reflections (stacked column clarity) */
+#vista-desktop-icons img,
+#vista-desktop-icons .vista-icon-img,
+#vista-desktop-icons .icon-img {
+    filter: none !important;
+    -webkit-box-reflect: none !important;
+    box-shadow: none !important;
+}
+
 /* Desktop Icon Styles */
 .vista-desktop-icon-img {
     width: 48px;
@@ -80,10 +89,16 @@
     color: white;
 }
 
-/* Icon hover effects */
+/* Icon hover effects (not on desktop wallpaper icons) */
 .vista-icon-img:hover {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.1);
     transform: scale(1.05);
     transition: all 0.2s;
+}
+
+#vista-desktop-icons .vista-icon-img:hover,
+#vista-desktop-icons img:hover {
+    filter: none !important;
+    transform: none;
 }
 

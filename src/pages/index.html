@@ -823,7 +823,11 @@
                     <div>
                         <i class="fas fa-envelope" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
                         <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 4px;">Email</p>
-                        <a href="mailto:ian@beatyourclock.com" style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a>
+                        <span class="email-shield" data-which="work">
+                            <button class="email-reveal-btn" type="button" onclick="EmailShield.challenge(this)"><i class="fas fa-lock"></i> Reveal email</button>
+                            <span class="email-challenge" style="display:none"><span class="challenge-text"></span><input type="number" class="challenge-input" min="-200" max="500" placeholder="?"><button type="button" class="challenge-submit" onclick="EmailShield.verify(this)"><i class="fas fa-arrow-right"></i></button><span class="challenge-error" style="display:none">✕ Try again</span></span>
+                            <span class="email-revealed" style="display:none"><a class="email-link" href="#"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" title="Copy"><i class="fas fa-copy"></i></button></span>
+                        </span>
                     </div>
                     <div>
                         <i class="fas fa-phone" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
@@ -839,11 +843,12 @@
             </div>
 
             <div style="margin-top: 30px; text-align: center; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 25px;">
-                <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #333; margin-bottom: 16px;">Want to reach out? Email me directly and I'll get back to you.</p>
-                <a href="mailto:ian@beatyourclock.com" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email ian@beatyourclock.com</span>
-                </a>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #333; margin-bottom: 16px;">Want to reach out? Solve a quick verification to get my email.</p>
+                <span class="email-shield" data-which="work" style="display:inline-flex; justify-content:center;">
+                    <button class="email-reveal-btn" type="button" onclick="EmailShield.challenge(this)"><i class="fas fa-lock"></i> Reveal email</button>
+                    <span class="email-challenge" style="display:none"><span class="challenge-text"></span><input type="number" class="challenge-input" min="-200" max="500" placeholder="?"><button type="button" class="challenge-submit" onclick="EmailShield.verify(this)"><i class="fas fa-arrow-right"></i></button><span class="challenge-error" style="display:none">✕ Try again</span></span>
+                    <span class="email-revealed" style="display:none"><a class="email-link" href="#"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" title="Copy"><i class="fas fa-copy"></i></button></span>
+                </span>
             </div>
 
             <div style="margin-top: 30px; text-align: center;">
@@ -887,7 +892,11 @@
                 <h1 style="font-family: var(--font-segoe-semilight); font-size: 32px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px;">Ian McCallum</h1>
                 <div style="font-family: var(--font-segoe-semilight); font-size: 13px; font-weight: 300; color: #666; margin-top: 10px;">
                     <span>Naperville, IL</span> • 
-                    <a href="mailto:ian@beatyourclock.com" style="color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a><br>
+                    <span class="email-shield" data-which="work" style="display:inline-flex;">
+                        <button class="email-reveal-btn" type="button" onclick="EmailShield.challenge(this)"><i class="fas fa-lock"></i> Reveal email</button>
+                        <span class="email-challenge" style="display:none"><span class="challenge-text"></span><input type="number" class="challenge-input" min="-200" max="500" placeholder="?"><button type="button" class="challenge-submit" onclick="EmailShield.verify(this)"><i class="fas fa-arrow-right"></i></button><span class="challenge-error" style="display:none">✕</span></span>
+                        <span class="email-revealed" style="display:none"><a class="email-link" href="#"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" title="Copy"><i class="fas fa-copy"></i></button></span>
+                    </span><br>
                     <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" style="color: #0078D7; text-decoration: none;">LinkedIn</a> • 
                     <a href="https://ianmccallum.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
                 </div>
@@ -947,17 +956,6 @@
                 </h2>
                 
                 <div style="margin-bottom: 20px;">
-                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Coldwell Banker Dan Firks</h3>
-                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">June 2025 – Present</p>
-                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Real Estate Runner</strong></p>
-                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
-                        <li>Drove and helped set up open houses for one of the most successful real estate teams in the area.</li>
-                        <li>Assisted with property preparation and staging to ensure optimal presentation to potential buyers.</li>
-                        <li>Developed strong organizational and time management skills while coordinating multiple property showings.</li>
-                    </ul>
-                </div>
-
-                <div style="margin-bottom: 20px;">
                     <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Target</h3>
                     <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">June 2024 – Present</p>
                     <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Food Department Team Member</strong></p>
@@ -965,6 +963,17 @@
                         <li>Delivered excellent customer service in a fast-paced environment.</li>
                         <li>Stocked shelves, managed inventory, and maintained department organization.</li>
                         <li>Developed strong interpersonal and multitasking abilities.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 5px;">Coldwell Banker Dan Firks</h3>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; margin-bottom: 5px;">June 2025 – June 2026</p>
+                    <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; margin-bottom: 10px;"><strong>Real Estate Runner</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px; font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333;">
+                        <li>Drove and helped set up open houses for one of the most successful real estate teams in the area.</li>
+                        <li>Assisted with property preparation and staging to ensure optimal presentation to potential buyers.</li>
+                        <li>Developed strong organizational and time management skills while coordinating multiple property showings.</li>
                     </ul>
                 </div>
 
@@ -1188,7 +1197,7 @@
             <div class="vintage-instagram-header" style="text-align: center; margin-bottom: 25px;">
                 <h2 style="font-family: var(--font-segoe-semilight); font-size: 24px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
                     <i class="fas fa-camera" style="margin-right: 10px; color: #0078D7;"></i>
-                    @ianmccalum
+                    @iandmccallum
                 </h2>
                 <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px; margin-top: 10px;">
                     <i class="fab fa-instagram"></i>
@@ -1332,6 +1341,7 @@
     <script src="/js/vista-icons.js"></script>
     <script src="/js/mobile-ux.js"></script>
     <script src="/js/window-manager.js"></script>
+    <script src="/js/email-shield.js"></script>
     <script>
         // Start Menu Toggle
         document.getElementById('vista-start-btn').addEventListener('click', function(e) {
