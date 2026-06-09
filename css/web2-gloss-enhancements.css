@@ -282,7 +282,6 @@ body,
     );
 }
 
-/* Desktop wallpaper column: never reflect (stacked icons overlap) */
 #vista-desktop-icons img,
 #vista-desktop-icons .vista-icon-img,
 #vista-desktop-icons .icon-img {

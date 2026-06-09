@@ -12,18 +12,13 @@ class VistaWindowManager {
         // Detect mobile/touch device
         this.isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
         this.windowMetadata = {
-            'cv-window':           { name: 'CV',           icon: '/img/icons/vista/vista_book_1.ico' },
-            'skills-window':       { name: 'Skills',       icon: '/img/icons/vista/vista_info.ico' },
+            'cv-window': { name: 'CV', icon: '/img/icons/vista/vista_book_1.ico' },
             'testimonials-window': { name: 'Testimonials', icon: '/img/icons/vista/vista_collab.ico' },
-            'photos-window':       { name: 'Photos',       icon: '/img/icons/vista/vista_photo_gallery.ico' },
-            'thank-you-window':    { name: 'Thank You',    icon: '/img/icons/vista/vista_info.ico' },
-            'welcome-window':      { name: 'Welcome',      icon: '/img/icons/vista/vista_get_started.ico' }
+            'photos-window': { name: 'Photos', icon: '/img/icons/vista/vista_photo_gallery.ico' },
+            'thank-you-window': { name: 'Thank You', icon: '/img/icons/vista/vista_info.ico' },
+            'welcome-window': { name: 'Welcome', icon: '/img/icons/vista/vista_get_started.ico' }
         };
         
-        // Always start with a clean desktop — no restored clutter
-        localStorage.removeItem('vista-window-states');
-        this.windowStates = {};
-
         // Don't initialize desktop window manager on mobile
         if (!this.isMobile) {
             this.init();
@@ -194,18 +189,6 @@ class VistaWindowManager {
         window.dataset.minimized = 'false';
         window.dataset.maximized = 'false';
 
-        // Scale-in animation
-        const hasCenterTransform = (window.style.transform || '').includes('translateX(-50%)');
-        const animClass = hasCenterTransform ? 'vista-win-animate-center' : 'vista-win-animate-free';
-        window.classList.remove('vista-win-animate-center', 'vista-win-animate-free');
-        void window.offsetWidth; // force reflow
-        window.classList.add(animClass);
-        setTimeout(() => window.classList.remove(animClass), 220);
-
-        // Mark as focused
-        document.querySelectorAll('.vista-glass-window').forEach(w => w.classList.remove('focused'));
-        window.classList.add('focused');
-
         // Add to taskbar if not already there and has metadata
         this.addToTaskbar(windowId);
 
@@ -263,8 +246,6 @@ class VistaWindowManager {
             window.dataset.minimized = 'false';
             this.updateTaskbarItemState(windowId, false);
             this.bringToFront(windowId);
-            document.querySelectorAll('.vista-glass-window').forEach(w => w.classList.remove('focused'));
-            window.classList.add('focused');
             this.saveWindowStates();
         }
     }
