@@ -1,5 +1,5 @@
 {
-  "buildCommand": null,
+  "buildCommand": "npm run build",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
@@ -13,35 +13,35 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/src/pages/index.html"
+      "destination": "/index.html"
     },
     {
       "source": "/about",
-      "destination": "/src/pages/about.html"
+      "destination": "/about.html"
     },
     {
       "source": "/cv",
-      "destination": "/src/pages/cv.html"
+      "destination": "/cv.html"
     },
     {
       "source": "/photos",
-      "destination": "/src/pages/photos.html"
+      "destination": "/photos.html"
     },
     {
       "source": "/portfolio",
-      "destination": "/src/pages/portfolio.html"
+      "destination": "/portfolio.html"
     },
     {
       "source": "/testimonials",
-      "destination": "/src/pages/testimonials.html"
+      "destination": "/testimonials.html"
     },
     {
       "source": "/contact",
-      "destination": "/src/pages/contact.html"
+      "destination": "/contact.html"
     },
     {
       "source": "/thank-you",
-      "destination": "/src/pages/thank-you.html"
+      "destination": "/thank-you.html"
     }
   ]
 }

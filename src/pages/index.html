@@ -53,7 +53,7 @@
         "https://github.com/Ian-mccallum",
         "https://www.instagram.com/iandmccallum/",
         "https://x.com/ian_mccaIlum"
-      ]
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Naperville",
@@ -133,8 +133,286 @@
     <link rel="stylesheet" href="/css/mobile-ux.css">
     <link rel="stylesheet" href="/css/vintage-instagram.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/aero-enhancements.css">
+    <link rel="stylesheet" href="/css/mobile-iphone.css">
+    <style>
+        /* ============================================
+           FRUTIGER AERO ENHANCEMENTS
+           ============================================ */
+
+        /* Desktop Icons */
+        #vista-desktop-icons {
+            gap: 12px;
+        }
+        #vista-desktop-icons img {
+            -webkit-box-reflect: none !important;
+            filter: none !important;
+            box-shadow: none !important;
+        }
+        .vista-desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: background 0.12s ease, border-color 0.12s ease;
+            color: white;
+            user-select: none;
+            width: 88px;
+            isolation: isolate;
+        }
+        .vista-desktop-icon span {
+            display: inline-block;
+            max-width: none;
+            width: max-content;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 11px;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.25;
+            white-space: nowrap;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.58);
+            text-shadow: none;
+            box-shadow: none;
+            -webkit-box-reflect: none !important;
+        }
+        .vista-desktop-icon:hover {
+            background: rgba(49, 130, 206, 0.30);
+            border-color: rgba(255, 255, 255, 0.45);
+        }
+        .vista-desktop-icon:hover span,
+        .vista-desktop-icon.selected span {
+            background: rgba(0, 45, 95, 0.72);
+        }
+        .vista-desktop-icon.selected {
+            background: rgba(49, 130, 206, 0.45);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        .vista-desktop-icon .icon-img,
+        .vista-desktop-icon .vista-icon-img {
+            width: 48px;
+            height: 48px;
+            padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            filter: none !important;
+            -webkit-box-reflect: none !important;
+            animation: none;
+            transition: transform 0.12s ease;
+        }
+        .vista-desktop-icon:hover .icon-img {
+            transform: scale(1.06);
+        }
+
+        /* Window open animation */
+        @keyframes vistaWindowOpen {
+            from { opacity: 0; transform: translateX(-50%) scale(0.91); }
+            to   { opacity: 1; transform: translateX(-50%) scale(1);    }
+        }
+        @keyframes vistaWindowOpenFree {
+            from { opacity: 0; transform: scale(0.91); }
+            to   { opacity: 1; transform: scale(1);    }
+        }
+        .vista-win-animate-center {
+            animation: vistaWindowOpen 0.18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .vista-win-animate-free {
+            animation: vistaWindowOpenFree 0.18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Active / focused window — blue rim glow */
+        .vista-glass-window.focused {
+            box-shadow:
+                0 14px 40px rgba(0,0,0,0.30),
+                0 0 0 1px rgba(100, 180, 255, 0.55),
+                inset 0 1px 0 rgba(255,255,255,0.90),
+                inset 0 -1px 0 rgba(0,0,0,0.10),
+                0 0 32px rgba(80,160,255,0.18) !important;
+        }
+
+        /* Start Menu — profile strip */
+        .vista-startmenu-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg,
+                rgba(0, 80, 160, 0.97) 0%,
+                rgba(0, 55, 115, 0.97) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            flex-shrink: 0;
+        }
+        .vista-startmenu-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            border: 2px solid rgba(255,255,255,0.55);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .vista-startmenu-username {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+
+        /* Start Menu — body flex wrapper */
+        .vista-startmenu-body {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* Start Menu — footer */
+        .vista-startmenu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            background: rgba(0,0,0,0.38);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+        .vista-startmenu-footer-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 3px;
+            color: rgba(255,255,255,0.88);
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 11px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .vista-startmenu-footer-btn:hover {
+            background: rgba(255,255,255,0.14);
+            color: white;
+        }
+        .vista-startmenu-footer-btn.sign-out {
+            background: rgba(255, 120, 40, 0.18);
+            border-color: rgba(255, 160, 80, 0.35);
+            color: rgba(255, 220, 190, 0.95);
+        }
+        .vista-startmenu-footer-btn.sign-out:hover {
+            background: rgba(255, 120, 40, 0.32);
+            color: #fff;
+        }
+        .vista-startmenu-footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Skill icon size normalisation */
+        .skill-item .skill-icon,
+        .skills-grid .skill-icon {
+            width: 52px !important;
+            height: 52px !important;
+            object-fit: contain;
+        }
+
+        /* Welcome window entrance */
+        #welcome-window {
+            animation: vistaWindowOpen 0.28s cubic-bezier(0.22,1,0.36,1) both;
+        }
+    </style>
 </head>
 <body class="vista-desktop-refined">
+
+    <!-- ═══ BOOT SCREEN ═══════════════════════════════════════════════ -->
+    <div id="vista-boot" aria-live="polite" aria-label="Loading personal desktop">
+        <div class="boot-sky" aria-hidden="true">
+            <div class="boot-sun"></div>
+            <div class="boot-aurora boot-aurora-a"></div>
+            <div class="boot-aurora boot-aurora-b"></div>
+            <div class="boot-aurora boot-aurora-c"></div>
+            <div class="boot-color-wash"></div>
+            <div class="boot-rays"></div>
+            <div class="boot-streak boot-streak-a"></div>
+            <div class="boot-streak boot-streak-b"></div>
+            <div class="boot-horizon"></div>
+            <div class="boot-grass"></div>
+            <div class="boot-particles" id="boot-particles"></div>
+            <div class="boot-bubbles">
+                <span class="boot-bubble boot-bubble-cyan" style="--x:5%;--s:22px;--d:0s"></span>
+                <span class="boot-bubble boot-bubble-lime" style="--x:14%;--s:14px;--d:0.8s"></span>
+                <span class="boot-bubble boot-bubble-cyan" style="--x:24%;--s:30px;--d:1.4s"></span>
+                <span class="boot-bubble boot-bubble-magenta" style="--x:36%;--s:18px;--d:0.4s"></span>
+                <span class="boot-bubble boot-bubble-gold" style="--x:48%;--s:26px;--d:2s"></span>
+                <span class="boot-bubble boot-bubble-lime" style="--x:58%;--s:16px;--d:1.1s"></span>
+                <span class="boot-bubble boot-bubble-magenta" style="--x:70%;--s:34px;--d:0.2s"></span>
+                <span class="boot-bubble boot-bubble-cyan" style="--x:80%;--s:20px;--d:1.9s"></span>
+                <span class="boot-bubble boot-bubble-gold" style="--x:88%;--s:12px;--d:2.6s"></span>
+                <span class="boot-bubble boot-bubble-lime" style="--x:94%;--s:24px;--d:0.6s"></span>
+            </div>
+        </div>
+        <div class="boot-vignette" aria-hidden="true"></div>
+        <div class="boot-lens-flare boot-lens-flare-a" aria-hidden="true"></div>
+        <div class="boot-lens-flare boot-lens-flare-b" aria-hidden="true"></div>
+
+        <div class="boot-content">
+            <div class="boot-orb" aria-hidden="true">
+                <div class="boot-orb-ring"></div>
+                <div class="boot-orb-halo"></div>
+                <div class="boot-orb-halo boot-orb-halo-b"></div>
+                <div class="boot-orb-glass">
+                    <span class="boot-orb-mark">IM</span>
+                    <span class="boot-orb-shine"></span>
+                </div>
+            </div>
+
+            <div class="boot-logo-text">ian mccallum</div>
+            <div class="boot-logo-sub">Personal Desktop · Vista Edition</div>
+
+            <div class="boot-progress-wrap">
+                <div class="boot-progress-header">
+                    <span class="boot-progress-label">Starting experience</span>
+                    <span class="boot-percent" id="boot-percent">0%</span>
+                </div>
+                <div class="boot-progress-track">
+                    <div class="boot-progress-fill"></div>
+                    <div class="boot-progress-glow"></div>
+                    <div class="boot-progress-shimmer"></div>
+                </div>
+                <div class="boot-status-text" id="boot-status">Preparing your atmosphere…</div>
+            </div>
+
+            <div class="boot-skip-hint">Click or press any key to skip</div>
+        </div>
+    </div>
+
+    <!-- ═══ CONTEXT MENU (right-click desktop) ════════════════════════ -->
+    <div id="vista-context-menu" class="vista-context-menu">
+        <div class="vista-ctx-item" id="ctx-about"><i class="fas fa-user"></i> About Me</div>
+        <div class="vista-ctx-item" id="ctx-portfolio"><i class="fas fa-briefcase"></i> Portfolio</div>
+        <div class="vista-ctx-item" id="ctx-skills"><i class="fas fa-code"></i> Skills</div>
+        <div class="vista-ctx-item" id="ctx-contact"><i class="fas fa-envelope"></i> Contact</div>
+        <div class="vista-ctx-item" id="ctx-testimonials"><i class="fas fa-quote-left"></i> Testimonials</div>
+        <div class="vista-ctx-sep"></div>
+        <div class="vista-ctx-item" id="ctx-signout"><i class="fas fa-sign-out-alt"></i> Sign Out</div>
+        <div class="vista-ctx-item" onclick="window.location.reload()"><i class="fas fa-sync-alt"></i> Refresh</div>
+        <div class="vista-ctx-sep"></div>
+        <div class="vista-ctx-item" onclick="document.getElementById('vista-start-btn').click()"><i class="fas fa-th-large"></i> Open Start Menu</div>
+    </div>
+
+    <!-- ═══ TOOLTIP ═══════════════════════════════════════════════════ -->
+    <div id="vista-tooltip"></div>
+
     <!-- Frutiger Aero GIF Background -->
     <div id="frutiger-background" class="fixed inset-0 z-0">
         <img 
@@ -147,57 +425,79 @@
     </div>
 
     <!-- Desktop Icons -->
-    <div style="position: fixed; top: 20px; left: 20px; z-index: 10; display: flex; flex-direction: column; gap: 30px;">
-        <div class="vista-desktop-icon-recycle" style="display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 4px; border-radius: 2px; transition: all 0.15s; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); user-select: none; max-width: 80px;">
-            <img src="/img/icons/vista/trashbin1.ico" alt="Recycle Bin" class="vista-icon-img vista-desktop-icon-img" style="width: 48px; height: 48px;">
-            <span style="font-family: 'Segoe UI', sans-serif; font-size: 11px; text-align: center; font-weight: 400;">Recycle Bin</span>
-                    </div>
-                </div>
+    <div id="vista-desktop-icons" style="position: fixed; top: 20px; left: 16px; z-index: 10; display: flex; flex-direction: column; gap: 12px;">
+        <div class="vista-desktop-icon" onclick="window.vistaWindowManager && window.vistaWindowManager.openWindow('about-window')" data-tip="Open About Me">
+            <img src="/img/icons/vista/vista_personalization.ico" alt="About Me" class="vista-icon-img icon-img">
+            <span>About Me</span>
+        </div>
+        <div class="vista-desktop-icon" onclick="window.vistaWindowManager && window.vistaWindowManager.openWindow('portfolio-window')" data-tip="Open Portfolio">
+            <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img icon-img">
+            <span>Portfolio</span>
+        </div>
+        <div class="vista-desktop-icon" onclick="window.vistaWindowManager && window.vistaWindowManager.openWindow('skills-window')" data-tip="Open Skills">
+            <img src="/img/icons/vista/vista_info.ico" alt="Skills" class="vista-icon-img icon-img">
+            <span>Skills</span>
+        </div>
+        <div class="vista-desktop-icon" onclick="window.vistaWindowManager && window.vistaWindowManager.openWindow('cv-window')" data-tip="Open CV / Resume">
+            <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img icon-img">
+            <span>CV</span>
+        </div>
+        <div class="vista-desktop-icon" onclick="window.vistaWindowManager && window.vistaWindowManager.openWindow('contact-window')" data-tip="Get In Touch">
+            <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img icon-img">
+            <span>Contact</span>
+        </div>
+        <div class="vista-desktop-icon" onclick="window.vistaWindowManager && window.vistaWindowManager.openWindow('testimonials-window')" data-tip="Read Testimonials">
+            <img src="/img/icons/vista/vista_collab.ico" alt="Testimonials" class="vista-icon-img icon-img">
+            <span>Testimonials</span>
+        </div>
+        <div class="vista-desktop-icon vista-desktop-icon-recycle" data-tip="Recycle Bin (Empty)">
+            <img src="/img/icons/vista/trashbin1.ico" alt="Recycle Bin" class="vista-icon-img icon-img">
+            <span>Recycle Bin</span>
+        </div>
+    </div>
 
 
     <!-- Vista Taskbar -->
     <div class="vista-glass-taskbar">
-        <button id="vista-start-btn" class="vista-glass-start-btn">
+        <button id="vista-start-btn" class="vista-glass-start-btn" data-tip="Start Menu">
             <img src="/img/icons/vista/vista_get_started.ico" alt="Start" class="vista-icon-img vista-taskbar-icon-img" style="width: 24px; height: 24px;">
-    </button>
+        </button>
+        <div class="vista-taskbar-sep"></div>
         <div class="vista-glass-taskbar-items">
-            <a href="index.html" class="vista-glass-taskbar-item active">
+            <a href="index.html" class="vista-glass-taskbar-item active" data-tip="Home — Ian McCallum">
                 <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>Home</span>
             </a>
-            <a href="about.html" class="vista-glass-taskbar-item">
+            <a href="about.html" class="vista-glass-taskbar-item" data-tip="About Me">
                 <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>About</span>
             </a>
-            <a href="portfolio.html" class="vista-glass-taskbar-item">
+            <a href="portfolio.html" class="vista-glass-taskbar-item" data-tip="Portfolio — Projects & Work">
                 <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>Portfolio</span>
             </a>
-            <a href="contact.html" class="vista-glass-taskbar-item">
+            <a href="contact.html" class="vista-glass-taskbar-item" data-tip="Get In Touch">
                 <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-taskbar-icon-img" style="width: 20px; height: 20px;">
                 <span>Contact</span>
             </a>
         </div>
+        <div class="vista-taskbar-sep"></div>
         <div class="vista-glass-notification">
-            <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-            <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-            <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
+            <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="Instagram @iandmccallum">
+                <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="vista-glass-tray-icon" title="GitHub">
-                            <i class="fab fa-github"></i>
+            <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="Twitter / X">
+                <i class="fab fa-twitter"></i>
             </a>
-            <div class="vista-glass-tray-icon">
-                <i class="fas fa-volume-up"></i>
-            </div>
-            <div class="vista-glass-tray-icon">
-                <i class="fas fa-wifi"></i>
-            </div>
-            <div class="vista-glass-tray-time" id="vista-time">11:03 PM</div>
+            <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <div class="vista-glass-tray-icon" data-tip="Volume"><i class="fas fa-volume-up"></i></div>
+            <div class="vista-glass-tray-icon" data-tip="Network"><i class="fas fa-wifi"></i></div>
+            <div class="vista-glass-tray-time" id="vista-time">11:03 AM</div>
         </div>
     </div>
 
@@ -220,8 +520,8 @@
                 <h1 style="font-family: var(--font-segoe-semilight); font-size: 28px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">Ian McCallum</h1>
                 <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #666; margin-bottom: 5px;">Tech Innovator & Young Entrepreneur</p>
                 <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #999;">
-                    <i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #7B2CBF;"></i>
-                    <span style="color: #7B2CBF;">Naperville, Illinois</span>
+                    <i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0078D7;"></i>
+                    <span style="color: #0078D7;">Naperville, Illinois</span>
                 </p>
             </div>
                 <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; text-align: center; margin-bottom: 25px;">
@@ -240,87 +540,20 @@
                     <i class="fas fa-envelope"></i>
                     <span>Contact</span>
                 </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Preview Window -->
-    <div class="vista-glass-window" style="position: fixed; top: 100px; left: 100px; width: 500px; max-height: calc(100vh - 160px); overflow-y: auto; z-index: 190;">
-        <div class="vista-glass-titlebar">
-            <div class="vista-glass-title">
-                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
-                About Me - Preview
-            </div>
-            <div class="vista-glass-controls">
-                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
-                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
-                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
-            </div>
-        </div>
-        <div class="vista-glass-content" style="padding: 25px;">
-            <h2 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
-                <i class="fas fa-info-circle" style="margin-right: 8px; color: #0078D7;"></i>
-                Quick Introduction
-            </h2>
-            <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.7; margin-bottom: 15px;">
-                Hello! I'm 18 years old and recently graduated from Metea Valley High School, and I'm excited to share a little bit about who I am, what I do, and what I love. This fall I'm starting at the University of Illinois Urbana-Champaign to study Finance and Data Science. I currently live in the suburbs of Chicago, but I was born in the city and spent the first five years of my life there.
-            </p>
-            <div style="margin-top: 20px;">
-                <a href="#" data-window="about-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px;">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>View Full About</span>
+                <a href="#" data-window="skills-window" class="vista-glass-button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 15px;">
+                    <i class="fas fa-code"></i>
+                    <span>Skills</span>
                 </a>
             </div>
         </div>
-    </div>
-
-    <!-- Portfolio Preview Window -->
-    <div class="vista-glass-window" style="position: fixed; top: 120px; right: 100px; width: 500px; max-height: calc(100vh - 180px); overflow-y: auto; z-index: 180;">
-        <div class="vista-glass-titlebar">
-            <div class="vista-glass-title">
-                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
-                Portfolio - Preview
-            </div>
-            <div class="vista-glass-controls">
-                <button class="vista-glass-control-btn minimize"><i class="fas fa-minus"></i></button>
-                <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
-                <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
-            </div>
-        </div>
-        <div class="vista-glass-content" style="padding: 25px;">
-            <h2 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
-                <i class="fas fa-briefcase" style="margin-right: 8px; color: #0078D7;"></i>
-                Featured Projects
-            </h2>
-            <div style="margin-bottom: 15px;">
-                <h3 style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px;">Beat the Clock</h3>
-                <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; line-height: 1.6;">
-                    Automation consulting agency helping businesses streamline operations.
-                </p>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <h3 style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px;">Imanol VillaGomez</h3>
-                <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; line-height: 1.6;">
-                    Portfolio website for a concert videographer who shoots Charli XCX, Playboi Carti, The Hellp, and more.
-                </p>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <h3 style="font-family: var(--font-segoe-semilight); font-size: 18px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px;">Freelance Web Development</h3>
-                <p style="font-family: var(--font-segoe-semilight); font-size: 15px; font-weight: 300; color: #666; line-height: 1.6;">
-                    Responsive, scalable websites for concert videography, sports photography, and marketing agencies.
-                </p>
-            </div>
-            <div style="margin-top: 20px;">
-                <a href="#" data-window="portfolio-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px;">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>View Full Portfolio</span>
-                </a>
-            </div>
+        <div class="vista-status-bar">
+            <i class="fas fa-map-marker-alt"></i>
+            Naperville, Illinois &nbsp;·&nbsp; UIUC Gies College of Business · Class of 2030
         </div>
     </div>
 
     <!-- Skills Window -->
-    <div class="vista-glass-window" style="position: fixed; bottom: 80px; left: 150px; width: 450px; max-height: 400px; overflow-y: auto; z-index: 170;">
+    <div id="skills-window" class="vista-glass-window" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); width: 620px; max-height: calc(100vh - 120px); overflow-y: auto; z-index: 100; display: none;">
         <div class="vista-glass-titlebar">
             <div class="vista-glass-title">
                 <img src="/img/icons/vista/vista_info.ico" alt="Skills" class="vista-icon-img vista-window-icon-img" style="width: 16px; height: 16px;">
@@ -332,45 +565,78 @@
                 <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
             </div>
         </div>
-        <div class="vista-glass-content" style="padding: 25px;">
-            <div class="skills-grid" style="grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px;">
-                <div class="skill-item">
-                    <img src="/assets/html5.png" alt="HTML" class="skill-icon">
-                    <span class="skill-name">HTML</span>
+        <div class="vista-glass-content" style="padding: 22px 26px 18px;">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px;">
+
+                <!-- Left column: Web Development -->
+                <div>
+                    <div class="aero-skill-section-title">Web Development</div>
+
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>HTML5</span><span class="skill-pct">90%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill" data-pct="90"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>CSS3</span><span class="skill-pct">87%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill" data-pct="87"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>JavaScript</span><span class="skill-pct">80%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill" data-pct="80"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>React</span><span class="skill-pct">72%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill" data-pct="72"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>TypeScript</span><span class="skill-pct">64%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill" data-pct="64"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>Node.js</span><span class="skill-pct">60%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill" data-pct="60"></div></div>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <img src="/assets/css.png" alt="CSS" class="skill-icon" style="width: 80px; height: 80px;">
-                    <span class="skill-name">CSS</span>
+
+                <!-- Right column: Creative + Tools -->
+                <div>
+                    <div class="aero-skill-section-title">Creative Tools</div>
+
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>Adobe Premiere Pro</span><span class="skill-pct">78%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill teal" data-pct="78"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>Photoshop</span><span class="skill-pct">72%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill teal" data-pct="72"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>After Effects</span><span class="skill-pct">65%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill teal" data-pct="65"></div></div>
+                    </div>
+
+                    <div class="aero-skill-section-title" style="margin-top:14px;">Automation & AI</div>
+
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>Zapier / Make</span><span class="skill-pct">85%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill green" data-pct="85"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>Prompt Engineering</span><span class="skill-pct">80%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill green" data-pct="80"></div></div>
+                    </div>
+                    <div class="aero-skill-item">
+                        <div class="aero-skill-label"><span>Python</span><span class="skill-pct">55%</span></div>
+                        <div class="aero-skill-track"><div class="aero-skill-fill green" data-pct="55"></div></div>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <img src="/assets/js.jpg" alt="JavaScript" class="skill-icon">
-                    <span class="skill-name">JavaScript</span>
-                </div>
-                <div class="skill-item">
-                    <img src="/assets/reactjs.png" alt="React" class="skill-icon" style="width: 64px; height: 64px;">
-                    <span class="skill-name">React</span>
-                </div>
-                <div class="skill-item">
-                    <img src="/assets/nodejs.png" alt="Node.js" class="skill-icon" style="width: 64px; height: 64px;">
-                    <span class="skill-name">Node.js</span>
-                </div>
-                <div class="skill-item">
-                    <img src="/assets/ts.png" alt="TypeScript" class="skill-icon" style="width: 96px; height: 96px;">
-                    <span class="skill-name">TypeScript</span>
-                </div>
-                <div class="skill-item">
-                    <img src="/img/icons/vista/premierepro1.ico" alt="Premiere Pro" class="skill-icon">
-                    <span class="skill-name">Premiere</span>
-                </div>
-                <div class="skill-item">
-                    <img src="/img/icons/vista/premierepro2.ico" alt="After Effects" class="skill-icon">
-                    <span class="skill-name">After Effects</span>
-                </div>
-                <div class="skill-item">
-                    <img src="/img/icons/vista/photoshop1.ico" alt="Photoshop" class="skill-icon">
-                    <span class="skill-name">Photoshop</span>
-                </div>
+
             </div>
+        </div>
+        <div class="vista-status-bar">
+            <i class="fas fa-check-circle"></i>
+            12 skills listed &nbsp;·&nbsp; Updated June 2026
         </div>
     </div>
 
@@ -629,8 +895,8 @@
                     </p>
                     
                     <!-- Video Demo -->
-                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
-                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px; transform: translateY(-8%); object-fit: cover;">
+                    <div class="aero-media-frame" style="margin: 15px 0;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; transform: translateY(-8%); object-fit: cover;">
                             <source src="/assets/btcdemo.mov" type="video/quicktime">
                             <source src="/assets/btcdemo.mov" type="video/mp4">
                             Your browser does not support the video tag.
@@ -676,8 +942,8 @@
                         Built a custom portfolio website for concert videographer Imanol VillaGomez. He shoots live shows for artists like Charli XCX, Playboi Carti, The Hellp, and more. The site puts his work front and center with a bold, visual-first layout built for music and nightlife content.
                     </p>
 
-                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
-                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                    <div class="aero-media-frame" style="margin: 15px 0;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
                             <source src="/assets/imanol.mov" type="video/quicktime">
                             <source src="/assets/imanol.mov" type="video/mp4">
                             Your browser does not support the video tag.
@@ -719,8 +985,8 @@
                         Custom responsive website for sports photographer Timmy Miller, with portfolio galleries, booking capabilities, and personal branding.
                     </p>
 
-                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
-                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                    <div class="aero-media-frame" style="margin: 15px 0;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
                             <source src="/assets/tmmphotos.mov" type="video/quicktime">
                             <source src="/assets/tmmphotos.mov" type="video/mp4">
                             Your browser does not support the video tag.
@@ -742,8 +1008,8 @@
                         Full marketing agency website with a React-based prequalification assessment to evaluate client readiness for services.
                     </p>
 
-                    <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); position: relative;">
-                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                    <div class="aero-media-frame" style="margin: 15px 0;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
                             <source src="/assets/nicsmarketingdemo.mov" type="video/quicktime">
                             <source src="/assets/nicsmarketingdemo.mov" type="video/mp4">
                             Your browser does not support the video tag.
@@ -754,6 +1020,21 @@
                             <i class="fas fa-bullhorn"></i>
                             <span>View Website</span>
                         </a>
+                    </div>
+
+                    <div style="margin: 15px 0; display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span class="skill-tag">
+                            <img src="/assets/reactjs.png" alt="React" class="skill-tag-icon" style="width: 20px; height: 20px;">
+                            React
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/ts.png" alt="TypeScript" class="skill-tag-icon" style="width: 28px; height: 28px;">
+                            TypeScript
+                        </span>
+                        <span class="skill-tag">
+                            <img src="/assets/nodejs.png" alt="Node.js" class="skill-tag-icon" style="width: 20px; height: 20px;">
+                            Node.js
+                        </span>
                     </div>
                 </div>
             </div>
@@ -798,6 +1079,10 @@
                 </div>
             </div>
         </div>
+        <div class="vista-status-bar">
+            <i class="fas fa-folder-open"></i>
+            4 projects &nbsp;·&nbsp; Imanol VillaGomez · Beat the Clock · TMM Photos · Nics Marketing
+        </div>
     </div>
 
     <!-- Contact Window -->
@@ -829,6 +1114,7 @@
                             <span class="email-revealed" style="display:none"><a class="email-link" href="#"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" title="Copy"><i class="fas fa-copy"></i></button></span>
                         </span>
                     </div>
+
                     <div>
                         <i class="fas fa-phone" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
                         <p style="font-family: var(--font-segoe-semilight); font-size: 12px; font-weight: 300; color: #666; margin-bottom: 4px;">Phone</p>
@@ -898,7 +1184,7 @@
                         <span class="email-revealed" style="display:none"><a class="email-link" href="#"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" title="Copy"><i class="fas fa-copy"></i></button></span>
                     </span><br>
                     <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" style="color: #0078D7; text-decoration: none;">LinkedIn</a> • 
-                    <a href="https://ianmccallum.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
+                    <a href="https://ianinnovates.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
                 </div>
             </header>
 
@@ -1275,65 +1561,87 @@
     </div>
 
     <!-- Vista Start Menu -->
-    <div id="vista-startmenu" class="vista-glass-startmenu">
-        <div class="vista-glass-startmenu-left">
-            <a href="index.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_get_started.ico" alt="Home" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Home</span>
-            </a>
-            <a href="about.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>About</span>
-            </a>
-            <a href="portfolio.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Portfolio</span>
-            </a>
-            <a href="cv.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>CV</span>
-            </a>
-            <a href="testimonials.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_collab.ico" alt="Testimonials" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Testimonials</span>
-            </a>
-            <a href="photos.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_movie.ico" alt="Photos" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Photos</span>
-            </a>
-            <a href="contact.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Contact</span>
-            </a>
-            <div class="vista-glass-startitem">
-                <img src="/img/icons/vista/explorer.ico" alt="All Programs" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>All Programs</span>
-                <i class="fas fa-chevron-right arrow"></i>
+    <div id="vista-startmenu" class="vista-glass-startmenu" style="width: 390px; flex-direction: column;">
+        <!-- Profile header -->
+        <div class="vista-startmenu-profile">
+            <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="vista-startmenu-avatar">
+            <div>
+                <div class="vista-startmenu-username">Ian McCallum</div>
+                <div style="font-family:'Segoe UI',sans-serif;font-size:11px;color:rgba(255,255,255,0.65);margin-top:1px;">Tech Innovator &amp; Entrepreneur</div>
             </div>
-            <input type="text" class="vista-glass-startsearch" placeholder="Start Search">
         </div>
-        <div class="vista-glass-startmenu-right">
-            <a href="about.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_personalization.ico" alt="Ian" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Ian McCallum</span>
-            </a>
-            <a href="portfolio.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Portfolio</span>
-            </a>
-            <a href="cv.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>CV</span>
-            </a>
-            <a href="contact.html" class="vista-glass-startitem">
-                <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
-                <span>Contact</span>
-            </a>
-            <button class="vista-glass-power-btn">
-                <img src="/img/icons/vista/vista_pc_1.ico" alt="Power" class="vista-icon-img vista-startmenu-icon-img" style="width: 20px; height: 20px;">
+        <!-- Body: nav left + links right -->
+        <div class="vista-startmenu-body">
+            <div class="vista-glass-startmenu-left" style="width: 220px; overflow-y: auto;">
+                <a href="about.html" class="vista-glass-startitem">
+                    <img src="/img/icons/vista/vista_personalization.ico" alt="About" class="vista-icon-img" style="width:20px;height:20px;">
+                    <span>About Me</span>
+                </a>
+                <a href="portfolio.html" class="vista-glass-startitem">
+                    <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Portfolio" class="vista-icon-img" style="width:20px;height:20px;">
+                    <span>Portfolio</span>
+                </a>
+                <a href="cv.html" class="vista-glass-startitem">
+                    <img src="/img/icons/vista/vista_book_1.ico" alt="CV" class="vista-icon-img" style="width:20px;height:20px;">
+                    <span>CV / Resume</span>
+                </a>
+                <a href="testimonials.html" class="vista-glass-startitem">
+                    <img src="/img/icons/vista/vista_collab.ico" alt="Testimonials" class="vista-icon-img" style="width:20px;height:20px;">
+                    <span>Testimonials</span>
+                </a>
+                <a href="photos.html" class="vista-glass-startitem">
+                    <img src="/img/icons/vista/vista_photo_gallery.ico" alt="Photos" class="vista-icon-img" style="width:20px;height:20px;">
+                    <span>Photos</span>
+                </a>
+                <a href="contact.html" class="vista-glass-startitem">
+                    <img src="/img/icons/vista/thunderbird1.ico" alt="Contact" class="vista-icon-img" style="width:20px;height:20px;">
+                    <span>Contact</span>
+                </a>
+                <div style="margin: 5px 10px; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+                <input type="text" class="vista-glass-startsearch" placeholder="🔍  Search...">
+            </div>
+            <div class="vista-glass-startmenu-right" style="width: 170px; background: rgba(0,55,115,0.45); overflow-y: auto;">
+                <div style="font-family:'Segoe UI',sans-serif;font-size:10px;color:rgba(255,255,255,0.45);padding:8px 12px 4px;text-transform:uppercase;letter-spacing:0.5px;">Connect</div>
+                <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="vista-glass-startitem">
+                    <i class="fab fa-linkedin-in" style="font-size:15px;width:20px;text-align:center;color:#60a5fa;"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="vista-glass-startitem">
+                    <i class="fab fa-github" style="font-size:15px;width:20px;text-align:center;color:#d1d5db;"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-startitem">
+                    <i class="fab fa-instagram" style="font-size:15px;width:20px;text-align:center;color:#f472b6;"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="vista-glass-startitem">
+                    <i class="fab fa-twitter" style="font-size:15px;width:20px;text-align:center;color:#60a5fa;"></i>
+                    <span>Twitter / X</span>
+                </a>
+                <div style="margin: 5px 10px; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+                <a href="https://beatyourclock.com" target="_blank" rel="noopener" class="vista-glass-startitem">
+                    <i class="fas fa-clock" style="font-size:15px;width:20px;text-align:center;color:#fbbf24;"></i>
+                    <span>Beat the Clock</span>
+                </a>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="vista-startmenu-footer">
+            <button type="button" class="vista-startmenu-footer-btn sign-out" id="start-signout-btn" title="Sign out and replay boot screen">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
             </button>
+            <div class="vista-startmenu-footer-actions">
+                <button class="vista-startmenu-footer-btn" onclick="window.vistaWindowManager&&window.vistaWindowManager.openWindow('contact-window');document.getElementById('vista-startmenu').classList.remove('show')">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </button>
+                <button class="vista-startmenu-footer-btn" onclick="document.getElementById('vista-startmenu').classList.remove('show')" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
-        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1341,6 +1649,7 @@
     <script src="/js/vista-icons.js"></script>
     <script src="/js/mobile-ux.js"></script>
     <script src="/js/window-manager.js"></script>
+    <script src="/js/aero-system.js"></script>
     <script src="/js/email-shield.js"></script>
     <script>
         // Start Menu Toggle
@@ -1357,20 +1666,27 @@
             }
         });
 
-        // Update Time
-        function updateTime() {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            const displayHours = hours % 12 || 12;
-            const displayMinutes = minutes.toString().padStart(2, '0');
-            
-            document.getElementById('vista-time').textContent = `${displayHours}:${displayMinutes} ${ampm}`;
-            
-        }
-        updateTime();
-        setInterval(updateTime, 60000);
+        // Clock handled by aero-system.js
+
+        // ── Click-to-focus: clicking any window brings it to front ──────────
+        document.addEventListener('mousedown', function(e) {
+            const win = e.target.closest('.vista-glass-window');
+            if (win && win.id) {
+                // Mark focused window
+                document.querySelectorAll('.vista-glass-window').forEach(w => w.classList.remove('focused'));
+                win.classList.add('focused');
+                // Bring to front via window manager if available
+                if (window.vistaWindowManager) {
+                    window.vistaWindowManager.bringToFront(win.id);
+                }
+            }
+        });
+
+        // Animate the welcome window as focused on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcome = document.getElementById('welcome-window');
+            if (welcome) welcome.classList.add('focused');
+        });
 
         // Window controls are now handled by window-manager.js
 
@@ -1537,5 +1853,475 @@
             }
         }
     </style>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         iPHONE UI  ·  Visible only on mobile (≤768px)
+         The Frutiger Aero GIF becomes the wallpaper.
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="iphone-ui" style="display:none;">
+
+        <!-- Status Bar -->
+        <div id="iphone-sb">
+            <div class="isb-left">
+                <div class="isb-signal">
+                    <span class="sig-bar"></span><span class="sig-bar"></span>
+                    <span class="sig-bar"></span><span class="sig-bar"></span>
+                    <span class="sig-bar"></span>
+                </div>
+                <span class="isb-carrier">Ian's iPhone</span>
+            </div>
+            <span id="iphone-sb-time">9:41</span>
+            <div class="isb-right">
+                <i class="fas fa-wifi isb-wifi"></i>
+                <div class="isb-battery"><div class="isb-battery-fill"></div></div>
+            </div>
+        </div>
+
+        <!-- Lock Screen — Frutiger Aero boot ritual + slide to unlock -->
+        <div id="iphone-lock">
+            <div class="lock-atmosphere" aria-hidden="true">
+                <div class="lock-sky">
+                    <div class="lock-sun"></div>
+                    <div class="lock-aurora lock-aurora-a"></div>
+                    <div class="lock-aurora lock-aurora-b"></div>
+                    <div class="lock-aurora lock-aurora-c"></div>
+                    <div class="lock-color-wash"></div>
+                    <div class="lock-rays"></div>
+                    <div class="lock-bubbles">
+                        <span class="lock-bubble lock-bubble-cyan" style="--x:8%;--s:18px;--d:0s"></span>
+                        <span class="lock-bubble lock-bubble-lime" style="--x:22%;--s:12px;--d:0.7s"></span>
+                        <span class="lock-bubble lock-bubble-magenta" style="--x:38%;--s:22px;--d:1.2s"></span>
+                        <span class="lock-bubble lock-bubble-gold" style="--x:55%;--s:16px;--d:0.3s"></span>
+                        <span class="lock-bubble lock-bubble-cyan" style="--x:72%;--s:24px;--d:1.8s"></span>
+                        <span class="lock-bubble lock-bubble-lime" style="--x:88%;--s:14px;--d:0.5s"></span>
+                    </div>
+                    <div class="lock-particles" id="lock-particles"></div>
+                </div>
+                <div class="lock-lens-flare lock-lens-flare-a"></div>
+                <div class="lock-lens-flare lock-lens-flare-b"></div>
+                <div class="lock-vignette"></div>
+            </div>
+
+            <div class="lock-ui">
+                <div class="lock-orb-wrap">
+                    <div class="lock-orb">
+                        <div class="lock-orb-ring"></div>
+                        <div class="lock-orb-halo"></div>
+                        <div class="lock-orb-glass"><span class="lock-orb-mark">IM</span></div>
+                    </div>
+                </div>
+
+                <div class="lock-clock-block">
+                    <div class="lock-time-display" id="lock-time">9:41 AM</div>
+                    <div class="lock-date-display" id="lock-date">Sunday, June 8</div>
+                </div>
+
+                <div class="lock-boot-bar">
+                    <div class="lock-boot-bar-fill"></div>
+                    <div class="lock-boot-bar-shimmer"></div>
+                </div>
+                <div class="lock-status" id="lock-status">Preparing your atmosphere…</div>
+
+                <div class="lock-slide-bar">
+                    <div class="lock-slide-track">
+                        <div class="lock-slide-knob" id="lock-slide-knob">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <span class="lock-slide-text">slide to unlock</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="iphone-hs">
+            <div id="iphone-icon-grid">
+                <div class="ios-icon" data-app="about">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#5AC8FA,#007AFF)"><i class="fas fa-user"></i></div>
+                    <span class="ios-icon-label">About</span>
+                </div>
+                <div class="ios-icon" data-app="portfolio">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#C084FC,#7C3AED)"><i class="fas fa-briefcase"></i></div>
+                    <span class="ios-icon-label">Portfolio</span>
+                </div>
+                <div class="ios-icon" data-app="skills">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#4ADE80,#16A34A)"><i class="fas fa-code"></i></div>
+                    <span class="ios-icon-label">Skills</span>
+                </div>
+                <div class="ios-icon" data-app="contact">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#34D399,#059669)"><i class="fas fa-comment-dots"></i></div>
+                    <span class="ios-icon-label">Contact</span>
+                </div>
+                <div class="ios-icon" data-app="cv">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#93C5FD,#3B82F6)"><i class="fas fa-file-alt"></i></div>
+                    <span class="ios-icon-label">CV</span>
+                </div>
+                <div class="ios-icon" data-app="photos">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#FB923C,#EA580C)"><i class="fas fa-camera"></i></div>
+                    <span class="ios-icon-label">Photos</span>
+                </div>
+                <div class="ios-icon" data-app="reviews">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#FDE68A,#F59E0B)"><i class="fas fa-star" style="color:#7C4A00;"></i></div>
+                    <span class="ios-icon-label">Reviews</span>
+                </div>
+                <div class="ios-icon" data-app="beat">
+                    <div class="ios-icon-shell" style="background:linear-gradient(145deg,#F87171,#DC2626)"><i class="fas fa-clock"></i></div>
+                    <span class="ios-icon-label">Beat</span>
+                </div>
+            </div>
+            <div class="hs-page-dots"><span class="hs-dot active"></span></div>
+        </div>
+
+        <!-- Dock -->
+        <div id="iphone-dock">
+            <div class="ios-dock-icon" data-app="about">
+                <div class="ios-icon-shell" style="background:linear-gradient(145deg,#5AC8FA,#007AFF)"><i class="fas fa-user"></i></div>
+            </div>
+            <div class="ios-dock-icon" data-app="portfolio">
+                <div class="ios-icon-shell" style="background:linear-gradient(145deg,#C084FC,#7C3AED)"><i class="fas fa-briefcase"></i></div>
+            </div>
+            <div class="ios-dock-icon" data-app="contact">
+                <div class="ios-icon-shell" style="background:linear-gradient(145deg,#34D399,#059669)"><i class="fas fa-comment-dots"></i></div>
+            </div>
+            <div class="ios-dock-icon" data-app="cv">
+                <div class="ios-icon-shell" style="background:linear-gradient(145deg,#93C5FD,#3B82F6)"><i class="fas fa-file-alt"></i></div>
+            </div>
+        </div>
+
+        <!-- ═══ APP PANELS ═══════════════════════════════════════════ -->
+
+        <!-- ABOUT -->
+        <div id="app-panel-about" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">About Me</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-profile-header">
+                    <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="ios-profile-photo">
+                    <div>
+                        <div class="ios-profile-name">Ian McCallum</div>
+                        <div class="ios-profile-sub">Tech Innovator &amp; Entrepreneur</div>
+                    </div>
+                </div>
+                <div class="ios-section-header">Basics</div>
+                <div class="ios-table">
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-blue"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Metea Valley High School</span>
+                            <span class="ios-row-detail">Class of 2026 · Magna Cum Laude</span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-purple"><i class="fas fa-university"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">University of Illinois Urbana-Champaign</span>
+                            <span class="ios-row-detail">Gies College of Business · Finance &amp; Data Science</span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-red"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Naperville, Illinois</span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-green"><i class="fas fa-chart-line"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">GPA 4.25</span>
+                            <span class="ios-row-detail">Illinois State Scholar · National Honor Society</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ios-section-header">Bio</div>
+                <div class="ios-content-card">
+                    <p>I'm 18 years old and recently graduated from Metea Valley. This fall I'm starting at UIUC to study Finance and Data Science. I've been coding since age 10, starting with HTML, CSS, and JavaScript.</p>
+                    <p>Diagnosed with ADHD, I've learned to use my hyperfocus as a superpower. When something captures my attention, I pour everything into it until I see real results.</p>
+                </div>
+                <div class="ios-section-header">Work Experience</div>
+                <div class="ios-table">
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-red"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Target</span>
+                            <span class="ios-row-detail">Food Dept Team Member · 2024–Now</span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-blue"><i class="fas fa-home"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Coldwell Banker</span>
+                            <span class="ios-row-detail">Real Estate Runner · 2025–June 2026</span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-green"><i class="fas fa-futbol"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Soccer Referee</span>
+                            <span class="ios-row-detail">Self-Employed · 2021–Now</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ios-section-header">Hobbies</div>
+                <div class="ios-table">
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-green"><i class="fas fa-futbol"></i></div><div class="ios-row-content"><span class="ios-row-label">Soccer</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-red"><i class="fas fa-hand-rock"></i></div><div class="ios-row-content"><span class="ios-row-label">MMA</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-orange"><i class="fas fa-camera"></i></div><div class="ios-row-content"><span class="ios-row-label">Photography &amp; Videography</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-blue"><i class="fas fa-dumbbell"></i></div><div class="ios-row-content"><span class="ios-row-label">Weightlifting</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-teal"><i class="fas fa-fish"></i></div><div class="ios-row-content"><span class="ios-row-label">Fishing</span></div></div>
+                </div>
+                <div class="ios-section-header">Connect</div>
+                <div class="ios-table">
+                    <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" class="ios-row"><div class="ios-row-icon" style="background:#0077B5"><i class="fab fa-linkedin-in"></i></div><div class="ios-row-content"><span class="ios-row-label">LinkedIn</span></div><i class="fas fa-chevron-right ios-row-arrow"></i></a>
+                    <a href="https://github.com/Ian-mccallum" target="_blank" class="ios-row"><div class="ios-row-icon" style="background:#24292E"><i class="fab fa-github"></i></div><div class="ios-row-content"><span class="ios-row-label">GitHub</span></div><i class="fas fa-chevron-right ios-row-arrow"></i></a>
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" class="ios-row"><div class="ios-row-icon" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)"><i class="fab fa-instagram"></i></div><div class="ios-row-content"><span class="ios-row-label">Instagram</span></div><i class="fas fa-chevron-right ios-row-arrow"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTFOLIO -->
+        <div id="app-panel-portfolio" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">Portfolio</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-section-header">Business Ventures</div>
+                <div class="ios-project-card">
+                    <div class="ios-project-header">
+                        <div class="ios-project-name">Beat the Clock</div>
+                        <div class="ios-project-role">Founder &amp; Automation Specialist</div>
+                    </div>
+                    <div class="ios-project-desc">Automation consulting agency helping businesses streamline operations and increase efficiency through modern tools and AI.</div>
+                    <div class="ios-project-tags"><span class="ios-tag">Zapier</span><span class="ios-tag">Make</span><span class="ios-tag">Python</span><span class="ios-tag">ChatGPT</span></div>
+                    <a href="https://beatyourclock.com" target="_blank" class="ios-project-link">Visit beatyourclock.com <i class="fas fa-external-link-alt" style="font-size:10px;"></i></a>
+                </div>
+                <div class="ios-section-header">Website Building</div>
+                <div class="ios-project-card">
+                    <div class="ios-project-header">
+                        <div class="ios-project-name">Imanol VillaGomez</div>
+                        <div class="ios-project-role">Web Developer &amp; Designer</div>
+                    </div>
+                    <div class="ios-project-desc">Portfolio website for a concert videographer who shoots live shows for Charli XCX, Playboi Carti, The Hellp, and more.</div>
+                    <div class="ios-project-tags"><span class="ios-tag">HTML</span><span class="ios-tag">CSS</span><span class="ios-tag">JavaScript</span><span class="ios-tag">React</span></div>
+                    <a href="https://imanolvillagomez.com" target="_blank" class="ios-project-link">Visit imanolvillagomez.com <i class="fas fa-external-link-alt" style="font-size:10px;"></i></a>
+                </div>
+                <div class="ios-project-card">
+                    <div class="ios-project-header">
+                        <div class="ios-project-name">TMM Photography</div>
+                        <div class="ios-project-role">Web Developer &amp; Designer</div>
+                    </div>
+                    <div class="ios-project-desc">Custom responsive website for sports photographer Timmy Miller, with portfolio, booking capabilities, and personal branding.</div>
+                    <div class="ios-project-tags"><span class="ios-tag">React</span><span class="ios-tag">TypeScript</span><span class="ios-tag">Node.js</span></div>
+                    <a href="https://tmmphotos.com" target="_blank" class="ios-project-link">Visit tmmphotos.com <i class="fas fa-external-link-alt" style="font-size:10px;"></i></a>
+                </div>
+                <div class="ios-project-card">
+                    <div class="ios-project-header">
+                        <div class="ios-project-name">Nics Marketing</div>
+                        <div class="ios-project-role">Web Developer &amp; Designer</div>
+                    </div>
+                    <div class="ios-project-desc">Full marketing agency website with a React-based prequalification assessment to evaluate client readiness for services.</div>
+                    <div class="ios-project-tags"><span class="ios-tag">React</span><span class="ios-tag">JavaScript</span><span class="ios-tag">CSS3</span></div>
+                    <a href="https://nicsmarketing.co" target="_blank" class="ios-project-link">Visit nicsmarketing.co <i class="fas fa-external-link-alt" style="font-size:10px;"></i></a>
+                </div>
+                <div class="ios-section-header">Creative</div>
+                <div class="ios-project-card">
+                    <div class="ios-project-header">
+                        <div class="ios-project-name">Vokel — YouTube &amp; Twitch</div>
+                        <div class="ios-project-role">Content Creator &amp; Video Editor</div>
+                    </div>
+                    <div class="ios-project-desc">Gaming content channel that grew to ~500 YouTube subscribers and achieved Twitch Affiliate status through consistent video production.</div>
+                    <div class="ios-project-tags"><span class="ios-tag">Premiere Pro</span><span class="ios-tag">After Effects</span><span class="ios-tag">Photoshop</span></div>
+                    <a href="https://www.youtube.com/vokelgg" target="_blank" class="ios-project-link">Visit YouTube Channel <i class="fas fa-external-link-alt" style="font-size:10px;"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div id="app-panel-skills" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">Skills</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="aero-skill-section-title">Web Development</div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>HTML5</span><span class="skill-pct">90%</span></div><div class="aero-skill-track"><div class="aero-skill-fill" data-pct="90"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>CSS3</span><span class="skill-pct">87%</span></div><div class="aero-skill-track"><div class="aero-skill-fill" data-pct="87"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>JavaScript</span><span class="skill-pct">80%</span></div><div class="aero-skill-track"><div class="aero-skill-fill" data-pct="80"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>React</span><span class="skill-pct">72%</span></div><div class="aero-skill-track"><div class="aero-skill-fill" data-pct="72"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>TypeScript</span><span class="skill-pct">64%</span></div><div class="aero-skill-track"><div class="aero-skill-fill" data-pct="64"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>Node.js</span><span class="skill-pct">60%</span></div><div class="aero-skill-track"><div class="aero-skill-fill" data-pct="60"></div></div></div>
+                <div class="aero-skill-section-title">Creative Tools</div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>Adobe Premiere Pro</span><span class="skill-pct">78%</span></div><div class="aero-skill-track"><div class="aero-skill-fill teal" data-pct="78"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>Photoshop</span><span class="skill-pct">72%</span></div><div class="aero-skill-track"><div class="aero-skill-fill teal" data-pct="72"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>After Effects</span><span class="skill-pct">65%</span></div><div class="aero-skill-track"><div class="aero-skill-fill teal" data-pct="65"></div></div></div>
+                <div class="aero-skill-section-title">Automation &amp; AI</div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>Zapier / Make</span><span class="skill-pct">85%</span></div><div class="aero-skill-track"><div class="aero-skill-fill green" data-pct="85"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>Prompt Engineering</span><span class="skill-pct">80%</span></div><div class="aero-skill-track"><div class="aero-skill-fill green" data-pct="80"></div></div></div>
+                <div class="aero-skill-item"><div class="aero-skill-label"><span>Python</span><span class="skill-pct">55%</span></div><div class="aero-skill-track"><div class="aero-skill-fill green" data-pct="55"></div></div></div>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div id="app-panel-contact" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">Contact</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-section-header">Reach Out</div>
+                <div class="ios-table">
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-blue"><i class="fas fa-envelope"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Email</span>
+                            <span class="ios-row-detail">
+                                <span class="email-shield email-shield-ios" data-which="work">
+                                    <button class="ios-reveal-btn" type="button" onclick="EmailShield.challenge(this)">Tap to reveal <i class="fas fa-lock" style="font-size:10px;"></i></button>
+                                    <span class="email-challenge" style="display:none;flex-wrap:wrap;gap:4px;align-items:center;"><span class="challenge-text" style="font-size:12px;color:#1C1C1E;font-family:'Helvetica Neue',sans-serif;"></span><input type="number" class="challenge-input" min="-200" max="500" placeholder="?" style="width:46px;padding:3px 5px;border:1px solid #C8C7CC;border-radius:6px;font-size:13px;text-align:center;font-family:'Helvetica Neue',sans-serif;"><button type="button" class="challenge-submit" onclick="EmailShield.verify(this)" style="background:#007AFF;border:none;border-radius:6px;color:white;font-size:11px;padding:4px 8px;cursor:pointer;font-family:'Helvetica Neue',sans-serif;">OK</button><span class="challenge-error" style="display:none;color:#FF3B30;font-size:11px;">✕</span></span>
+                                    <span class="email-revealed" style="display:none;align-items:center;gap:5px;"><a class="email-link" href="#" style="color:#007AFF;font-size:13px;font-family:'Helvetica Neue',sans-serif;text-decoration:none;"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" style="background:none;border:none;color:#007AFF;cursor:pointer;padding:0 0 0 4px;font-size:12px;"><i class="fas fa-copy"></i></button></span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-red"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="ios-row-content"><span class="ios-row-label">Naperville, Illinois</span></div>
+                    </div>
+                </div>
+                <div class="ios-section-header">Social</div>
+                <div class="ios-table">
+                    <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" class="ios-row"><div class="ios-row-icon" style="background:#0077B5"><i class="fab fa-linkedin-in"></i></div><div class="ios-row-content"><span class="ios-row-label">LinkedIn</span></div><i class="fas fa-chevron-right ios-row-arrow"></i></a>
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" class="ios-row"><div class="ios-row-icon" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)"><i class="fab fa-instagram"></i></div><div class="ios-row-content"><span class="ios-row-label">Instagram</span></div><i class="fas fa-chevron-right ios-row-arrow"></i></a>
+                    <a href="https://github.com/Ian-mccallum" target="_blank" class="ios-row"><div class="ios-row-icon" style="background:#24292E"><i class="fab fa-github"></i></div><div class="ios-row-content"><span class="ios-row-label">GitHub</span></div><i class="fas fa-chevron-right ios-row-arrow"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CV -->
+        <div id="app-panel-cv" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">CV / Résumé</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-section-header">Education</div>
+                <div class="ios-table">
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-blue"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">Metea Valley High School</span>
+                            <span class="ios-row-detail">Aurora, IL · Class of 2026 · Magna Cum Laude</span>
+                            <span class="ios-row-detail">GPA 4.25 · Illinois State Scholar</span>
+                        </div>
+                    </div>
+                    <div class="ios-row">
+                        <div class="ios-row-icon ios-ri-purple"><i class="fas fa-university"></i></div>
+                        <div class="ios-row-content">
+                            <span class="ios-row-label">University of Illinois Urbana-Champaign</span>
+                            <span class="ios-row-detail">Gies College of Business · Finance &amp; Data Science</span>
+                            <span class="ios-row-detail">Expected Class of 2030</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ios-section-header">Work Experience</div>
+                <div class="ios-table">
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-red"><i class="fas fa-shopping-cart"></i></div><div class="ios-row-content"><span class="ios-row-label">Target</span><span class="ios-row-detail">Food Department Team Member</span><span class="ios-row-detail ios-cv-date">June 2024 – Present</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-blue"><i class="fas fa-home"></i></div><div class="ios-row-content"><span class="ios-row-label">Coldwell Banker Dan Firks</span><span class="ios-row-detail">Real Estate Runner</span><span class="ios-row-detail ios-cv-date">June 2025 – June 2026</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-green"><i class="fas fa-futbol"></i></div><div class="ios-row-content"><span class="ios-row-label">Youth Soccer Referee</span><span class="ios-row-detail">Self-Employed</span><span class="ios-row-detail ios-cv-date">2021 – Present</span></div></div>
+                </div>
+                <div class="ios-section-header">Projects</div>
+                <div class="ios-table">
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-orange"><i class="fas fa-clock"></i></div><div class="ios-row-content"><span class="ios-row-label">Beat the Clock</span><span class="ios-row-detail">Automation Consulting · Founder</span><span class="ios-row-detail ios-cv-date">Dec 2024 – Present</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-blue"><i class="fas fa-code"></i></div><div class="ios-row-content"><span class="ios-row-label">Freelance Web Development</span><span class="ios-row-detail">Imanol VillaGomez, TMM Photos, Nics Marketing + more</span><span class="ios-row-detail ios-cv-date">2023 – Present</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-red"><i class="fab fa-youtube"></i></div><div class="ios-row-content"><span class="ios-row-label">Vokel — YouTube &amp; Twitch</span><span class="ios-row-detail">~500 subs · Twitch Affiliate</span><span class="ios-row-detail ios-cv-date">2019 – 2021</span></div></div>
+                </div>
+                <div class="ios-section-header">Achievements</div>
+                <div class="ios-table">
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-yellow"><i class="fas fa-trophy"></i></div><div class="ios-row-content"><span class="ios-row-label">Illinois State Scholar</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-purple"><i class="fas fa-medal"></i></div><div class="ios-row-content"><span class="ios-row-label">Magna Cum Laude</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-yellow"><i class="fas fa-trophy"></i></div><div class="ios-row-content"><span class="ios-row-label">AP Scholar with Honor</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-blue"><i class="fas fa-award"></i></div><div class="ios-row-content"><span class="ios-row-label">National Honor Society</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-green"><i class="fas fa-futbol"></i></div><div class="ios-row-content"><span class="ios-row-label">Soccer Sportsmanship Award</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-teal"><i class="fas fa-language"></i></div><div class="ios-row-content"><span class="ios-row-label">Seal of Biliteracy</span></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHOTOS -->
+        <div id="app-panel-photos" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">Photos</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-section-header">Camera Roll</div>
+                <div class="ios-photo-grid">
+                    <div class="ios-photo-cell"><img src="/img/IMG_4666.JPG" alt="Photo"></div>
+                    <div class="ios-photo-cell"><img src="/img/IMG_3486.JPG" alt="Photo"></div>
+                    <div class="ios-photo-cell"><img src="/img/IMG_3800.JPG" alt="Photo"></div>
+                    <div class="ios-photo-cell"><img src="/img/IMG_7830.JPG" alt="Photo"></div>
+                </div>
+                <div style="padding:16px;">
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" class="ios-action-btn">
+                        <i class="fab fa-instagram" style="margin-right:6px;"></i> Follow on Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEWS -->
+        <div id="app-panel-reviews" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">Reviews</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-section-header">What Clients Say</div>
+                <div class="ios-testimonial">
+                    <div class="ios-testimonial-quote">Working with Ian to build my photography website was a great experience. He took the time to understand my vision and translated it into a website that looks great and is easy to navigate. I highly recommend Ian to anyone looking for a high quality custom website.</div>
+                    <div class="ios-testimonial-author">
+                        <img src="/img/other/IMG_7878.JPG" alt="Timmy Miller" class="ios-testimonial-avatar" onerror="this.style.display='none'">
+                        <div><div class="ios-testimonial-name">Timmy Miller</div><div class="ios-testimonial-role">Photographer · TMM Photography</div></div>
+                    </div>
+                </div>
+                <div class="ios-testimonial">
+                    <div class="ios-testimonial-quote">Working with Ian was a fantastic and smooth experience from start to finish. He brought great ideas to the table and made a huge impact on my business. I've received so many compliments on the site and I'd personally recommend Ian to anyone.</div>
+                    <div class="ios-testimonial-author">
+                        <div style="width:36px;height:36px;border-radius:18px;background:linear-gradient(135deg,#6366F1,#8B5CF6);display:flex;align-items:center;justify-content:center;color:white;font-size:15px;font-weight:700;flex-shrink:0;">N</div>
+                        <div><div class="ios-testimonial-name">Nicolas Villalobos</div><div class="ios-testimonial-role">Founder · Nics Marketing</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BEAT THE CLOCK -->
+        <div id="app-panel-beat" class="iphone-panel">
+            <div class="ios-navbar">
+                <button class="ios-back-btn"><i class="fas fa-chevron-left"></i> Home</button>
+                <span class="ios-navbar-title">Beat the Clock</span>
+            </div>
+            <div class="ios-app-scroll">
+                <div class="ios-hero-card" style="background:linear-gradient(145deg,#EF4444,#B91C1C);box-shadow:0 8px 32px rgba(185,28,28,0.42);">
+                    <i class="fas fa-clock"></i>
+                    <div class="ios-hero-title">Beat the Clock</div>
+                    <div class="ios-hero-sub">Automation consulting agency helping businesses save time and scale using Zapier, Make, and AI.</div>
+                </div>
+                <div class="ios-section-header">Services</div>
+                <div class="ios-table">
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-orange"><i class="fas fa-robot"></i></div><div class="ios-row-content"><span class="ios-row-label">Workflow Automation</span><span class="ios-row-detail">Zapier · Make · custom integrations</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-purple"><i class="fas fa-brain"></i></div><div class="ios-row-content"><span class="ios-row-label">AI Integration</span><span class="ios-row-detail">ChatGPT · prompt engineering</span></div></div>
+                    <div class="ios-row"><div class="ios-row-icon ios-ri-blue"><i class="fas fa-globe"></i></div><div class="ios-row-content"><span class="ios-row-label">Web Development</span><span class="ios-row-detail">React · TypeScript · full-stack</span></div></div>
+                </div>
+                <div style="padding:16px 0 0;">
+                    <a href="https://beatyourclock.com" target="_blank" class="ios-action-btn">Visit beatyourclock.com</a>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- #iphone-ui -->
+
+    <script src="/js/mobile-iphone.js"></script>
 </body>
 </html> 
