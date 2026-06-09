@@ -55,8 +55,8 @@
       "mainEntity": {
         "@type": "Person",
         "name": "Ian McCallum",
-        "email": "ian@beatyourclock.com",
-        "url": "https://ianmccallum.com"
+        "url": "https://ianmccallum.com",
+        "contactPoint": { "@type": "ContactPoint", "contactType": "general", "url": "https://ianmccallum.com/contact" }
       }
     }
     </script>
@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="/css/vista-icons.css">
     <link rel="stylesheet" href="/css/web2-gloss-enhancements.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/aero-enhancements.css">
 </head>
 <body class="vista-desktop-refined">
     <!-- GIF Background -->
@@ -190,7 +191,7 @@
                     <div>
                         <i class="fas fa-envelope" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
                         <p style="font-family: 'Segoe UI', sans-serif; font-size: 12px; color: #666; margin-bottom: 4px;">Email</p>
-                        <a href="mailto:mccallum.ian@icloud.com" style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #0078D7; text-decoration: none;">mccallum.ian@icloud.com</a>
+                        <a href="mailto:ian@beatyourclock.com" style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #0078D7; text-decoration: none;">ian@beatyourclock.com</a>
                     </div>
                     <div>
                         <i class="fas fa-phone" style="font-size: 24px; color: #0078D7; margin-bottom: 8px;"></i>
@@ -205,43 +206,12 @@
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 25px;">
-                <h2 style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 20px;">
-                    <i class="fas fa-paper-plane" style="margin-right: 8px; color: #0078D7;"></i>
-                    Send a Message
-                </h2>
-                <form action="https://formsubmit.co/0ed1f1e4ecbbc5dfdabd82a30c91360b" method="POST">
-                    <input type="hidden" name="_subject" value="New Contact Form Submission">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="true">
-                    <input type="hidden" name="_next" value="https://ianinnovates.com/thank-you.html">
-
-                    <div style="margin-bottom: 18px;">
-                        <label style="display: block; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 600; color: #333; margin-bottom: 6px;">Your Name</label>
-                        <input type="text" name="name" required class="vista-glass-input">
-                    </div>
-
-                    <div style="margin-bottom: 18px;">
-                        <label style="display: block; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 600; color: #333; margin-bottom: 6px;">Your Email</label>
-                        <input type="email" name="email" required class="vista-glass-input">
-                    </div>
-
-                    <div style="margin-bottom: 18px;">
-                        <label style="display: block; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 600; color: #333; margin-bottom: 6px;">Subject</label>
-                        <input type="text" name="subject" required class="vista-glass-input">
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 600; color: #333; margin-bottom: 6px;">Message</label>
-                        <textarea name="message" required rows="5" class="vista-glass-textarea"></textarea>
-                    </div>
-
-                    <button type="submit" class="vista-glass-button vista-glass-button-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>Send Message</span>
-                    </button>
-                </form>
+            <div style="margin-top: 30px; text-align: center; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px; padding: 25px;">
+                <p style="font-family: 'Segoe UI', sans-serif; font-size: 14px; color: #333; margin-bottom: 16px;">Want to reach out? Email me directly and I'll get back to you.</p>
+                <a href="mailto:ian@beatyourclock.com" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email ian@beatyourclock.com</span>
+                </a>
             </div>
 
             <!-- Social Links -->
@@ -357,5 +327,7 @@
             document.addEventListener('mouseup', dragEnd);
         });
     </script>
+    <script src="/js/aero-system.js"></script>
+    <script src="/js/email-shield.js"></script>
 </body>
 </html>

@@ -1,0 +1,654 @@
+/* ============================================================
+   FRUTIGER AERO ERA ENHANCEMENTS
+   Authentic 2006-2013 Windows Vista aesthetic
+   Layer this last — it overrides defaults intentionally.
+   ============================================================ */
+
+/* ── 1. PALETTE: Signature purple restored (with personality) ────────── */
+/* Both button variants use the purple the user loves.                    */
+.vista-glass-button,
+.vista-glass-button-primary,
+.btn-primary {
+    background: linear-gradient(to bottom,
+        rgba(180, 130, 230, 0.90) 0%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140,  90, 190, 0.80) 55%,
+        rgba(120,  70, 170, 0.90) 100%
+    ) !important;
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.28),
+        inset 0  1px 0 rgba(255,255,255,0.55),
+        inset 0 -1px 0 rgba(0,0,0,0.28),
+        0 0 16px rgba(160, 110, 210, 0.45) !important;
+    border: 1px solid rgba(255,255,255,0.45) !important;
+    color: rgba(255,255,255,0.97) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35) !important;
+}
+
+.vista-glass-button:hover,
+.vista-glass-button-primary:hover,
+.btn-primary:hover {
+    background: linear-gradient(to bottom,
+        rgba(200, 150, 250, 0.95) 0%,
+        rgba(180, 130, 230, 0.90) 55%,
+        rgba(160, 110, 210, 0.85) 55%,
+        rgba(140,  90, 190, 0.95) 100%
+    ) !important;
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.32),
+        inset 0  1px 0 rgba(255,255,255,0.65),
+        inset 0 -1px 0 rgba(0,0,0,0.30),
+        0 0 24px rgba(180, 130, 230, 0.55) !important;
+    transform: translateY(-1px);
+}
+
+/* ── 2. TITLEBAR: Remove blur — let the gradient be crisp ───────────── */
+.vista-glass-titlebar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ── 3. WINDOW: 4-sided inner specular edge (physical glass thickness) ─ */
+.vista-glass-window {
+    box-shadow:
+        0 14px 40px rgba(0,0,0,0.28),
+        inset  0  1px 0 rgba(255,255,255,0.92),
+        inset  1px 0  0 rgba(255,255,255,0.38),
+        inset -1px 0  0 rgba(255,255,255,0.26),
+        inset  0 -1px 0 rgba(255,255,255,0.14),
+        0 0 0 1px rgba(255,255,255,0.55) inset,
+        0 0 50px rgba(255,255,255,0.06) !important;
+}
+
+.vista-glass-window.focused {
+    box-shadow:
+        0 18px 52px rgba(0,0,0,0.35),
+        inset  0  1px 0 rgba(255,255,255,0.96),
+        inset  1px 0  0 rgba(255,255,255,0.45),
+        inset -1px 0  0 rgba(255,255,255,0.32),
+        inset  0 -1px 0 rgba(255,255,255,0.18),
+        0 0 0 1px rgba(100,180,255,0.58) inset,
+        0 0 40px rgba(80,160,255,0.22) !important;
+}
+
+/* ── 4. WINDOW CONTENT: glass-edge gloss stripe just below titlebar ─── */
+.vista-glass-content {
+    position: relative;
+}
+.vista-glass-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: linear-gradient(to right,
+        transparent       0%,
+        rgba(255,255,255,0.65) 20%,
+        rgba(255,255,255,0.90) 50%,
+        rgba(255,255,255,0.65) 80%,
+        transparent       100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ── 5. BUBBLES & FISH: lift above background GIF ─────────────────────── */
+.bubbles-container { z-index: 4 !important; pointer-events: none; }
+.fish-container    { z-index: 4 !important; pointer-events: none; }
+
+/* ── 6. DESKTOP ICONS: staggered float + glass socket ───────────────── */
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-5px); }
+}
+
+.vista-desktop-icon .icon-img {
+    width: 48px !important;
+    height: 48px !important;
+    padding: 5px;
+    background: radial-gradient(ellipse at 35% 25%,
+        rgba(255,255,255,0.30) 0%,
+        rgba(255,255,255,0.10) 55%,
+        rgba(255,255,255,0.04) 100%
+    );
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.28);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+    box-sizing: content-box;
+    animation: iconFloat 4s ease-in-out infinite;
+    transition: transform 0.12s ease;
+}
+
+/* Stagger so icons ripple, not all move together */
+#vista-desktop-icons .vista-desktop-icon:nth-child(1) .icon-img { animation-delay: 0.0s; }
+#vista-desktop-icons .vista-desktop-icon:nth-child(2) .icon-img { animation-delay: 0.7s; }
+#vista-desktop-icons .vista-desktop-icon:nth-child(3) .icon-img { animation-delay: 1.4s; }
+#vista-desktop-icons .vista-desktop-icon:nth-child(4) .icon-img { animation-delay: 2.1s; }
+#vista-desktop-icons .vista-desktop-icon:nth-child(5) .icon-img { animation-delay: 2.8s; }
+#vista-desktop-icons .vista-desktop-icon:nth-child(6) .icon-img { animation-delay: 3.5s; }
+#vista-desktop-icons .vista-desktop-icon:nth-child(7) .icon-img { animation-delay: 4.2s; }
+
+.vista-desktop-icon:hover .icon-img {
+    transform: scale(1.12) translateY(-3px);
+    animation-play-state: paused;
+}
+
+.vista-desktop-icon span {
+    text-shadow: none;
+}
+
+/* ── 7. AERO SKILL BARS ──────────────────────────────────────────────── */
+.aero-skill-section-title {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(0,60,120,0.75);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 18px 0 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0,120,215,0.15);
+}
+
+.aero-skill-item {
+    margin-bottom: 11px;
+}
+
+.aero-skill-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.85);
+}
+
+.aero-skill-label .skill-pct {
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(0,80,160,0.70);
+}
+
+.aero-skill-track {
+    height: 15px;
+    background: rgba(0,0,0,0.07);
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.11);
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,0.10),
+        inset 0 -1px 0  rgba(255,255,255,0.55);
+    overflow: hidden;
+    position: relative;
+}
+
+.aero-skill-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 6px;
+    background: linear-gradient(to bottom,
+        rgba(0,160,220,0.93) 0%,
+        rgba(0,120,198,0.91) 48%,
+        rgba(0, 90,172,0.91) 48%,
+        rgba(0, 65,148,0.93) 100%
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        0 0 10px rgba(0,130,210,0.40);
+    position: relative;
+    transition: width 1.3s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Gloss shine stripe on bar */
+.aero-skill-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255,255,255,0.42) 0%,
+        rgba(255,255,255,0.12) 100%
+    );
+    border-radius: 6px 6px 0 0;
+    pointer-events: none;
+}
+
+/* Creative bar variant — teal */
+.aero-skill-fill.teal {
+    background: linear-gradient(to bottom,
+        rgba(0,165,185,0.93) 0%,
+        rgba(0,138,160,0.91) 48%,
+        rgba(0,108,130,0.91) 48%,
+        rgba(0, 82,105,0.93) 100%
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        0 0 10px rgba(0,150,170,0.40);
+}
+
+/* Automation bar variant — green */
+.aero-skill-fill.green {
+    background: linear-gradient(to bottom,
+        rgba(0,185,80,0.93)  0%,
+        rgba(0,160,65,0.91)  48%,
+        rgba(0,128,50,0.91)  48%,
+        rgba(0, 98,38,0.93)  100%
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        0 0 10px rgba(0,170,70,0.40);
+}
+
+/* ── 8. STATUS BAR ───────────────────────────────────────────────────── */
+.vista-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 12px;
+    background: linear-gradient(to bottom,
+        rgba(215,232,252,0.88) 0%,
+        rgba(195,218,248,0.90) 100%
+    );
+    border-top: 1px solid rgba(140,190,235,0.50);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 10px;
+    color: rgba(0,55,115,0.82);
+    letter-spacing: 0.1px;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.vista-status-bar i { font-size: 9px; opacity: 0.65; }
+
+/* ── 9. BOOT SCREEN ──────────────────────────────────────────────────── */
+#vista-boot {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: radial-gradient(ellipse at 50% 38%,
+        rgba(0,38,95,0.99)  0%,
+        rgba(0,14,48,1.00)  55%,
+        rgba(0, 4,18,1.00)  100%
+    );
+    pointer-events: all;
+    cursor: default;
+    transition: opacity 0.65s ease;
+}
+#vista-boot.fade-out { opacity: 0; pointer-events: none; }
+
+.boot-logo-text {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+    color: white;
+    letter-spacing: 8px;
+    text-transform: lowercase;
+    text-shadow:
+        0 0 28px rgba(100,185,255,0.85),
+        0 0 60px rgba(80,160,255,0.40);
+    opacity: 0;
+    animation: bootIn 0.55s ease 0.30s forwards;
+}
+
+.boot-logo-sub {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: -18px;
+    opacity: 0;
+    animation: bootIn 0.55s ease 0.65s forwards;
+}
+
+.boot-progress-track {
+    width: 200px;
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.10);
+    overflow: hidden;
+    opacity: 0;
+    animation: bootIn 0.4s ease 0.90s forwards;
+}
+
+.boot-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    background: linear-gradient(to right,
+        rgba(0,155,255,0.92),
+        rgba(0,225,255,1.00),
+        rgba(80,205,255,0.92)
+    );
+    box-shadow: 0 0 14px rgba(0,205,255,0.85);
+    animation: bootBar 1.15s cubic-bezier(0.4,0,0.2,1) 1.05s forwards;
+}
+
+.boot-status-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.6px;
+    opacity: 0;
+    animation: bootIn 0.4s ease 1.05s forwards;
+}
+
+@keyframes bootIn  { to { opacity: 1; } }
+@keyframes bootBar {
+    0%   { width: 0%;   }
+    28%  { width: 22%;  }
+    52%  { width: 52%;  }
+    72%  { width: 72%;  }
+    88%  { width: 86%;  }
+    100% { width: 100%; }
+}
+
+/* ── 10. RIGHT-CLICK CONTEXT MENU ────────────────────────────────────── */
+.vista-context-menu {
+    position: fixed;
+    z-index: 50000;
+    min-width: 186px;
+    background: rgba(28,28,28,0.95);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid rgba(255,255,255,0.11);
+    box-shadow:
+        0 8px 28px rgba(0,0,0,0.50),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+    padding: 3px 0;
+    display: none;
+}
+.vista-context-menu.show {
+    display: block;
+    animation: ctxIn 0.13s ease-out;
+}
+@keyframes ctxIn {
+    from { opacity:0; transform: scale(0.96) translateY(-5px); }
+    to   { opacity:1; transform: scale(1)    translateY(0);    }
+}
+
+.vista-ctx-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 14px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.88);
+    cursor: pointer;
+    transition: background 0.08s;
+    user-select: none;
+}
+.vista-ctx-item:hover {
+    background: rgba(0,120,215,0.78);
+    color: white;
+}
+.vista-ctx-item i {
+    width: 14px;
+    text-align: center;
+    font-size: 11px;
+    opacity: 0.75;
+    flex-shrink: 0;
+}
+.vista-ctx-sep {
+    height: 1px;
+    background: rgba(255,255,255,0.09);
+    margin: 3px 0;
+}
+
+/* ── 11. TOOLTIP ─────────────────────────────────────────────────────── */
+#vista-tooltip {
+    position: fixed;
+    z-index: 60000;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(170,210,245,0.80);
+    border-radius: 3px;
+    padding: 4px 9px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    color: #1a1a1a;
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.80);
+    pointer-events: none;
+    white-space: nowrap;
+    display: none;
+    transform: translateX(-50%);
+}
+#vista-tooltip.show { display: block; animation: tipIn 0.12s ease; }
+@keyframes tipIn { from { opacity:0; } to { opacity:1; } }
+
+/* ── 12. TASKBAR SEPARATOR GROOVE ───────────────────────────────────── */
+.vista-taskbar-sep {
+    width: 1px;
+    height: 28px;
+    flex-shrink: 0;
+    margin: 0 3px;
+    background: linear-gradient(to bottom,
+        transparent            0%,
+        rgba(255,255,255,0.18) 25%,
+        rgba(255,255,255,0.18) 75%,
+        transparent            100%
+    );
+    position: relative;
+}
+.vista-taskbar-sep::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 1px; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom,
+        transparent           0%,
+        rgba(0,0,0,0.12)      25%,
+        rgba(0,0,0,0.12)      75%,
+        transparent           100%
+    );
+}
+
+/* ── 13. PORTFOLIO VIDEO: Aero media-player chrome ───────────────────── */
+.aero-media-frame {
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    box-shadow:
+        0 5px 22px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.09),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.10);
+}
+.aero-media-frame::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to bottom,
+        rgba(255,255,255,0.14), transparent
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ── 14. CLOCK DATE ──────────────────────────────────────────────────── */
+#vista-time {
+    line-height: 1.35;
+    text-align: center;
+}
+#vista-time small {
+    font-size: 9px;
+    opacity: 0.72;
+    display: block;
+    font-weight: 400;
+}
+
+/* ── 15. WELCOME WINDOW: entrance animation ──────────────────────────── */
+#welcome-window {
+    animation: vistaWindowOpen 0.30s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* ── 16. EMAIL SHIELD — Vista desktop widget ─────────────────────────── */
+.email-shield {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: middle;
+}
+
+/* Reveal button — same purple as site buttons */
+.email-reveal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    background: linear-gradient(to bottom,
+        rgba(180,130,230,0.90) 0%,
+        rgba(160,110,210,0.85) 55%,
+        rgba(140,90,190,0.80)  55%,
+        rgba(120,70,170,0.90)  100%
+    );
+    border: 1px solid rgba(255,255,255,0.40);
+    border-radius: 4px;
+    color: rgba(255,255,255,0.97);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.32);
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.50);
+    transition: transform 0.12s ease, opacity 0.12s ease;
+    white-space: nowrap;
+}
+.email-reveal-btn:hover { transform: translateY(-1px); opacity: 0.90; }
+.email-reveal-btn i { font-size: 10px; opacity: 0.85; }
+
+/* Challenge row */
+.email-challenge {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(180,210,240,0.70);
+    border-radius: 6px;
+    padding: 4px 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #1a1a1a;
+    white-space: nowrap;
+}
+
+.challenge-text {
+    font-weight: 600;
+    letter-spacing: 0.1px;
+}
+
+.challenge-input {
+    width: 50px;
+    padding: 3px 6px;
+    border: 1px solid rgba(0,120,215,0.40);
+    border-radius: 3px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    background: white;
+    color: #1a1a1a;
+    outline: none;
+    /* Hide number spin arrows */
+    -moz-appearance: textfield;
+}
+.challenge-input::-webkit-outer-spin-button,
+.challenge-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.challenge-input:focus {
+    border-color: #0078D7;
+    box-shadow: 0 0 0 2px rgba(0,120,215,0.18);
+}
+
+/* Arrow submit button */
+.challenge-submit {
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(to bottom,
+        rgba(0,120,215,0.92), rgba(0,80,175,0.92)
+    );
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.30);
+    transition: opacity 0.12s ease;
+}
+.challenge-submit:hover { opacity: 0.86; }
+
+.challenge-error {
+    color: #c53030;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Revealed email */
+.email-revealed {
+    display: none;
+    align-items: center;
+    gap: 7px;
+}
+
+.email-link {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 13px;
+    color: #0078D7;
+    text-decoration: none;
+    font-weight: 300;
+}
+.email-link:hover { text-decoration: underline; }
+
+.email-copy {
+    width: 20px;
+    height: 20px;
+    background: rgba(0,120,215,0.10);
+    border: 1px solid rgba(0,120,215,0.28);
+    border-radius: 3px;
+    color: #0078D7;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.12s ease;
+    flex-shrink: 0;
+}
+.email-copy:hover { background: rgba(0,120,215,0.20); }
+
+/* ── Mobile iOS variant (inside .ios-row-detail) ────────────────────── */
+.email-shield-ios { display: flex; flex-direction: column; gap: 4px; }
+
+.ios-reveal-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #007AFF;
+    font-size: 13px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+}
+.ios-reveal-btn:active { opacity: 0.6; }

@@ -131,13 +131,18 @@ class VistaWindowManager {
             });
         });
 
-        // Start menu items - open windows
+        // Start menu items - open windows (internal .html pages only)
         document.querySelectorAll('.vista-glass-startitem[href]').forEach(item => {
             item.addEventListener('click', (e) => {
+                const href = item.getAttribute('href') || '';
+                if (!href.endsWith('.html')) {
+                    document.getElementById('vista-startmenu')?.classList.remove('show');
+                    return;
+                }
                 e.preventDefault();
-                const href = item.getAttribute('href');
                 const windowId = href.replace('.html', '-window');
                 this.openWindow(windowId);
+                document.getElementById('vista-startmenu')?.classList.remove('show');
             });
         });
 

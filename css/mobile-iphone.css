@@ -1,0 +1,967 @@
+/* ============================================================
+   iPHONE OS 3 ERA — IAN'S IPHONE
+   Authentic 2009 mobile experience on top of Frutiger Aero
+   Only active at ≤ 768px
+   ============================================================ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FORCE iPhone mode BEFORE the @media block so nothing leaks through
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Old mobile-ux.js creates these dynamically — nuke them globally */
+.mobile-home-screen, #mobile-home-screen,
+.mobile-tab-bar, .mobile-tab-content,
+.mobile-hero-card, .mobile-action-grid, .mobile-action-card,
+.mobile-bottom-sheet, .mobile-overlay, .mobile-social-icons,
+.mobile-hero-image, .mobile-nav, .mobile-bottom-sheet-overlay {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+
+/* ── NUCLEAR: kill every old mobile layer ────────────────────────────── */
+
+/* mobile-ux.js injected elements */
+.mobile-home-screen, #mobile-home-screen,
+.mobile-tab-bar, .mobile-tab-content,
+.mobile-hero-card, .mobile-action-grid, .mobile-action-card,
+.mobile-bottom-sheet, .mobile-overlay, .mobile-bottom-sheet-overlay {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* mobile-responsive.css forces windows to display:block — stop it */
+.vista-glass-window,
+.vista-glass-window[style] {
+    display: none !important;
+    visibility: hidden !important;
+    position: fixed !important;
+    z-index: -999 !important;
+}
+
+/* mobile-responsive.css sets taskbar z-index: 10000 — bury it */
+.vista-glass-taskbar {
+    display: none !important;
+    z-index: -999 !important;
+    visibility: hidden !important;
+}
+
+/* Stop mobile-responsive from breaking body overflow */
+body,
+body.vista-desktop-refined {
+    overflow: hidden !important;
+    height: 100svh !important;
+    min-height: unset !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    position: fixed !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* ── iPhone UI lives at the very top of the stacking context ─────────── */
+#iphone-ui {
+    z-index: 99999 !important;
+    position: fixed !important;
+    inset: 0 !important;
+}
+
+/* ── KILL VISTA DESKTOP ─────────────────────────────────────────────── */
+.vista-glass-taskbar,
+#vista-desktop-icons,
+#vista-startmenu,
+#vista-boot,
+#vista-context-menu,
+#vista-tooltip,
+.vista-glass-window {
+    display: none !important;
+}
+
+/* GIF stays — it IS the wallpaper */
+#frutiger-background { display: block !important; }
+.video-overlay { background: rgba(0,0,0,0.06) !important; }
+
+body {
+    overflow: hidden !important;
+    height: 100svh !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ── iPHONE SHELL ───────────────────────────────────────────────────── */
+#iphone-ui {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+}
+
+/* ── STATUS BAR — iPhone 4: solid opaque black ──────────────────────── */
+#iphone-sb {
+    height: 20px;
+    background: #000000;   /* pure black, not transparent */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    flex-shrink: 0;
+    z-index: 100000;
+    position: relative;
+}
+
+.isb-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+}
+
+.isb-signal {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5px;
+    height: 12px;
+}
+
+.sig-bar {
+    width: 3px;
+    background: white;
+    border-radius: 0.5px;
+}
+.sig-bar:nth-child(1) { height: 4px;  }
+.sig-bar:nth-child(2) { height: 6px;  }
+.sig-bar:nth-child(3) { height: 8px;  }
+.sig-bar:nth-child(4) { height: 10px; }
+.sig-bar:nth-child(5) { height: 12px; opacity: 0.32; }
+
+.isb-carrier {
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.2px;
+    margin-left: 3px;
+}
+
+#iphone-sb-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: -0.2px;
+}
+
+.isb-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.isb-wifi { color: white; font-size: 10px; }
+
+.isb-battery {
+    width: 20px;
+    height: 10px;
+    border: 1.5px solid rgba(255,255,255,0.72);
+    border-radius: 2px;
+    padding: 1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.isb-battery::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5px;
+    height: 5px;
+    background: rgba(255,255,255,0.72);
+    border-radius: 0 1px 1px 0;
+}
+
+.isb-battery-fill {
+    height: 100%;
+    width: 75%;
+    background: white;
+    border-radius: 0.5px;
+}
+
+/* ── LOCK SCREEN — iPhone 4 layout ──────────────────────────────────── */
+#iphone-lock {
+    position: absolute;
+    top: 20px; left: 0; right: 0; bottom: 0;
+    z-index: 9050;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px 0 36px;
+    /* iPhone 4 lock screen: subtle dark scrim over wallpaper */
+    background: rgba(0,0,0,0.18);
+    backdrop-filter: blur(12px) saturate(110%);
+    -webkit-backdrop-filter: blur(12px) saturate(110%);
+}
+
+.lock-clock-block { text-align: center; }
+
+.lock-time-display {
+    font-size: 76px;
+    font-weight: 100;
+    color: white;
+    line-height: 1;
+    letter-spacing: -3px;
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.55),
+        0 0 40px rgba(255,255,255,0.12);
+}
+
+.lock-date-display {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.90);
+    margin-top: 9px;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    letter-spacing: 0.1px;
+}
+
+/* Slide-to-unlock */
+.lock-slide-bar { width: 82%; max-width: 280px; }
+
+.lock-slide-track {
+    height: 44px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.38);
+    border-radius: 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        inset 0 -1px 0 rgba(0,0,0,0.15),
+        0 2px 10px rgba(0,0,0,0.32);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.lock-slide-knob {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 35% 30%, #fff 0%, #d4d4d4 100%);
+    border-radius: 50%;
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.40),
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(0,0,0,0.08);
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+    transition: transform 0.08s ease;
+}
+
+.lock-slide-text {
+    position: absolute;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    color: transparent;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,0.18)  0%,
+        rgba(255,255,255,0.92) 38%,
+        rgba(255,255,255,0.92) 52%,
+        rgba(255,255,255,0.18) 70%,
+        rgba(255,255,255,0.06) 100%
+    );
+    background-size: 280% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: lockShimmer 2.4s linear infinite;
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes lockShimmer {
+    0%   { background-position: 110% 0; }
+    100% { background-position: -50% 0; }
+}
+
+/* ── HOME SCREEN ────────────────────────────────────────────────────── */
+#iphone-hs {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    overflow: hidden;
+    display: none; /* shown after unlock */
+}
+
+#iphone-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    gap: 18px 16px;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.hs-page-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.hs-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.40);
+}
+.hs-dot.active { background: white; }
+
+/* ── APP ICON ───────────────────────────────────────────────────────── */
+.ios-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    width: 60px;
+}
+
+.ios-icon-shell {
+    width: 60px;
+    height: 60px;
+    border-radius: 13.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.42),
+        0 3px 12px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.36);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 29px;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    transition: transform 0.08s ease;
+    flex-shrink: 0;
+}
+
+/* ── iPhone 4 ICON GLOSS — the wet lozenge that defined the era ────── */
+/* Top specular: very bright white fading to nothing at the midline     */
+.ios-icon-shell::after {
+    content: '';
+    position: absolute;
+    top: 1px; left: 3px; right: 3px;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255,255,255,0.90) 0%,
+        rgba(255,255,255,0.62) 28%,
+        rgba(255,255,255,0.20) 65%,
+        rgba(255,255,255,0.00) 100%
+    );
+    /* The characteristic tall teardrop / lozenge arch shape */
+    border-radius: 11px 11px 80% 80%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Bottom inner glow — subtle warm reflection from below the icon */
+.ios-icon-shell::before {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 4px; right: 4px;
+    height: 28%;
+    background: linear-gradient(to top,
+        rgba(255,255,255,0.18) 0%,
+        rgba(255,255,255,0.00) 100%
+    );
+    border-radius: 0 0 11px 11px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.ios-icon-shell > i { position: relative; z-index: 1; }
+
+.ios-icon:active .ios-icon-shell { transform: scale(0.87); }
+
+.ios-icon-label {
+    font-size: 10px;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    text-shadow:
+        0 1px 3px rgba(0,0,0,0.95),
+        0 0 10px rgba(0,0,0,0.65);
+    max-width: 68px;
+    line-height: 1.2;
+}
+
+/* ── DOCK ───────────────────────────────────────────────────────────── */
+#iphone-dock {
+    width: calc(100% - 14px);
+    max-width: 344px;
+    margin: auto auto 10px;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.20);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.34);
+    border-radius: 20px;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.48),
+        inset 0 -1px 0 rgba(0,0,0,0.09),
+        0 4px 22px rgba(0,0,0,0.28);
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.ios-dock-icon {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.ios-dock-icon .ios-icon-shell {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    font-size: 26px;
+}
+
+.ios-dock-icon:active .ios-icon-shell { transform: scale(0.87); }
+
+/* ── APP PANELS ─────────────────────────────────────────────────────── */
+.iphone-panel {
+    position: fixed;
+    top: 20px; left: 0; right: 0; bottom: 0;
+    z-index: 9200;
+    display: none;
+    flex-direction: column;
+    background: #EFEFF4;
+    transform: translateX(105%);
+    transition: transform 0.34s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    overflow: hidden;
+}
+
+.iphone-panel.panel-active {
+    display: flex;
+}
+
+.iphone-panel.panel-visible {
+    transform: translateX(0);
+}
+
+/* ── iOS NAVIGATION BAR — 2009 authentic two-tone blue ──────────────── */
+.ios-navbar {
+    height: 44px;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom,
+        #6294D0 0%,
+        #4278BA 49%,
+        #3B6FB4 50%,
+        #2F62AB 100%
+    );
+    border-bottom: 1px solid #1F4B8D;
+    box-shadow:
+        0 1px 4px rgba(0,0,0,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.ios-navbar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.38);
+    letter-spacing: -0.4px;
+}
+
+/* Back button — chamfered left-pointing arrow shape */
+.ios-back-btn {
+    position: absolute;
+    left: 5px;
+    height: 30px;
+    padding: 0 10px 0 18px;
+    background: linear-gradient(to bottom,
+        #5C89C8 0%,
+        #4072B8 49%,
+        #3869B0 50%,
+        #2C61A8 100%
+    );
+    border: 1px solid rgba(0,0,0,0.38);
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.32),
+        0 1px 3px rgba(0,0,0,0.32);
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.32);
+    clip-path: polygon(13px 0%, 100% 0%, 100% 100%, 13px 100%, 0% 50%);
+    white-space: nowrap;
+}
+
+.ios-back-btn:active { opacity: 0.72; }
+.ios-back-btn i { font-size: 10px; }
+
+/* ── SCROLLABLE APP CONTENT ─────────────────────────────────────────── */
+.ios-app-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding-bottom: 28px;
+}
+
+/* ── SECTION HEADER (grouped table) ────────────────────────────────── */
+.ios-section-header {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6D6D72;
+    text-transform: uppercase;
+    letter-spacing: 0.55px;
+    padding: 20px 16px 7px;
+    user-select: none;
+}
+
+/* ── TABLE VIEW ─────────────────────────────────────────────────────── */
+.ios-table {
+    background: white;
+    border-top: 0.5px solid #C8C7CC;
+    border-bottom: 0.5px solid #C8C7CC;
+    overflow: hidden;
+}
+
+.ios-row {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 9px 16px;
+    gap: 12px;
+    border-bottom: 0.5px solid rgba(198,198,200,0.9);
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
+}
+
+.ios-row:last-child { border-bottom: none; }
+
+.ios-row-icon {
+    width: 29px;
+    height: 29px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: white;
+    flex-shrink: 0;
+}
+.ios-ri-blue   { background: #007AFF; }
+.ios-ri-red    { background: #FF3B30; }
+.ios-ri-green  { background: #34C759; }
+.ios-ri-orange { background: #FF9500; }
+.ios-ri-teal   { background: #5AC8FA; }
+.ios-ri-purple { background: #AF52DE; }
+.ios-ri-yellow { background: #FFCC00; color: #000; }
+.ios-ri-pink   { background: #FF2D55; }
+
+.ios-row-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.ios-row-label {
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ios-row-detail {
+    font-size: 12px;
+    color: #8E8E93;
+    letter-spacing: -0.1px;
+}
+
+.ios-row-arrow { color: #C7C7CC; font-size: 11px; flex-shrink: 0; }
+
+a.ios-row { cursor: pointer; -webkit-tap-highlight-color: rgba(0,0,0,0.08); }
+a.ios-row:active { background: #E8E8ED; }
+
+/* ── CONTENT CARD ───────────────────────────────────────────────────── */
+.ios-content-card {
+    background: white;
+    border-top: 0.5px solid #C8C7CC;
+    border-bottom: 0.5px solid #C8C7CC;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.58;
+    color: #1C1C1E;
+}
+
+.ios-content-card p + p { margin-top: 9px; }
+
+/* ── PROFILE HEADER ─────────────────────────────────────────────────── */
+.ios-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 16px;
+    background: white;
+    border-top: 0.5px solid #C8C7CC;
+    border-bottom: 0.5px solid #C8C7CC;
+    margin-top: 14px;
+}
+
+.ios-profile-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    object-fit: cover;
+    box-shadow:
+        0 0 0 2px rgba(0,0,0,0.07),
+        0 2px 10px rgba(0,0,0,0.22);
+    flex-shrink: 0;
+}
+
+.ios-profile-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+.ios-profile-sub {
+    font-size: 13px;
+    color: #8E8E93;
+    margin-top: 3px;
+}
+
+/* ── PROJECT CARD ───────────────────────────────────────────────────── */
+.ios-project-card {
+    background: white;
+    border-top: 0.5px solid #C8C7CC;
+    border-bottom: 0.5px solid #C8C7CC;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+.ios-project-header {
+    padding: 14px 16px 9px;
+    border-bottom: 0.5px solid #F0F0F0;
+}
+
+.ios-project-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: -0.3px;
+}
+
+.ios-project-role {
+    font-size: 12px;
+    color: #8E8E93;
+    margin-top: 2px;
+}
+
+.ios-project-desc {
+    padding: 10px 16px 12px;
+    font-size: 13px;
+    color: #3C3C43;
+    line-height: 1.52;
+    border-bottom: 0.5px solid #F0F0F0;
+}
+
+.ios-project-tags {
+    padding: 8px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-bottom: 0.5px solid #F0F0F0;
+}
+
+.ios-tag {
+    background: #EEF2FF;
+    color: #4F46E5;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+a.ios-project-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    color: #007AFF;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}
+a.ios-project-link:active { background: #F0F0F5; }
+
+/* ── SKILL BARS (mobile context) ─────────────────────────────────────  */
+#app-panel-skills .ios-app-scroll {
+    padding-bottom: 30px;
+}
+
+#app-panel-skills .aero-skill-section-title {
+    padding: 16px 16px 7px;
+    background: #EFEFF4;
+    font-size: 11px;
+    font-weight: 700;
+    color: #6D6D72;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0;
+    border: none;
+    display: block;
+}
+
+#app-panel-skills .aero-skill-item {
+    background: white;
+    padding: 10px 16px;
+    border-bottom: 0.5px solid rgba(198,198,200,0.8);
+    margin: 0;
+}
+
+#app-panel-skills .aero-skill-label { font-size: 14px; }
+#app-panel-skills .aero-skill-track { margin-top: 5px; }
+
+/* ── CONTACT FORM ───────────────────────────────────────────────────── */
+.ios-form-group {
+    background: white;
+    border-top: 0.5px solid #C8C7CC;
+    border-bottom: 0.5px solid #C8C7CC;
+}
+
+.ios-form-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 11px 16px;
+    border-bottom: 0.5px solid rgba(198,198,200,0.8);
+    gap: 10px;
+}
+.ios-form-row:last-child { border-bottom: none; }
+
+.ios-form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    width: 70px;
+    flex-shrink: 0;
+    padding-top: 1px;
+}
+
+.ios-form-input,
+.ios-form-textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000;
+    background: transparent;
+    resize: none;
+    min-height: 20px;
+}
+.ios-form-textarea { min-height: 90px; }
+.ios-form-input::placeholder,
+.ios-form-textarea::placeholder { color: #C7C7CC; }
+
+.ios-action-btn {
+    display: block;
+    margin: 18px 16px 0;
+    padding: 14px;
+    background: linear-gradient(to bottom, #4CA3FF, #0070E0);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,112,224,0.4);
+    letter-spacing: -0.3px;
+    -webkit-tap-highlight-color: transparent;
+}
+.ios-action-btn:active { opacity: 0.72; }
+
+/* ── PHOTOS GRID ────────────────────────────────────────────────────── */
+.ios-photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+}
+
+.ios-photo-cell {
+    aspect-ratio: 1;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.ios-photo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.12s ease;
+}
+.ios-photo-cell:active img { transform: scale(0.96); }
+
+/* ── TESTIMONIAL CARD ───────────────────────────────────────────────── */
+.ios-testimonial {
+    background: white;
+    border-top: 0.5px solid #C8C7CC;
+    border-bottom: 0.5px solid #C8C7CC;
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+.ios-testimonial-quote {
+    font-size: 14px;
+    line-height: 1.57;
+    color: #1C1C1E;
+    font-style: italic;
+    margin-bottom: 14px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.ios-testimonial-quote::before {
+    content: '\201C';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    font-size: 24px;
+    font-style: normal;
+    color: #C7C7CC;
+    line-height: 1;
+}
+
+.ios-testimonial-author { display: flex; align-items: center; gap: 10px; }
+
+.ios-testimonial-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+
+.ios-testimonial-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+}
+.ios-testimonial-role { font-size: 11px; color: #8E8E93; margin-top: 1px; }
+
+/* ── BEAT THE CLOCK HERO ────────────────────────────────────────────── */
+.ios-hero-card {
+    margin: 16px;
+    border-radius: 16px;
+    padding: 28px 24px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ios-hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255,255,255,0.18) 0%,
+        rgba(255,255,255,0.00) 100%
+    );
+    border-radius: 16px 16px 0 0;
+    pointer-events: none;
+}
+
+.ios-hero-card i {
+    font-size: 44px;
+    margin-bottom: 12px;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+    position: relative;
+}
+
+.ios-hero-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    margin-bottom: 7px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.28);
+}
+
+.ios-hero-sub {
+    font-size: 14px;
+    line-height: 1.45;
+    opacity: 0.88;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* ── CV TIMELINE ────────────────────────────────────────────────────── */
+.ios-cv-date {
+    font-size: 11px;
+    color: #8E8E93;
+    margin-top: 2px;
+}
+
+} /* end @media (max-width: 768px) */
