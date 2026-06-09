@@ -200,20 +200,260 @@ body {
     border-radius: 0.5px;
 }
 
-/* ── LOCK SCREEN — iPhone 4 layout ──────────────────────────────────── */
+/* ── LOCK SCREEN — Frutiger Aero boot + slide to unlock ─────────────── */
 #iphone-lock {
     position: absolute;
     top: 20px; left: 0; right: 0; bottom: 0;
     z-index: 9050;
+    overflow: hidden;
+    isolation: isolate;
+    background: #001028;
+}
+
+.lock-atmosphere {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.lock-sky {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 90% 60% at 50% 105%, rgba(60, 220, 90, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 70% 45% at 15% 25%, rgba(255, 120, 220, 0.26) 0%, transparent 55%),
+        radial-gradient(ellipse 65% 42% at 85% 30%, rgba(80, 200, 255, 0.3) 0%, transparent 50%),
+        linear-gradient(180deg, #0066cc 0%, #003878 42%, #001850 72%, #000818 100%);
+}
+
+.lock-sun {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    width: 88px;
+    height: 88px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 32%, #fffef0 0%, #ffe680 28%, #ffb040 58%, rgba(255, 120, 40, 0) 72%);
+    box-shadow:
+        0 0 40px rgba(255, 200, 80, 0.55),
+        0 0 80px rgba(255, 160, 40, 0.35);
+    animation: lockSunPulse 4s ease-in-out infinite;
+    opacity: 0.92;
+}
+
+.lock-aurora {
+    position: absolute;
+    inset: -15%;
+    filter: blur(40px);
+    mix-blend-mode: screen;
+}
+
+.lock-aurora-a {
+    opacity: 0.7;
+    background:
+        radial-gradient(ellipse 50% 38% at 22% 62%, rgba(0, 255, 200, 0.5), transparent 68%),
+        radial-gradient(ellipse 42% 32% at 78% 28%, rgba(100, 180, 255, 0.55), transparent 62%);
+    animation: lockAuroraDrift 7s ease-in-out infinite alternate;
+}
+
+.lock-aurora-b {
+    opacity: 0.62;
+    background:
+        radial-gradient(ellipse 48% 40% at 58% 72%, rgba(200, 100, 255, 0.45), transparent 68%),
+        radial-gradient(ellipse 38% 28% at 32% 22%, rgba(0, 220, 255, 0.4), transparent 62%);
+    animation: lockAuroraDrift 9s ease-in-out 1s infinite alternate-reverse;
+}
+
+.lock-aurora-c {
+    opacity: 0.5;
+    background:
+        radial-gradient(ellipse 45% 35% at 70% 45%, rgba(255, 220, 80, 0.38), transparent 65%),
+        radial-gradient(ellipse 40% 30% at 15% 75%, rgba(80, 255, 120, 0.4), transparent 60%);
+    animation: lockAuroraDrift 11s ease-in-out 0.5s infinite alternate;
+}
+
+.lock-color-wash {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        125deg,
+        rgba(255, 0, 128, 0.1) 0%,
+        rgba(0, 200, 255, 0.12) 25%,
+        rgba(120, 255, 80, 0.1) 50%,
+        rgba(180, 80, 255, 0.12) 75%,
+        rgba(255, 180, 0, 0.08) 100%
+    );
+    background-size: 300% 300%;
+    animation: lockColorWash 9s ease-in-out infinite;
+    mix-blend-mode: screen;
+}
+
+.lock-rays {
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(from 195deg at 50% -5%,
+        transparent 0deg,
+        rgba(255, 255, 200, 0.08) 18deg,
+        transparent 38deg,
+        rgba(120, 220, 255, 0.1) 62deg,
+        transparent 88deg,
+        rgba(200, 140, 255, 0.07) 110deg,
+        transparent 140deg
+    );
+    animation: lockRaysSpin 16s linear infinite;
+}
+
+.lock-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.lock-bubble {
+    position: absolute;
+    bottom: -10%;
+    left: var(--x);
+    width: var(--s);
+    height: var(--s);
+    border-radius: 50%;
+    opacity: 0.72;
+    animation: lockBubbleRise 4.5s ease-in-out var(--d) infinite;
+}
+
+.lock-bubble-cyan {
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(0, 220, 255, 0.55) 45%, rgba(0, 160, 220, 0.15) 100%);
+    box-shadow: inset 0 -2px 6px rgba(0, 120, 180, 0.3), 0 0 12px rgba(0, 200, 255, 0.35);
+}
+
+.lock-bubble-lime {
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.92) 0%, rgba(140, 255, 80, 0.5) 45%, rgba(80, 200, 40, 0.12) 100%);
+    box-shadow: inset 0 -2px 6px rgba(40, 140, 20, 0.25), 0 0 12px rgba(120, 255, 60, 0.3);
+}
+
+.lock-bubble-magenta {
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.92) 0%, rgba(255, 100, 220, 0.5) 45%, rgba(180, 40, 160, 0.12) 100%);
+    box-shadow: inset 0 -2px 6px rgba(120, 20, 100, 0.25), 0 0 12px rgba(255, 80, 200, 0.32);
+}
+
+.lock-bubble-gold {
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255, 220, 80, 0.55) 45%, rgba(220, 160, 20, 0.12) 100%);
+    box-shadow: inset 0 -2px 6px rgba(160, 100, 0, 0.25), 0 0 12px rgba(255, 200, 60, 0.35);
+}
+
+.lock-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.lock-particle {
+    position: absolute;
+    left: var(--px);
+    top: var(--py);
+    width: var(--ps);
+    height: var(--ps);
+    border-radius: 50%;
+    background: hsla(var(--ph), 90%, 68%, 0.85);
+    box-shadow: 0 0 calc(var(--ps) * 2) hsla(var(--ph), 90%, 60%, 0.55);
+    animation: lockParticleFloat var(--pt) ease-in-out var(--pd) infinite alternate;
+}
+
+.lock-lens-flare {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.lock-lens-flare-a {
+    top: 12%;
+    right: 8%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(255, 220, 120, 0.45) 0%, transparent 70%);
+    animation: lockFlarePulse 3s ease-in-out infinite;
+}
+
+.lock-lens-flare-b {
+    bottom: 28%;
+    left: 6%;
+    width: 48px;
+    height: 48px;
+    background: radial-gradient(circle, rgba(120, 220, 255, 0.4) 0%, transparent 70%);
+    animation: lockFlarePulse 4s ease-in-out 1.2s infinite reverse;
+}
+
+.lock-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 85% 75% at 50% 45%, transparent 40%, rgba(0, 8, 24, 0.55) 100%);
+}
+
+.lock-ui {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 48px 0 36px;
-    /* iPhone 4 lock screen: subtle dark scrim over wallpaper */
-    background: rgba(0,0,0,0.18);
-    backdrop-filter: blur(12px) saturate(110%);
-    -webkit-backdrop-filter: blur(12px) saturate(110%);
+    height: 100%;
+    padding: 28px 0 36px;
+    box-sizing: border-box;
+}
+
+.lock-orb-wrap {
+    flex-shrink: 0;
+    margin-top: 8px;
+}
+
+.lock-orb {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.lock-orb-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #00e5ff, #80ff60, #ff60d0, #ffd060, #00e5ff);
+    animation: lockRingSpin 3.5s linear infinite;
+    opacity: 0.85;
+    filter: blur(0.5px);
+}
+
+.lock-orb-halo {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 220, 255, 0.35) 0%, transparent 70%);
+    animation: lockOrbPulse 2.5s ease-in-out infinite;
+}
+
+.lock-orb-glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 40%, rgba(0,180,255,0.25) 100%);
+    border: 1px solid rgba(255,255,255,0.45);
+    box-shadow:
+        inset 0 2px 8px rgba(255,255,255,0.5),
+        0 4px 20px rgba(0, 160, 255, 0.35);
+    animation: lockOrbFloat 3s ease-in-out infinite;
+}
+
+.lock-orb-mark {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 1px 4px rgba(0, 80, 160, 0.5);
 }
 
 .lock-clock-block { text-align: center; }
@@ -221,41 +461,105 @@ body {
 .lock-time-display {
     font-size: 76px;
     font-weight: 100;
-    color: white;
     line-height: 1;
     letter-spacing: -3px;
-    text-shadow:
-        0 2px 10px rgba(0,0,0,0.55),
-        0 0 40px rgba(255,255,255,0.12);
+    background: linear-gradient(180deg, #ffffff 0%, #e8f4ff 45%, #b8e8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.55)) drop-shadow(0 0 24px rgba(120, 220, 255, 0.25));
+    animation: lockTimeGlow 4s ease-in-out infinite;
 }
 
 .lock-date-display {
     font-size: 18px;
     font-weight: 300;
-    color: rgba(255,255,255,0.90);
+    color: rgba(255,255,255,0.92);
     margin-top: 9px;
-    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5), 0 0 16px rgba(180, 220, 255, 0.2);
     letter-spacing: 0.1px;
 }
 
+.lock-boot-bar {
+    width: 62%;
+    max-width: 220px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.12);
+    overflow: hidden;
+    position: relative;
+    margin-top: -8px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.lock-boot-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #00e5ff, #80ff60, #ff60d0, #ffd060, #00e5ff);
+    background-size: 200% 100%;
+    animation:
+        lockBootBarFill 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards,
+        lockBootBarHue 2s linear 0.4s infinite;
+}
+
+.lock-boot-bar-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: lockBarShimmer 1.2s ease-in-out 0.6s infinite;
+}
+
+.lock-status {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    color: hsla(200, 85%, 72%, 0.95);
+    text-shadow: 0 0 12px hsla(200, 90%, 60%, 0.45);
+    text-align: center;
+    min-height: 16px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    transition: opacity 0.15s ease;
+}
+
 /* Slide-to-unlock */
-.lock-slide-bar { width: 82%; max-width: 280px; }
+.lock-slide-bar { width: 82%; max-width: 280px; flex-shrink: 0; }
 
 .lock-slide-track {
     height: 44px;
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.38);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.35);
     border-radius: 22px;
     position: relative;
     overflow: hidden;
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.22),
         inset 0 -1px 0 rgba(0,0,0,0.15),
-        0 2px 10px rgba(0,0,0,0.32);
+        0 2px 10px rgba(0,0,0,0.32),
+        0 0 20px rgba(0, 200, 255, 0.12);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     display: flex;
     align-items: center;
+}
+
+.lock-slide-track::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 23px;
+    padding: 1px;
+    background: linear-gradient(90deg, rgba(0,229,255,0.5), rgba(128,255,96,0.4), rgba(255,96,208,0.45), rgba(255,208,96,0.4));
+    background-size: 200% 100%;
+    animation: lockTrackBorder 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.75;
 }
 
 .lock-slide-knob {
@@ -307,6 +611,99 @@ body {
 @keyframes lockShimmer {
     0%   { background-position: 110% 0; }
     100% { background-position: -50% 0; }
+}
+
+@keyframes lockSunPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.92; }
+    50%      { transform: translateX(-50%) scale(1.06); opacity: 1; }
+}
+
+@keyframes lockAuroraDrift {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(4%, -3%) scale(1.05); }
+}
+
+@keyframes lockColorWash {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+@keyframes lockRaysSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes lockBubbleRise {
+    0%   { transform: translateY(0) scale(1); opacity: 0; }
+    12%  { opacity: 0.72; }
+    88%  { opacity: 0.55; }
+    100% { transform: translateY(-115vh) scale(1.15); opacity: 0; }
+}
+
+@keyframes lockParticleFloat {
+    0%   { transform: translate(0, 0); opacity: 0.4; }
+    100% { transform: translate(calc(var(--ps) * 3), calc(var(--ps) * -4)); opacity: 0.95; }
+}
+
+@keyframes lockFlarePulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%      { opacity: 0.9; transform: scale(1.15); }
+}
+
+@keyframes lockRingSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes lockOrbPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes lockOrbFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+
+@keyframes lockTimeGlow {
+    0%, 100% { filter: drop-shadow(0 2px 10px rgba(0,0,0,0.55)) drop-shadow(0 0 20px rgba(120, 220, 255, 0.2)); }
+    50%      { filter: drop-shadow(0 2px 10px rgba(0,0,0,0.55)) drop-shadow(0 0 32px rgba(180, 120, 255, 0.35)); }
+}
+
+@keyframes lockBootBarFill {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+@keyframes lockBootBarHue {
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
+}
+
+@keyframes lockBarShimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+@keyframes lockTrackBorder {
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
+}
+
+#iphone-lock.lock-unlocking .lock-atmosphere {
+    animation: lockUnlockBloom 0.5s ease forwards;
+}
+
+#iphone-lock.lock-unlocking .lock-ui {
+    animation: lockUnlockFade 0.38s ease forwards;
+}
+
+@keyframes lockUnlockBloom {
+    to { opacity: 0; transform: scale(1.08); filter: brightness(1.4); }
+}
+
+@keyframes lockUnlockFade {
+    to { opacity: 0; transform: translateY(-12px) scale(1.02); }
 }
 
 /* ── HOME SCREEN ────────────────────────────────────────────────────── */

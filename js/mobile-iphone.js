@@ -112,6 +112,56 @@
     tick();
     setInterval(tick, 30000);
 
+    // ── 2b. LOCK SCREEN BOOT FX ─────────────────────────────────────
+    function initLockBoot() {
+        const particlesEl = document.getElementById('lock-particles');
+        const statusEl    = document.getElementById('lock-status');
+        const lock        = document.getElementById('iphone-lock');
+        if (!lock) return;
+
+        if (particlesEl) {
+            const hues = [185, 210, 95, 280, 45, 160, 320];
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('span');
+                p.className = 'lock-particle';
+                p.style.setProperty('--px', (Math.random() * 100).toFixed(1) + '%');
+                p.style.setProperty('--py', (Math.random() * 100).toFixed(1) + '%');
+                p.style.setProperty('--ph', hues[i % hues.length]);
+                p.style.setProperty('--pd', (Math.random() * 3).toFixed(2) + 's');
+                p.style.setProperty('--ps', (1.5 + Math.random() * 3).toFixed(1) + 'px');
+                p.style.setProperty('--pt', (2.5 + Math.random() * 4).toFixed(1) + 's');
+                particlesEl.appendChild(p);
+            }
+        }
+
+        if (statusEl) {
+            const lines = [
+                { text: 'Preparing your atmosphere…', hue: 200 },
+                { text: 'Loading Frutiger light fields…', hue: 165 },
+                { text: 'Composing glass surfaces…', hue: 280 },
+                { text: 'Floating the bubbles…', hue: 95 },
+                { text: 'Warming up the colors…', hue: 45 },
+                { text: 'Slide to unlock', hue: 180 }
+            ];
+            let idx = 0;
+            const cycle = () => {
+                if (lock.dataset.unlocked) return;
+                const line = lines[idx % lines.length];
+                statusEl.style.opacity = '0';
+                setTimeout(() => {
+                    if (lock.dataset.unlocked) return;
+                    statusEl.textContent = line.text;
+                    statusEl.style.color = `hsla(${line.hue}, 85%, 72%, 0.95)`;
+                    statusEl.style.textShadow = `0 0 12px hsla(${line.hue}, 90%, 60%, 0.45)`;
+                    statusEl.style.opacity = '1';
+                }, 120);
+                idx++;
+            };
+            cycle();
+            setInterval(cycle, 900);
+        }
+    }
+
     // ── 3. LOCK SCREEN UNLOCK ────────────────────────────────────────
     function initLock() {
         const lock  = document.getElementById('iphone-lock');
@@ -130,6 +180,8 @@
         }
 
         function doUnlock() {
+            lock.dataset.unlocked = '1';
+            lock.classList.add('lock-unlocking');
             knob.style.transition = 'margin-left 0.14s ease';
             knob.style.marginLeft = maxOffset() + 'px';
             setTimeout(() => {
@@ -247,6 +299,7 @@
     // ── INIT ─────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
         destroyOldUI(); // one more pass after DOM is fully ready
+        initLockBoot();
         initLock();
         wireInteractions();
         wireSwipeBack();

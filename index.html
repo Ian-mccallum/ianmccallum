@@ -1877,18 +1877,58 @@
             </div>
         </div>
 
-        <!-- Lock Screen -->
+        <!-- Lock Screen — Frutiger Aero boot ritual + slide to unlock -->
         <div id="iphone-lock">
-            <div class="lock-clock-block">
-                <div class="lock-time-display" id="lock-time">9:41 AM</div>
-                <div class="lock-date-display" id="lock-date">Sunday, June 8</div>
-            </div>
-            <div class="lock-slide-bar">
-                <div class="lock-slide-track">
-                    <div class="lock-slide-knob" id="lock-slide-knob">
-                        <i class="fas fa-chevron-right"></i>
+            <div class="lock-atmosphere" aria-hidden="true">
+                <div class="lock-sky">
+                    <div class="lock-sun"></div>
+                    <div class="lock-aurora lock-aurora-a"></div>
+                    <div class="lock-aurora lock-aurora-b"></div>
+                    <div class="lock-aurora lock-aurora-c"></div>
+                    <div class="lock-color-wash"></div>
+                    <div class="lock-rays"></div>
+                    <div class="lock-bubbles">
+                        <span class="lock-bubble lock-bubble-cyan" style="--x:8%;--s:18px;--d:0s"></span>
+                        <span class="lock-bubble lock-bubble-lime" style="--x:22%;--s:12px;--d:0.7s"></span>
+                        <span class="lock-bubble lock-bubble-magenta" style="--x:38%;--s:22px;--d:1.2s"></span>
+                        <span class="lock-bubble lock-bubble-gold" style="--x:55%;--s:16px;--d:0.3s"></span>
+                        <span class="lock-bubble lock-bubble-cyan" style="--x:72%;--s:24px;--d:1.8s"></span>
+                        <span class="lock-bubble lock-bubble-lime" style="--x:88%;--s:14px;--d:0.5s"></span>
                     </div>
-                    <span class="lock-slide-text">slide to unlock</span>
+                    <div class="lock-particles" id="lock-particles"></div>
+                </div>
+                <div class="lock-lens-flare lock-lens-flare-a"></div>
+                <div class="lock-lens-flare lock-lens-flare-b"></div>
+                <div class="lock-vignette"></div>
+            </div>
+
+            <div class="lock-ui">
+                <div class="lock-orb-wrap">
+                    <div class="lock-orb">
+                        <div class="lock-orb-ring"></div>
+                        <div class="lock-orb-halo"></div>
+                        <div class="lock-orb-glass"><span class="lock-orb-mark">IM</span></div>
+                    </div>
+                </div>
+
+                <div class="lock-clock-block">
+                    <div class="lock-time-display" id="lock-time">9:41 AM</div>
+                    <div class="lock-date-display" id="lock-date">Sunday, June 8</div>
+                </div>
+
+                <div class="lock-boot-bar">
+                    <div class="lock-boot-bar-fill"></div>
+                    <div class="lock-boot-bar-shimmer"></div>
+                </div>
+                <div class="lock-status" id="lock-status">Preparing your atmosphere…</div>
+
+                <div class="lock-slide-bar">
+                    <div class="lock-slide-track">
+                        <div class="lock-slide-knob" id="lock-slide-knob">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <span class="lock-slide-text">slide to unlock</span>
+                    </div>
                 </div>
             </div>
         </div>
