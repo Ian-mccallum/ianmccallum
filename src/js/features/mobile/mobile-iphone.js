@@ -36,7 +36,10 @@
         '.mobile-hero-card',   '.mobile-action-grid',
         '.mobile-action-card', '.mobile-bottom-sheet',
         '.mobile-overlay',     '.mobile-bottom-sheet-overlay',
-        '.mobile-nav',
+        '.mobile-nav',         '.mobile-content-section',
+        '#mobile-content-about', '#mobile-content-portfolio',
+        '#mobile-content-cv', '#mobile-content-contact',
+        '#mobile-content-testimonials', '#mobile-content-photos',
     ];
 
     function destroyOldUI() {
@@ -49,7 +52,9 @@
         document.querySelectorAll(
             '.vista-glass-taskbar, .vista-glass-window, ' +
             '#vista-desktop-icons, #vista-startmenu, ' +
-            '#vista-boot, #vista-context-menu, #vista-tooltip'
+            '#vista-boot, #vista-context-menu, #vista-tooltip, ' +
+            '#welcome-window, #contact-window, ' +
+            '.mobile-content-section, [id^="mobile-content-"]'
         ).forEach(el => {
             el.style.cssText += ';display:none!important;visibility:hidden!important;z-index:-9999!important;';
         });
@@ -299,6 +304,10 @@
     // ── INIT ─────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
         destroyOldUI(); // one more pass after DOM is fully ready
+        document.querySelectorAll('.iphone-panel').forEach(panel => {
+            panel.classList.remove('panel-active', 'panel-visible');
+            panel.style.display = 'none';
+        });
         initLockBoot();
         initLock();
         wireInteractions();

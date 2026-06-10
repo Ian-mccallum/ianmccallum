@@ -13,28 +13,36 @@
 .mobile-tab-bar, .mobile-tab-content,
 .mobile-hero-card, .mobile-action-grid, .mobile-action-card,
 .mobile-bottom-sheet, .mobile-overlay, .mobile-social-icons,
-.mobile-hero-image, .mobile-nav, .mobile-bottom-sheet-overlay {
+.mobile-hero-image, .mobile-nav, .mobile-bottom-sheet-overlay,
+.mobile-content-section, [id^="mobile-content-"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
     height: 0 !important;
+    max-height: 0 !important;
     overflow: hidden !important;
+    clip-path: inset(100%) !important;
 }
 
 @media (max-width: 768px) {
 
 /* ── NUCLEAR: kill every old mobile layer ────────────────────────────── */
 
-/* mobile-ux.js injected elements */
+/* mobile-ux.js injected elements + ghost contact sections */
 .mobile-home-screen, #mobile-home-screen,
 .mobile-tab-bar, .mobile-tab-content,
 .mobile-hero-card, .mobile-action-grid, .mobile-action-card,
-.mobile-bottom-sheet, .mobile-overlay, .mobile-bottom-sheet-overlay {
+.mobile-bottom-sheet, .mobile-overlay, .mobile-bottom-sheet-overlay,
+.mobile-content-section, [id^="mobile-content-"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    clip-path: inset(100%) !important;
 }
 
 /* mobile-responsive.css forces windows to display:block — stop it */
@@ -74,15 +82,28 @@ body.vista-desktop-refined {
     inset: 0 !important;
 }
 
-/* ── KILL VISTA DESKTOP ─────────────────────────────────────────────── */
+/* ── KILL VISTA DESKTOP (incl. contact window leaking on mobile) ─────── */
 .vista-glass-taskbar,
 #vista-desktop-icons,
 #vista-startmenu,
 #vista-boot,
 #vista-context-menu,
 #vista-tooltip,
-.vista-glass-window {
+.vista-glass-window,
+#welcome-window,
+#contact-window {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: fixed !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    clip-path: inset(100%) !important;
 }
 
 /* GIF stays — it IS the wallpaper */
@@ -877,6 +898,13 @@ body {
 
 .iphone-panel.panel-visible {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.iphone-panel:not(.panel-visible) {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* ── iOS NAVIGATION BAR — 2009 authentic two-tone blue ──────────────── */
