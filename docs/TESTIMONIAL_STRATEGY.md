@@ -28,10 +28,12 @@ testimonial. Written for Ian, one operator to another.
 - The standalone `testimonials.html` page only had **one** of the two testimonials —
   Nicolas's was missing entirely, even though it's on the homepage. Added it for
   parity.
-- Added a low-key "Worked With Ian? Share Your Experience" CTA at the bottom of
-  `testimonials.html`, linking to `contact.html` — previously there was no path on
-  the site for a past collaborator to *give* a testimonial, only a page for
-  displaying the two that already existed.
+
+**Note on collection:** an earlier pass added a self-service "Share Your Experience"
+CTA to `testimonials.html`. Removed at Ian's direction — he wants to reach out to
+past clients and collaborators himself rather than route it through an on-site
+form. The email formula and templates in §4–§5 are written for that direct-outreach
+approach.
 
 **What this means:** the display layer (cards, glass/blur styling, hover states) is
 genuinely well-designed — the bottleneck isn't presentation, it's supply. Two
@@ -113,8 +115,10 @@ these replies. It's a small thing now; it matters more the more public Ian's bra
 gets.
 
 ### 3.7 On-site follow-through
-- Give `testimonials.html` a real capture path (done — CTA added; point it at a
-  short form or a mailto once Ian decides which)
+- Keep collection off-site and personal: Ian reaches out directly with the
+  templates in §5 rather than routing it through a form on `testimonials.html`.
+  Matches the "specific reminder, not a mail-merge" principle in §4 — a form
+  invites generic answers, a direct email gets specific ones.
 - As volume grows, group testimonials by service line (Web Development / Automation
   / Leadership & Collaboration) so each type of visitor sees relevant proof
   fast
