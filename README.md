@@ -136,6 +136,7 @@ Comprehensive documentation is available in the `docs/` directory:
 - **[GOOGLE_SEARCH_CONSOLE_GUIDE.md](./docs/GOOGLE_SEARCH_CONSOLE_GUIDE.md)** - Google Search Console setup guide
 
 ### Additional Documentation
+- **[TESTIMONIAL_STRATEGY.md](./docs/TESTIMONIAL_STRATEGY.md)** - Testimonial audit, collection plan, and email formula
 - **[SEO_AEO_PLAN.md](./docs/SEO_AEO_PLAN.md)** - SEO & Answer Engine Optimization plan
 - **[SEO_IMPLEMENTATION_STATUS.md](./docs/SEO_IMPLEMENTATION_STATUS.md)** - SEO implementation status
 - **[ARCHITECTURE_PLAN.md](./docs/ARCHITECTURE_PLAN.md)** - Reorganization plan
