@@ -304,6 +304,10 @@
     // ── INIT ─────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
         destroyOldUI(); // one more pass after DOM is fully ready
+        document.querySelectorAll('.iphone-panel').forEach(panel => {
+            panel.classList.remove('panel-active', 'panel-visible');
+            panel.style.display = 'none';
+        });
         initLockBoot();
         initLock();
         wireInteractions();
