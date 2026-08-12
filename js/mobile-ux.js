@@ -61,7 +61,7 @@ class MobileUXManager {
                         <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="Twitter">
                             <img src="/assets/twitter.png" alt="Twitter" class="mobile-social-icon-img">
                         </a>
-                        <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/mccallumian" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="LinkedIn">
                             <img src="/assets/link.ico" alt="LinkedIn" class="mobile-social-icon-img">
                         </a>
                         <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="mobile-social-icon" aria-label="GitHub">
