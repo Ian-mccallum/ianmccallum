@@ -1,0 +1,343 @@
+/* ============================================================
+   AERO SYSTEM — design tokens for ianmccallum.com
+   ------------------------------------------------------------
+   One light model, four materials, one depth ladder.
+
+   Frutiger Aero is not a collection of effects. It is a single
+   physical premise: a glossy translucent surface, lit from above,
+   floating over a bright natural backdrop. Every value below is
+   derived from that premise, so components stay coherent even
+   when they are built years apart.
+
+   This file defines TOKENS ONLY (plus the @font-face the site was
+   missing). It sets no component styles and overrides nothing, so
+   it is safe to load first and adopt gradually.
+
+   Contrast: every pairing marked AA has been measured against the
+   composited glass surface (#FAFAF8) or the dark ground (#071A2B).
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   0. TYPEFACE
+   The site shipped fonts/segoe_ui_semilight.ttf but never declared
+   it, and four stylesheets tried to @import "Segoe UI" from Google
+   Fonts, which does not host it. Result: the signature semilight
+   weight silently fell back to Arial everywhere except Windows.
+   This is the fix.
+   ------------------------------------------------------------ */
+@font-face {
+    font-family: "Segoe UI Semilight";
+    src: url("/fonts/segoe_ui_semilight.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root {
+
+    /* --------------------------------------------------------
+       1. LIGHT — the axiom
+       Direction and strength of the single light source. Every
+       highlight and shadow in the system reads from these, so the
+       whole page can be re-lit by changing three numbers.
+       -------------------------------------------------------- */
+    --aero-light-angle: 180deg;              /* top to bottom */
+    --aero-specular: rgba(255, 255, 255, 0.85);   /* wet top edge */
+    --aero-occlusion: rgba(10, 44, 77, 0.18);     /* blue-biased shade */
+
+
+    /* --------------------------------------------------------
+       2. COLOR
+       Six hues, each with a FILL and an INK twin. The bright aero
+       colors are fills — Sun scores 2.2:1 and Spring 2.1:1 as text
+       on glass, so they must never carry type. Use the -ink twin
+       for any text, icon, or meaningful boundary.
+       -------------------------------------------------------- */
+
+    /* Water — primary. Ian's most-used hue across the site. */
+    --aero-water-fill:  #0078D7;
+    --aero-water-ink:   #0067BC;   /* 5.48:1 on glass — AA */
+    --aero-water-deep:  #005A9E;
+    --aero-water-wash:  #E8F3FC;
+
+    /* Sky — atmosphere. Backdrops and glows only, never ink. */
+    --aero-sky:         #87CEEB;
+    --aero-sky-bright:  #00BFFF;
+
+    /* Spring — success, growth, the green half of the palette. */
+    --aero-spring-fill: #00C853;
+    --aero-spring-ink:  #0B7E3D;   /* 4.94:1 on glass — AA */
+    --aero-spring-wash: #E6F8ED;
+
+    /* Sun — accent and warning. */
+    --aero-sun-fill:    #FF8C00;
+    --aero-sun-ink:     #985200;   /* 5.67:1 on glass — AA */
+    --aero-sun-wash:    #FFF2E0;
+
+    /* Coral — danger. */
+    --aero-coral-fill:  #FF6B6B;
+    --aero-coral-ink:   #C22F2F;   /* 5.37:1 on glass — AA */
+    --aero-coral-wash:  #FDECEC;
+
+    /* Ink and neutrals. Biased toward blue, never pure grey —
+       a neutral in a sky-lit world picks up the sky. */
+    --aero-ink:         #0A2C4D;   /* 13.57:1 on glass — AAA */
+    --aero-ink-soft:    #35506B;
+    --aero-haze:        #5C6F80;   /* 4.97:1 on glass — AA */
+    --aero-hairline:    rgba(10, 44, 77, 0.12);
+
+
+    /* --------------------------------------------------------
+       3. MATERIALS
+       Four surfaces. The difference between them is how much light
+       passes through, which is what "glass" actually means.
+       -------------------------------------------------------- */
+    --aero-glass:       rgba(250, 250, 248, 0.72);  /* the default pane  */
+    --aero-glass-solid: #FAFAF8;                    /* when text must sit on it */
+    --aero-glass-thin:  rgba(255, 255, 255, 0.28);  /* chrome, taskbars   */
+    --aero-glass-deep:  rgba(10, 44, 77, 0.55);     /* menus, overlays    */
+
+    /* Border pair — a lit top edge and a shaded bottom edge is what
+       reads as thickness. Always use them together. */
+    --aero-edge-lit:    rgba(255, 255, 255, 0.75);
+    --aero-edge-shade:  rgba(10, 44, 77, 0.16);
+
+
+    /* --------------------------------------------------------
+       4. THE DEPTH LADDER
+       Elevation is not a shadow — it is blur + shadow + specular
+       together. Raising an element means moving it away from the
+       backdrop, so it refracts more and casts further. Six rungs.
+       -------------------------------------------------------- */
+    --aero-blur-0: none;
+    --aero-blur-1: blur(8px)  saturate(150%);
+    --aero-blur-2: blur(14px) saturate(160%);
+    --aero-blur-3: blur(20px) saturate(175%);
+    --aero-blur-4: blur(28px) saturate(190%);
+    --aero-blur-5: blur(36px) saturate(200%);
+
+    --aero-lift-0: none;
+    --aero-lift-1: 0 1px 2px rgba(10, 44, 77, 0.10),
+                   inset 0 1px 0 var(--aero-specular);
+    --aero-lift-2: 0 2px 6px rgba(10, 44, 77, 0.12),
+                   inset 0 1px 0 var(--aero-specular);
+    --aero-lift-3: 0 6px 16px rgba(10, 44, 77, 0.14),
+                   inset 0 1px 0 var(--aero-specular);
+    --aero-lift-4: 0 12px 32px rgba(10, 44, 77, 0.18),
+                   inset 0 1px 0 var(--aero-specular);
+    --aero-lift-5: 0 24px 56px rgba(10, 44, 77, 0.22),
+                   inset 0 1px 0 var(--aero-specular);
+
+    /* Focus is a rung of its own — it must clear any elevation. */
+    --aero-focus: 0 0 0 3px rgba(0, 120, 215, 0.45);
+
+
+    /* --------------------------------------------------------
+       5. RADIUS
+       The audit found 40 distinct radius declarations. Six is
+       enough. Vista-era chrome is tight; content is softer.
+       -------------------------------------------------------- */
+    --aero-r-xs:   2px;    /* inputs, tight chrome     */
+    --aero-r-sm:   4px;    /* buttons, tags            */
+    --aero-r-md:   8px;    /* cards, media             */
+    --aero-r-lg:   12px;   /* windows                  */
+    --aero-r-xl:   16px;   /* hero panels              */
+    --aero-r-full: 999px;  /* pills, avatars           */
+
+
+    /* --------------------------------------------------------
+       6. TYPE
+       62 distinct font sizes became eight. Semilight at large
+       sizes is the site's voice; below 16px it gets too fragile,
+       so the scale switches to regular weight.
+       -------------------------------------------------------- */
+    --aero-font-display: "Segoe UI Semilight", "Segoe UI", system-ui,
+                         -apple-system, "Helvetica Neue", sans-serif;
+    --aero-font-body:    "Segoe UI", system-ui, -apple-system,
+                         "Helvetica Neue", Arial, sans-serif;
+    --aero-font-data:    ui-monospace, "Cascadia Code", Consolas,
+                         "SF Mono", Menlo, monospace;
+
+    --aero-t-hero:  clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+    --aero-t-h1:    clamp(1.75rem, 1.4rem + 1.4vw, 2.375rem);
+    --aero-t-h2:    1.5rem;
+    --aero-t-h3:    1.1875rem;
+    --aero-t-body:  1rem;
+    --aero-t-sm:    0.875rem;
+    --aero-t-xs:    0.8125rem;
+    --aero-t-label: 0.6875rem;   /* uppercase, tracked */
+
+    --aero-lh-tight: 1.15;
+    --aero-lh-body:  1.6;
+    --aero-track-display: -0.015em;
+    --aero-track-label:    0.12em;
+
+
+    /* --------------------------------------------------------
+       7. SPACE — 4px base grid
+       -------------------------------------------------------- */
+    --aero-s-1:  4px;
+    --aero-s-2:  8px;
+    --aero-s-3:  12px;
+    --aero-s-4:  16px;
+    --aero-s-5:  24px;
+    --aero-s-6:  32px;
+    --aero-s-7:  48px;
+    --aero-s-8:  64px;
+
+
+    /* --------------------------------------------------------
+       8. MOTION
+       Aero motion is liquid: it eases out long and never snaps.
+       -------------------------------------------------------- */
+    --aero-ease:   cubic-bezier(0.22, 0.61, 0.36, 1);
+    --aero-ease-in: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    --aero-dur-1:  120ms;   /* state change: hover, press   */
+    --aero-dur-2:  220ms;   /* element enters or leaves     */
+    --aero-dur-3:  380ms;   /* window opens, view changes   */
+
+
+    /* --------------------------------------------------------
+       9. LAYERS
+       The audit found 28 z-index values from -999 to 100000.
+       Seven named layers replace all of them. Nothing gets a
+       number that is not on this list.
+       -------------------------------------------------------- */
+    --aero-z-backdrop:  0;
+    --aero-z-content:   10;
+    --aero-z-raised:    20;    /* cards on hover, popovers  */
+    --aero-z-chrome:    30;    /* taskbar, persistent nav   */
+    --aero-z-menu:      40;    /* start menu, dropdowns     */
+    --aero-z-overlay:   50;    /* modals, lightboxes        */
+    --aero-z-toast:     60;    /* transient, always on top  */
+}
+
+
+/* ------------------------------------------------------------
+   DARK — deep water
+   Aero at night is not inverted aero. The backdrop becomes deep
+   water, glass thickens rather than darkens, and the specular
+   edge stays because the light source has not moved.
+   ------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --aero-glass:       rgba(14, 38, 60, 0.62);
+        --aero-glass-solid: #0E263C;
+        --aero-glass-thin:  rgba(120, 180, 230, 0.14);
+        --aero-glass-deep:  rgba(3, 12, 22, 0.72);
+
+        --aero-edge-lit:    rgba(150, 205, 245, 0.30);
+        --aero-edge-shade:  rgba(0, 0, 0, 0.45);
+        --aero-specular:    rgba(180, 220, 255, 0.34);
+        --aero-occlusion:   rgba(0, 0, 0, 0.5);
+
+        --aero-ink:         #E8F4FF;   /* 15.8:1 on deep water */
+        --aero-ink-soft:    #C2D8EA;
+        --aero-haze:        #9FC3DE;   /* 9.5:1  — AA          */
+        --aero-hairline:    rgba(150, 205, 245, 0.16);
+
+        --aero-water-ink:   #4FA8E8;   /* 6.8:1  — AA          */
+        --aero-spring-ink:  #31C46B;   /* 7.8:1  — AA          */
+        --aero-sun-ink:     #FFA733;   /* 9.1:1  — AA          */
+        --aero-coral-ink:   #FF8A8A;
+
+        --aero-water-wash:  rgba(0, 120, 215, 0.16);
+        --aero-spring-wash: rgba(0, 200, 83, 0.14);
+        --aero-sun-wash:    rgba(255, 140, 0, 0.14);
+        --aero-coral-wash:  rgba(255, 107, 107, 0.14);
+    }
+}
+
+:root[data-theme="dark"] {
+    --aero-glass:       rgba(14, 38, 60, 0.62);
+    --aero-glass-solid: #0E263C;
+    --aero-glass-thin:  rgba(120, 180, 230, 0.14);
+    --aero-glass-deep:  rgba(3, 12, 22, 0.72);
+
+    --aero-edge-lit:    rgba(150, 205, 245, 0.30);
+    --aero-edge-shade:  rgba(0, 0, 0, 0.45);
+    --aero-specular:    rgba(180, 220, 255, 0.34);
+    --aero-occlusion:   rgba(0, 0, 0, 0.5);
+
+    --aero-ink:         #E8F4FF;
+    --aero-ink-soft:    #C2D8EA;
+    --aero-haze:        #9FC3DE;
+    --aero-hairline:    rgba(150, 205, 245, 0.16);
+
+    --aero-water-ink:   #4FA8E8;
+    --aero-spring-ink:  #31C46B;
+    --aero-sun-ink:     #FFA733;
+    --aero-coral-ink:   #FF8A8A;
+
+    --aero-water-wash:  rgba(0, 120, 215, 0.16);
+    --aero-spring-wash: rgba(0, 200, 83, 0.14);
+    --aero-sun-wash:    rgba(255, 140, 0, 0.14);
+    --aero-coral-wash:  rgba(255, 107, 107, 0.14);
+}
+
+
+/* ------------------------------------------------------------
+   PRIMITIVES — opt-in, prefixed, collision-free.
+   These compose the tokens above into the two moves the system
+   uses constantly. Adopt them where convenient; nothing breaks
+   if you never do.
+   ------------------------------------------------------------ */
+
+/* A pane of glass at a chosen rung of the depth ladder. */
+.aero-surface {
+    background: var(--aero-glass);
+    -webkit-backdrop-filter: var(--aero-blur-3);
+    backdrop-filter: var(--aero-blur-3);
+    border: 1px solid var(--aero-edge-lit);
+    border-bottom-color: var(--aero-edge-shade);
+    border-radius: var(--aero-r-lg);
+    box-shadow: var(--aero-lift-3);
+    color: var(--aero-ink);
+}
+.aero-surface-1 { backdrop-filter: var(--aero-blur-1); -webkit-backdrop-filter: var(--aero-blur-1); box-shadow: var(--aero-lift-1); }
+.aero-surface-2 { backdrop-filter: var(--aero-blur-2); -webkit-backdrop-filter: var(--aero-blur-2); box-shadow: var(--aero-lift-2); }
+.aero-surface-4 { backdrop-filter: var(--aero-blur-4); -webkit-backdrop-filter: var(--aero-blur-4); box-shadow: var(--aero-lift-4); }
+.aero-surface-5 { backdrop-filter: var(--aero-blur-5); -webkit-backdrop-filter: var(--aero-blur-5); box-shadow: var(--aero-lift-5); }
+
+/* The legibility scrim. Long-form text must never sit directly on
+   translucent glass — whatever drifts behind it will win. This
+   gives type an opaque bed while the pane around it stays glass. */
+.aero-legible {
+    background: var(--aero-glass-solid);
+    border-radius: var(--aero-r-md);
+}
+
+.aero-label {
+    font-family: var(--aero-font-body);
+    font-size: var(--aero-t-label);
+    letter-spacing: var(--aero-track-label);
+    text-transform: uppercase;
+    color: var(--aero-haze);
+}
+
+:where(.aero-surface, .aero-surface-1, .aero-surface-2,
+       .aero-surface-4, .aero-surface-5) :focus-visible {
+    outline: none;
+    box-shadow: var(--aero-focus);
+    border-radius: var(--aero-r-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --aero-dur-1: 0ms;
+        --aero-dur-2: 0ms;
+        --aero-dur-3: 0ms;
+    }
+}
+
+/* Graceful degradation: without backdrop-filter the glass would
+   read as washed-out fog, so fall back to the solid surface. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .aero-surface,
+    .aero-surface-1, .aero-surface-2,
+    .aero-surface-4, .aero-surface-5 {
+        background: var(--aero-glass-solid);
+    }
+}
