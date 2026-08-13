@@ -1,0 +1,88 @@
+/* ============================================================
+   AERO LAYOUT — window shells
+   ------------------------------------------------------------
+   Seven of the eight pages hard-coded their window geometry in
+   an inline style (width: 800px, max-width: 900px, and so on).
+   Only index.html loaded a mobile stylesheet, so on a phone the
+   other pages rendered a fixed 800–900px pane inside a 390px
+   viewport and clipped everything past the fold.
+
+   Inline styles cannot be overridden from a stylesheet without
+   !important — which is how a codebase accumulates 600 of them.
+   So the inline style now sets a *token* instead of a value:
+
+       <div class="vista-glass-window aero-window-float"
+            style="--aero-window-w: 800px;">
+
+   The page still declares its own comfortable width, but that
+   width becomes an input the layer can respond to rather than a
+   fact it has to fight. No !important is needed anywhere below.
+
+   Both shells size with min(), so they are fluid by construction
+   and need no breakpoint to stop overflowing.
+   ============================================================ */
+
+
+/* A pane pinned over the desktop — about, portfolio, contact.
+   Sits below the top of the viewport and above the taskbar. */
+.aero-window-float {
+    position: fixed;
+    top: var(--aero-s-7, 48px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Never wider than the page, whatever the declared width. */
+    width: min(var(--aero-window-w, 800px), calc(100vw - var(--aero-s-5, 24px)));
+
+    /* svh, not vh: mobile browser chrome expands and contracts, and
+       vh measures the largest state, which pushes content under the
+       address bar. */
+    max-height: calc(100svh - var(--aero-s-7, 48px) - var(--aero-s-8, 64px));
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: var(--aero-z-content, 10);
+    overscroll-behavior: contain;
+}
+
+/* A document that scrolls with the page — cv, testimonials,
+   photos, thank-you. */
+.aero-window-doc {
+    width: min(var(--aero-window-w, 900px), calc(100vw - var(--aero-s-5, 24px)));
+    margin-inline: auto;
+    margin-block: var(--aero-s-8, 64px);
+    overflow-x: hidden;
+}
+
+/* Below the tablet threshold the chrome is the whole screen, so
+   the pane gives back its margins and lets the content breathe. */
+@media (max-width: 700px) {
+    .aero-window-float {
+        top: var(--aero-s-5, 24px);
+        width: calc(100vw - var(--aero-s-4, 16px));
+        max-height: calc(100svh - var(--aero-s-5, 24px) - var(--aero-s-8, 64px));
+    }
+    .aero-window-doc {
+        width: calc(100vw - var(--aero-s-4, 16px));
+        margin-block: var(--aero-s-5, 24px) var(--aero-s-8, 64px);
+    }
+}
+
+/* Nothing inside a shell may push the page sideways. Wide content
+   — tables, code, media rows — scrolls within its own box. */
+.aero-window-float :where(table, pre),
+.aero-window-doc :where(table, pre) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.aero-window-float :where(img, video),
+.aero-window-doc :where(img, video) {
+    max-width: 100%;
+    height: auto;
+}
+
+/* The page itself never scrolls horizontally. */
+body {
+    overflow-x: hidden;
+}
