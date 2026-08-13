@@ -265,7 +265,7 @@
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    z-index: 1000;
+    z-index: var(--aero-z-menu);
     display: none;
     overflow: hidden;
 }
@@ -339,7 +339,7 @@
     box-shadow: 
         0 -2px 10px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    z-index: 999;
+    z-index: var(--aero-z-chrome);
     display: flex;
     align-items: center;
     padding: 0 8px;
@@ -506,7 +506,7 @@
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 100;
+    z-index: var(--aero-z-raised);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -559,7 +559,7 @@
    ============================================ */
 .vista-windows-container {
     position: relative;
-    z-index: 10;
+    z-index: var(--aero-z-content);
     min-height: 100vh;
     padding-bottom: 60px;
 }

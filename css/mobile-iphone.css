@@ -73,7 +73,6 @@ body {
     flex-direction: column;
     position: fixed;
     inset: 0;
-    z-index: 9000;
 }
 
 /* ── STATUS BAR — iPhone 4: solid opaque black ──────────────────────── */
@@ -85,7 +84,6 @@ body {
     justify-content: space-between;
     padding: 0 6px;
     flex-shrink: 0;
-    z-index: 100000;
     position: relative;
 }
 
