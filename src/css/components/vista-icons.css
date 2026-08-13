@@ -18,7 +18,7 @@
 #vista-desktop-icons .icon-img {
     filter: none !important;
     -webkit-box-reflect: none !important;
-    box-shadow: none !important;
+    box-shadow: var(--aero-lift-0) !important;
 }
 
 /* Desktop Icon Styles */
@@ -84,7 +84,7 @@
     justify-content: center;
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
+    border-radius: var(--aero-r-sm);
     font-size: 14px;
     color: white;
 }

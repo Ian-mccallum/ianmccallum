@@ -663,7 +663,7 @@ section, .hero, .page-content, .container,
     width: 8px;
     height: 8px;
     background: #FFFFFF;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     box-shadow: inset 0 0 0 2px currentColor;
 }
 
@@ -849,7 +849,7 @@ section, .hero, .page-content, .container,
 
 .bubble {
     position: absolute;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%);
     border: 2px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(2px);
@@ -918,7 +918,7 @@ h1, h2, h3, h4, h5, h6 {
         inset 0 1px 0 rgba(255, 255, 255, 0.5),
         inset 0 -1px 0 rgba(0, 0, 0, 0.1),
         0 0 60px rgba(0, 191, 255, 0.2);
-    border-radius: 12px;
+    border-radius: var(--aero-r-lg);
 }
 
 .glass-strong {
@@ -932,7 +932,7 @@ h1, h2, h3, h4, h5, h6 {
         inset 0 -2px 0 rgba(0, 0, 0, 0.15),
         0 0 80px rgba(0, 191, 255, 0.3),
         inset 0 0 100px rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    border-radius: var(--aero-r-xl);
 }
 
 /* Vista Glass Card - Enhanced Aero Glass */
@@ -947,7 +947,7 @@ h1, h2, h3, h4, h5, h6 {
         inset 0 -2px 0 rgba(0, 0, 0, 0.15),
         0 0 80px rgba(0, 191, 255, 0.3),
         inset 0 0 100px rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    border-radius: var(--aero-r-xl);
     position: relative;
     overflow: hidden;
     animation: vistaFloat 6s ease-in-out infinite;
@@ -1037,7 +1037,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1000;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: var(--glass-bg);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -1076,7 +1076,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 2px solid var(--glass-border);
-    border-radius: 30px;
+    border-radius: var(--aero-r-full);
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 600;
@@ -1115,7 +1115,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(30px) saturate(200%);
     -webkit-backdrop-filter: blur(30px) saturate(200%);
     border: 2px solid var(--glass-border);
-    border-radius: 30px;
+    border-radius: var(--aero-r-xl);
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -1144,7 +1144,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 280px;
     height: 280px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     border: 6px solid rgba(255, 255, 255, 0.5);
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.3),
@@ -1179,7 +1179,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
+    border-radius: var(--aero-r-xl);
     padding: 2rem;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.15),
@@ -1257,7 +1257,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     padding: 0.5rem 1rem;
-    border-radius: 10px;
+    border-radius: var(--aero-r-md);
     border: 1px solid rgba(255, 255, 255, 0.2);
     display: inline-block;
 }
@@ -1281,7 +1281,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     padding: 0.4rem 0.8rem;
-    border-radius: 8px;
+    border-radius: var(--aero-r-md);
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: inline-flex;
 }
@@ -1311,7 +1311,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(20px) saturate(200%);
     -webkit-backdrop-filter: blur(20px) saturate(200%);
     border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 25px;
+    border-radius: var(--aero-r-full);
     color: var(--text-dark);
     text-decoration: none;
     font-size: 1.1rem;
@@ -1349,7 +1349,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 50%;
     width: 0;
     height: 0;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: radial-gradient(circle, rgba(0, 255, 127, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: var(--transition-smooth);
@@ -1389,7 +1389,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(25px) saturate(200%);
     -webkit-backdrop-filter: blur(25px) saturate(200%);
     border: 2px solid var(--glass-border);
-    border-radius: 20px;
+    border-radius: var(--aero-r-xl);
     padding: 1rem;
     min-width: 200px;
     box-shadow: var(--soft-shadow), var(--glow-blue);
@@ -1409,7 +1409,7 @@ h1, h2, h3, h4, h5, h6 {
 .dropdown-item {
     color: var(--text-dark);
     padding: 0.75rem 1.25rem;
-    border-radius: 15px;
+    border-radius: var(--aero-r-xl);
     transition: var(--transition-smooth);
     text-decoration: none;
     display: block;
@@ -1452,12 +1452,10 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 15px;
+    border-radius: var(--aero-r-xl);
     padding: 1rem 2rem;
     display: inline-block;
-    box-shadow: 
-        0 4px 16px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: var(--aero-lift-3);
     animation: vistaTextFadeIn 1.6s ease-out 0.6s both, vistaTitleGlow 3s ease-in-out infinite;
 }
 
@@ -1471,7 +1469,7 @@ h1, h2, h3, h4, h5, h6 {
 .social-icon {
     width: 70px;
     height: 70px;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: var(--glass-bg);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -1495,7 +1493,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 50%;
     width: 0;
     height: 0;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: radial-gradient(circle, rgba(0, 191, 255, 0.4) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: var(--transition-smooth);
@@ -1527,7 +1525,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: var(--text-light);
     padding: 1rem 2.5rem;
-    border-radius: 25px;
+    border-radius: var(--aero-r-full);
     font-weight: 600;
     font-size: 1.1rem;
     transition: var(--transition-smooth);
@@ -1566,7 +1564,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid var(--bright-blue);
     color: var(--bright-blue);
     padding: 1rem 2.5rem;
-    border-radius: 25px;
+    border-radius: var(--aero-r-full);
     font-weight: 600;
     transition: var(--transition-smooth);
     position: relative;
@@ -1611,7 +1609,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 2px solid var(--glass-border);
-    border-radius: 25px;
+    border-radius: var(--aero-r-xl);
     padding: 2rem;
     box-shadow: var(--soft-shadow);
     transition: var(--transition-smooth);
@@ -1682,7 +1680,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 2px solid var(--glass-border);
-    border-radius: 20px;
+    border-radius: var(--aero-r-xl);
     padding: 2rem;
     text-align: center;
     transition: var(--transition-smooth);
@@ -1743,7 +1741,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.5rem 1rem;
     background: rgba(49, 120, 198, 0.2);
     backdrop-filter: blur(10px);
-    border-radius: 12px;
+    border-radius: var(--aero-r-lg);
     border: 2px solid currentColor;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -1802,12 +1800,12 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     color: var(--bright-blue);
-    border-radius: 20px;
+    border-radius: var(--aero-r-full);
     font-weight: 600;
     font-size: 0.95rem;
     border: 1px solid var(--glass-border);
     transition: var(--transition-smooth);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--aero-lift-2);
 }
 
 .tech-stack .badge:hover {
@@ -1865,7 +1863,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 2px solid var(--glass-border);
-    border-radius: 25px;
+    border-radius: var(--aero-r-xl);
     padding: 3rem;
     box-shadow: var(--soft-shadow);
 }
@@ -1875,7 +1873,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px);
     border: 2px solid var(--glass-border);
     color: var(--text-dark);
-    border-radius: 15px;
+    border-radius: var(--aero-r-xl);
     padding: 1rem 1.5rem;
     transition: var(--transition-smooth);
 }
@@ -1899,7 +1897,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(30px) saturate(200%);
     -webkit-backdrop-filter: blur(30px) saturate(200%);
     border: 2px solid var(--glass-border);
-    border-radius: 30px;
+    border-radius: var(--aero-r-xl);
     box-shadow: 
         var(--soft-shadow),
         inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -1923,7 +1921,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100px;
     height: 3px;
     background: linear-gradient(90deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
-    border-radius: 2px;
+    border-radius: var(--aero-r-xs);
 }
 
 .cv-header h1 {
@@ -1957,7 +1955,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 80px;
     height: 2px;
     background: linear-gradient(90deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
-    border-radius: 2px;
+    border-radius: var(--aero-r-xs);
 }
 
 .cv-item {
@@ -1967,7 +1965,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 2rem;
     transition: var(--transition-smooth);
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
+    border-radius: var(--aero-r-xl);
 }
 
 .cv-item:hover {
@@ -1997,7 +1995,7 @@ h1, h2, h3, h4, h5, h6 {
 .gallery-item {
     position: relative;
     margin: 10px;
-    border-radius: 20px;
+    border-radius: var(--aero-r-xl);
     overflow: hidden;
     box-shadow: var(--soft-shadow);
     transition: var(--transition-smooth);
@@ -2079,7 +2077,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     padding: 0.5rem 1.5rem;
-    border-radius: 10px;
+    border-radius: var(--aero-r-md);
     border: 1px solid rgba(255, 255, 255, 0.2);
     display: inline-block;
 }
@@ -2195,7 +2193,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, var(--bright-blue) 0%, var(--fresh-green) 100%);
-    border-radius: 10px;
+    border-radius: var(--aero-r-full);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -2378,7 +2376,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 10px;
     height: 10px;
     background: #000;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     box-shadow: 
         inset -2px -2px 4px rgba(255, 255, 255, 0.5),
         0 0 4px rgba(255, 255, 255, 0.8);
@@ -2521,7 +2519,7 @@ h1, h2, h3, h4, h5, h6 {
         transparent 80%
     );
     border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     animation: bubbleRise 20s linear infinite;
     box-shadow: 
         0 0 30px rgba(255, 255, 255, 0.5),
@@ -2760,7 +2758,7 @@ h1, h2, h3, h4, h5, h6 {
     right: 8%;
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     transform-style: preserve-3d;
     animation: globeFloat 15s ease-in-out infinite;
     z-index: 3;
@@ -2772,7 +2770,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: 
         radial-gradient(circle at 30% 30%,
             rgba(0, 255, 127, 0.4) 0%,
@@ -2802,7 +2800,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 25%;
     width: 40%;
     height: 40%;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: radial-gradient(circle,
         rgba(255, 255, 255, 0.6) 0%,
         rgba(255, 255, 255, 0.3) 40%,
@@ -2948,7 +2946,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100px;
     height: 100px;
     background: radial-gradient(circle, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     filter: blur(20px);
     animation: float 8s ease-in-out infinite;
     pointer-events: none;
@@ -3114,5 +3112,5 @@ h1, h2, h3, h4, h5, h6 {
 *:focus-visible {
     outline: 3px solid var(--bright-blue);
     outline-offset: 3px;
-    border-radius: 5px;
+    border-radius: var(--aero-r-sm);
 } 

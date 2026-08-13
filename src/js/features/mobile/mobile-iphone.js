@@ -1,6 +1,5 @@
 // ============================================================
 // iPHONE OS 4 SYSTEM — IAN'S iPHONE 4
-// Completely replaces old mobile-ux.js experience.
 // Only runs on mobile (≤ 768px).
 // ============================================================
 
@@ -9,60 +8,16 @@
 
     if (window.innerWidth > 768) return;
 
-    // ── 1. KILL OLD MOBILE UI IMMEDIATELY ────────────────────────────
-    // mobile-ux.js runs before this file and creates DOM elements +
-    // binds event listeners. We nuke it all right now, before any
-    // layout or paint can happen.
-
-    // Prevent MobileUXManager from doing anything further
-    try {
-        if (window.MobileUXManager) {
-            window.MobileUXManager.prototype.init                 = function () {};
-            window.MobileUXManager.prototype.createMobileStructure = function () {};
-            window.MobileUXManager.prototype.initTabNavigation    = function () {};
-            window.MobileUXManager.prototype.initBottomSheets     = function () {};
-            window.MobileUXManager.prototype.initSwipeGestures    = function () {};
-            window.MobileUXManager.prototype.loadContent          = function () {};
-        }
-        if (window.mobileUXManager) {
-            window.mobileUXManager.isMobile = false;
-        }
-    } catch (e) {}
-
-    // Selectors for every element old mobile UI creates or shows
-    const OLD_UI_SELECTORS = [
-        '#mobile-home-screen', '.mobile-home-screen',
-        '.mobile-tab-bar',     '.mobile-tab-content',
-        '.mobile-hero-card',   '.mobile-action-grid',
-        '.mobile-action-card', '.mobile-bottom-sheet',
-        '.mobile-overlay',     '.mobile-bottom-sheet-overlay',
-        '.mobile-nav',         '.mobile-content-section',
-        '#mobile-content-about', '#mobile-content-portfolio',
-        '#mobile-content-cv', '#mobile-content-contact',
-        '#mobile-content-testimonials', '#mobile-content-photos',
-    ];
-
     function destroyOldUI() {
-        OLD_UI_SELECTORS.forEach(sel => {
-            document.querySelectorAll(sel).forEach(el => {
-                el.remove();
-            });
-        });
-        // Also forcibly kill the taskbar and Vista windows
+        // Forcibly kill the taskbar and Vista windows
         document.querySelectorAll(
             '.vista-glass-taskbar, .vista-glass-window, ' +
             '#vista-desktop-icons, #vista-startmenu, ' +
             '#vista-boot, #vista-context-menu, #vista-tooltip, ' +
-            '#welcome-window, #contact-window, ' +
-            '.mobile-content-section, [id^="mobile-content-"]'
+            '#welcome-window, #contact-window'
         ).forEach(el => {
             el.style.cssText += ';display:none!important;visibility:hidden!important;z-index:-9999!important;';
         });
-        // Fix body — mobile-responsive.css adds padding-bottom and allows overflow
-        document.body.style.cssText +=
-            ';overflow:hidden!important;height:100svh!important;' +
-            'padding-bottom:0!important;padding-top:0!important;' +
-            'position:fixed!important;width:100%!important;top:0!important;left:0!important;';
     }
 
     // Run immediately (synchronously before first paint)
@@ -70,26 +25,6 @@
 
     // Run again on DOMContentLoaded to catch anything injected late
     document.addEventListener('DOMContentLoaded', destroyOldUI);
-
-    // Belt-and-suspenders: run at 0ms, 200ms, 600ms after load
-    window.addEventListener('load', () => {
-        [0, 200, 600].forEach(delay => setTimeout(destroyOldUI, delay));
-    });
-
-    // Observe new nodes being added — nuke them if they're old mobile UI
-    const nodeObserver = new MutationObserver(mutations => {
-        mutations.forEach(m => {
-            m.addedNodes.forEach(node => {
-                if (node.nodeType !== 1) return;
-                const matches = OLD_UI_SELECTORS.some(sel => {
-                    try { return node.matches(sel) || node.querySelector(sel); }
-                    catch (e) { return false; }
-                });
-                if (matches) node.remove();
-            });
-        });
-    });
-    nodeObserver.observe(document.documentElement, { childList: true, subtree: true });
 
     // ── 2. CLOCK ──────────────────────────────────────────────────────
     function tick() {

@@ -4,71 +4,22 @@
    Only active at ≤ 768px
    ============================================================ */
 
-/* ═══════════════════════════════════════════════════════════════════════
-   FORCE iPhone mode BEFORE the @media block so nothing leaks through
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* Old mobile-ux.js creates these dynamically — nuke them globally */
-.mobile-home-screen, #mobile-home-screen,
-.mobile-tab-bar, .mobile-tab-content,
-.mobile-hero-card, .mobile-action-grid, .mobile-action-card,
-.mobile-bottom-sheet, .mobile-overlay, .mobile-social-icons,
-.mobile-hero-image, .mobile-nav, .mobile-bottom-sheet-overlay,
-.mobile-content-section, [id^="mobile-content-"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    height: 0 !important;
-    max-height: 0 !important;
-    overflow: hidden !important;
-    clip-path: inset(100%) !important;
-}
-
 @media (max-width: 768px) {
 
-/* ── NUCLEAR: kill every old mobile layer ────────────────────────────── */
+/* .vista-glass-window and .vista-glass-taskbar no longer need hiding here:
+   both are live chrome (static markup driven by js/window-manager.js and
+   js/aero-system.js) already fully hidden — display, visibility, opacity,
+   pointer-events, offscreen position — by the stronger KILL VISTA DESKTOP
+   block further down. That block is untouched and remains load-bearing. */
 
-/* mobile-ux.js injected elements + ghost contact sections */
-.mobile-home-screen, #mobile-home-screen,
-.mobile-tab-bar, .mobile-tab-content,
-.mobile-hero-card, .mobile-action-grid, .mobile-action-card,
-.mobile-bottom-sheet, .mobile-overlay, .mobile-bottom-sheet-overlay,
-.mobile-content-section, [id^="mobile-content-"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    height: 0 !important;
-    max-height: 0 !important;
-    overflow: hidden !important;
-    clip-path: inset(100%) !important;
-}
-
-/* mobile-responsive.css forces windows to display:block — stop it */
-.vista-glass-window,
-.vista-glass-window[style] {
-    display: none !important;
-    visibility: hidden !important;
-    position: fixed !important;
-    z-index: -999 !important;
-}
-
-/* mobile-responsive.css sets taskbar z-index: 10000 — bury it */
-.vista-glass-taskbar {
-    display: none !important;
-    z-index: -999 !important;
-    visibility: hidden !important;
-}
-
-/* Stop mobile-responsive from breaking body overflow */
+/* iOS scroll-lock: keeps the Vista desktop from rubber-banding behind the
+   iPhone shell. min-height/position override the live rules in style.css
+   (body { min-height: 100vh; position: relative }), so both must stay. */
 body,
 body.vista-desktop-refined {
     overflow: hidden !important;
     height: 100svh !important;
     min-height: unset !important;
-    padding-bottom: 0 !important;
-    padding-top: 0 !important;
     position: fixed !important;
     width: 100% !important;
     top: 0 !important;
@@ -195,7 +146,7 @@ body {
     width: 20px;
     height: 10px;
     border: 1.5px solid rgba(255,255,255,0.72);
-    border-radius: 2px;
+    border-radius: var(--aero-r-xs);
     padding: 1px;
     position: relative;
     display: flex;
@@ -255,7 +206,7 @@ body {
     width: 88px;
     height: 88px;
     transform: translateX(-50%);
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: radial-gradient(circle at 35% 32%, #fffef0 0%, #ffe680 28%, #ffb040 58%, rgba(255, 120, 40, 0) 72%);
     box-shadow:
         0 0 40px rgba(255, 200, 80, 0.55),
@@ -338,7 +289,7 @@ body {
     left: var(--x);
     width: var(--s);
     height: var(--s);
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     opacity: 0.72;
     animation: lockBubbleRise 4.5s ease-in-out var(--d) infinite;
 }
@@ -375,7 +326,7 @@ body {
     top: var(--py);
     width: var(--ps);
     height: var(--ps);
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: hsla(var(--ph), 90%, 68%, 0.85);
     box-shadow: 0 0 calc(var(--ps) * 2) hsla(var(--ph), 90%, 60%, 0.55);
     animation: lockParticleFloat var(--pt) ease-in-out var(--pd) infinite alternate;
@@ -383,7 +334,7 @@ body {
 
 .lock-lens-flare {
     position: absolute;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     pointer-events: none;
     mix-blend-mode: screen;
 }
@@ -438,7 +389,7 @@ body {
 .lock-orb-ring {
     position: absolute;
     inset: -6px;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: conic-gradient(from 0deg, #00e5ff, #80ff60, #ff60d0, #ffd060, #00e5ff);
     animation: lockRingSpin 3.5s linear infinite;
     opacity: 0.85;
@@ -448,7 +399,7 @@ body {
 .lock-orb-halo {
     position: absolute;
     inset: -14px;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: radial-gradient(circle, rgba(0, 220, 255, 0.35) 0%, transparent 70%);
     animation: lockOrbPulse 2.5s ease-in-out infinite;
 }
@@ -456,7 +407,7 @@ body {
 .lock-orb-glass {
     position: absolute;
     inset: 0;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -505,7 +456,7 @@ body {
     width: 62%;
     max-width: 220px;
     height: 4px;
-    border-radius: 2px;
+    border-radius: var(--aero-r-xs);
     background: rgba(255,255,255,0.12);
     overflow: hidden;
     position: relative;
@@ -516,7 +467,7 @@ body {
 .lock-boot-bar-fill {
     height: 100%;
     width: 0%;
-    border-radius: 2px;
+    border-radius: var(--aero-r-xs);
     background: linear-gradient(90deg, #00e5ff, #80ff60, #ff60d0, #ffd060, #00e5ff);
     background-size: 200% 100%;
     animation:
@@ -552,7 +503,7 @@ body {
     height: 44px;
     background: rgba(255,255,255,0.12);
     border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 22px;
+    border-radius: var(--aero-r-full);
     position: relative;
     overflow: hidden;
     box-shadow:
@@ -570,7 +521,7 @@ body {
     content: '';
     position: absolute;
     inset: -1px;
-    border-radius: 23px;
+    border-radius: var(--aero-r-full);
     padding: 1px;
     background: linear-gradient(90deg, rgba(0,229,255,0.5), rgba(128,255,96,0.4), rgba(255,96,208,0.45), rgba(255,208,96,0.4));
     background-size: 200% 100%;
@@ -587,17 +538,14 @@ body {
     width: 40px;
     height: 40px;
     background: radial-gradient(circle at 35% 30%, #fff 0%, #d4d4d4 100%);
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     margin-left: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #999;
     font-size: 14px;
-    box-shadow:
-        0 2px 6px rgba(0,0,0,0.40),
-        inset 0 1px 0 rgba(255,255,255,0.9),
-        inset 0 -1px 0 rgba(0,0,0,0.08);
+    box-shadow: var(--aero-lift-2);
     flex-shrink: 0;
     z-index: 2;
     position: relative;
@@ -755,7 +703,7 @@ body {
 .hs-dot {
     width: 7px;
     height: 7px;
-    border-radius: 50%;
+    border-radius: var(--aero-r-full);
     background: rgba(255,255,255,0.40);
 }
 .hs-dot.active { background: white; }
@@ -852,11 +800,8 @@ body {
     backdrop-filter: blur(32px) saturate(180%);
     -webkit-backdrop-filter: blur(32px) saturate(180%);
     border: 1px solid rgba(255,255,255,0.34);
-    border-radius: 20px;
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.48),
-        inset 0 -1px 0 rgba(0,0,0,0.09),
-        0 4px 22px rgba(0,0,0,0.28);
+    border-radius: var(--aero-r-xl);
+    box-shadow: var(--aero-lift-3);
     display: none;
     justify-content: space-around;
     align-items: center;
@@ -872,7 +817,7 @@ body {
 .ios-dock-icon .ios-icon-shell {
     width: 54px;
     height: 54px;
-    border-radius: 12px;
+    border-radius: var(--aero-r-lg);
     font-size: 26px;
 }
 
@@ -918,9 +863,7 @@ body {
         #2F62AB 100%
     );
     border-bottom: 1px solid #1F4B8D;
-    box-shadow:
-        0 1px 4px rgba(0,0,0,0.38),
-        inset 0 1px 0 rgba(255,255,255,0.30);
+    box-shadow: var(--aero-lift-1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -948,7 +891,7 @@ body {
         #2C61A8 100%
     );
     border: 1px solid rgba(0,0,0,0.38);
-    border-radius: 5px;
+    border-radius: var(--aero-r-sm);
     color: white;
     font-size: 12px;
     font-weight: 700;
@@ -958,9 +901,7 @@ body {
     gap: 3px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.32),
-        0 1px 3px rgba(0,0,0,0.32);
+    box-shadow: var(--aero-lift-1);
     text-shadow: 0 -1px 0 rgba(0,0,0,0.32);
     clip-path: polygon(13px 0%, 100% 0%, 100% 100%, 13px 100%, 0% 50%);
     white-space: nowrap;
@@ -1016,7 +957,7 @@ body {
 .ios-row-icon {
     width: 29px;
     height: 29px;
-    border-radius: 7px;
+    border-radius: var(--aero-r-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1090,7 +1031,7 @@ a.ios-row:active { background: #E8E8ED; }
 .ios-profile-photo {
     width: 64px;
     height: 64px;
-    border-radius: 32px;
+    border-radius: var(--aero-r-full);
     object-fit: cover;
     box-shadow:
         0 0 0 2px rgba(0,0,0,0.07),
@@ -1161,7 +1102,7 @@ a.ios-row:active { background: #E8E8ED; }
     font-size: 11px;
     font-weight: 500;
     padding: 2px 8px;
-    border-radius: 10px;
+    border-radius: var(--aero-r-full);
 }
 
 a.ios-project-link {
@@ -1251,7 +1192,7 @@ a.ios-project-link:active { background: #F0F0F5; }
     padding: 14px;
     background: linear-gradient(to bottom, #4CA3FF, #0070E0);
     border: none;
-    border-radius: 10px;
+    border-radius: var(--aero-r-md);
     color: white;
     text-align: center;
     font-size: 16px;
@@ -1322,10 +1263,10 @@ a.ios-project-link:active { background: #F0F0F5; }
 .ios-testimonial-avatar {
     width: 36px;
     height: 36px;
-    border-radius: 18px;
+    border-radius: var(--aero-r-full);
     object-fit: cover;
     flex-shrink: 0;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    box-shadow: var(--aero-lift-1);
 }
 
 .ios-testimonial-name {
@@ -1338,7 +1279,7 @@ a.ios-project-link:active { background: #F0F0F5; }
 /* ── BEAT THE CLOCK HERO ────────────────────────────────────────────── */
 .ios-hero-card {
     margin: 16px;
-    border-radius: 16px;
+    border-radius: var(--aero-r-xl);
     padding: 28px 24px;
     color: white;
     text-align: center;
@@ -1355,7 +1296,7 @@ a.ios-project-link:active { background: #F0F0F5; }
         rgba(255,255,255,0.18) 0%,
         rgba(255,255,255,0.00) 100%
     );
-    border-radius: 16px 16px 0 0;
+    border-radius: var(--aero-r-xl) var(--aero-r-xl) 0 0;
     pointer-events: none;
 }
 
