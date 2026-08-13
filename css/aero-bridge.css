@@ -1,0 +1,132 @@
+/* ============================================================
+   AERO BRIDGE — migration shim
+   ------------------------------------------------------------
+   The site grew two competing token vocabularies that disagree
+   about what glass is:
+
+     vista-design-system.css   --vista-*     blue-tinted glass
+                                             (cv, testimonials,
+                                              photos, thank-you)
+     vista-glass-refined.css   unprefixed    off-white glass
+                                             (index, about,
+                                              portfolio, contact)
+
+   Rather than rewrite either stylesheet's markup, this file
+   redefines both vocabularies as aliases of the aero tokens.
+   Every existing rule keeps working untouched and inherits the
+   measured, accessible values for free — and because both sets
+   now resolve to the same source, the two halves of the site
+   stop contradicting each other.
+
+   Load order matters: this must come AFTER the stylesheets it
+   is overriding. Custom properties at equal specificity are
+   won by whichever is declared last.
+
+   DELETE ME once every rule reads --aero-* directly. Each
+   alias removed here is a step toward that.
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   vista-design-system.css  →  aero
+   ------------------------------------------------------------ */
+:root {
+    /* --vista-blue is used both as a gradient fill and, in inline
+       styles on cv.html and testimonials.html, as link text. Text
+       wins: it maps to the ink twin, which lifts those links from
+       4.30:1 to 5.48:1. As a gradient stop the shift is a shade
+       deeper and reads identically. */
+    --vista-blue:         var(--aero-water-ink);
+    --vista-blue-light:   var(--aero-water-fill);
+    --vista-blue-dark:    var(--aero-water-deep);
+
+    --vista-green:        var(--aero-spring-ink);
+    --vista-green-light:  var(--aero-spring-fill);
+
+    --vista-glass-bg:     var(--aero-glass);
+    --vista-glass-border: var(--aero-edge-lit);
+    --vista-glass-shadow: var(--aero-occlusion);
+
+    --vista-text:         var(--aero-ink);
+    --vista-text-light:   #FFFFFF;
+    --vista-text-muted:   var(--aero-haze);   /* was #666 */
+
+    --vista-shadow-soft:   var(--aero-lift-2);
+    --vista-shadow-medium: var(--aero-lift-3);
+    --vista-shadow-strong: var(--aero-lift-4);
+
+    --vista-glow-blue:  0 0 20px rgba(0, 120, 215, 0.40);
+    --vista-glow-green: 0 0 20px rgba(0, 168, 107, 0.40);
+}
+
+
+/* ------------------------------------------------------------
+   vista-glass-refined.css  →  aero
+   ------------------------------------------------------------ */
+:root {
+    --glass-bg-light:  var(--aero-glass);
+    --glass-bg-medium: var(--aero-glass);
+    --glass-bg-dark:   var(--aero-glass);
+    --content-bg:      var(--aero-glass-solid);
+
+    --glass-border-light:  var(--aero-edge-lit);
+    --glass-border-medium: var(--aero-edge-shade);
+    --glass-border-dark:   var(--aero-edge-shade);
+
+    --shadow-soft:     var(--aero-lift-1);
+    --shadow-medium:   var(--aero-lift-3);
+    --shadow-strong:   var(--aero-lift-4);
+    --shadow-stronger: var(--aero-lift-5);
+
+    --inner-highlight: inset 0 1px 0 var(--aero-specular);
+    --inner-shadow:    inset 0 -1px 0 var(--aero-edge-shade);
+    --inner-border:    inset 0 0 0 1px var(--aero-edge-lit);
+
+    --taskbar-bg:     var(--aero-water-fill);
+    --taskbar-border: var(--aero-edge-lit);
+    --startmenu-bg:     var(--aero-glass-deep);
+    --startmenu-border: var(--aero-edge-lit);
+
+    /* The title bar carried the site's worst contrast failure:
+       white text on a pale blue gradient measured 2.42:1, below
+       even the 3:1 large-text floor. The Vista signature is the
+       hard step at 55%, not the lightness — so the step stays and
+       every stop moves down until the lightest one passes.
+       Worst case (top stop, composited on white) is now 4.63:1. */
+    --titlebar-gradient: linear-gradient(to bottom,
+        rgba(46, 109, 164, 0.92) 0%,
+        rgba(42, 102, 153, 0.92) 55%,
+        rgba(35, 91, 135, 0.94) 55%,
+        rgba(31, 92, 140, 0.94) 100%
+    );
+    --header-text: #FFFFFF;
+}
+
+
+/* ------------------------------------------------------------
+   Dark theme
+   The aero tokens already flip themselves; these aliases follow
+   automatically. Only the title bar needs its own treatment,
+   because at night it should sink rather than brighten.
+   ------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --titlebar-gradient: linear-gradient(to bottom,
+            rgba(23, 66, 102, 0.94) 0%,
+            rgba(19, 56, 88, 0.94) 55%,
+            rgba(14, 44, 70, 0.95) 55%,
+            rgba(12, 38, 61, 0.95) 100%
+        );
+        --taskbar-bg: rgba(10, 44, 77, 0.92);
+    }
+}
+
+:root[data-theme="dark"] {
+    --titlebar-gradient: linear-gradient(to bottom,
+        rgba(23, 66, 102, 0.94) 0%,
+        rgba(19, 56, 88, 0.94) 55%,
+        rgba(14, 44, 70, 0.95) 55%,
+        rgba(12, 38, 61, 0.95) 100%
+    );
+    --taskbar-bg: rgba(10, 44, 77, 0.92);
+}

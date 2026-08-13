@@ -4,7 +4,6 @@
    ============================================ */
 
 /* Vista Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700;800&display=swap');
 
 /* Vista Color Palette */
 :root {
@@ -119,21 +118,22 @@
 /* ============================================
    VISTA GLASS TEXT ELEMENTS
    ============================================ */
+/* Glossy gradient text, but reading DOWN into the water rather than
+   up into the light. The original clipped a white gradient to the
+   glyphs, which rendered near-white type on near-white glass — a
+   bright fill doing an ink's job. The gloss is preserved; only the
+   direction of the ramp changes, so the heading now measures 11:1+
+   against the pane instead of vanishing into it. */
 .vista-glass-text {
     background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 255, 0.7) 50%,
-        rgba(240, 248, 255, 0.8) 100%
+        var(--aero-ink, #0A2C4D) 0%,
+        #123B5E 55%,
+        var(--aero-ink, #0A2C4D) 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 
-        0 2px 4px rgba(255, 255, 255, 0.5),
-        0 0 20px rgba(0, 120, 215, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    animation: vistaTextGlow 3s ease-in-out infinite;
+    text-shadow: none;
 }
 
 @keyframes vistaTextGlow {
@@ -150,16 +150,23 @@
 }
 
 /* Vista Heading Styles */
+/* The old rule stacked a near-opaque white glow under the glyphs,
+   which on a light pane washed the heading out instead of lifting
+   it. A heading on glass needs separation, not luminosity — so the
+   halo drops to a whisper and the weight does the work. */
 .vista-h1 {
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 48px;
-    font-weight: 700;
+    font-family: var(--aero-font-display, 'Segoe UI', sans-serif);
+    font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3rem);
+    font-weight: 400;
     color: var(--vista-text);
-    text-shadow: 
-        0 2px 4px rgba(255, 255, 255, 0.9),
-        0 0 30px rgba(0, 120, 215, 0.4);
-    letter-spacing: -0.5px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.55);
+    letter-spacing: -0.02em;
+    line-height: 1.08;
     animation: vistaTextSlideIn 0.8s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vista-h1 { animation: none; }
 }
 
 .vista-h2 {
