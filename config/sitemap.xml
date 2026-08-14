@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
-        <loc>https://ianmccallum.com/</loc>
-        <lastmod>2026-01-18</lastmod>
+        <loc>https://www.ianmccallum.com/</loc>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://www.ianmccallum.com/img/ian-mccallum-social.jpg</image:loc>
+            <image:title>Ian McCallum</image:title>
+            <image:caption>Portrait of Ian McCallum, Naperville tech builder and incoming UIUC Gies student</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.ianmccallum.com/img/ian-mccallum-profile.jpg</image:loc>
+            <image:title>Ian McCallum profile photo</image:title>
+        </image:image>
     </url>
     <url>
-        <loc>https://ianmccallum.com/about</loc>
-        <lastmod>2026-01-18</lastmod>
+        <loc>https://www.ianmccallum.com/about</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://www.ianmccallum.com/img/ian-mccallum-social.jpg</image:loc>
+            <image:title>About Ian McCallum</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://www.ianmccallum.com/portfolio</loc>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://ianmccallum.com/portfolio</loc>
-        <lastmod>2026-01-18</lastmod>
+        <loc>https://www.ianmccallum.com/cv</loc>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://ianmccallum.com/cv</loc>
-        <lastmod>2026-01-18</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://ianmccallum.com/photos</loc>
-        <lastmod>2026-01-18</lastmod>
+        <loc>https://www.ianmccallum.com/photos</loc>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://ianmccallum.com/testimonials</loc>
-        <lastmod>2026-01-18</lastmod>
+        <loc>https://www.ianmccallum.com/testimonials</loc>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://ianmccallum.com/contact</loc>
-        <lastmod>2026-01-18</lastmod>
+        <loc>https://www.ianmccallum.com/contact</loc>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

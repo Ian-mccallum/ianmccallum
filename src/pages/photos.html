@@ -3,47 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos | Ian McCallum - Photo Gallery</title>
+    <title>Ian McCallum Photos | Personal Gallery & Visual Work</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Browse Ian McCallum's photo gallery featuring personal photos and memories from Naperville, Illinois and beyond.">
-    <meta name="keywords" content="Ian McCallum, photos, gallery, Naperville, Illinois">
+    <meta name="description" content="Browse Ian McCallum's photo gallery, including personal photos, visual memories, and creative photography from Naperville and beyond.">
+    <meta name="keywords" content="Ian McCallum photos, Ian McCallum gallery, photography, Naperville">
     <meta name="author" content="Ian McCallum">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     
-    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ianmccallum.com/photos">
-    <link rel="author" href="https://ianmccallum.com/about">
+    <link rel="canonical" href="https://www.ianmccallum.com/photos">
+    <link rel="author" href="https://www.ianmccallum.com/about">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://ianmccallum.com/photos">
-    <meta property="og:title" content="Photos | Ian McCallum - Photo Gallery">
-    <meta property="og:description" content="Browse Ian McCallum's photo gallery featuring personal photos and memories from Naperville, Illinois and beyond.">
-    <meta property="og:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta property="og:site_name" content="Ian McCallum">
+    <meta property="og:url" content="https://www.ianmccallum.com/photos">
+    <meta property="og:title" content="Ian McCallum Photos | Personal Gallery & Visual Work">
+    <meta property="og:description" content="Browse Ian McCallum's photo gallery, including personal photos, visual memories, and creative photography from Naperville and beyond.">
+    <meta property="og:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:secure_url" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portrait of Ian McCallum">
     <meta property="profile:first_name" content="Ian">
     <meta property="profile:last_name" content="McCallum">
     <meta property="profile:username" content="Ian McCallum">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ianmccallum.com/photos">
-    <meta name="twitter:title" content="Photos | Ian McCallum - Photo Gallery">
-    <meta name="twitter:description" content="Browse Ian McCallum's photo gallery featuring personal photos and memories from Naperville, Illinois and beyond.">
-    <meta name="twitter:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta name="twitter:url" content="https://www.ianmccallum.com/photos">
+    <meta name="twitter:title" content="Ian McCallum Photos | Personal Gallery & Visual Work">
+    <meta name="twitter:description" content="Personal photos, visual memories, and creative photography from Naperville and beyond.">
+    <meta name="twitter:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta name="twitter:image:alt" content="Portrait of Ian McCallum">
     <meta name="twitter:creator" content="@ian_mccaIlum">
     
-    <!-- Structured Data: ProfilePage Schema -->
+    <!-- Structured Data: Image Gallery Page Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Ian McCallum",
-        "url": "https://ianmccallum.com"
-      }
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://www.ianmccallum.com/#ian-mccallum",
+          "name": "Ian McCallum",
+          "url": "https://www.ianmccallum.com/",
+          "image": "https://www.ianmccallum.com/img/ian-mccallum-profile.jpg"
+        },
+        {
+          "@type": "ImageGallery",
+          "@id": "https://www.ianmccallum.com/photos#webpage",
+          "url": "https://www.ianmccallum.com/photos",
+          "name": "Ian McCallum Photos",
+          "description": "Browse Ian McCallum's photo gallery, including personal photos, visual memories, and creative photography from Naperville and beyond.",
+          "primaryImageOfPage": "https://www.ianmccallum.com/img/ian-mccallum-social.jpg",
+          "author": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.ianmccallum.com/photos#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.ianmccallum.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Photos",
+              "item": "https://www.ianmccallum.com/photos"
+            }
+          ]
+        }
+      ]
     }
     </script>
     
@@ -133,7 +174,7 @@
                         <i class="fas fa-camera me-2"></i>
                         @iandmccallum
                     </h2>
-                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-button vista-button-primary">
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="me noopener" class="vista-button vista-button-primary">
                         <i class="fab fa-instagram"></i>
                         <span>Follow on Instagram</span>
                     </a>

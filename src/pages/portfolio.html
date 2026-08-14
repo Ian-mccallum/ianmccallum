@@ -3,76 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Ian McCallum - Web Developer & Entrepreneur</title>
+    <title>Ian McCallum Portfolio | Automation, Web Development & Creative Work</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Ian McCallum's portfolio: Clockwork, an AI operations platform for trades businesses, plus custom client websites and creative work.">
     <meta name="keywords" content="Ian McCallum, portfolio, Clockwork, Beat the Clock, AI agents, prompt engineering, Python, web development, projects">
     <meta name="author" content="Ian McCallum">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     
-    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ianmccallum.com/portfolio">
-    <link rel="author" href="https://ianmccallum.com/about">
+    <link rel="canonical" href="https://www.ianmccallum.com/portfolio">
+    <link rel="author" href="https://www.ianmccallum.com/about">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://ianmccallum.com/portfolio">
-    <meta property="og:title" content="Portfolio | Ian McCallum - Web Developer & Entrepreneur">
+    <meta property="og:site_name" content="Ian McCallum">
+    <meta property="og:url" content="https://www.ianmccallum.com/portfolio">
+    <meta property="og:title" content="Ian McCallum Portfolio | Automation, Web Development & Creative Work">
     <meta property="og:description" content="Ian McCallum's portfolio: Clockwork, an AI operations platform for trades businesses, plus custom client websites and creative work.">
-    <meta property="og:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta property="og:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:secure_url" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portrait of Ian McCallum">
     <meta property="profile:first_name" content="Ian">
     <meta property="profile:last_name" content="McCallum">
     <meta property="profile:username" content="Ian McCallum">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ianmccallum.com/portfolio">
-    <meta name="twitter:title" content="Portfolio | Ian McCallum - Web Developer & Entrepreneur">
-    <meta name="twitter:description" content="Ian McCallum's portfolio: Clockwork, an AI operations platform for trades businesses, plus custom client websites and creative work.">
-    <meta name="twitter:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta name="twitter:url" content="https://www.ianmccallum.com/portfolio">
+    <meta name="twitter:title" content="Ian McCallum Portfolio | Automation, Web Development & Creative Work">
+    <meta name="twitter:description" content="Clockwork, an AI operations platform for trades businesses, plus custom client websites and creative work.">
+    <meta name="twitter:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta name="twitter:image:alt" content="Portrait of Ian McCallum">
     <meta name="twitter:creator" content="@ian_mccaIlum">
     
-    <!-- Structured Data: ProfilePage Schema -->
+    <!-- Structured Data: CollectionPage, Person, and Organization Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Ian McCallum",
-        "url": "https://ianmccallum.com"
-      }
-    }
-    </script>
-    
-    <!-- Structured Data: Organization Schema (Beat the Clock) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Beat the Clock",
-      "founder": {
-        "@type": "Person",
-        "name": "Ian McCallum"
-      },
-      "url": "https://beatyourclock.com",
-      "description": "Maker of Clockwork, an AI operations platform for trades businesses.",
-      "makesOffer": {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "SoftwareApplication",
-          "name": "Clockwork",
-          "applicationCategory": "BusinessApplication",
-          "url": "https://beatyourclock.com/clockwork",
-          "description": "An AI operations platform for trades businesses. Catches missed calls, drafts replies, prices quotes from the owner's rate card, chases follow-ups, confirms appointments, and collects invoices — all approval-gated by the owner.",
-          "author": {
-            "@type": "Person",
-            "name": "Ian McCallum"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://www.ianmccallum.com/#ian-mccallum",
+          "name": "Ian McCallum",
+          "url": "https://www.ianmccallum.com/",
+          "image": "https://www.ianmccallum.com/img/ian-mccallum-profile.jpg",
+          "knowsAbout": ["AI Operations", "Automation", "Web Development", "AI Agents", "Prompt Engineering", "Python", "React", "JavaScript"]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.ianmccallum.com/#beat-the-clock",
+          "name": "Beat the Clock",
+          "url": "https://beatyourclock.com",
+          "founder": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
+          },
+          "description": "Maker of Clockwork, an AI operations platform for trades businesses.",
+          "makesOffer": {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "@id": "https://www.ianmccallum.com/#clockwork",
+              "name": "Clockwork",
+              "applicationCategory": "BusinessApplication",
+              "url": "https://beatyourclock.com/clockwork",
+              "description": "An AI operations platform for trades businesses. Catches missed calls, drafts replies, prices quotes from the owner's rate card, chases follow-ups, confirms appointments, and collects invoices — all approval-gated by the owner.",
+              "author": {
+                "@id": "https://www.ianmccallum.com/#ian-mccallum"
+              }
+            }
           }
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.ianmccallum.com/portfolio#webpage",
+          "url": "https://www.ianmccallum.com/portfolio",
+          "name": "Ian McCallum Portfolio",
+          "description": "Ian McCallum's portfolio: Clockwork, an AI operations platform for trades businesses, plus custom client websites and creative work.",
+          "primaryImageOfPage": "https://www.ianmccallum.com/img/ian-mccallum-social.jpg",
+          "mainEntity": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
+          },
+          "about": [
+            {
+              "@id": "https://www.ianmccallum.com/#beat-the-clock"
+            },
+            {
+              "@id": "https://www.ianmccallum.com/#clockwork"
+            },
+            {
+              "@type": "Thing",
+              "name": "Web Development"
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.ianmccallum.com/portfolio#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.ianmccallum.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Portfolio",
+              "item": "https://www.ianmccallum.com/portfolio"
+            }
+          ]
         }
-      }
+      ]
     }
     </script>
     
@@ -158,8 +207,17 @@
                 <button class="vista-glass-control-btn maximize"><i class="fas fa-square"></i></button>
                 <button class="vista-glass-control-btn close"><i class="fas fa-times"></i></button>
                             </div>
-                        </div>
+        </div>
         <div class="vista-glass-content" style="padding: 30px;">
+            <section aria-label="Portfolio summary" style="background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.55); border-radius: 6px; padding: 16px 18px; margin-bottom: 28px;">
+                <p style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #333; line-height: 1.7; margin-bottom: 10px;">
+                    <strong>What does Ian McCallum build?</strong> Ian builds custom websites, automation systems, AI-assisted workflows, and creative digital projects.
+                </p>
+                <p style="font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #333; line-height: 1.7; margin: 0;">
+                    <strong>What is Beat the Clock?</strong> Beat the Clock is Ian's automation consulting project for helping businesses save time with tools like Zapier, Make, ChatGPT, and Python.
+                </p>
+            </section>
+
             <h2 style="font-family: 'Segoe UI', sans-serif; font-size: 24px; font-weight: 600; color: #1a1a1a; margin-bottom: 25px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">
                 <i class="fas fa-building" style="margin-right: 10px; color: #0078D7;"></i>
                 Business Ventures

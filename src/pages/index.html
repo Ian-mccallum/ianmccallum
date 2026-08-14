@@ -9,119 +9,199 @@
     <meta name="description" content="Ian McCallum is the founder of Beat the Clock and the engineer behind Clockwork, an AI operations platform for trades businesses. Python, prompt engineering, and applied AI systems design.">
     <meta name="keywords" content="Ian McCallum, Beat the Clock, Clockwork, AI engineer, AI agents, prompt engineering, Python, founder, Naperville, Illinois">
     <meta name="author" content="Ian McCallum">
+    <meta name="robots" content="index, follow, max-image-preview:large">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ianmccallum.com/">
-    <link rel="author" href="https://ianmccallum.com/about">
+    <link rel="canonical" href="https://www.ianmccallum.com/">
+    <link rel="author" href="https://www.ianmccallum.com/about">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://ianmccallum.com/">
+    <meta property="og:site_name" content="Ian McCallum">
+    <meta property="og:url" content="https://www.ianmccallum.com/">
     <meta property="og:title" content="Ian McCallum | Founder & AI Engineer">
     <meta property="og:description" content="Ian McCallum is the founder of Beat the Clock and the engineer behind Clockwork, an AI operations platform for trades businesses. Python, prompt engineering, and applied AI systems design.">
-    <meta property="og:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta property="og:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:secure_url" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portrait of Ian McCallum">
     <meta property="profile:first_name" content="Ian">
     <meta property="profile:last_name" content="McCallum">
     <meta property="profile:username" content="Ian McCallum">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ianmccallum.com/">
+    <meta name="twitter:url" content="https://www.ianmccallum.com/">
     <meta name="twitter:title" content="Ian McCallum | Founder & AI Engineer">
     <meta name="twitter:description" content="Ian McCallum is the founder of Beat the Clock and the engineer behind Clockwork, an AI operations platform for trades businesses. Python, prompt engineering, and applied AI systems design.">
-    <meta name="twitter:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta name="twitter:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta name="twitter:image:alt" content="Portrait of Ian McCallum">
     <meta name="twitter:creator" content="@ian_mccaIlum">
     
-    <!-- Structured Data: Person Schema -->
+    <!-- Structured Data: Entity, ProfilePage, WebSite, and Image Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ian McCallum",
-      "url": "https://ianmccallum.com",
-      "image": "https://ianmccallum.com/img/IMG_3486.JPG",
-      "jobTitle": "Founder & AI Engineer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Beat the Clock",
-        "url": "https://beatyourclock.com",
-        "description": "Maker of Clockwork, an AI operations platform for trades businesses."
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/mccallumian",
-        "https://github.com/Ian-mccallum",
-        "https://www.instagram.com/iandmccallum/",
-        "https://x.com/ian_mccaIlum"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Naperville",
-        "addressRegion": "Illinois",
-        "addressCountry": "US"
-      },
-      "alumniOf": [
+      "@graph": [
         {
-          "@type": "EducationalOrganization",
-          "name": "Metea Valley High School",
+          "@type": "Person",
+          "@id": "https://www.ianmccallum.com/#ian-mccallum",
+          "name": "Ian McCallum",
+          "givenName": "Ian",
+          "familyName": "McCallum",
+          "url": "https://www.ianmccallum.com/",
+          "mainEntityOfPage": "https://www.ianmccallum.com/",
+          "image": {
+            "@id": "https://www.ianmccallum.com/#profile-image"
+          },
+          "description": "Ian McCallum is a Naperville, Illinois tech builder and entrepreneur, incoming University of Illinois Urbana-Champaign Gies College of Business student, and founder of Beat the Clock, where he builds Clockwork, an AI operations platform for trades businesses.",
+          "jobTitle": "Founder & AI Engineer",
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Naperville, Illinois"
+          },
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Aurora",
-            "addressRegion": "Illinois"
+            "addressLocality": "Naperville",
+            "addressRegion": "IL",
+            "addressCountry": "US"
+          },
+          "worksFor": {
+            "@id": "https://www.ianmccallum.com/#beat-the-clock"
+          },
+          "alumniOf": [
+            {
+              "@type": "EducationalOrganization",
+              "name": "Metea Valley High School",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Aurora",
+                "addressRegion": "IL",
+                "addressCountry": "US"
+              }
+            }
+          ],
+          "affiliation": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "University of Illinois Urbana-Champaign",
+              "department": {
+                "@type": "CollegeOrUniversity",
+                "name": "Gies College of Business"
+              },
+              "sameAs": "https://giesbusiness.illinois.edu/"
+            },
+            {
+              "@id": "https://www.ianmccallum.com/#beat-the-clock"
+            }
+          ],
+          "knowsAbout": [
+            "Web Development",
+            "Automation",
+            "Artificial Intelligence",
+            "Python",
+            "JavaScript",
+            "React",
+            "Entrepreneurship",
+            "Prompt Engineering",
+            "Finance",
+            "Data Science",
+            "Zapier",
+            "Make"
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/ian-mccallum-700722344/",
+            "https://github.com/Ian-mccallum",
+            "https://www.instagram.com/iandmccallum/",
+            "https://x.com/ian_mccaIlum"
+          ]
+        },
+        {
+          "@type": "ImageObject",
+          "@id": "https://www.ianmccallum.com/#profile-image",
+          "url": "https://www.ianmccallum.com/img/ian-mccallum-profile.jpg",
+          "contentUrl": "https://www.ianmccallum.com/img/ian-mccallum-profile.jpg",
+          "caption": "Ian McCallum",
+          "width": 512,
+          "height": 512
+        },
+        {
+          "@type": "ImageObject",
+          "@id": "https://www.ianmccallum.com/#social-image",
+          "url": "https://www.ianmccallum.com/img/ian-mccallum-social.jpg",
+          "contentUrl": "https://www.ianmccallum.com/img/ian-mccallum-social.jpg",
+          "caption": "Portrait of Ian McCallum",
+          "width": 1200,
+          "height": 630
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.ianmccallum.com/#beat-the-clock",
+          "name": "Beat the Clock",
+          "url": "https://beatyourclock.com",
+          "founder": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
+          },
+          "description": "Maker of Clockwork, an AI operations platform for trades businesses.",
+          "makesOffer": {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "@id": "https://www.ianmccallum.com/#clockwork",
+              "name": "Clockwork",
+              "applicationCategory": "BusinessApplication",
+              "url": "https://beatyourclock.com/clockwork",
+              "description": "An AI operations platform for trades businesses. Catches missed calls, drafts replies, prices quotes from the owner's rate card, chases follow-ups, confirms appointments, and collects invoices — all approval-gated by the owner.",
+              "author": {
+                "@id": "https://www.ianmccallum.com/#ian-mccallum"
+              }
+            }
           }
         },
         {
-          "@type": "EducationalOrganization",
-          "name": "University of Illinois Urbana-Champaign",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Champaign",
-            "addressRegion": "Illinois"
+          "@type": "WebSite",
+          "@id": "https://www.ianmccallum.com/#website",
+          "name": "Ian McCallum",
+          "url": "https://www.ianmccallum.com/",
+          "publisher": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
           }
+        },
+        {
+          "@type": ["WebPage", "ProfilePage"],
+          "@id": "https://www.ianmccallum.com/#webpage",
+          "url": "https://www.ianmccallum.com/",
+          "name": "Ian McCallum | Automation, Web Development & UIUC Gies Student",
+          "description": "Ian McCallum is a Naperville-based tech builder, incoming UIUC Gies student, and founder of Beat the Clock, focused on automation, web development, AI, finance, and data science.",
+          "isPartOf": {
+            "@id": "https://www.ianmccallum.com/#website"
+          },
+          "primaryImageOfPage": {
+            "@id": "https://www.ianmccallum.com/#social-image"
+          },
+          "mainEntity": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.ianmccallum.com/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Ian McCallum",
+              "item": "https://www.ianmccallum.com/"
+            }
+          ]
         }
-      ],
-      "knowsAbout": [
-        "Artificial Intelligence",
-        "AI Agents",
-        "Prompt Engineering",
-        "Python",
-        "Software Architecture",
-        "Web Development",
-        "JavaScript",
-        "React",
-        "Entrepreneurship",
-        "Finance",
-        "Data Science"
       ]
-    }
-    </script>
-    
-    <!-- Structured Data: WebSite Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Ian McCallum",
-      "url": "https://ianmccallum.com",
-      "author": {
-        "@type": "Person",
-        "name": "Ian McCallum"
-      }
-    }
-    </script>
-    
-    <!-- Structured Data: ProfilePage Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Ian McCallum",
-        "url": "https://ianmccallum.com"
-      }
     }
     </script>
     
@@ -487,16 +567,16 @@
         </div>
         <div class="vista-taskbar-sep"></div>
         <div class="vista-glass-notification">
-            <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="Instagram @iandmccallum">
+            <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="me noopener" class="vista-glass-tray-icon" data-tip="Instagram @iandmccallum">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="Twitter / X">
+            <a href="https://x.com/ian_mccaIlum" target="_blank" rel="me noopener" class="vista-glass-tray-icon" data-tip="Twitter / X">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.linkedin.com/in/mccallumian" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="LinkedIn">
+            <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="me noopener" class="vista-glass-tray-icon" data-tip="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="vista-glass-tray-icon" data-tip="GitHub">
+            <a href="https://github.com/Ian-mccallum" target="_blank" rel="me noopener" class="vista-glass-tray-icon" data-tip="GitHub">
                 <i class="fab fa-github"></i>
             </a>
             <div class="vista-glass-tray-icon" data-tip="Volume"><i class="fas fa-volume-up"></i></div>
@@ -520,7 +600,7 @@
         </div>
         <div class="vista-glass-content" style="padding: 30px;">
             <div style="text-align: center; margin-bottom: 25px;">
-                <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="profile-image" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 15px;">
+                <img src="/img/ian-mccallum-profile.jpg" alt="Ian McCallum" class="profile-image" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 15px;">
                 <h1 style="font-family: var(--font-segoe-semilight); font-size: 28px; font-weight: 300; color: #1a1a1a; margin-bottom: 8px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">Ian McCallum</h1>
                 <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #666; margin-bottom: 5px;">Founder & AI Engineer</p>
                 <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #999;">
@@ -531,6 +611,14 @@
                 <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #333; line-height: 1.8; text-align: center; margin-bottom: 25px;">
                     Welcome to my site! I'm 18 years old and recently graduated from Metea Valley High School. This fall I'm heading to the University of Illinois Urbana-Champaign to study Finance and Data Science at the Gies College of Business. Explore my work, skills, and projects through the windows below.
                 </p>
+            <section aria-label="Quick facts about Ian McCallum" style="background: rgba(255, 255, 255, 0.52); border: 1px solid rgba(255, 255, 255, 0.55); border-radius: 6px; padding: 16px 18px; margin-bottom: 24px;">
+                <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #333; line-height: 1.65; margin: 0 0 8px;">
+                    <strong>Who is Ian McCallum?</strong> Ian McCallum is a Naperville, Illinois tech builder, entrepreneur, and incoming UIUC Gies College of Business student focused on Finance and Data Science.
+                </p>
+                <p style="font-family: var(--font-segoe-semilight); font-size: 14px; font-weight: 300; color: #333; line-height: 1.65; margin: 0;">
+                    <strong>What does Ian build?</strong> He builds websites, automation systems, and AI-assisted workflows through projects including Beat the Clock.
+                </p>
+            </section>
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                 <a href="#" data-window="about-window" class="vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; text-decoration: none; font-size: 15px;">
                     <i class="fas fa-user"></i>
@@ -665,7 +753,7 @@
         </div>
         <div class="vista-glass-content" style="padding: 30px;">
             <div style="display: flex; align-items: center; gap: 30px; margin-bottom: 30px;">
-                <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="profile-image" style="width: 150px; height: 150px; border-radius: 8px; object-fit: cover;">
+                <img src="/img/ian-mccallum-profile.jpg" alt="Ian McCallum" class="profile-image" style="width: 150px; height: 150px; border-radius: 8px; object-fit: cover;">
                 <div>
                     <h1 style="font-family: var(--font-segoe-semilight); font-size: 32px; font-weight: 300; color: #1a1a1a; margin-bottom: 10px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);">Ian McCallum</h1>
                     <p style="font-family: var(--font-segoe-semilight); font-size: 16px; font-weight: 300; color: #666; margin-bottom: 5px;">Founder & AI Engineer</p>
@@ -1202,15 +1290,15 @@
                     Connect With Me
                 </h3>
                 <div style="display: flex; justify-content: center; gap: 20px;">
-                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
+                    <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="me noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
                         <i class="fab fa-instagram" style="font-size: 28px; color: #0078D7;"></i>
                         <span style="font-family: var(--font-segoe-semilight); font-size: 11px; font-weight: 300; color: #333;">Instagram</span>
                     </a>
-                    <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
+                    <a href="https://x.com/ian_mccaIlum" target="_blank" rel="me noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
                         <i class="fab fa-twitter" style="font-size: 28px; color: #0078D7;"></i>
                         <span style="font-family: var(--font-segoe-semilight); font-size: 11px; font-weight: 300; color: #333;">Twitter</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/mccallumian" target="_blank" rel="noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
+                    <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="me noopener" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 16px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; text-decoration: none; transition: all 0.3s;">
                         <i class="fab fa-linkedin-in" style="font-size: 28px; color: #0078D7;"></i>
                         <span style="font-family: var(--font-segoe-semilight); font-size: 11px; font-weight: 300; color: #333;">LinkedIn</span>
                         </a>
@@ -1242,8 +1330,8 @@
                         <span class="email-challenge" style="display:none"><span class="challenge-text"></span><input type="number" class="challenge-input" min="-200" max="500" placeholder="?"><button type="button" class="challenge-submit" onclick="EmailShield.verify(this)"><i class="fas fa-arrow-right"></i></button><span class="challenge-error" style="display:none">✕</span></span>
                         <span class="email-revealed" style="display:none"><a class="email-link" href="#"></a><button type="button" class="email-copy" onclick="EmailShield.copy(this)" title="Copy"><i class="fas fa-copy"></i></button></span>
                     </span><br>
-                    <a href="https://www.linkedin.com/in/mccallumian" target="_blank" style="color: #0078D7; text-decoration: none;">LinkedIn</a> • 
-                    <a href="https://ianinnovates.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
+                    <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" style="color: #0078D7; text-decoration: none;">LinkedIn</a> • 
+                    <a href="https://www.ianmccallum.com" target="_blank" style="color: #0078D7; text-decoration: none;">Personal Website</a>
                 </div>
             </header>
 
@@ -1568,7 +1656,7 @@
                     <i class="fas fa-camera" style="margin-right: 10px; color: #0078D7;"></i>
                     @iandmccallum
                 </h2>
-                <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px; margin-top: 10px;">
+                <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="me noopener" class="vista-glass-button vista-glass-button-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; text-decoration: none; font-size: 12px; margin-top: 10px;">
                     <i class="fab fa-instagram"></i>
                     <span>Follow on Instagram</span>
                 </a>
@@ -1647,7 +1735,7 @@
     <div id="vista-startmenu" class="vista-glass-startmenu" style="width: 390px; flex-direction: column;">
         <!-- Profile header -->
         <div class="vista-startmenu-profile">
-            <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="vista-startmenu-avatar">
+            <img src="/img/ian-mccallum-profile.jpg" alt="Ian McCallum" class="vista-startmenu-avatar">
             <div>
                 <div class="vista-startmenu-username">Ian McCallum</div>
                 <div style="font-family:'Segoe UI',sans-serif;font-size:11px;color:rgba(255,255,255,0.65);margin-top:1px;">Founder &amp; AI Engineer</div>
@@ -1685,19 +1773,19 @@
             </div>
             <div class="vista-glass-startmenu-right" style="width: 170px; background: rgba(0,55,115,0.45); overflow-y: auto;">
                 <div style="font-family:'Segoe UI',sans-serif;font-size:10px;color:rgba(255,255,255,0.45);padding:8px 12px 4px;text-transform:uppercase;letter-spacing:0.5px;">Connect</div>
-                <a href="https://www.linkedin.com/in/mccallumian" target="_blank" rel="noopener" class="vista-glass-startitem">
+                <a href="https://www.linkedin.com/in/ian-mccallum-700722344/" target="_blank" rel="me noopener" class="vista-glass-startitem">
                     <i class="fab fa-linkedin-in" style="font-size:15px;width:20px;text-align:center;color:#60a5fa;"></i>
                     <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/Ian-mccallum" target="_blank" rel="noopener" class="vista-glass-startitem">
+                <a href="https://github.com/Ian-mccallum" target="_blank" rel="me noopener" class="vista-glass-startitem">
                     <i class="fab fa-github" style="font-size:15px;width:20px;text-align:center;color:#d1d5db;"></i>
                     <span>GitHub</span>
                 </a>
-                <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="noopener" class="vista-glass-startitem">
+                <a href="https://www.instagram.com/iandmccallum/" target="_blank" rel="me noopener" class="vista-glass-startitem">
                     <i class="fab fa-instagram" style="font-size:15px;width:20px;text-align:center;color:#f472b6;"></i>
                     <span>Instagram</span>
                 </a>
-                <a href="https://x.com/ian_mccaIlum" target="_blank" rel="noopener" class="vista-glass-startitem">
+                <a href="https://x.com/ian_mccaIlum" target="_blank" rel="me noopener" class="vista-glass-startitem">
                     <i class="fab fa-twitter" style="font-size:15px;width:20px;text-align:center;color:#60a5fa;"></i>
                     <span>Twitter / X</span>
                 </a>
@@ -2080,7 +2168,7 @@
             </div>
             <div class="ios-app-scroll">
                 <div class="ios-profile-header">
-                    <img src="/img/IMG_3486.JPG" alt="Ian McCallum" class="ios-profile-photo">
+                    <img src="/img/ian-mccallum-profile.jpg" alt="Ian McCallum" class="ios-profile-photo">
                     <div>
                         <div class="ios-profile-name">Ian McCallum</div>
                         <div class="ios-profile-sub">Founder &amp; AI Engineer</div>

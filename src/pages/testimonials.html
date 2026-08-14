@@ -3,47 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials | Ian McCallum - Client Reviews</title>
+    <title>Ian McCallum Testimonials | Client Reviews for Web Development</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Client testimonials for Ian McCallum — founder of Beat the Clock and builder of Clockwork, and a freelance web developer.">
     <meta name="keywords" content="Ian McCallum, testimonials, reviews, web development, Beat the Clock, Clockwork">
     <meta name="author" content="Ian McCallum">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     
-    <link rel="icon" type="image/png" href="/assets/IMlogo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ianmccallum.com/testimonials">
-    <link rel="author" href="https://ianmccallum.com/about">
+    <link rel="canonical" href="https://www.ianmccallum.com/testimonials">
+    <link rel="author" href="https://www.ianmccallum.com/about">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://ianmccallum.com/testimonials">
-    <meta property="og:title" content="Testimonials | Ian McCallum - Client Reviews">
+    <meta property="og:site_name" content="Ian McCallum">
+    <meta property="og:url" content="https://www.ianmccallum.com/testimonials">
+    <meta property="og:title" content="Ian McCallum Testimonials | Client Reviews for Web Development">
     <meta property="og:description" content="Client testimonials for Ian McCallum — founder of Beat the Clock and builder of Clockwork, and a freelance web developer.">
-    <meta property="og:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta property="og:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:secure_url" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portrait of Ian McCallum">
     <meta property="profile:first_name" content="Ian">
     <meta property="profile:last_name" content="McCallum">
     <meta property="profile:username" content="Ian McCallum">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ianmccallum.com/testimonials">
-    <meta name="twitter:title" content="Testimonials | Ian McCallum - Client Reviews">
-    <meta name="twitter:description" content="Client testimonials for Ian McCallum — founder of Beat the Clock and builder of Clockwork, and a freelance web developer.">
-    <meta name="twitter:image" content="https://ianmccallum.com/img/IMG_3486.JPG">
+    <meta name="twitter:url" content="https://www.ianmccallum.com/testimonials">
+    <meta name="twitter:title" content="Ian McCallum Testimonials | Client Reviews for Web Development">
+    <meta name="twitter:description" content="Client testimonials for Ian McCallum — founder of Beat the Clock and builder of Clockwork.">
+    <meta name="twitter:image" content="https://www.ianmccallum.com/img/ian-mccallum-social.jpg">
+    <meta name="twitter:image:alt" content="Portrait of Ian McCallum">
     <meta name="twitter:creator" content="@ian_mccaIlum">
     
-    <!-- Structured Data: ProfilePage Schema -->
+    <!-- Structured Data: Testimonials Page Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Ian McCallum",
-        "url": "https://ianmccallum.com"
-      }
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://www.ianmccallum.com/#ian-mccallum",
+          "name": "Ian McCallum",
+          "url": "https://www.ianmccallum.com/",
+          "image": "https://www.ianmccallum.com/img/ian-mccallum-profile.jpg"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.ianmccallum.com/testimonials#webpage",
+          "url": "https://www.ianmccallum.com/testimonials",
+          "name": "Ian McCallum Testimonials",
+          "description": "Read testimonials from people who worked with Ian McCallum on custom web development, portfolio websites, and digital project work.",
+          "primaryImageOfPage": "https://www.ianmccallum.com/img/ian-mccallum-social.jpg",
+          "mainEntity": {
+            "@id": "https://www.ianmccallum.com/#ian-mccallum"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.ianmccallum.com/testimonials#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.ianmccallum.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Testimonials",
+              "item": "https://www.ianmccallum.com/testimonials"
+            }
+          ]
+        }
+      ]
     }
     </script>
     
