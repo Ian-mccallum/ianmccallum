@@ -104,6 +104,33 @@
 
 
 /* ------------------------------------------------------------
+   .vista-badge — missing component rule
+   Used bare on cv.html and index.html for skill tags ("Python",
+   "Prompt engineering", ...) but never had a ruleset, so it
+   rendered as unstyled block text. Tags are informational, not
+   calls-to-action, so they get the wash treatment the token file
+   itself names for this ("light tinted background for tags"),
+   not the gloss/gradient treatment CTA buttons use.
+
+   color needs !important: style.css's `section *, .cv-document *,
+   ... { color: inherit !important }` reset outranks any plain
+   declaration once this sits inside a <section> or similar, which
+   is where every current usage lives. */
+.vista-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: var(--aero-water-wash);
+    color: var(--aero-water-ink) !important;
+    border-radius: var(--aero-r-full);
+    font-family: var(--aero-font-body);
+    font-size: var(--aero-t-xs);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+/* ------------------------------------------------------------
    Dark theme
    The aero tokens already flip themselves; these aliases follow
    automatically. Only the title bar needs its own treatment,
