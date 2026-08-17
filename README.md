@@ -17,6 +17,7 @@ This project follows enterprise-level organization principles with clear separat
 │   ├── js/                # JavaScript modules (core/features/)
 │   ├── css/               # Stylesheets (base/components/themes/utilities/)
 │   └── assets/            # All static assets (images/videos/icons/fonts/)
+├── api/                   # Vercel serverless functions. CommonJS, see below
 ├── config/                # Configuration files (source)
 ├── scripts/               # Build and utility scripts
 ├── docs/                  # Documentation
@@ -122,6 +123,57 @@ This site is configured for Vercel deployment:
 - HTML files in root (copied during build)
 - `vercel.json` in root for routing configuration
 - All assets served from `src/assets/` paths
+- `api/` is picked up automatically as serverless functions (see below)
+
+## 📮 Contact form
+
+`/contact` offers two paths on purpose. The **form** posts to `api/contact.js`
+for structured messages; the **EmailShield** below it still reveals the address
+behind an arithmetic challenge, for people who would rather use their own mail
+client. The shield is what keeps the address away from scrapers, so it stays.
+
+The form is a real `<form>` with a real action, so it works with JavaScript
+off (native POST, 303 to `/thank-you`). `js/contact-form.js` upgrades it to a
+fetch submit that keeps the visitor on the page.
+
+**Everything in `api/` is CommonJS.** The root `package.json` deliberately has
+no `"type": "module"`; adding it breaks the handler in production.
+
+### Where messages go
+
+`api/contact.js` emails Ian, then holds the record in a KV queue that
+[ianOS](https://github.com/ian-mccallum/ianOS) collects on its own schedule.
+ianOS files these under **Inbox** as correspondence and **never** as a lead:
+its `leads` table is Clockwork's scored call queue, and a personal inquiry
+entering it would corrupt that ordering invisibly. Design:
+[SPEC-v19](https://github.com/ian-mccallum/ianOS/blob/main/docs/SPEC-v19-personal-inbound.md).
+
+No autoresponse is sent, deliberately. This site promises nothing, and a reply
+would have to come from the Resend-verified `beatyourclock.com` sender, which
+reads as a business robot answering a personal note.
+
+### Bot verification
+
+`api/_turnstile.js` runs Cloudflare Turnstile. It **fails open** on any
+service error (timeout, 5xx, unreachable) and closed only on an explicit bot
+verdict, because a false positive silently costs a real message. A rejected
+bot gets the same success response a human does.
+
+Paste the site key into the `TURNSTILE_SITE_KEY` constant at the top of
+`js/contact-form.js` (it is public by design); the **secret** goes in Vercel
+as `TURNSTILE_SECRET` and never in this repo.
+
+### Environment variables (all optional)
+
+| Var | Effect when unset |
+|---|---|
+| `RESEND_API_KEY` | no notification email is sent |
+| `NOTIFY_TO` | alerts fall back to `contact@beatyourclock.com` |
+| `TURNSTILE_SECRET` | bot verification is skipped entirely |
+| `KV_REST_API_URL` / `_TOKEN` | nothing is queued for ianOS |
+| `IANOS_SYNC_TOKEN` | `/api/ianos-inbox` returns 503 and exposes nothing |
+
+Unconfigured is always silent, never an error: the form keeps working.
 
 ## 📚 Documentation
 
