@@ -129,6 +129,11 @@ The palette reads as sky and water: blue is the dominant, most-used hue site-wid
 - **Sun** (`#FF8C00` fill / `#985200` ink, wash `#FFF2E0`): accent and warning.
 - **Coral** (`#FF6B6B` fill / `#C22F2F` ink, wash `#FDECEC`): danger.
 
+### Reverse-type variants (print and dark chrome)
+White and near-white type on the deep titlebar band needs lighter blues than the on-glass palette provides; the standard `--aero-sky` is too saturated to sit as secondary text on that gradient.
+- **Sky Mute** (`#C6E4F5`): secondary reverse type on a deep blue band (10.68:1). Used for byline metadata in the print documents.
+- Reverse type also carries a shadow token, `rgba(4, 20, 36, 0.35)`, used only to lift display type off the band gradient. It is a depth value, not a palette color.
+
 ### Named Rules
 **The Fill/Ink Rule.** Every hue except neutral ink ships two versions: a bright fill for surfaces and gradients, and a darker ink twin for any text, icon, or meaningful boundary. The fills were measured on glass and several fail AA as type (Sun: 2.2:1, Spring: 2.1:1) — using a fill as text is not a style choice, it's a contrast bug.
 

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ian McCallum - Resume</title>
+<style>
+/* ============================================================
+   ONE-PAGE RESUME: print master
+   ------------------------------------------------------------
+   Built on the Aero design system's tokens (see DESIGN.md).
+
+   The site's most recognizable element is the Vista titlebar: a
+   deep blue gradient with a hard tonal step at 55% and a lit
+   specular edge along the top. That is the one piece of chrome
+   worth carrying into print, because it is the system's
+   signature and it survives as ink. Everything else the system
+   does with glass and translucency is dropped: it would read as
+   gimmick on a resume and does not print.
+
+   What carries over: the titlebar band, the specular top edge,
+   the blue-biased ink, the fill/ink rule, the label tracking,
+   the pill treatment, the 4px spacing grid.
+
+   Typography: the site's face is Segoe UI Semilight. The repo's
+   segoe_ui_semilight.ttf is a corrupt download (an HTML page
+   saved with a .ttf extension), and the face is absent off
+   Windows anyway. Avenir Next is the substitute: same humanist
+   lineage, with the genuine light weights the system's type rule
+   depends on, semilight voice at display sizes and regular
+   weight below 16px.
+
+   No em dashes in this document. En dashes appear only in date
+   ranges, where they are the correct mark.
+   ============================================================ */
+
+@page {
+    size: Letter;
+    margin: 0;
+}
+
+:root {
+    --ink:        #0A2C4D;   /* blue-biased navy, never pure black */
+    --ink-soft:   #35506B;
+    --haze:       #5C6F80;
+    --water-ink:  #0067BC;   /* the only blue allowed to carry text */
+    --water-fill: #0078D7;
+    --water-deep: #005A9E;
+    --water-wash: #E8F3FC;
+    --sky:        #87CEEB;
+    --hairline:   rgba(10, 44, 77, 0.12);
+
+    --r-sm:   4px;
+    --r-md:   8px;
+    --r-full: 999px;
+
+    --font-display: "Avenir Next", "Segoe UI Semilight", "Segoe UI", system-ui, sans-serif;
+    --font-body:    "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 8.5in; }
+
+body {
+    font-family: var(--font-body);
+    font-size: 9.05pt;
+    line-height: 1.45;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── The titlebar band ────────────────────────────────────────
+   The Vista gradient's defining feature is the hard tonal step
+   at 55%, not the hue. The step stays; the tones are dropped
+   deep enough to carry white type well past AA. */
+.band {
+    position: relative;
+    padding: 0.34in 0.5in 0.22in;
+    background: linear-gradient(to bottom,
+        #17547F 0%,
+        #124969 55%,
+        #0D3A56 55%,
+        #0A2C4D 100%);
+    overflow: hidden;
+}
+/* The specular edge. On screen this is what makes aero glass
+   read as wet; in print it is the one highlight that survives. */
+.band::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 42%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.20) 0%,
+        rgba(255, 255, 255, 0.05) 60%,
+        rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+.band-inner {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+h1 {
+    font-family: var(--font-display);
+    font-size: 34pt;
+    /* Reverse type optically thins: 500 on this band reads as the same
+       apparent weight 300 does on paper. The semilight voice is preserved
+       in feel, not in the raw number. */
+    font-weight: 500;
+    letter-spacing: -0.02em;       /* --aero-track-display */
+    line-height: 0.98;
+    color: #FFFFFF;
+    text-shadow: 0 1px 2px rgba(4, 20, 36, 0.35);
+}
+.tagline {
+    margin-top: 7px;
+    font-size: 10pt;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #A8DEF5;
+}
+
+.contact {
+    text-align: right;
+    font-size: 10pt;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+.contact a {
+    color: #FFFFFF;
+    text-decoration: underline;
+    text-decoration-color: rgba(168, 222, 245, 0.55);
+    text-underline-offset: 2px;
+}
+.contact .place { color: #C6E4F5; }
+
+/* ── Page body ────────────────────────────────────────────── */
+.content { padding: 10px 0.5in 0.3in; }
+
+.summary {
+    font-size: 9.2pt;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 11px;
+}
+.summary strong { color: var(--ink); font-weight: 600; }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.62fr 1fr;
+    gap: 0 22px;
+    align-items: start;
+}
+/* A single hairline is enough to build the column structure;
+   a tinted sidebar would fight the band for attention. */
+aside {
+    border-left: 1px solid var(--hairline);
+    padding-left: 22px;
+}
+
+/* ── Section headers: .aero-label with an accent tick ─────── */
+.sec {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.sec::before {
+    content: "";
+    width: 3px;
+    height: 9px;
+    border-radius: 1px;
+    background: linear-gradient(to bottom, var(--water-fill), var(--water-deep));
+    flex: none;
+}
+.sec h2 {
+    font-size: 7.9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;        /* --aero-track-label */
+    color: var(--water-ink);
+    white-space: nowrap;
+}
+.sec .line { flex: 1; height: 1px; background: var(--hairline); }
+
+section + section { margin-top: 13px; }
+aside section + section { margin-top: 12px; }
+
+/* ── Entries ──────────────────────────────────────────────── */
+.entry { margin-bottom: 9px; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+.entry h3 {
+    font-size: 10.7pt;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.24;
+}
+.entry .date {
+    font-size: 8pt;
+    color: var(--haze);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+.entry .role {
+    font-size: 8.8pt;
+    color: var(--water-ink);
+    font-weight: 600;
+    margin: 2px 0 5px;
+}
+
+ul.bullets { list-style: none; }
+ul.bullets li {
+    position: relative;
+    padding-left: 11px;
+    margin-bottom: 3px;
+    color: var(--ink-soft);
+    line-height: 1.46;
+}
+ul.bullets li:last-child { margin-bottom: 0; }
+/* A short rule rather than a dot: this system's language is
+   edges, not bullets. */
+ul.bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.64em;
+    width: 5px;
+    height: 1.5px;
+    border-radius: var(--r-full);
+    background: var(--water-ink);
+    opacity: 0.6;
+}
+ul.bullets li strong { color: var(--ink); font-weight: 600; }
+
+/* ── Award callout ────────────────────────────────────────── */
+.award {
+    position: relative;
+    background: var(--water-wash);
+    border-radius: var(--r-sm);
+    padding: 6px 10px 6px 12px;
+    margin: 6px 0 7px;
+    overflow: hidden;
+}
+.award::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--water-fill), var(--water-deep));
+}
+.award p {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: var(--water-deep);
+    line-height: 1.4;
+}
+.award .org {
+    font-weight: 500;
+    color: var(--water-ink);
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+aside .block { margin-bottom: 9px; }
+aside .block:last-child { margin-bottom: 0; }
+aside h4 {
+    font-size: 9.3pt;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+}
+aside .meta {
+    font-size: 8.2pt;
+    color: var(--haze);
+    line-height: 1.4;
+}
+aside .detail {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 1px;
+}
+
+/* Skill pills: the .vista-badge spec, print-safe */
+.pills { display: flex; flex-wrap: wrap; gap: 4px; }
+.pill {
+    background: var(--water-wash);
+    color: var(--water-ink);
+    border-radius: var(--r-full);
+    padding: 3px 8px;
+    font-size: 7.7pt;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.tech { font-size: 8.4pt; color: var(--ink-soft); line-height: 1.46; }
+.tech p + p { margin-top: 4px; }
+.tech strong { color: var(--ink); font-weight: 600; }
+
+ul.plain { list-style: none; }
+ul.plain li {
+    font-size: 8.4pt;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-bottom: 2px;
+}
+ul.plain li:last-child { margin-bottom: 0; }
+ul.plain li strong { color: var(--ink); font-weight: 600; }
+
+/* Awards list: the trophy line gets the ink twin, not the fill */
+ul.plain li.win strong { color: var(--water-deep); }
+</style>
+</head>
+<body>
+
+<!-- ══ TITLEBAR BAND ═════════════════════════════════════════ -->
+<div class="band">
+    <div class="band-inner">
+        <div>
+            <h1>Ian McCallum</h1>
+            <p class="tagline">Founder &amp; Lead Engineer &middot; Beat the Clock</p>
+        </div>
+        <div class="contact">
+            <a href="mailto:ian@beatyourclock.com">ian@beatyourclock.com</a><br>
+            <a href="https://www.ianmccallum.com">ianmccallum.com</a><br>
+            <a href="https://www.linkedin.com/in/mccallumian">linkedin.com/in/mccallumian</a><br>
+            <span class="place">Naperville, Illinois</span>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+
+    <p class="summary">
+        Founder and lead engineer of <strong>Beat the Clock</strong>, where I designed and built Clockwork, an AI operations platform for trades businesses that turns a missed call into a drafted reply, a priced quote, a confirmed appointment, and a collected invoice. I work in Python, prompt engineering, and applied AI systems design, with a bias toward software that refuses to guess when the answer costs somebody money. Incoming Finance and Data Science student at the University of Illinois' Gies College of Business.
+    </p>
+
+    <div class="grid">
+
+        <!-- ══ MAIN ══════════════════════════════════════════ -->
+        <main>
+            <section>
+                <div class="sec"><h2>Experience</h2><div class="line"></div></div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <h3>Beat the Clock</h3>
+                        <span class="date">Dec 2024 &ndash; Present</span>
+                    </div>
+                    <p class="role">Founder &amp; Lead Engineer</p>
+                    <ul class="bullets">
+                        <li>Built <strong>Clockwork</strong>, an AI operations platform for trades businesses, as sole architect and engineer: ten automated stages across eight screens, from catching a missed call to planning the next day's schedule overnight.</li>
+                        <li>Designed the product around an <strong>approval-gated agent</strong>. Every message is drafted for the owner to approve, and the agent earns permission to send a message type on its own only after enough drafts pass unedited, revocable in one tap.</li>
+                        <li>Separated <strong>deterministic pricing from model output</strong> so quotes compute from each customer's own rate card, eliminating a class of AI failure where a hallucinated number costs real money.</li>
+                        <li>Wrote a ten-rule voice specification for the agent and enforced it in the test suite; any violation fails the build. Architected multi-tenant support with strict data isolation between locations.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <h3>Luminate &middot; Virtual Enterprise International</h3>
+                        <span class="date">2025 &ndash; 2026</span>
+                    </div>
+                    <p class="role">Lead Developer</p>
+                    <div class="award">
+                        <p>1st Place, National &nbsp;&middot;&nbsp; 1st Place, Midwest Regional</p>
+                        <p class="org">E-Commerce Website, Virtual Enterprise International</p>
+                    </div>
+                    <ul class="bullets">
+                        <li>Built the full storefront for a glow-in-the-dark sports equipment brand: product catalog, curated bundles, and cart across training gear and party lines.</li>
+                        <li>Designed and coded an <strong>in-site arcade</strong> with three playable games that award points redeemable for promo codes, giving customers a reason to return between purchases.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <h3>Freelance Web Development</h3>
+                        <span class="date">2023 &ndash; Present</span>
+                    </div>
+                    <p class="role">Web Developer</p>
+                    <ul class="bullets">
+                        <li>Shipped custom sites for paying clients including <strong>Imanol VillaGomez</strong> (concert videographer for Charli XCX and Playboi Carti), <strong>Fortivus Academy</strong> (the largest rugby program in Naperville), TMM Photography, and Nics Marketing.</li>
+                        <li>Built beatyourclock.com end to end, including an interactive product simulation and a free assessment tool that quantifies the hours a shop loses each week.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <h3>Vokel</h3>
+                        <span class="date">2019 &ndash; 2021</span>
+                    </div>
+                    <p class="role">Creator, YouTube &amp; Twitch</p>
+                    <ul class="bullets">
+                        <li>Grew a gaming channel to nearly 500 subscribers and reached Twitch Affiliate status, editing every video in Premiere Pro and After Effects.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- ══ SIDEBAR ═══════════════════════════════════════ -->
+        <aside>
+            <section>
+                <div class="sec"><h2>Education</h2><div class="line"></div></div>
+                <div class="block">
+                    <h4>University of Illinois Urbana-Champaign</h4>
+                    <p class="meta">Gies College of Business &middot; Expected 2030</p>
+                    <p class="detail">Finance &amp; Data Science</p>
+                </div>
+                <div class="block">
+                    <h4>Metea Valley High School</h4>
+                    <p class="meta">Aurora, IL &middot; Class of 2026 &middot; GPA 4.25</p>
+                    <p class="detail">8 AP courses including Statistics, Macroeconomics, and U.S. Government &amp; Politics. Virtual Enterprise International.</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="sec"><h2>Skills</h2><div class="line"></div></div>
+                <div class="pills">
+                    <span class="pill">AI systems design</span>
+                    <span class="pill">Prompt engineering</span>
+                    <span class="pill">LLM integration</span>
+                    <span class="pill">Python</span>
+                    <span class="pill">JavaScript &amp; React</span>
+                    <span class="pill">Product design</span>
+                    <span class="pill">Client communication</span>
+                    <span class="pill">Self-directed</span>
+                    <span class="pill">Autodidactic</span>
+                </div>
+            </section>
+
+            <section>
+                <div class="sec"><h2>Technical</h2><div class="line"></div></div>
+                <div class="tech">
+                    <p><strong>Languages:</strong> Python, JavaScript, HTML, CSS, React</p>
+                    <p><strong>AI &amp; Systems:</strong> Agent design, human-in-the-loop approval workflows, automated testing of model output, multi-tenant architecture</p>
+                    <p><strong>Integrations:</strong> Messaging/SMS, payments, scheduling, invoicing</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="sec"><h2>Awards</h2><div class="line"></div></div>
+                <ul class="plain">
+                    <li class="win"><strong>1st Place, National</strong> &middot; E-Commerce Website, VEI</li>
+                    <li class="win"><strong>1st Place, Midwest Regional</strong> &middot; VEI</li>
+                    <li>Illinois State Scholar</li>
+                    <li>AP Scholar with Distinction</li>
+                    <li>Magna Cum Laude &middot; Seal of Biliteracy</li>
+                </ul>
+            </section>
+
+            <section>
+                <div class="sec"><h2>Also</h2><div class="line"></div></div>
+                <ul class="plain">
+                    <li><strong>Target</strong> &middot; Food Dept. &middot; 2024&ndash;Present</li>
+                    <li><strong>Coldwell Banker Dan Firks</strong> &middot; Real Estate Runner &middot; Summer 2025</li>
+                    <li><strong>Youth Soccer Referee</strong> &middot; 2021&ndash;2024</li>
+                    <li><strong>UNICEF Club</strong> &middot; Board Member</li>
+                    <li>National Honor Society</li>
+                </ul>
+            </section>
+        </aside>
+
+    </div>
+</div>
+
+</body>
+</html>
