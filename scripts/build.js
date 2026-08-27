@@ -167,6 +167,7 @@ const configSrc = path.join(rootDir, 'config');
 copyFile(path.join(configSrc, 'vercel.json'), path.join(rootDir, 'vercel.json'));
 copyFile(path.join(configSrc, 'robots.txt'), path.join(rootDir, 'robots.txt'));
 copyFile(path.join(configSrc, 'sitemap.xml'), path.join(rootDir, 'sitemap.xml'));
+copyFile(path.join(configSrc, 'feed.xml'), path.join(rootDir, 'feed.xml'));
 console.log('   ✓ Config files copied\n');
 
 console.log('✅ Build complete! Ready for deployment.\n');

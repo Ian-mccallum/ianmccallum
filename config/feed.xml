@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Ian McCallum</title>
+        <link>https://www.ianmccallum.com/blog</link>
+        <description>Essays by Ian McCallum, founder of Beat the Clock and builder of Clockwork, an AI operations platform for trades businesses.</description>
+        <language>en-us</language>
+        <copyright>Ian McCallum</copyright>
+        <managingEditor>ian@beatyourclock.com (Ian McCallum)</managingEditor>
+        <webMaster>ian@beatyourclock.com (Ian McCallum)</webMaster>
+        <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0000</lastBuildDate>
+        <atom:link href="https://www.ianmccallum.com/feed.xml" rel="self" type="application/rss+xml"/>
+        <image>
+            <url>https://www.ianmccallum.com/img/ian-mccallum-social.jpg</url>
+            <title>Ian McCallum</title>
+            <link>https://www.ianmccallum.com/blog</link>
+        </image>
+
+        <item>
+            <title>2007 thought the future would be beautiful</title>
+            <link>https://www.ianmccallum.com/blog/2007-thought-the-future-would-be-beautiful</link>
+            <guid isPermaLink="true">https://www.ianmccallum.com/blog/2007-thought-the-future-would-be-beautiful</guid>
+            <description>Why I am an optimist about AI, and why I am pointing it at trades businesses instead of everyone else.</description>
+            <author>ian@beatyourclock.com (Ian McCallum)</author>
+            <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+        </item>
+
+    </channel>
+</rss>
