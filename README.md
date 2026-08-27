@@ -67,7 +67,8 @@ This project follows enterprise-level organization principles with clear separat
   - `vista-system.js` - Vista UI system
 
 - **Features** (`src/js/features/`): Feature-specific modules
-  - `backgrounds/` - Background systems (GIF, video, etc.)
+  - `backgrounds/` - Background video handler (`gif-background.js`, named for the
+    GIF it used to drive; it now sizes the `<video>` background)
   - `icons/` - Icon management
   - `mobile/` - Mobile UX optimizations
   - `effects/` - Visual effects
@@ -84,7 +85,7 @@ This project follows enterprise-level organization principles with clear separat
 - **Images** (`src/assets/images/`): Organized by purpose
   - `photos/` - Photo gallery images
   - `logos/` - Logo and brand assets
-  - `backgrounds/` - Background images and GIFs
+  - `backgrounds/` - Background stills (the video itself lives in `assets/videos/`)
 - **Videos** (`src/assets/videos/`): Video files
 - **Icons** (`src/assets/icons/`): Icon files (Vista icons, etc.)
 - **Fonts** (`src/assets/fonts/`): Font files
@@ -96,7 +97,8 @@ The build process (`npm run build`):
 2. Flattens CSS from `src/css/{category}/` to `css/`
 3. Flattens JS from `src/js/{category}/` to `js/`
 4. Copies assets from `src/assets/` to `img/` and `assets/`
-5. Copies config files from `config/` to root
+5. Copies config files from `config/` to root (`vercel.json`, `robots.txt`,
+   `sitemap.xml`, `feed.xml`)
 
 **Note**: Always edit files in `src/`, never edit build output in root.
 
@@ -174,6 +176,49 @@ as `TURNSTILE_SECRET` and never in this repo.
 | `IANOS_SYNC_TOKEN` | `/api/ianos-inbox` returns 503 and exposes nothing |
 
 Unconfigured is always silent, never an error: the form keeps working.
+
+## ✍️ Blog
+
+Posts are hand-authored files, one per post: `src/pages/blog-<slug>.html`,
+listed from `src/pages/blog.html`, styled by `src/css/components/blog.css`.
+
+Routing is `/blog/<slug>` via a `vercel.json` rewrite to `/blog-<slug>`.
+**The rewrite destination must not end in `.html`** — `cleanUrls` 308-redirects
+`.html` paths, so a rewrite pointing at one resolves to a redirect and 404s.
+That bug shipped once and made every post unreachable.
+
+Because a post is served from a virtual `/blog/` directory, its nav links must
+be **absolute** (`/about.html`, not `about.html`).
+
+Publishing a post is four steps, and the last two are manual:
+
+1. `src/pages/blog-<slug>.html`
+2. link it from `src/pages/blog.html`
+3. add a `<url>` to `config/sitemap.xml`
+4. add an `<item>` to `config/feed.xml`
+
+Skip 3 and 4 and the post is live but undiscoverable. See
+[DEPLOYMENT.md](./docs/DEPLOYMENT.md) for the full checklist.
+
+## 📡 Feed
+
+RSS 2.0 at `/feed.xml`, authored in `config/feed.xml` and copied to root by the
+build. Every page carries a discovery `<link rel="alternate">` in its head.
+
+## 🖼️ Background
+
+The site background is a silent looping video, `assets/aero-bg.mp4` (~400KB),
+with `assets/aero-bg-poster.jpg` behind it for first paint.
+
+It was previously an 8.6MB animated GIF at 320x214 upscaled to fill the
+viewport: roughly 64MB of decoded frames held resident and recomposited
+fullscreen and forever, which made the whole site feel sluggish. The source
+also never looped, so the wrap visibly jumped; the current clip crossfades its
+last 1.4s back over its first, which closes the seam.
+
+`src/js/features/backgrounds/gif-background.js` still owns sizing. It keeps its
+old name and the element keeps `id="background-gif"` so existing CSS selectors
+continue to apply.
 
 ## 📚 Documentation
 

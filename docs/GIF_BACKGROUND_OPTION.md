@@ -1,3 +1,18 @@
+> **Superseded.** The site background is no longer a still image or an animated
+> GIF. It is a silent looping video, `assets/aero-bg.mp4` (~400KB), with
+> `assets/aero-bg-poster.jpg` behind it for first paint, sized by
+> `src/js/features/backgrounds/gif-background.js`.
+>
+> The GIF it replaced was 8.6MB at 320x214, upscaled to fill the viewport:
+> roughly 64MB of decoded frames held resident and recomposited fullscreen and
+> forever. Replacing it cut the background asset by 95% and moved the animation
+> off the main thread. See the Background section of the root README.
+>
+> This file is kept for the generation prompts and the composition brief, which
+> still describe the look accurately.
+
+---
+
 # GIF Background Option
 
 ## Using GIF Instead of Video

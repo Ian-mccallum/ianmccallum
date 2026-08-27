@@ -12,6 +12,8 @@ ianinnovates-main/
 │   ├── pages/                    # HTML entry points (source)
 │   │   ├── index.html
 │   │   ├── about.html
+│   │   ├── blog.html              # blog index
+│   │   ├── blog-<slug>.html       # one file per post
 │   │   ├── contact.html
 │   │   ├── cv.html
 │   │   ├── portfolio.html

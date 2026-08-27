@@ -1,175 +1,138 @@
 # Deployment Guide
 
-## 🚀 Quick Deployment
+## How this actually deploys
 
-### Standard Deployment (Recommended)
+Vercel runs the build itself. `vercel.json` sets:
 
-The site uses **Vercel rewrites** to serve directly from `src/pages/`. No build step required!
-
-```bash
-# 1. Edit files in src/pages/
-# 2. Commit and push
-git add src/
-git commit -m "Update site"
-git push
+```json
+"buildCommand": "npm run build",
+"outputDirectory": "."
 ```
 
-Vercel automatically deploys from `src/pages/` using the rewrites configured in `vercel.json`.
+So on every push to `main`, Vercel checks out the repo, runs `npm run build`,
+and serves the repo root. The build copies `src/` over the root.
 
-### Build-Based Deployment (Alternative)
+**This has one consequence that matters more than anything else in this file:**
 
-If you prefer to use build output in root:
+> Anything that exists only in the root and not in `src/` is deleted by the
+> next deploy. The build overwrites root HTML from `src/pages/`, root CSS from
+> `src/css/`, root JS from `src/js/`, and root config from `config/`.
+
+This has already bitten the project once: the contact form was committed to
+root `contact.html` and `js/contact-form.js` only, and would have vanished on
+the following deploy. Always author in `src/` (or `config/`), then build.
 
 ```bash
-# 1. Build the project
-npm run build:clean
-
-# 2. Verify build output
-ls -la css/ js/ img/ assets/
-
-# 3. Commit and push
-git add .
-git commit -m "Build for deployment"
-git push
-```
-
-## File Organization
-
-### Source Files (Edit These)
-- **Location**: `src/pages/*.html`
-- **Edit**: ✅ YES - Always edit these files
-- **Status**: Single source of truth
-
-### Build Output (Optional)
-- **Location**: `*.html` in root
-- **Edit**: ❌ NO - These are generated files
-- **Status**: Only needed for build-based deployment
-
-## Path Strategy
-
-All paths use **absolute paths** from root (`/`):
-- CSS: `/css/style.css`
-- JS: `/js/main.js`
-- Images: `/img/icons/vista/`
-- Assets: `/assets/logo.png`
-- Fonts: `/fonts/segoe_ui_semilight.ttf`
-
-This ensures paths work regardless of file location.
-
-## Vercel Configuration
-
-The `vercel.json` file contains rewrites that map:
-- `/` → `/src/pages/index.html`
-- `/about` → `/src/pages/about.html`
-- `/portfolio` → `/src/pages/portfolio.html`
-- `/contact` → `/src/pages/contact.html`
-- `/cv` → `/src/pages/cv.html`
-- `/photos` → `/src/pages/photos.html`
-- `/testimonials` → `/src/pages/testimonials.html`
-- `/thank-you` → `/src/pages/thank-you.html`
-
-## Development Workflow
-
-### Simple Workflow (Recommended)
-```bash
-# 1. Edit files in src/pages/
-# 2. Test locally (optional)
-npm run dev
-
-# 3. Commit and push
-git add src/
-git commit -m "Update pages"
-git push
-```
-
-### Build Workflow (Alternative)
-```bash
-# 1. Edit files in src/
-# 2. Build
-npm run build:clean
-
-# 3. Test locally
-npm run dev
-
-# 4. Commit and push
-git add .
-git commit -m "Build for deployment"
-git push
-```
-
-## Testing Locally
-
-### Option 1: Vercel CLI (Recommended)
-```bash
-npx vercel dev
-```
-
-### Option 2: Simple Server
-```bash
-npm run dev
-# or
-npm run serve
-```
-
-### Option 3: Build First
-```bash
+# 1. Edit in src/ or config/
+# 2. Build so the root copy matches
 npm run build
-npm run dev
+# 3. Commit both the source and the build output
+git add -A && git commit -m "..." && git push
 ```
 
-## Build Output Structure
+Committing the build output is not strictly required, since Vercel rebuilds
+anyway, but keeping root in sync means the committed tree always matches what
+ships, and `diff` between `src/pages/x.html` and `x.html` is a useful check.
 
-When using build-based deployment, the build script creates:
+## Routing
+
+Rewrites live in `config/vercel.json` and are copied to root by the build.
+Because Vercel reads `vercel.json` from the repo root at deploy time, **the
+root copy is the one that takes effect** — a stale root copy silently ignores
+changes made only in `config/`.
+
+| Source | Destination |
+|---|---|
+| `/` | `/index.html` |
+| `/about` | `/about.html` |
+| `/cv` | `/cv.html` |
+| `/photos` | `/photos.html` |
+| `/portfolio` | `/portfolio.html` |
+| `/testimonials` | `/testimonials.html` |
+| `/contact` | `/contact.html` |
+| `/thank-you` | `/thank-you.html` |
+| `/blog` | `/blog.html` |
+| `/blog/:slug` | `/blog-:slug` |
+
+### cleanUrls and the `.html` trap
+
+`cleanUrls: true` is enabled. It does two things:
+
+1. serves `foo.html` at `/foo`, and
+2. **308-redirects `/foo.html` to `/foo`**.
+
+Point 2 is the trap. A rewrite whose *destination* ends in `.html` resolves to
+a redirect rather than a file, and Vercel answers `NOT_FOUND`. The blog post
+rewrite originally pointed at `/blog-:slug.html` and every post 404'd because
+of this, while the sitemap advertised those URLs to crawlers.
+
+**Rule: rewrite destinations must not end in `.html`.**
+
+Note also that most of the single-page rewrites above are redundant —
+`cleanUrls` already serves `/about` from `about.html` without them. Only
+`/blog/:slug` does real work, because its URL shape differs from its filename.
+That is why a broken `/blog/:slug` was invisible: every other route kept
+working through `cleanUrls`, so `/blog` returning 200 proved nothing about
+whether the config had deployed.
+
+## Adding a blog post
+
+Posts are individual files, not generated. For a slug `my-post`:
+
+1. Create `src/pages/blog-my-post.html` (copy an existing post for the head
+   block: canonical, `og:type=article`, `BlogPosting` and `BreadcrumbList`
+   JSON-LD, `article:published_time`).
+   - The canonical must be `https://www.ianmccallum.com/blog/my-post`, the
+     rewritten shape, not the filename.
+   - Use **absolute** paths for nav links (`/about.html`, not `about.html`).
+     A post is served from a virtual `/blog/` directory, so relative links
+     would resolve against `/blog/`.
+2. Link it from `src/pages/blog.html`.
+3. Add a `<url>` entry to `config/sitemap.xml`.
+4. Add an `<item>` to `config/feed.xml`.
+
+Steps 3 and 4 are manual. A post that skips them is live but undiscoverable.
+
+## Build output
 
 ```
 /
-├── *.html              # HTML pages (from src/pages/)
-├── css/                # CSS files (flattened from src/css/)
-├── js/                 # JavaScript files (flattened from src/js/)
-├── img/                # Images and icons
-│   ├── icons/vista/    # Vista icons
-│   ├── photos/         # Photo gallery
-│   └── *.JPG          # Direct photo access
-├── assets/             # Logos, videos, backgrounds
-├── fonts/              # Font files
-├── vercel.json         # Vercel configuration
-├── robots.txt          # SEO configuration
-└── sitemap.xml         # Sitemap
+├── *.html              # from src/pages/
+├── css/                # flattened from src/css/{base,components,themes,utilities}/
+├── js/                 # flattened from src/js/{core,features/*}/
+├── img/                # photos and icons from src/assets/
+├── assets/             # logos, videos (mov/mp4/webm), backgrounds, favicon
+├── fonts/              # from src/assets/fonts/
+├── vercel.json         # from config/
+├── robots.txt          # from config/
+├── sitemap.xml         # from config/
+└── feed.xml            # from config/
 ```
+
+`api/` is not part of the build. Vercel picks it up as serverless functions
+directly, and everything in it is CommonJS (see the root README).
+
+## Testing locally
+
+```bash
+npm run build && npm run dev
+```
+
+`npm run dev` is a static server, so it does **not** apply `vercel.json`
+rewrites. `/blog/my-post` will 404 locally even when correct; test that path
+against a real deployment, or open `/blog-my-post.html` directly.
 
 ## Troubleshooting
 
-### Assets Not Loading
-1. Check that paths use absolute paths (`/assets/` not `assets/`)
-2. Verify build output exists in root (if using build-based deployment)
-3. Check browser console for 404 errors
-4. Verify `vercel.json` rewrites are correct
+**A change vanished after deploying.** It existed only in root. Move it into
+`src/` (or `config/`) and rebuild.
 
-### Build Issues
-1. Run `npm run clean` to remove old artifacts
-2. Run `npm run build:clean` for a fresh build
-3. Check that `src/` directory structure is correct
-4. Verify all source files exist
+**A rewrite returns 404.** Check whether its destination ends in `.html`; see
+the cleanUrls trap above. Then confirm the *root* `vercel.json` carries the
+rule, not just `config/vercel.json`.
 
-### Deployment Issues
-1. Ensure source files are committed
-2. Check `vercel.json` configuration
-3. Verify all paths use absolute paths
-4. Check Vercel deployment logs
+**An asset 404s in production but exists in `src/`.** The build copies assets
+by extension filter. Check the relevant `copyFiles` call in
+`scripts/build.js`; adding a new file type means widening that pattern.
 
-## Benefits
-
-✅ **No build step** - Edit and push (with rewrites)  
-✅ **Single source of truth** - No duplicate files  
-✅ **Simpler workflow** - Less to remember  
-✅ **Enterprise organization** - Clean structure  
-✅ **Automatic deployment** - Vercel handles everything  
-✅ **Flexible** - Can use rewrites or build output
-
-## Important Notes
-
-- **Source files** are in `src/` - these are what you edit
-- **Build output** is in root - these are generated (if using build-based deployment)
-- **Never edit files in root** - always edit in `src/` and rebuild
-- **Paths** use absolute paths from root for maximum compatibility
-
+**Assets not loading.** Paths must be absolute (`/assets/x`, not `assets/x`).

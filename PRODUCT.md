@@ -25,7 +25,9 @@ Breadth, not a single flagship narrative. The site's core claim is that Ian move
 
 ## Operating Context
 
-- Static site: Home, About, Portfolio, CV, Contact, Testimonials, Photos, Thank You — routed via Vercel rewrites (`/about`, `/cv`, `/photos`, `/portfolio`, `/testimonials`, `/contact`, `/thank-you`).
+- Static site: Home, About, Portfolio, CV, Contact, Testimonials, Photos, Blog, Thank You — routed via Vercel rewrites (`/about`, `/cv`, `/photos`, `/portfolio`, `/testimonials`, `/contact`, `/blog`, `/blog/<slug>`, `/thank-you`).
+- A blog, added August 2026. Posts are hand-authored one file per post; the sitemap and the RSS feed at `/feed.xml` are updated by hand for each one.
+- A contact form at `/contact` posting to Vercel serverless functions in `api/`, which notify by email and queue the record for ianOS. `api/` is CommonJS and is not part of the `src/` build.
 - Actively linked from live outreach and applications right now — treat the deployed site as always potentially in front of a recruiter or client. No work-in-progress or placeholder states should ship.
 - Content changes (CV entries, portfolio cards) happen relatively often as Ian's work history updates; the design system needs to absorb new entries without redesign.
 
@@ -33,7 +35,8 @@ Breadth, not a single flagship narrative. The site's core claim is that Ian move
 
 - Static HTML/CSS/JS, no framework, no backend, no build dependencies (`package.json` has zero `dependencies`/`devDependencies`).
 - Single-source-of-truth build: everything is authored in `src/`, and `npm run build` (`scripts/build.js`) copies/flattens it into the deployed root — HTML from `src/pages/`, CSS flattened to `css/`, JS flattened to `js/`, assets to `assets/`/`img/`/`fonts/`. An edit made only to the root copy is silently overwritten by the next build.
-- Deployed on Vercel, which also runs `npm run build` itself at deploy time (per `vercel.json`) — so `src/` is authoritative for production, not just for local dev.
+- Deployed on Vercel, which also runs `npm run build` itself at deploy time (per `vercel.json`) — so `src/` is authoritative for production, not just for local dev. Anything committed only to the root is deleted by the next deploy.
+- `cleanUrls` is enabled, which 308-redirects `.html` paths. A rewrite destination ending in `.html` therefore resolves to a redirect and returns 404; this broke every blog post once.
 - Desktop rendering emulates a Windows Vista/7 "Aero" desktop shell (taskbar, draggable glass windows, start menu, lock-screen boot sequence); a separate iOS-style mobile shell renders the same content as app panels below roughly 768px. New surfaces need to fit one of these two shells.
 
 ## Brand Commitments
