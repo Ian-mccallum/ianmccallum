@@ -238,8 +238,8 @@ class VistaSystem {
 }
 
 // Add window close animation
-const style = document.createElement('style');
-style.textContent = `
+const windowCloseStyle = document.createElement('style');
+windowCloseStyle.textContent = `
     @keyframes vistaWindowClose {
         from {
             opacity: 1;
@@ -251,7 +251,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(windowCloseStyle);
 
 // Initialize Vista System
 document.addEventListener('DOMContentLoaded', () => {

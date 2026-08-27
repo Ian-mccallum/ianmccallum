@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-17T00:00:00Z",
+  "title": "Design System: Ian McCallum — Aero",
+  "extensions": {
+    "colorMeta": {
+      "water-fill": { "role": "primary", "displayName": "Water Fill", "canonical": "#0078D7" },
+      "water-ink": { "role": "primary", "displayName": "Water Ink", "canonical": "#0067BC" },
+      "water-deep": { "role": "primary", "displayName": "Water Deep", "canonical": "#005A9E" },
+      "water-wash": { "role": "primary", "displayName": "Water Wash", "canonical": "#E8F3FC" },
+      "sky": { "role": "secondary", "displayName": "Sky", "canonical": "#87CEEB" },
+      "sky-bright": { "role": "secondary", "displayName": "Sky Bright", "canonical": "#00BFFF" },
+      "spring-fill": { "role": "success", "displayName": "Spring Fill", "canonical": "#00C853" },
+      "spring-ink": { "role": "success", "displayName": "Spring Ink", "canonical": "#0B7E3D" },
+      "spring-wash": { "role": "success", "displayName": "Spring Wash", "canonical": "#E6F8ED" },
+      "sun-fill": { "role": "warning", "displayName": "Sun Fill", "canonical": "#FF8C00" },
+      "sun-ink": { "role": "warning", "displayName": "Sun Ink", "canonical": "#985200" },
+      "sun-wash": { "role": "warning", "displayName": "Sun Wash", "canonical": "#FFF2E0" },
+      "coral-fill": { "role": "danger", "displayName": "Coral Fill", "canonical": "#FF6B6B" },
+      "coral-ink": { "role": "danger", "displayName": "Coral Ink", "canonical": "#C22F2F" },
+      "coral-wash": { "role": "danger", "displayName": "Coral Wash", "canonical": "#FDECEC" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#0A2C4D" },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#35506B" },
+      "haze": { "role": "neutral", "displayName": "Haze", "canonical": "#5C6F80" },
+      "glass": { "role": "neutral", "displayName": "Glass", "canonical": "rgba(250, 250, 248, 0.72)" },
+      "glass-solid": { "role": "neutral", "displayName": "Glass Solid", "canonical": "#FAFAF8" },
+      "glass-thin": { "role": "neutral", "displayName": "Glass Thin", "canonical": "rgba(255, 255, 255, 0.28)" },
+      "glass-deep": { "role": "neutral", "displayName": "Glass Deep", "canonical": "rgba(10, 44, 77, 0.55)" },
+      "accent-violet": { "role": "primary", "displayName": "Accent Violet", "canonical": "#A06ED2" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and page-title text, 16px and above only — Segoe UI Semilight gets visually fragile below that." },
+      "body": { "displayName": "Body", "purpose": "Running text and any type under 16px." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked eyebrow text, tags, section labels." },
+      "data": { "displayName": "Data", "purpose": "Monospace — code, technical data." }
+    },
+    "shadows": [
+      { "name": "lift-1", "value": "0 1px 2px rgba(10,44,77,0.10), inset 0 1px 0 rgba(255,255,255,0.85)", "purpose": "Resting state, barely raised." },
+      { "name": "lift-2", "value": "0 2px 6px rgba(10,44,77,0.12), inset 0 1px 0 rgba(255,255,255,0.85)", "purpose": "Buttons, tags." },
+      { "name": "lift-3", "value": "0 6px 16px rgba(10,44,77,0.14), inset 0 1px 0 rgba(255,255,255,0.85)", "purpose": "Cards, portfolio items." },
+      { "name": "lift-4", "value": "0 12px 32px rgba(10,44,77,0.18), inset 0 1px 0 rgba(255,255,255,0.85)", "purpose": "Floating windows." },
+      { "name": "lift-5", "value": "0 24px 56px rgba(10,44,77,0.22), inset 0 1px 0 rgba(255,255,255,0.85)", "purpose": "Menus, overlays — the deepest rung." },
+      { "name": "focus", "value": "0 0 0 3px rgba(0,120,215,0.45)", "purpose": "Focus ring; its own rung, always clears elevation shadows." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.22, 0.61, 0.36, 1)", "purpose": "Default easing — liquid, eases out long, never snaps." },
+      { "name": "ease-in", "value": "cubic-bezier(0.55, 0.06, 0.68, 0.19)", "purpose": "Exit/leave transitions." },
+      { "name": "dur-1", "value": "120ms", "purpose": "State change: hover, press." },
+      { "name": "dur-2", "value": "220ms", "purpose": "Element enters or leaves." },
+      { "name": "dur-3", "value": "380ms", "purpose": "Window opens, view changes." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-shell", "value": "768px" },
+      { "name": "chrome-collapse", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (canonical)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Violet glossy CTA button — the canonical primary action treatment on the glass-system pages (home, about, contact, portfolio).",
+      "html": "<button class=\"ds-btn-primary\">View Website</button>",
+      "css": ".ds-btn-primary { font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; padding: 8px 20px; background: linear-gradient(to bottom, rgba(180,130,230,0.90) 0%, rgba(160,110,210,0.85) 55%, rgba(140,90,190,0.80) 55%, rgba(120,70,170,0.90) 100%); backdrop-filter: blur(10px) saturate(180%); border: 1px solid rgba(255,255,255,0.4); border-radius: 4px; color: rgba(255,255,255,0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 2px 4px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.25), 0 0 15px rgba(160,110,210,0.4); position: relative; overflow: hidden; cursor: pointer; transition: all 0.2s; } .ds-btn-primary::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%); border-radius: 4px 4px 0 0; opacity: 0.6; pointer-events: none; } .ds-btn-primary:hover { background: linear-gradient(to bottom, rgba(200,150,250,0.95) 0%, rgba(180,130,230,0.90) 55%, rgba(160,110,210,0.85) 55%, rgba(140,90,190,0.95) 100%); box-shadow: 0 3px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.3), 0 0 20px rgba(180,130,230,0.5); transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,120,215,0.45); }"
+    },
+    {
+      "name": "Primary Button (legacy blue)",
+      "kind": "button",
+      "refersTo": "button-vista-legacy",
+      "description": "Blue gradient CTA button used on CV/testimonials/photos/thank-you pages. Still functional via aero-bridge.css aliasing; not the direction for new work.",
+      "html": "<button class=\"ds-btn-legacy\">Download PDF CV</button>",
+      "css": ".ds-btn-legacy { font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; padding: 8px 20px; background: linear-gradient(to bottom, #2E9AFF 0%, #0067BC 50%, #005A9E 100%); border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 2px 6px rgba(10,44,77,0.12), inset 0 1px 0 rgba(255,255,255,0.85); cursor: pointer; transition: all 0.2s; } .ds-btn-legacy:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 0 20px rgba(0,120,215,0.40); }"
+    },
+    {
+      "name": "Skill Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Wash-tinted pill for skill/tech tags. Added by this pass — the class previously had no ruleset and rendered as unstyled text.",
+      "html": "<span class=\"ds-badge\">Python</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; padding: 4px 12px; background: #E8F3FC; color: #0067BC !important; border-radius: 999px; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 0.8125rem; font-weight: 600; line-height: 1.4; }"
+    },
+    {
+      "name": "Portfolio Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Glossy translucent project card used on the portfolio and home pages.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Fortivus Academy</h3><p class=\"ds-card-body\">Custom website for a rugby training academy.</p></div>",
+      "css": ".ds-card { background: linear-gradient(to bottom, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.20) 100%); backdrop-filter: blur(15px) saturate(180%); border: 1px solid rgba(255,255,255,0.6); border-radius: 8px; padding: 20px; box-shadow: 0 6px 16px rgba(10,44,77,0.14), inset 0 1px 0 rgba(255,255,255,0.85); position: relative; overflow: hidden; transition: all 0.3s; } .ds-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 100%); opacity: 0.4; pointer-events: none; } .ds-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.8); } .ds-card-title { font-family: 'Segoe UI Semilight', 'Segoe UI', sans-serif; font-size: 18px; font-weight: 300; color: #0A2C4D; margin: 0 0 10px; } .ds-card-body { font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #35506B; line-height: 1.6; margin: 0; }"
+    },
+    {
+      "name": "Glass Window",
+      "kind": "custom",
+      "refersTo": "window-glass",
+      "description": "The signature chrome — a draggable, translucent glass window with a titlebar, used on home/about/contact/portfolio. Deliberately square-cornered (0 radius) for Vista authenticity.",
+      "html": "<div class=\"ds-window\"><div class=\"ds-titlebar\"><span>Portfolio</span></div><div class=\"ds-window-content\">Window content</div></div>",
+      "css": ".ds-window { background: rgba(255,255,255,0.25); backdrop-filter: blur(30px) saturate(200%); border: 1px solid rgba(255,255,255,0.5); border-radius: 0; box-shadow: 0 12px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; } .ds-titlebar { background: linear-gradient(to bottom, rgba(46,109,164,0.92) 0%, rgba(42,102,153,0.92) 55%, rgba(35,91,135,0.94) 55%, rgba(31,92,140,0.94) 100%); height: 31px; display: flex; align-items: center; padding: 0 10px; color: #fff; font-family: 'Segoe UI', sans-serif; font-size: 13px; cursor: move; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3); } .ds-window-content { padding: 24px; color: #0A2C4D; font-family: 'Segoe UI', sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The 2009 Time Capsule",
+    "overview": "This is not a retro pastiche of Windows Vista/7 Aero — it is a sincere, working artifact from that exact moment (2007–2009), rebuilt with today's craft. The desktop is real: a taskbar, draggable glass windows with titlebars and traffic-light controls, a Start menu, a lock-screen boot sequence. Content lives inside those windows the way a document lived inside an app window in 2009, not as a modern webpage wearing Aero decoration. The physical premise behind every surface is one light source: a glossy, translucent pane, lit from above, floating over a bright natural backdrop.",
+    "keyCharacteristics": [
+      "A real desktop metaphor, not a webpage with glass CSS applied to it",
+      "One light source (top-down) governs every highlight, shadow, and blur",
+      "Six hues, each split into a bright fill and a darker ink twin for text",
+      "Segoe UI Semilight at large sizes is the site's voice; regular weight below 16px",
+      "Vista-era chrome is tight and hard-edged; content surfaces are softer"
+    ],
+    "rules": [
+      { "name": "The Fill/Ink Rule", "body": "Every hue except neutral ink ships two versions: a bright fill for surfaces, a darker ink twin for text. Fills measured on glass fail AA as type for Sun (2.2:1) and Spring (2.1:1).", "section": "colors" },
+      { "name": "The Border-Pair Rule", "body": "A border is always a lit top/left edge paired with a shaded bottom/right edge — that pairing is what reads as physical thickness on glass.", "section": "colors" },
+      { "name": "The Semilight Floor Rule", "body": "Segoe UI Semilight is the display voice above 16px only; below that, switch to regular Segoe UI.", "section": "typography" },
+      { "name": "The No-Sideways Rule", "body": "The page itself never scrolls horizontally; wide content scrolls within its own box instead.", "section": "layout" },
+      { "name": "The Refraction Rule", "body": "Elevation and blur move together across the six rungs — a high lift value with no blur breaks the physical model.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use the ink twin for any text, icon stroke, or meaningful boundary — never the bright fill.",
+      "Do pair a lit top/left border edge with a shaded bottom/right edge together.",
+      "Do use the violet glass-button-primary for new primary actions — the canonical accent.",
+      "Do treat elevation and blur as one system, moving together across rungs.",
+      "Do give long-form text an opaque bed rather than letting it sit directly on translucent glass."
+    ],
+    "donts": [
+      "Don't add a new component color as a bare hex/rgba literal the way the canonical violet currently is — promote it to a named --aero-* token instead of adding another one-off.",
+      "Don't build new pages against the blue vista-button legacy system — it still works via aero-bridge.css aliasing, but new surfaces should start from the glass system.",
+      "Don't declare a component's color without !important if it can be nested inside <section> or similar — style.css carries a blanket color: inherit !important reset scoped to those containers.",
+      "Don't round the corners of the glass window chrome to match --aero-r-lg — the 0 radius is what makes it read as authentic 2009 Vista.",
+      "Don't ship a work-in-progress or placeholder state on any deployed page — the site is actively linked from live outreach and applications."
+    ]
+  }
+}

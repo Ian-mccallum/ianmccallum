@@ -217,13 +217,13 @@ document.querySelectorAll('.btn-primary, .btn-outline-primary').forEach(button =
 });
 
 // Add CSS for ripple effect
-const style = document.createElement('style');
-style.textContent = `
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
     .btn-primary, .btn-outline-primary {
         position: relative;
         overflow: hidden;
     }
-    
+
     .ripple {
         position: absolute;
         border-radius: 50%;
@@ -232,7 +232,7 @@ style.textContent = `
         animation: ripple-animation 0.6s ease-out;
         pointer-events: none;
     }
-    
+
     @keyframes ripple-animation {
         to {
             transform: scale(4);
@@ -240,7 +240,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(rippleStyle);
 
 // Mouse cursor effect for interactive elements
 document.querySelectorAll('a, button, .skill-card, .portfolio-item').forEach(element => {
@@ -254,17 +254,6 @@ const navLinks = document.querySelectorAll('.navigation-links .nav-link');
 navLinks.forEach((link, index) => {
     link.style.animationDelay = `${0.4 + index * 0.1}s`;
 });
-
-// Enhanced theme toggle animation
-const themeToggle = document.querySelector('.theme-toggle');
-if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
-        this.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 150);
-    });
-}
 
 // Add floating animation to profile image
 const profileImg = document.querySelector('.profile-img');
@@ -510,10 +499,16 @@ document.querySelectorAll('.skill-card').forEach((card, index) => {
     });
 });
 
-// Enhanced theme toggle with nature transition
+// Enhanced theme toggle: press animation + expanding ripple
 const themeToggle = document.querySelector('.theme-toggle');
 if (themeToggle) {
     themeToggle.addEventListener('click', function() {
+        // Press animation
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+
         // Create expanding circle effect
         const circle = document.createElement('div');
         circle.style.cssText = `
