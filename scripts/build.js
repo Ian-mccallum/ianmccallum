@@ -146,11 +146,11 @@ copyFiles(path.join(imagesSrc, 'logos'), rootAssetsDir, /\.(png|jpg|jpeg|ico)$/)
 
 // Copy background GIF to assets/
 if (fs.existsSync(path.join(imagesSrc, 'backgrounds'))) {
-  copyFiles(path.join(imagesSrc, 'backgrounds'), rootAssetsDir, /\.gif$/);
+  copyFiles(path.join(imagesSrc, 'backgrounds'), rootAssetsDir, /\.(gif|jpg|jpeg|png)$/);
 }
 
 // Copy videos to assets/
-copyFiles(path.join(assetsSrc, 'videos'), rootAssetsDir, /\.mov$/);
+copyFiles(path.join(assetsSrc, 'videos'), rootAssetsDir, /\.(mov|mp4|webm)$/);
 
 // Copy fonts
 const fontsSrc = path.join(assetsSrc, 'fonts');

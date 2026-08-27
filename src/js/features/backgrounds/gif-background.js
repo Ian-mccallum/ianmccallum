@@ -16,9 +16,9 @@ class GIFBackgroundHandler {
         this.forceFullCoverage();
 
         // Handle image load
-        this.gif.addEventListener('load', () => {
+        this.gif.addEventListener('loadeddata', () => {
             this.forceFullCoverage();
-            console.log('GIF background loaded successfully');
+            // background ready
         });
 
         // Handle image errors
