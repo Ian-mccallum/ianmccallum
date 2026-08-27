@@ -56,4 +56,16 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://www.ianmccallum.com/blog</loc>
+        <lastmod>2026-08-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.ianmccallum.com/blog/2007-thought-the-future-would-be-beautiful</loc>
+        <lastmod>2026-08-26</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>
