@@ -66,7 +66,9 @@ secondary windows disappear, and the fixed taskbar remains an orientation surfac
 Only the root route shows the session-scoped welcome sequence. Its original Aero
 language returns through the luminous horizon, light fields, glass orb, bubbles,
 status phrases, and live progress. It runs for roughly 4.6 seconds, is skippable,
-is removed immediately for reduced motion, and does not delay other routes.
+and does not delay other routes. The skip affordance is a small text link to
+`#main-content`; Escape triggers the same dismissal. Start → Replay welcome clears
+the session marker and returns to `/`. Reduced-motion visitors bypass the sequence.
 The background video is loaded only when motion and data preferences allow it and
 pauses when the document is hidden. Long-form reading surfaces use an opaque bed.
 

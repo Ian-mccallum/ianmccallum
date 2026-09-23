@@ -168,8 +168,10 @@ The root route opens with one session-scoped startup ritual derived from the
 original site: a luminous horizon, colored atmosphere, floating bubbles, the IM
 glass orb, changing system phrases, and live progress. It runs for roughly 4.6
 seconds before a short circular reveal, remains immediately skippable, can be
-replayed from Start, and is omitted under reduced motion. This is the authored
-focal sequence; routine desktop transitions stay brief.
+replayed from Start, and is omitted under reduced motion. Its skip action is a
+small, quiet text link—not a competing button—and Escape provides the keyboard
+shortcut. This is the authored focal sequence; routine desktop transitions stay
+brief.
 
 ### Buttons and fields
 

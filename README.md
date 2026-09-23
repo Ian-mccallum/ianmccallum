@@ -42,6 +42,14 @@ npx playwright install chromium
 Run `npm run preview -- --host 127.0.0.1` before either browser command. Generated
 screenshots and reports live in `.impeccable/review/` and are not committed.
 
+### Review the welcome sequence
+
+The welcome sequence appears once per browser session on `/`. To inspect it again,
+open Start and choose **Replay welcome**. It can be dismissed through the small
+**Skip welcome** text link or the Escape key; reduced-motion visitors bypass it.
+The browser suite captures its in-progress state at
+`.impeccable/review/welcome-sequence-1440.png`.
+
 ## Architecture
 
 - `src/pages/` owns static routes. Deep links render one maximized Aero window;
@@ -49,7 +57,7 @@ screenshots and reports live in `.impeccable/review/` and are not committed.
 - `src/layouts/WindowPageLayout.astro` is the shared document, SEO, and shell
   boundary.
 - `src/components/aero/` owns the desktop, window chrome, taskbar, Start menu,
-  controls, and authentic local icon treatment.
+  controls, welcome sequence, and authentic local icon treatment.
 - `src/scripts/aero-window.ts` progressively turns same-origin desktop links into
   movable route windows. Anchors remain real links, and mobile continues to use
   direct navigation.
