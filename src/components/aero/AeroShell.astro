@@ -64,8 +64,7 @@ const { path, title, windowTitle, icon, reading = false, root = false } = Astro.
         <div class="boot-progress__track"><span data-boot-progress-bar></span></div>
         <p class="boot-status" aria-live="polite" data-boot-status>Preparing your atmosphere…</p>
       </div>
-      <button class="boot-skip" type="button" data-skip-boot>Skip welcome</button>
-      <p class="boot-hint">Press Esc to skip</p>
+      <a class="boot-skip" href="#main-content" data-skip-boot>Skip welcome</a>
     </div>
   </div>
 )}

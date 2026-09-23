@@ -218,9 +218,8 @@
   .boot-progress__track span { display: block; width: 100%; height: 100%; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, #13c8ff, #5dff9a 32%, #ffe55f 60%, #ff8bd7 82%, #9b8cff); box-shadow: 0 2px 14px rgba(64,237,255,.8); transition: transform 80ms linear; }
   .boot-status { min-height: 19px; margin-top: 10px; color: #b5e8ff; font-size: .75rem; text-align: center; text-shadow: 0 1px 12px rgba(53,197,255,.5); transition: opacity 120ms ease, transform 120ms ease; }
   .boot-status.is-changing { opacity: 0; transform: translateY(3px); }
-  .boot-skip { min-width: 112px; min-height: 38px; margin-top: 22px; color: rgba(255,255,255,.86); border: 1px solid rgba(255,255,255,.34); border-radius: 4px; background: rgba(5,45,90,.38); box-shadow: inset 0 1px rgba(255,255,255,.18), 0 3px 12px rgba(0,9,28,.22); cursor: pointer; }
-  .boot-skip:hover, .boot-skip:focus-visible { color: white; background: rgba(21,106,166,.58); }
-  .boot-hint { margin-top: 8px; color: rgba(255,255,255,.42); font-size: .64rem; letter-spacing: .04em; }
+  .boot-skip { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; padding-inline: 8px; color: rgba(219,242,255,.58); font-size: .67rem; letter-spacing: .04em; text-decoration-color: rgba(219,242,255,.32); text-underline-offset: 3px; }
+  .boot-skip:hover, .boot-skip:focus-visible { color: white; text-decoration-color: currentColor; }
 
   @keyframes boot-content-in { from { opacity: 0; transform: translateY(14px) scale(.94); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
   @keyframes boot-content-out { to { opacity: 0; transform: translateY(-9px) scale(.96); filter: blur(6px); } }

@@ -431,7 +431,7 @@ if (boot) {
       sky.style.setProperty('--mx', x.toFixed(3));
       sky.style.setProperty('--my', y.toFixed(3));
     });
-    document.querySelector<HTMLButtonElement>('[data-skip-boot]')?.addEventListener('click', dismiss, { once: true });
+    document.querySelector<HTMLAnchorElement>('[data-skip-boot]')?.addEventListener('click', dismiss, { once: true });
     onBootKey = (event) => {
       if (event.key === 'Escape') dismiss();
     };
