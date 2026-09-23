@@ -8,14 +8,16 @@
   const video = document.querySelector<HTMLVideoElement>('.atmosphere-video');
   if (video) {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobile = matchMedia('(max-width: 760px)').matches;
     const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
-    if (!reduced && !saveData && video.dataset.src) {
+    const allowVideo = !reduced && !mobile && !saveData;
+    if (allowVideo && video.dataset.src) {
       video.src = video.dataset.src;
       video.play().catch(() => undefined);
     }
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) video.pause();
-      else if (video.src && !reduced && !saveData) video.play().catch(() => undefined);
+      else if (video.src && allowVideo) video.play().catch(() => undefined);
     });
   }
 </script>

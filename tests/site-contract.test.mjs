@@ -1,12 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 
 const routes = [
   ['/', 'dist/index.html'],
   ['/about', 'dist/about/index.html'],
   ['/portfolio', 'dist/portfolio/index.html'],
+  ['/portfolio/beat-the-clock', 'dist/portfolio/beat-the-clock/index.html'],
   ['/portfolio/clockwork', 'dist/portfolio/clockwork/index.html'],
+  ['/portfolio/fortivus-academy', 'dist/portfolio/fortivus-academy/index.html'],
+  ['/portfolio/imanol-villagomez', 'dist/portfolio/imanol-villagomez/index.html'],
+  ['/portfolio/luminate', 'dist/portfolio/luminate/index.html'],
+  ['/portfolio/nics-marketing', 'dist/portfolio/nics-marketing/index.html'],
+  ['/portfolio/tmm-photography', 'dist/portfolio/tmm-photography/index.html'],
+  ['/portfolio/vokel', 'dist/portfolio/vokel/index.html'],
   ['/cv', 'dist/cv/index.html'],
   ['/photos', 'dist/photos/index.html'],
   ['/testimonials', 'dist/testimonials/index.html'],
@@ -30,6 +37,16 @@ for (const [route, file] of routes) {
     assert.doesNotMatch(html, /cdn\.jsdelivr|cdnjs\.cloudflare|unpkg\.com/);
   });
 }
+
+test('generated HTML route inventory contains no unexpected pages', () => {
+  const walk = (directory) => readdirSync(directory).flatMap((entry) => {
+    const path = `${directory}/${entry}`;
+    return statSync(path).isDirectory() ? walk(path) : [path];
+  });
+  const expected = new Set([...routes.map(([, file]) => file), 'dist/404.html']);
+  const generated = walk('dist').filter((file) => file.endsWith('.html'));
+  assert.deepEqual(new Set(generated), expected);
+});
 
 test('404 is an Aero window with recovery links', () => {
   const html = readFileSync('dist/404.html', 'utf8');

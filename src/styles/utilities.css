@@ -15,6 +15,7 @@
     :root { --taskbar-h: 48px; }
     body { overflow: auto; background: #dceef7; }
     .atmosphere { position: absolute; height: 210px; }
+    .atmosphere-video { display: none; }
     .atmosphere-light { background: linear-gradient(rgba(255,255,255,.18), rgba(0,83,145,.48)); }
     .desktop-icons { display: none; }
     .desktop-workspace { height: auto; min-height: calc(100svh - var(--taskbar-h)); padding: 0 0 var(--taskbar-h); }
@@ -47,6 +48,18 @@
     .start-menu { width: calc(100vw - 12px); left: 6px; max-height: calc(100svh - 58px); overflow: auto; }
     .document-link { grid-template-columns: auto 1fr; }
     .document-link time { grid-column: 2; }
+    .explorer { overflow: visible; }
+    .explorer__toolbar { justify-content: space-between; }
+    .project-list { min-width: 0; }
+    .project-list thead { display: none; }
+    .project-list tbody { display: grid; }
+    .project-list tr { display: grid; grid-template-columns: 1fr; padding: 14px; border-bottom: 1px solid #c8d7e0; }
+    .project-list tr:last-child { border-bottom: 0; }
+    .project-list td { display: grid; grid-template-columns: 78px 1fr; gap: 8px; padding: 4px 0; border: 0; }
+    .project-list td::before { color: var(--aero-haze); content: attr(data-label); font-size: .72rem; font-weight: 600; }
+    .project-list .project-name { align-items: start; }
+    .project-list .project-name img { display: none; }
+    .project-list .project-summary { max-width: none; }
   }
 
   @media (max-width: 390px) {
@@ -54,7 +67,6 @@
     h1 { font-size: 1.9rem; }
     .button-row { display: grid; }
     .aero-button { width: 100%; }
-    .project-list { min-width: 620px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

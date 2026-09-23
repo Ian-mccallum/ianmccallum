@@ -34,6 +34,10 @@ for (const width of widths) {
     }));
     if (counts.main !== 1 || counts.h1 !== 1 || counts.windows !== 1 || counts.overflow || !counts.frameMaximized) failures.push(`${route} @ ${width}: ${JSON.stringify(counts)}`);
     findings.routes.push({ route, width, ...counts });
+    if (width <= 760 && route === '/') {
+      const backgroundVideoRequested = await page.evaluate(() => performance.getEntriesByType('resource').some((entry) => entry.name.endsWith('/media/aero-bg.mp4')));
+      if (backgroundVideoRequested) failures.push(`${route} @ ${width}: mobile requested hidden background video`);
+    }
     const name = route === '/' ? 'home' : route.slice(1).replaceAll('/', '--');
     const screenshot = `${reviewDir}/${name}-${width}.png`;
     await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });

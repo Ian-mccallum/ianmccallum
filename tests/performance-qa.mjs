@@ -53,6 +53,10 @@ for (const route of routes) {
       domContentLoadedMs: Math.round(navigation.domContentLoadedEventEnd),
       transferredBytes: resources.reduce((sum, entry) => sum + entry.transferSize, navigation.transferSize),
       resourceCount: resources.length,
+      largestResources: resources
+        .map((entry) => ({ path: new URL(entry.name).pathname, bytes: entry.transferSize }))
+        .sort((a, b) => b.bytes - a.bytes)
+        .slice(0, 5),
     };
   });
   results.push({ route, elapsedMs: Math.round(performance.now() - started), ...metrics });

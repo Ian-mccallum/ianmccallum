@@ -24,6 +24,7 @@
   p + p { margin-top: 1em; }
   strong { font-weight: 650; }
   small, time { color: var(--aero-haze); font-variant-numeric: tabular-nums; }
+  .taskbar-clock time, .taskbar-clock span { color: #fff; text-shadow: 0 1px 2px rgba(0, 20, 42, .9); }
   * { scrollbar-width: thin; scrollbar-color: rgba(0, 103, 188, 0.65) rgba(232, 243, 252, 0.75); }
   *::-webkit-scrollbar { width: 12px; height: 12px; }
   *::-webkit-scrollbar-track { background: rgba(232, 243, 252, 0.75); }

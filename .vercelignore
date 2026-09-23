@@ -7,5 +7,5 @@ dist/
 
 # Repository-only documentation and reference artifacts
 docs/
-*.md
-!README.md
+/DESIGN.md
+/PRODUCT.md
