@@ -1,0 +1,14 @@
+---
+import WindowPageLayout from '../layouts/WindowPageLayout.astro';
+import PhotoGallery from '../components/content/PhotoGallery.astro';
+const schema = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Photography by Ian McCallum', url: 'https://www.ianmccallum.com/photos' };
+---
+
+<WindowPageLayout title="Ian McCallum Photos | Personal Gallery" description="A small gallery of photography and visual work by Ian McCallum." windowTitle="Photos — Ian McCallum" icon="photos" schema={schema}>
+  <div class="page-sheet">
+    <h1>Photos & visual work</h1>
+    <p class="page-intro">A small selection of images from the creative side of my work. Open any photograph for a larger view.</p>
+    <PhotoGallery />
+    <div class="button-row"><a class="aero-button aero-button--secondary" href="https://www.instagram.com/iandmccallum/" target="_blank" rel="me noopener">More on Instagram</a></div>
+  </div>
+</WindowPageLayout>

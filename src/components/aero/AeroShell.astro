@@ -1,0 +1,38 @@
+---
+import BackgroundAtmosphere from './BackgroundAtmosphere.astro';
+import DesktopIcon from './DesktopIcon.astro';
+import Taskbar from './Taskbar.astro';
+import WindowFrame from './WindowFrame.astro';
+import { navigation, type IconName } from '../../data/navigation';
+
+interface Props {
+  path: string;
+  title: string;
+  windowTitle: string;
+  icon: IconName | 'warning' | 'project';
+  reading?: boolean;
+  root?: boolean;
+}
+const { path, title, windowTitle, icon, reading = false, root = false } = Astro.props;
+---
+
+<BackgroundAtmosphere />
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="desktop" data-aero-shell>
+  <nav class="desktop-icons" aria-label="Desktop shortcuts">
+    {navigation.filter((item) => item.href !== '/').map((item) => <DesktopIcon {...item} />)}
+  </nav>
+  <main id="main-content" class="desktop-workspace" tabindex="-1">
+    <WindowFrame title={windowTitle} icon={icon} reading={reading}><slot /></WindowFrame>
+  </main>
+  <Taskbar path={path} title={title} icon={icon} />
+</div>
+{root && (
+  <div class="boot-overlay" data-boot-overlay hidden>
+    <div class="boot-mark" aria-hidden="true"><span></span></div>
+    <p>Welcome</p>
+    <button type="button" data-skip-boot>Skip</button>
+  </div>
+)}
+
+<script src="../../scripts/aero-window.ts"></script>

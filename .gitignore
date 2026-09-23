@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
-package-lock.json
+dist/
+.astro/
 
 # Environment files
 .env
@@ -21,6 +22,5 @@ Thumbs.db
 *.tmp
 *.log
 
-# Note: Build output (css/, js/, img/, *.html, etc.) is tracked in git
-# for Vercel deployment. Source files in src/ are the source of truth.
-# Always edit files in src/ and run `npm run build` before committing.
+# Astro build output is generated in dist/ and is not committed. The npm
+# lockfile is intentionally versioned for reproducible local and Vercel builds.

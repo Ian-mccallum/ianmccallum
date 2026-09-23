@@ -1,0 +1,10 @@
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { min-width: 320px; }
+  body, h1, h2, h3, p, figure, blockquote, dl, dd { margin: 0; }
+  ul, ol { margin-block: 0; }
+  img, picture, video { display: block; max-width: 100%; }
+  button, input, textarea { font: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  [hidden] { display: none !important; }
+}

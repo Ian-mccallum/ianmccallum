@@ -1,0 +1,46 @@
+@layer tokens {
+  :root {
+    --aero-water-fill: #0078d7;
+    --aero-water-ink: #0067bc;
+    --aero-water-deep: #004e8c;
+    --aero-water-wash: #e8f3fc;
+    --aero-sky: #87ceeb;
+    --aero-violet-fill: #a06ed2;
+    --aero-violet-bright: #bd8ce6;
+    --aero-violet-deep: #7442a6;
+    --aero-spring-fill: #00c853;
+    --aero-spring-ink: #0b7e3d;
+    --aero-spring-wash: #e6f8ed;
+    --aero-sun-fill: #ff8c00;
+    --aero-sun-ink: #985200;
+    --aero-sun-wash: #fff2e0;
+    --aero-coral-fill: #ff6b6b;
+    --aero-coral-ink: #c22f2f;
+    --aero-coral-wash: #fdecec;
+    --aero-ink: #0a2c4d;
+    --aero-ink-soft: #35506b;
+    --aero-haze: #5c6f80;
+    --aero-glass: rgba(250, 250, 248, 0.78);
+    --aero-glass-solid: #fafaf8;
+    --aero-glass-thin: rgba(255, 255, 255, 0.3);
+    --aero-glass-deep: rgba(7, 35, 62, 0.92);
+    --aero-specular: rgba(255, 255, 255, 0.78);
+    --aero-shade: rgba(10, 44, 77, 0.2);
+    --aero-r-xs: 2px;
+    --aero-r-sm: 4px;
+    --aero-r-md: 8px;
+    --aero-r-lg: 12px;
+    --aero-s-1: 0.25rem;
+    --aero-s-2: 0.5rem;
+    --aero-s-3: 0.75rem;
+    --aero-s-4: 1rem;
+    --aero-s-5: 1.5rem;
+    --aero-s-6: 2rem;
+    --aero-s-7: 3rem;
+    --aero-s-8: 4rem;
+    --aero-focus: 0 0 0 3px rgba(0, 103, 188, 0.9), 0 0 0 6px rgba(255, 255, 255, 0.85);
+    --aero-font-display: 'Segoe UI Semilight', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --aero-font-body: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    --taskbar-h: 48px;
+  }
+}

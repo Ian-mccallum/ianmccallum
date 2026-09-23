@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import profileImage from '../../assets/images/photos/ian-mccallum-profile.jpg';
+import { navigation } from '../../data/navigation';
+import Icon from './Icon.astro';
+---
+
+<nav class="start-menu" id="start-menu" aria-label="Start menu" hidden>
+  <div class="start-menu__identity">
+    <Image src={profileImage} alt="Ian McCallum" width={52} height={52} loading="eager" />
+    <div><strong>Ian McCallum</strong><span>Founder & AI Engineer</span></div>
+  </div>
+  <div class="start-menu__links">
+    {navigation.map((item) => (
+      <a href={item.href}><Icon name={item.icon} size={26} /><span>{item.label}</span></a>
+    ))}
+  </div>
+  <div class="start-menu__footer"><a href="/contact">Send a message</a><span aria-hidden="true"></span></div>
+</nav>

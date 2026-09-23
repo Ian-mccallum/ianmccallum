@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
+import Icon from '../../components/aero/Icon.astro';
+const projects = (await getCollection('projects')).sort((a, b) => a.data.featuredOrder - b.data.featuredOrder);
+const schema = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Ian McCallum Portfolio', url: 'https://www.ianmccallum.com/portfolio', hasPart: projects.map((project) => ({ '@type': 'CreativeWork', name: project.data.name, url: `https://www.ianmccallum.com/portfolio/${project.data.slug}` })) };
+---
+
+<WindowPageLayout title="Ian McCallum Portfolio | AI, Client & Creative Work" description="Explore Clockwork, Beat the Clock, shipped client websites, Luminate, and creative work by Ian McCallum." windowTitle="Portfolio — Project Explorer" icon="portfolio" schema={schema}>
+  <div class="page-sheet">
+    <h1>Projects built to do real work</h1>
+    <p class="page-intro">Clockwork and Beat the Clock sit beside shipped client sites, award-winning entrepreneurship, and creative production. Open any row for the evidence and decisions behind it.</p>
+    <div class="explorer" role="region" aria-label="Project Explorer" tabindex="0">
+      <div class="explorer__toolbar"><span>Organize</span><span>Views</span><span>{projects.length} items</span></div>
+      <table class="project-list">
+        <thead><tr><th>Name</th><th>Category</th><th>Role</th><th>Evidence</th></tr></thead>
+        <tbody>{projects.map((project) => <tr><td><div class="project-name"><Icon name="project" size={28} /><a href={`/portfolio/${project.data.slug}`}>{project.data.name}</a></div></td><td>{project.data.category}</td><td>{project.data.role}</td><td class="project-summary">{project.data.evidence}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </div>
+</WindowPageLayout>

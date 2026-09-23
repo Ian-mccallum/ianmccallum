@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
+import Icon from '../../components/aero/Icon.astro';
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const readingMinutes = (body: string) => Math.max(1, Math.ceil(body.trim().split(/\s+/).length / 200));
+const schema = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Writing by Ian McCallum', url: 'https://www.ianmccallum.com/blog', hasPart: posts.map((post) => ({ '@type': 'BlogPosting', headline: post.data.title, url: `https://www.ianmccallum.com/blog/${post.data.slug}` })) };
+---
+
+<WindowPageLayout title="Blog | Ian McCallum" description="Writing by Ian McCallum on artificial intelligence, technological optimism, and building for trades businesses." windowTitle="Blog — Documents" icon="blog" schema={schema}>
+  <div class="page-sheet page-sheet--narrow">
+    <h1>Documents</h1>
+    <p class="page-intro">Writing about technology, optimism, and what it means to build AI for people who do not have time to come looking for it.</p>
+    <ul class="document-list">{posts.map((post) => <li><a class="document-link" href={`/blog/${post.data.slug}`}><Icon name="blog" size={36} /><span><strong>{post.data.title}</strong><span>{post.data.description} · {readingMinutes(post.body ?? '')} min read</span></span><time datetime={post.data.publishedAt.toISOString()}>{post.data.publishedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time></a></li>)}</ul>
+  </div>
+</WindowPageLayout>

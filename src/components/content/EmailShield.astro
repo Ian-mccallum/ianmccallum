@@ -1,0 +1,12 @@
+<div class="email-shield" data-email-shield>
+  <button class="aero-button aero-button--secondary" type="button" data-email-reveal>Reveal protected email</button>
+  <div class="email-challenge" data-email-challenge hidden>
+    <label data-email-question for="email-answer">Quick check</label>
+    <input id="email-answer" inputmode="numeric" autocomplete="off" aria-describedby="email-error" />
+    <button class="aero-button aero-button--secondary" type="button" data-email-verify>Verify</button>
+    <span class="email-error" id="email-error" data-email-error hidden>That answer didn’t match. Try the new one.</span>
+  </div>
+  <p data-email-output hidden><a data-email-link href="#">Email Ian</a></p>
+</div>
+
+<script src="../../scripts/email-shield.ts"></script>

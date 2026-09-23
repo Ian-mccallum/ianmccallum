@@ -1,0 +1,10 @@
+---
+interface Props { closeHref?: string }
+const { closeHref = '/' } = Astro.props;
+---
+
+<div class="window-controls" aria-label="Window controls">
+  <button class="window-control window-control--minimize" type="button" data-window-minimize aria-label="Minimize window"><span></span></button>
+  <button class="window-control window-control--maximize" type="button" data-window-maximize aria-label="Restore window"><span></span></button>
+  <a class="window-control window-control--close" href={closeHref} aria-label="Close window and return home"><span></span></a>
+</div>

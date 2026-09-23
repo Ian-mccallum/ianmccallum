@@ -1,0 +1,18 @@
+---
+import WindowPageLayout from '../layouts/WindowPageLayout.astro';
+import ContactForm from '../components/content/ContactForm.astro';
+import EmailShield from '../components/content/EmailShield.astro';
+import { socialLinks } from '../data/social';
+const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Ian McCallum', url: 'https://www.ianmccallum.com/contact', mainEntity: { '@type': 'Person', name: 'Ian McCallum' } };
+---
+
+<WindowPageLayout title="Contact Ian McCallum | AI, Web & Collaboration" description="Contact Ian McCallum about practical AI systems, web development, projects, or collaboration." windowTitle="Contact — Get in Touch" icon="contact" schema={schema}>
+  <div class="page-sheet">
+    <h1>Send Ian a message</h1>
+    <p class="page-intro">Use the structured form or reveal the protected email address. I read everything and reply personally.</p>
+    <div class="contact-layout">
+      <section aria-labelledby="message-heading"><h2 id="message-heading">Message form</h2><ContactForm /></section>
+      <aside class="contact-aside" aria-labelledby="other-paths"><h2 id="other-paths">Other ways to connect</h2><p>Prefer your own mail client? Solve a quick verification to reveal the address.</p><EmailShield /><h3>Profiles</h3><ul class="social-links">{socialLinks.map((link) => <li><a href={link.href} target="_blank" rel="me noopener">{link.label}</a></li>)}</ul><h3>Location</h3><p>Naperville, Illinois · studying in Champaign</p></aside>
+    </div>
+  </div>
+</WindowPageLayout>

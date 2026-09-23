@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import WindowPageLayout from '../layouts/WindowPageLayout.astro';
+import { testimonials } from '../data/testimonials';
+import timmyImage from '../assets/images/photos/timmy-miller.jpg';
+const schema = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Client testimonials for Ian McCallum', url: 'https://www.ianmccallum.com/testimonials' };
+---
+
+<WindowPageLayout title="Ian McCallum Testimonials | Client Reviews" description="Verified client testimonials for Ian McCallum's custom web development work." windowTitle="Testimonials — What People Say" icon="testimonials" reading schema={schema}>
+  <div class="page-sheet page-sheet--narrow">
+    <h1>What clients say after the work ships</h1>
+    <p class="page-intro">Three clients describe the working process, attention to detail, and result in their own words.</p>
+    <div class="testimonial-list">
+      {testimonials.map((testimonial, index) => <figure class="testimonial"><div class="testimonial-avatar">{index === 0 ? <Image src={timmyImage} alt="Timmy Miller" width={72} height={72} /> : testimonial.initials}</div><div><blockquote>“{testimonial.quote}”</blockquote><cite><strong>{testimonial.name}</strong> · {testimonial.role}<br /><a href={testimonial.href} target="_blank" rel="noopener">{testimonial.company}</a></cite></div></figure>)}
+    </div>
+  </div>
+</WindowPageLayout>

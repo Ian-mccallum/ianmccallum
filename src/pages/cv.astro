@@ -1,0 +1,17 @@
+---
+import WindowPageLayout from '../layouts/WindowPageLayout.astro';
+import { profile, experience, awards } from '../data/profile';
+const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: 'Ian McCallum CV', url: 'https://www.ianmccallum.com/cv', mainEntity: { '@type': 'Person', name: profile.name, jobTitle: profile.title, alumniOf: profile.education.map((entry) => entry.school), knowsAbout: profile.skills } };
+---
+
+<WindowPageLayout title="CV | Ian McCallum — Founder & AI Engineer" description="Ian McCallum's CV: founder of Beat the Clock, engineer behind Clockwork, and UIUC Finance and Data Science student." windowTitle="Ian McCallum — CV" icon="cv" reading schema={schema}>
+  <article class="page-sheet page-sheet--narrow cv-document">
+    <header><h1>Ian McCallum</h1><p class="page-intro">Founder & Lead Engineer · UIUC Finance + Data Science · Naperville, Illinois</p><div class="button-row no-print"><a class="aero-button" href="/downloads/Ian-McCallum-CV.pdf" download>Download PDF</a><a class="aero-button aero-button--secondary" href="/portfolio/clockwork">View Clockwork case study</a></div></header>
+    <section aria-labelledby="cv-summary"><h2 id="cv-summary">Professional summary</h2><p>Ian McCallum is a tech builder, University of Illinois Gies College of Business student, and founder of Beat the Clock. His experience spans applied AI systems, web development, automation, customer-facing work, entrepreneurship, and creative digital projects.</p></section>
+    <section aria-labelledby="cv-education"><h2 id="cv-education">Education</h2><div class="resume-grid">{profile.education.map((entry) => <div class="resume-entry"><strong>{entry.school}</strong><time>{entry.location} · {entry.date}</time><p>{entry.detail}</p></div>)}</div></section>
+    <section aria-labelledby="cv-skills"><h2 id="cv-skills">Skills</h2><ul class="tag-list">{profile.skills.map((skill) => <li>{skill}</li>)}</ul></section>
+    <section aria-labelledby="cv-experience"><h2 id="cv-experience">Experience</h2>{experience.map((entry) => <div class="resume-entry"><strong>{entry.company} — {entry.role}</strong><time>{entry.date}</time><ul>{entry.bullets.map((bullet) => <li>{bullet}</li>)}</ul></div>)}</section>
+    <section aria-labelledby="cv-awards"><h2 id="cv-awards">Achievements</h2><ul class="decision-list">{awards.map((award) => <li>{award}</li>)}</ul></section>
+    <p>References available upon request.</p>
+  </article>
+</WindowPageLayout>

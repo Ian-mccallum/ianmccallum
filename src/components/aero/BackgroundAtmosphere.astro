@@ -1,0 +1,21 @@
+<div class="atmosphere" aria-hidden="true">
+  <div class="atmosphere-poster"></div>
+  <video class="atmosphere-video" muted loop playsinline poster="/media/aero-bg-poster.jpg" data-src="/media/aero-bg.mp4"></video>
+  <div class="atmosphere-light"></div>
+</div>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>('.atmosphere-video');
+  if (video) {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+    if (!reduced && !saveData && video.dataset.src) {
+      video.src = video.dataset.src;
+      video.play().catch(() => undefined);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else if (video.src && !reduced && !saveData) video.play().catch(() => undefined);
+    });
+  }
+</script>

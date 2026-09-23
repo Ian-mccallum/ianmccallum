@@ -1,15 +1,17 @@
 {
   "name": "ianinnovates",
-  "version": "1.0.0",
-  "description": "Personal brand website - Enterprise-grade architecture",
-  "main": "index.html",
+  "version": "2.0.0",
+  "description": "Ian McCallum's Astro-powered Aero portfolio and CV",
+  "private": true,
   "scripts": {
-    "dev": "npx serve . -l 3000",
-    "build": "node scripts/build.js",
-    "build:clean": "node scripts/clean-build.js && node scripts/build.js",
-    "build:legacy": "node scripts/build.js",
-    "serve": "npx serve .",
-    "clean": "node scripts/clean-build.js"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "validate:assets": "node scripts/validate-assets.mjs",
+    "test:api": "node --test tests/api-contract.test.cjs",
+    "test:site": "node --test tests/site-contract.test.mjs",
+    "test": "npm run check && npm run validate:assets && npm run build && npm run test:api && npm run test:site"
   },
   "keywords": [
     "personal-website",
@@ -19,7 +21,15 @@
   ],
   "author": "Ian McCallum",
   "license": "MIT",
-  "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.10.2",
+    "playwright": "^1.55.0",
+    "typescript": "^5.9.2"
+  }
 }
-

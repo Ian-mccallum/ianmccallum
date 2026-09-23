@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import { photos } from '../../data/photos';
+---
+
+<div class="gallery" data-gallery>
+  {photos.map((photo, index) => (
+    <button type="button" data-gallery-item={index} aria-label={`Open image ${index + 1}: ${photo.alt}`}>
+      <Image src={photo.src} alt={photo.alt} widths={[360, 640, 960]} sizes="(max-width: 760px) 100vw, 50vw" format="webp" loading={index < 2 ? 'eager' : 'lazy'} />
+    </button>
+  ))}
+</div>
+<div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button type="button" data-lightbox-close aria-label="Close photo viewer">Close</button>
+  <img data-lightbox-image src="" alt="" />
+</div>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('[data-gallery]');
+  const lightbox = document.querySelector<HTMLElement>('[data-lightbox]');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  const close = lightbox?.querySelector<HTMLButtonElement>('[data-lightbox-close]');
+  let returnFocus: HTMLButtonElement | null = null;
+  const dismiss = () => {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    returnFocus?.focus();
+  };
+  gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-item]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const image = button.querySelector<HTMLImageElement>('img');
+      if (!image || !lightbox || !lightboxImage) return;
+      returnFocus = button;
+      lightboxImage.src = image.currentSrc || image.src;
+      lightboxImage.alt = image.alt;
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      close?.focus();
+    });
+  });
+  close?.addEventListener('click', dismiss);
+  lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) dismiss(); });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox && !lightbox.hidden) dismiss();
+    if (event.key === 'Tab' && lightbox && !lightbox.hidden && close) { event.preventDefault(); close.focus(); }
+  });
+</script>

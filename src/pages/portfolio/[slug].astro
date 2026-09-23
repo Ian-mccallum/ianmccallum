@@ -1,0 +1,31 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
+import ProjectMedia from '../../components/content/ProjectMedia.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.data.slug }, props: { project } }));
+}
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name: d.name, description: d.summary, url: `https://www.ianmccallum.com/portfolio/${d.slug}`, creator: { '@type': 'Person', name: 'Ian McCallum' }, sameAs: d.website };
+---
+
+<WindowPageLayout title={`${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading schema={schema}>
+  <article class="page-sheet">
+    <header><h1>{d.name}</h1><p class="page-intro">{d.summary}</p></header>
+    {d.media && d.poster && <ProjectMedia src={d.media} poster={d.poster} title={d.name} />}
+    <div class="project-layout">
+      <div>
+        <div class="article-content"><Content /></div>
+        {d.decisions.length > 0 && <section aria-labelledby="decisions"><h2 id="decisions">Engineering decisions</h2><ul class="decision-list">{d.decisions.map((decision) => <li>{decision}</li>)}</ul></section>}
+        {d.awards.length > 0 && <section aria-labelledby="awards"><h2 id="awards">Awards</h2><ul class="decision-list">{d.awards.map((award) => <li>{award}</li>)}</ul></section>}
+        <div class="button-row"><a class="aero-button" href={d.website} target="_blank" rel="noopener">Visit project</a><a class="aero-button aero-button--secondary" href="/portfolio">Back to Project Explorer</a></div>
+      </div>
+      <dl class="property-list"><div><dt>Category</dt><dd>{d.category}</dd></div><div><dt>Role</dt><dd>{d.role}</dd></div><div><dt>Date</dt><dd>{d.dateRange}</dd></div><div><dt>Evidence</dt><dd>{d.evidence}</dd></div><div><dt>Tools</dt><dd>{d.technologies.join(', ')}</dd></div></dl>
+    </div>
+  </article>
+</WindowPageLayout>

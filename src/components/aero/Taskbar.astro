@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import StartMenu from './StartMenu.astro';
+import type { IconName } from '../../data/navigation';
+interface Props { path: string; title: string; icon: IconName | 'warning' | 'project' }
+const { path, title, icon } = Astro.props;
+---
+
+<StartMenu />
+<footer class="taskbar">
+  <button class="start-button" type="button" aria-controls="start-menu" aria-expanded="false" data-start-button>
+    <span class="start-orb" aria-hidden="true"><span></span></span><span class="start-label">Start</span>
+  </button>
+  <a class="taskbar-item is-active" href={path} data-taskbar-restore aria-label={`Restore ${title}`}>
+    <Icon name={icon} size={22} /><span>{title}</span>
+  </a>
+  <div class="taskbar-spacer"></div>
+  <div class="taskbar-clock" aria-label="Current local time"><time data-clock></time><span>Central</span></div>
+</footer>

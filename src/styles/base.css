@@ -1,0 +1,31 @@
+@layer base {
+  @font-face {
+    font-family: 'Segoe UI Semilight';
+    src: url('/fonts/segoe-ui-semilight.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
+
+  :root { font-family: var(--aero-font-body); color: var(--aero-ink); background: #376e8b; }
+  html { scroll-behavior: smooth; }
+  body { min-height: 100svh; overflow: hidden; }
+  ::selection { color: #fff; background: var(--aero-water-ink); }
+  :focus-visible { outline: 0; box-shadow: var(--aero-focus); }
+  a { color: var(--aero-water-ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { color: var(--aero-water-deep); }
+  button { color: inherit; }
+  input, textarea { caret-color: var(--aero-water-ink); }
+  h1, h2, h3 { font-family: var(--aero-font-display); font-weight: 300; color: var(--aero-ink); text-wrap: balance; }
+  h1 { font-size: clamp(2rem, 1.45rem + 2vw, 3.35rem); line-height: 1.08; letter-spacing: -0.025em; }
+  h2 { margin-block: var(--aero-s-7) var(--aero-s-3); font-size: clamp(1.45rem, 1.25rem + 0.6vw, 1.9rem); line-height: 1.18; }
+  h3 { margin-block: var(--aero-s-5) var(--aero-s-2); font-size: 1.2rem; line-height: 1.25; }
+  p, li { line-height: 1.65; }
+  p + p { margin-top: 1em; }
+  strong { font-weight: 650; }
+  small, time { color: var(--aero-haze); font-variant-numeric: tabular-nums; }
+  * { scrollbar-width: thin; scrollbar-color: rgba(0, 103, 188, 0.65) rgba(232, 243, 252, 0.75); }
+  *::-webkit-scrollbar { width: 12px; height: 12px; }
+  *::-webkit-scrollbar-track { background: rgba(232, 243, 252, 0.75); }
+  *::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #8bc6ee, #287fc1); border: 2px solid #e8f3fc; border-radius: 3px; }
+}
