@@ -32,8 +32,8 @@ frame beside the current one. Modified clicks and mobile navigation retain nativ
 browser behavior. The homepage still contains no hidden copies of other pages;
 secondary windows are loaded only when requested.
 
-The shared window manager also initializes the existing contact form, protected
-email challenge, and photo-gallery behavior inside requested secondary windows.
+The shared window manager also initializes the protected email challenge and
+photo-gallery behavior inside requested secondary windows.
 Those enhancements are idempotent, so direct-route and multi-window paths use the
 same modules without duplicate listeners.
 
@@ -63,8 +63,10 @@ The two-column Start menu and taskbar retain real route and social anchors. At
 narrow widths the current route becomes the screen surface, desktop shortcuts and
 secondary windows disappear, and the fixed taskbar remains an orientation surface.
 
-Only the root route shows the brief, session-scoped boot treatment. It is
-skippable, removed immediately for reduced motion, and does not delay other routes.
+Only the root route shows the session-scoped welcome sequence. Its original Aero
+language returns through the luminous horizon, light fields, glass orb, bubbles,
+status phrases, and live progress. It runs for roughly 4.6 seconds, is skippable,
+is removed immediately for reduced motion, and does not delay other routes.
 The background video is loaded only when motion and data preferences allow it and
 pauses when the document is hidden. Long-form reading surfaces use an opaque bed.
 
@@ -81,8 +83,9 @@ WebP `.json` sidecar. See [Asset provenance](ASSET_PROVENANCE.md).
 
 ## API boundary
 
-`api/contact.js` preserves native and enhanced submissions. With no JavaScript, a
-valid form posts and redirects with `303`; enhanced JSON returns `{ "ok": true }`.
+`api/contact.js` preserves native and JSON submissions for backwards compatibility,
+but no public route renders a form. A valid native post redirects with `303`; JSON
+returns `{ "ok": true }`.
 Invalid data returns a JSON `400` or redirects back with an error. Turnstile is
 optional and deliberately fails open when the verification service itself fails.
 Resend and Vercel KV are optional; their absence does not turn a valid visitor
@@ -105,7 +108,8 @@ to the generated sitemap index.
 - `scripts/validate-assets.mjs`: every generated local HTML/CSS/XML reference.
 - Node tests: CommonJS API contracts and generated-route invariants.
 - Playwright: five responsive widths, multi-window open/drag/focus/control flows,
-  direct routes, Start menu, form recovery, gallery focus, 404, console/network
+  direct routes, welcome timing and skip behavior, Start menu, protected email,
+  gallery focus, 404, console/network
   cleanliness, and axe serious/critical scans.
 - Throttled Playwright: mobile LCP and CLS budgets on three representative routes.
 

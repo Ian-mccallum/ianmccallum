@@ -164,12 +164,19 @@ restore use the taskbar, and maximize toggles the comfortable reading size witho
 changing URL. Desktop icons, the two-column Start menu, pinned taskbar apps, social
 tray, and contextual navigation are all real anchors.
 
+The root route opens with one session-scoped startup ritual derived from the
+original site: a luminous horizon, colored atmosphere, floating bubbles, the IM
+glass orb, changing system phrases, and live progress. It runs for roughly 4.6
+seconds before a short circular reveal, remains immediately skippable, can be
+replayed from Start, and is omitted under reduced motion. This is the authored
+focal sequence; routine desktop transitions stay brief.
+
 ### Buttons and fields
 
 Primary buttons use the violet token family, a two-part glossy gradient, white text,
 and a minimum 44px target. Secondary buttons use a pale water surface and Ink text.
-Fields are simple white recessed planes with explicit labels and the shared focus
-ring. Error and success states are announced in text, never color alone.
+The protected-email check uses a simple white recessed field with an explicit
+label and the shared focus ring. Errors are announced in text, never color alone.
 
 ### Cards, Explorer, and media
 

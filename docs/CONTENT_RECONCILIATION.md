@@ -28,7 +28,7 @@ Recorded before removal of the legacy HTML/CSS/JavaScript build at commit
 | `src/pages/portfolio.html` and richer homepage copies | Beat the Clock, Clockwork, client work, Luminate, Vokel, verified links, media, engineering decisions | validated `projects` content collection; generated `/portfolio/[slug]` routes and `/portfolio` index |
 | `src/pages/testimonials.html` | Quotes from Timmy Miller, Nicolas Villalobos, and Nick Evans with roles and verified destinations | `src/data/testimonials.ts`, `src/pages/testimonials.astro` |
 | `src/pages/photos.html` | Four published gallery images and Instagram link | `src/data/photos.ts`, `src/pages/photos.astro`; source images imported through Astro |
-| `src/pages/contact.html` | Contact copy, native POST form, honeypot, Turnstile slot, enhanced JSON submission, EmailShield fallback, social links | `src/pages/contact.astro`, `src/scripts/contact-form.ts`, `src/scripts/email-shield.ts`, `src/data/social.ts` |
+| `src/pages/contact.html` | Contact copy and EmailShield fallback; the old form and redundant social list were intentionally removed from this route | `src/pages/contact.astro`, `src/scripts/email-shield.ts`; social links remain in shared desktop chrome |
 | `src/pages/thank-you.html` | Submission confirmation and onward navigation | `src/pages/thank-you.astro` |
 | `src/pages/blog.html` | Documents-folder index | generated from the `blog` content collection |
 | `src/pages/blog-2007-thought-the-future-would-be-beautiful.html` | Complete essay, metadata, publication date, author, structured-data facts | `src/content/blog/2007-thought-the-future-would-be-beautiful.md` |

@@ -67,12 +67,11 @@ test('navigation uses real links and no hidden page copies', () => {
   assert.match(html, /class="start-menu__body"/);
 });
 
-test('contact keeps progressive form and protected fallback', () => {
+test('contact exposes only the protected email reveal', () => {
   const html = readFileSync('dist/contact/index.html', 'utf8');
-  assert.match(html, /method="POST" action="\/api\/contact"/);
-  assert.match(html, /name="_gotcha"/);
-  assert.match(html, /role="status" aria-live="polite"/);
+  assert.doesNotMatch(html, /<form|\/api\/contact|data-contact-form/);
   assert.match(html, /data-email-shield/);
+  assert.match(html, /Protected email/);
 });
 
 test('content automation publishes route, index, RSS, and sitemap', () => {

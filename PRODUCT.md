@@ -27,14 +27,15 @@ role-separated multi-tenant access.
 - Home, About, CV, Photos, Testimonials, Contact, and Thank You
 - Explorer-style portfolio index and one evidence-led case study per project
 - Markdown blog with automatic index, static article routes, RSS, and sitemap
-- Native and enhanced contact form backed by optional CommonJS Vercel services
+- Protected email reveal for contact; the legacy CommonJS contact endpoint remains
+  available but is not exposed by the public interface
 - Downloadable CV and structured metadata for people, profile, projects, and posts
 - Aero 404 with recovery actions
 
 Every route is a real URL and reconstructs one primary semantic window. Desktop
 visitors may then open additional route-backed windows without pre-rendered hidden
 copies. Browser history, direct entry, open in new tab, keyboard navigation, and
-JavaScript-off contact submission remain part of the product contract.
+JavaScript-off route navigation remain part of the product contract.
 
 ## Principles
 
@@ -70,5 +71,5 @@ customers, testimonials, pricing, or outcomes.
 
 The release contract includes one `<main>` and `<h1>` per route, keyboard-visible
 focus, a skip link, at least 44px touch targets, readable opaque long-form surfaces,
-semantic labels, reduced-motion support, focus-managed gallery dialog, native form
-fallback, and non-color-only status communication.
+semantic labels, reduced-motion support, a focus-managed gallery dialog, and
+non-color-only status communication.

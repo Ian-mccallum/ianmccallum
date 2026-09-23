@@ -50,8 +50,9 @@ Required environment variables are all optional for the public page to render:
 | `KV_REST_API_TOKEN` | ianOS queue credential | Queueing skipped |
 | `IANOS_SYNC_TOKEN` | Inbox pull authorization | Endpoint returns `503` |
 
-The Turnstile browser site key is public by design and lives in
-`src/scripts/contact-form.ts`; its secret never belongs in the repository.
+The public Contact route no longer renders a form. Turnstile remains an optional
+server-side compatibility gate for direct requests to `api/contact.js`; its secret
+never belongs in the repository.
 
 ## Release checklist
 
@@ -65,7 +66,7 @@ The Turnstile browser site key is public by design and lives in
 6. Confirm `/api/contact` and `/api/ianos-inbox` environment variables in Vercel.
 7. Deploy through the repository's normal Vercel integration.
 8. Smoke-test `/`, one project, the long article, `/feed.xml`, an unknown URL, and
-   the contact form using a controlled message.
+   the protected email reveal.
 
 ## Rollback
 

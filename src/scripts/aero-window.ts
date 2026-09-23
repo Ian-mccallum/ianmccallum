@@ -1,4 +1,3 @@
-import { initContactForms } from './contact-form';
 import { initEmailShields } from './email-shield';
 import { initPhotoGalleries } from './photo-gallery';
 
@@ -159,7 +158,6 @@ function initAero() {
 
   const hydrateDynamicWindow = (frame: HTMLElement) => {
     frame.querySelectorAll<HTMLElement>('[autofocus]').forEach((element) => element.removeAttribute('autofocus'));
-    initContactForms(frame);
     initEmailShields(frame);
     initPhotoGalleries(frame);
   };
@@ -347,7 +345,6 @@ function initAero() {
   window.setInterval(updateClock, 60_000);
 
   const primary = host.querySelector<HTMLElement>('[data-window-primary]');
-  initContactForms(document);
   initEmailShields(document);
   initPhotoGalleries(document);
   if (primary) {
@@ -357,23 +354,91 @@ function initAero() {
     updateTaskbar();
   }
 
-  const boot = document.querySelector<HTMLElement>('[data-boot-overlay]');
-  if (boot) {
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const boot = document.querySelector<HTMLElement>('[data-boot-overlay]');
+if (boot) {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let seen = false;
     try { seen = sessionStorage.getItem('aero-boot-seen') === '1'; } catch { seen = true; }
-    const dismiss = () => {
-      boot.classList.add('is-leaving');
-      window.setTimeout(() => boot.remove(), reduced ? 0 : 170);
-      try { sessionStorage.setItem('aero-boot-seen', '1'); } catch { /* storage is optional */ }
-    };
-    if (seen || reduced) boot.remove();
-    else {
-      boot.hidden = false;
-      document.querySelector<HTMLButtonElement>('[data-skip-boot]')?.addEventListener('click', dismiss, { once: true });
-      window.setTimeout(dismiss, 760);
+  const timers: number[] = [];
+  let progressFrame = 0;
+  let dismissed = false;
+  let onBootKey: ((event: KeyboardEvent) => void) | undefined;
+  const dismiss = () => {
+    if (dismissed) return;
+    dismissed = true;
+    timers.forEach(window.clearTimeout);
+    cancelAnimationFrame(progressFrame);
+    if (onBootKey) document.removeEventListener('keydown', onBootKey);
+    boot.classList.add('is-leaving');
+    window.setTimeout(() => boot.remove(), reduced ? 0 : 720);
+    try { sessionStorage.setItem('aero-boot-seen', '1'); } catch { /* storage is optional */ }
+  };
+  if (seen || reduced) boot.remove();
+  else {
+    boot.hidden = false;
+    const sky = boot.querySelector<HTMLElement>('[data-boot-sky]');
+    const particles = boot.querySelector<HTMLElement>('[data-boot-particles]');
+    const progress = boot.querySelector<HTMLElement>('[data-boot-progress]');
+    const progressBar = boot.querySelector<HTMLElement>('[data-boot-progress-bar]');
+    const percent = boot.querySelector<HTMLOutputElement>('[data-boot-percent]');
+    const statusLine = boot.querySelector<HTMLElement>('[data-boot-status]');
+    const statusLines = [
+      'Preparing your atmosphere…',
+      'Gathering the light fields…',
+      'Composing glass surfaces…',
+      'Floating the bubbles…',
+      'Warming up the colors…',
+      'Opening your personal desktop…',
+      'Welcome.',
+    ];
+    const statusTimes = [0, 720, 1380, 2040, 2700, 3360, 4060];
+
+    for (let index = 0; index < 22; index += 1) {
+      const particle = document.createElement('span');
+      particle.style.setProperty('--px', `${(index * 37) % 101}%`);
+      particle.style.setProperty('--py', `${(index * 61) % 97}%`);
+      particle.style.setProperty('--size', `${2 + (index % 4)}px`);
+      particle.style.setProperty('--delay', `${(index % 7) * -.42}s`);
+      particle.style.setProperty('--duration', `${3.2 + (index % 5) * .7}s`);
+      particles?.append(particle);
     }
+
+    const startedAt = performance.now();
+    const updateProgress = (now: number) => {
+      const value = Math.min(100, Math.round(((now - startedAt) / 4100) * 100));
+      progress?.setAttribute('aria-valuenow', String(value));
+      if (progressBar) progressBar.style.transform = `scaleX(${value / 100})`;
+      if (percent) percent.value = `${value}%`;
+      if (!dismissed && value < 100) progressFrame = requestAnimationFrame(updateProgress);
+    };
+    progressFrame = requestAnimationFrame(updateProgress);
+
+    statusTimes.forEach((delay, index) => {
+      timers.push(window.setTimeout(() => {
+        if (!statusLine || dismissed) return;
+        statusLine.classList.add('is-changing');
+        timers.push(window.setTimeout(() => {
+          statusLine.textContent = statusLines[index];
+          statusLine.classList.remove('is-changing');
+        }, index === 0 ? 0 : 120));
+      }, delay));
+    });
+
+    boot.addEventListener('pointermove', (event) => {
+      if (!sky || dismissed) return;
+      const x = (event.clientX / window.innerWidth - .5) * 2;
+      const y = (event.clientY / window.innerHeight - .5) * 2;
+      sky.style.setProperty('--mx', x.toFixed(3));
+      sky.style.setProperty('--my', y.toFixed(3));
+    });
+    document.querySelector<HTMLButtonElement>('[data-skip-boot]')?.addEventListener('click', dismiss, { once: true });
+    onBootKey = (event) => {
+      if (event.key === 'Escape') dismiss();
+    };
+    document.addEventListener('keydown', onBootKey);
+    timers.push(window.setTimeout(dismiss, 4600));
   }
+}
 }
 
 initAero();

@@ -53,8 +53,8 @@ screenshots and reports live in `.impeccable/review/` and are not committed.
 - `src/scripts/aero-window.ts` progressively turns same-origin desktop links into
   movable route windows. Anchors remain real links, and mobile continues to use
   direct navigation.
-- `src/components/content/` owns the contact form, protected email, gallery, and
-  project media.
+- `src/components/content/` owns the protected email reveal, gallery, and project
+  media.
 - `src/content/projects/` and `src/content/blog/` are typed Astro content
   collections configured in `src/content.config.ts`.
 - `src/data/` contains small structured sources shared by routes.
@@ -104,10 +104,11 @@ release; see [Asset provenance](docs/ASSET_PROVENANCE.md).
 
 ## Contact and ianOS APIs
 
-`POST /api/contact` accepts JSON or native form data. JavaScript enhances the form,
-but a native valid submission still returns `303` to `/thank-you`. The honeypot and
-optional Turnstile gate remain in place; Turnstile fails open on service failure and
-closed only on an explicit bot verdict. No autoresponse is sent.
+The public Contact route exposes only the protected email reveal. The preserved
+`POST /api/contact` endpoint still accepts JSON or native form data for backwards
+compatibility, but the site no longer links or submits to it. Its honeypot,
+optional Turnstile gate, native `303` response, and no-autoresponse behavior remain
+unchanged.
 
 If configured, Resend sends Ian a notification and Vercel KV holds a record for
 ianOS. `GET /api/ianos-inbox` is authenticated, fails closed when unconfigured, and

@@ -47,6 +47,24 @@ for (const width of widths) {
   await context.close();
 }
 
+const bootContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
+const bootPage = await bootContext.newPage();
+await bootPage.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
+const bootOverlay = bootPage.locator('[data-boot-overlay]');
+await bootOverlay.waitFor({ state: 'visible' });
+await bootPage.waitForTimeout(1200);
+if (!(await bootOverlay.isVisible())) failures.push('welcome sequence ended before its longer authored timing');
+const bootPercent = Number.parseInt((await bootPage.locator('[data-boot-percent]').textContent()) || '0', 10);
+if (bootPercent < 10 || bootPercent >= 100) failures.push(`welcome progress was not active after 1.2s (${bootPercent}%)`);
+await bootPage.screenshot({ path: `${reviewDir}/welcome-sequence-1440.png` });
+await bootPage.locator('[data-skip-boot]').click();
+await bootOverlay.waitFor({ state: 'detached' });
+if (await bootPage.evaluate(() => sessionStorage.getItem('aero-boot-seen')) !== '1') failures.push('welcome sequence did not remember dismissal');
+await bootPage.reload({ waitUntil: 'networkidle' });
+if (await bootPage.locator('[data-boot-overlay]').count()) failures.push('welcome sequence repeated within the same session');
+findings.interactions.push('longer welcome sequence progress, visual capture, skip, and session memory');
+await bootContext.close();
+
 const context = await browser.newContext({ viewport: { width: 1024, height: 900 } });
 const page = await context.newPage();
 await page.addInitScript(() => sessionStorage.setItem('aero-boot-seen', '1'));
@@ -85,7 +103,7 @@ if (await page.locator('[data-window-route="/portfolio"]').count()) failures.pus
 await page.locator('[data-taskbar-route="/contact"]').click();
 const dynamicContact = page.locator('[data-window-route="/contact"]');
 await dynamicContact.waitFor();
-if (await dynamicContact.locator('[data-contact-form]').getAttribute('data-contact-enhanced') !== 'true') failures.push('dynamic contact form was not enhanced');
+if (await dynamicContact.locator('[data-contact-form]').count()) failures.push('dynamic contact window retained the removed form');
 await dynamicContact.locator('[data-email-reveal]').click();
 if (await dynamicContact.locator('[data-email-challenge]').getAttribute('hidden') !== null) failures.push('dynamic protected-email challenge did not open');
 await dynamicContact.locator('.window-control--close').click();
@@ -117,7 +135,7 @@ await page.locator('[data-taskbar-route="/about"]').click();
 if (await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-minimized'))) failures.push('taskbar did not restore primary window');
 await page.click('[data-window-frame] .window-control--close');
 await page.waitForURL(`${baseURL}/`);
-findings.interactions.push('multi-window open/focus/drag/minimize/restore/maximize/close, dynamic contact/email/gallery hydration, Start/Escape, direct-route controls, close-to-home');
+findings.interactions.push('multi-window open/focus/drag/minimize/restore/maximize/close, dynamic email/gallery hydration, Start/Escape, direct-route controls, close-to-home');
 
 for (const route of routes) {
   await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
@@ -127,25 +145,19 @@ for (const route of routes) {
   if (material.length) failures.push(`${route}: axe ${JSON.stringify(findings.axe.at(-1).violations)}`);
 }
 
-let contactAttempts = 0;
-await page.route('**/api/contact', (route) => {
-  contactAttempts += 1;
-  return route.fulfill({
-    status: contactAttempts === 1 ? 500 : 200,
-    contentType: 'application/json',
-    body: JSON.stringify(contactAttempts === 1 ? { ok: false, error: 'Mocked failure' } : { ok: true }),
-  });
-});
 await page.goto(`${baseURL}/contact`, { waitUntil: 'networkidle' });
-await page.fill('#contact-name', 'Automated QA');
-await page.fill('#contact-email', 'qa@example.com');
-await page.fill('#contact-message', 'This request is intercepted and never leaves the browser.');
-await page.click('button[type="submit"]');
-await page.getByText('That did not send. Use the protected email option below and I’ll still get it.').waitFor();
-if (!(await page.locator('[data-email-shield]').isVisible())) failures.push('contact failure did not retain protected-email recovery');
-await page.click('button[type="submit"]');
-await page.getByText('Got it. I’ll get back to you.').waitFor();
-findings.interactions.push('mocked contact failure/recovery and retry success');
+if (await page.locator('form, [data-contact-form]').count()) failures.push('contact route retained a form');
+await page.locator('[data-email-reveal]').click();
+const emailQuestion = (await page.locator('[data-email-question]').textContent()) || '';
+const operands = emailQuestion.match(/(\d+)\s*\+\s*(\d+)/);
+if (!operands) failures.push(`protected email challenge was not readable: ${emailQuestion}`);
+else {
+  await page.locator('#email-answer').fill(String(Number(operands[1]) + Number(operands[2])));
+  await page.locator('[data-email-verify]').click();
+  const emailHref = await page.locator('[data-email-link]').getAttribute('href');
+  if (!emailHref?.startsWith('mailto:')) failures.push('protected email did not reveal a mail link after verification');
+}
+findings.interactions.push('protected email reveal and verification without a contact form');
 
 await page.goto(`${baseURL}/photos`, { waitUntil: 'networkidle' });
 const firstPhoto = page.locator('[data-gallery-item]').first();
