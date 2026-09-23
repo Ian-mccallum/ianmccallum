@@ -60,6 +60,14 @@ test('content automation publishes route, index, RSS, and sitemap', () => {
   assert.match(readFileSync('dist/sitemap-0.xml', 'utf8'), new RegExp(`/blog/${slug}`));
 });
 
+test('draft blog entries stay out of every generated surface', () => {
+  const slug = 'draft-fixture-never-publish';
+  assert.equal(existsSync(`dist/blog/${slug}/index.html`), false);
+  assert.doesNotMatch(readFileSync('dist/blog/index.html', 'utf8'), new RegExp(slug));
+  assert.doesNotMatch(readFileSync('dist/feed.xml', 'utf8'), new RegExp(slug));
+  assert.doesNotMatch(readFileSync('dist/sitemap-0.xml', 'utf8'), new RegExp(slug));
+});
+
 test('project media is opt-in and broadly supported', () => {
   const html = readFileSync('dist/portfolio/imanol-villagomez/index.html', 'utf8');
   assert.match(html, /preload="none"/);

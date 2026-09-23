@@ -12,13 +12,11 @@ import { photos } from '../../data/photos';
 </div>
 <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
   <button type="button" data-lightbox-close aria-label="Close photo viewer">Close</button>
-  <img data-lightbox-image src="" alt="" />
 </div>
 
 <script>
   const gallery = document.querySelector<HTMLElement>('[data-gallery]');
   const lightbox = document.querySelector<HTMLElement>('[data-lightbox]');
-  const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
   const close = lightbox?.querySelector<HTMLButtonElement>('[data-lightbox-close]');
   let returnFocus: HTMLButtonElement | null = null;
   const dismiss = () => {
@@ -30,10 +28,13 @@ import { photos } from '../../data/photos';
   gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-item]').forEach((button) => {
     button.addEventListener('click', () => {
       const image = button.querySelector<HTMLImageElement>('img');
-      if (!image || !lightbox || !lightboxImage) return;
+      if (!image || !lightbox) return;
+      const lightboxImage = lightbox.querySelector<HTMLImageElement>('[data-lightbox-image]') ?? document.createElement('img');
+      lightboxImage.dataset.lightboxImage = '';
       returnFocus = button;
       lightboxImage.src = image.currentSrc || image.src;
       lightboxImage.alt = image.alt;
+      if (!lightboxImage.isConnected) lightbox.append(lightboxImage);
       lightbox.hidden = false;
       document.body.style.overflow = 'hidden';
       close?.focus();

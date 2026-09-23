@@ -1,257 +1,130 @@
-# Ian Innovates - Personal Website
+# Ian Innovates
 
-Enterprise-grade personal brand website with Windows Vista/Frutiger Aero aesthetic.
+Ian McCallum's static personal site, portfolio, CV, and blog. Astro supplies the
+content system and route generation; the interface is a deliberately sincere
+Windows Vista/7 Aero desktop that works as one responsive shell rather than a
+separate mobile site.
 
-## 🏗️ Architecture
+## Start here
 
-This project follows enterprise-level organization principles with clear separation between source code and build output.
+Requires Node.js 22.12 or newer.
 
-**📖 See [docs/ENTERPRISE_STRUCTURE.md](./docs/ENTERPRISE_STRUCTURE.md) for complete structure documentation.**
-
-### Quick Overview
-
-```
-/
-├── src/                    # ⭐ SOURCE CODE (Single Source of Truth)
-│   ├── pages/             # HTML entry points
-│   ├── js/                # JavaScript modules (core/features/)
-│   ├── css/               # Stylesheets (base/components/themes/utilities/)
-│   └── assets/            # All static assets (images/videos/icons/fonts/)
-├── api/                   # Vercel serverless functions. CommonJS, see below
-├── config/                # Configuration files (source)
-├── scripts/               # Build and utility scripts
-├── docs/                  # Documentation
-└── [build output]         # Generated files in root (for deployment)
+```bash
+npm install
+npm run dev
 ```
 
-## 🚀 Quick Start
+The development server prints its local URL. Production output is generated in
+`dist/`:
 
-### Development
+```bash
+npm run build
+npm run preview
+```
 
-1. **Install dependencies** (if any are added in the future):
-   ```bash
-   npm install
-   ```
+Do not edit `dist/`; it is generated and ignored by Git.
 
-2. **Build for deployment**:
-   ```bash
-   npm run build
-   ```
-   Or for a clean build:
-   ```bash
-   npm run build:clean
-   ```
-   This copies HTML files from `src/pages/` to root, flattens CSS/JS, and copies assets/config.
+## Verification
 
-3. **Serve locally**:
-   ```bash
-   npm run serve
-   ```
-   Or for development with auto-reload:
-   ```bash
-   npm run dev
-   ```
+```bash
+npm test                 # Astro check, build, asset validation, API and site contracts
+npm run test:browser     # responsive, interaction, console and axe-core QA
+npm run test:performance # throttled mobile LCP/CLS budget
+```
 
-### File Organization
+Browser QA uses Google Chrome when it is available at the standard macOS path and
+otherwise uses Playwright's Chromium. Install that fallback once with:
 
-- **Source files**: All source code lives in `src/`
-- **Deployed files**: HTML and config files are copied to root for Vercel deployment
-- **Assets**: All assets are organized in `src/assets/` by type
+```bash
+npx playwright install chromium
+```
 
-## 📁 Directory Structure
+Run `npm run preview -- --host 127.0.0.1` before either browser command. Generated
+screenshots and reports live in `.impeccable/review/` and are not committed.
 
-### JavaScript Modules
+## Architecture
 
-- **Core** (`src/js/core/`): System-level modules
-  - `window-manager.js` - Window management system
-  - `vista-system.js` - Vista UI system
+- `src/pages/` owns static routes. Each page renders one maximized Aero window.
+- `src/layouts/WindowPageLayout.astro` is the shared document, SEO, and shell
+  boundary.
+- `src/components/aero/` owns the desktop, window chrome, taskbar, Start menu,
+  controls, and authentic local icon treatment.
+- `src/components/content/` owns the contact form, protected email, gallery, and
+  project media.
+- `src/content/projects/` and `src/content/blog/` are typed Astro content
+  collections configured in `src/content.config.ts`.
+- `src/data/` contains small structured sources shared by routes.
+- `src/styles/` is the unified Aero token and component layer.
+- `public/` contains only directly shipped files: downloads, font, selected icons,
+  background media, social image, and opt-in project demos.
+- `api/` remains Vercel CommonJS. The root package deliberately has no
+  `"type": "module"`.
 
-- **Features** (`src/js/features/`): Feature-specific modules
-  - `backgrounds/` - Background video handler (`gif-background.js`, named for the
-    GIF it used to drive; it now sizes the `<video>` background)
-  - `icons/` - Icon management
-  - `mobile/` - Mobile UX optimizations
-  - `effects/` - Visual effects
+See [Architecture](docs/ARCHITECTURE.md), [Deployment](docs/DEPLOYMENT.md), and
+[Content reconciliation](docs/CONTENT_RECONCILIATION.md) for the detailed contracts.
 
-### CSS Organization
+## Content authoring
 
-- **Base** (`src/css/base/`): Foundation styles
-- **Components** (`src/css/components/`): Reusable component styles
-- **Themes** (`src/css/themes/`): Theme-specific styles
-- **Utilities** (`src/css/utilities/`): Utility classes and helpers
+### Add a project
 
-### Assets
+Create `src/content/projects/<slug>.md` and satisfy the schema in
+`src/content.config.ts`. The collection automatically publishes the Explorer row
+and `/portfolio/<slug>` case-study route. Optional demos belong in
+`public/media/projects/` as H.264 MP4 with a WebP poster; media stays
+`preload="none"` and must never autoplay.
 
-- **Images** (`src/assets/images/`): Organized by purpose
-  - `photos/` - Photo gallery images
-  - `logos/` - Logo and brand assets
-  - `backgrounds/` - Background stills (the video itself lives in `assets/videos/`)
-- **Videos** (`src/assets/videos/`): Video files
-- **Icons** (`src/assets/icons/`): Icon files (Vista icons, etc.)
-- **Fonts** (`src/assets/fonts/`): Font files
+### Add a blog post
 
-## 🔧 Build Process
+Create `src/content/blog/<slug>.md` with the required frontmatter and Markdown
+body. Non-draft posts automatically appear at `/blog/<slug>`, in the blog index,
+RSS at `/feed.xml`, and the generated sitemap. No manual route, feed, or sitemap
+edit is required.
 
-The build process (`npm run build`):
-1. Copies HTML files from `src/pages/` to root
-2. Flattens CSS from `src/css/{category}/` to `css/`
-3. Flattens JS from `src/js/{category}/` to `js/`
-4. Copies assets from `src/assets/` to `img/` and `assets/`
-5. Copies config files from `config/` to root (`vercel.json`, `robots.txt`,
-   `sitemap.xml`, `feed.xml`)
+### Update profile content
 
-**Note**: Always edit files in `src/`, never edit build output in root.
+Edit the structured modules in `src/data/`. Keep time-sensitive facts aligned
+across Home, About, CV, metadata, and schema. The current canonical description is
+UIUC Gies student studying Finance + Data Science, not "incoming student."
 
-## 📝 Path Conventions
+### Add a raster asset
 
-**All paths use absolute paths from root (`/`)** to ensure compatibility with both Vercel rewrites and build output:
+Use a local, right-sized source and include dimensions through Astro's image
+pipeline where possible. Record source or generation provenance with:
 
-- **CSS**: `/css/{filename}.css`
-- **JavaScript**: `/js/{filename}.js`
-- **Images**: `/img/{path}` or `/assets/{filename}`
-- **Icons**: `/img/icons/vista/{filename}`
-- **Videos**: `/assets/{filename}`
-- **Fonts**: `/fonts/{filename}`
+```bash
+node /Users/ianmccallum/.agents/skills/impeccable/scripts/embed-prompt.mjs path/to/image --prompt "Origin or generation prompt"
+```
 
-**Source files are organized as:**
-- **CSS**: `src/css/{category}/{filename}.css`
-- **JavaScript**: `src/js/{category}/{filename}.js`
-- **Assets**: `src/assets/{type}/{category}/{filename}`
+For WebP the helper creates a `.json` sidecar. Scan shipping sources before a
+release; see [Asset provenance](docs/ASSET_PROVENANCE.md).
 
-## 🚢 Deployment
+## Contact and ianOS APIs
 
-This site is configured for Vercel deployment:
+`POST /api/contact` accepts JSON or native form data. JavaScript enhances the form,
+but a native valid submission still returns `303` to `/thank-you`. The honeypot and
+optional Turnstile gate remain in place; Turnstile fails open on service failure and
+closed only on an explicit bot verdict. No autoresponse is sent.
 
-- HTML files in root (copied during build)
-- `vercel.json` in root for routing configuration
-- All assets served from `src/assets/` paths
-- `api/` is picked up automatically as serverless functions (see below)
+If configured, Resend sends Ian a notification and Vercel KV holds a record for
+ianOS. `GET /api/ianos-inbox` is authenticated, fails closed when unconfigured, and
+always returns `Cache-Control: no-store`.
 
-## 📮 Contact form
+| Variable | Unset behavior |
+| --- | --- |
+| `RESEND_API_KEY` | Notification email is skipped. |
+| `NOTIFY_TO` | Falls back to `contact@beatyourclock.com`. |
+| `TURNSTILE_SECRET` | Verification is skipped. |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | ianOS queueing is skipped. |
+| `IANOS_SYNC_TOKEN` | Inbox endpoint returns `503`. |
 
-`/contact` offers two paths on purpose. The **form** posts to `api/contact.js`
-for structured messages; the **EmailShield** below it still reveals the address
-behind an arithmetic challenge, for people who would rather use their own mail
-client. The shield is what keeps the address away from scrapers, so it stays.
+## Deployment and rollback
 
-The form is a real `<form>` with a real action, so it works with JavaScript
-off (native POST, 303 to `/thank-you`). `js/contact-form.js` upgrades it to a
-fetch submit that keeps the visitor on the page.
+Vercel detects Astro, runs the normal static build, serves `dist/`, and keeps the
+root `api/` functions. `vercel.json` contains redirects only; do not reintroduce
+legacy HTML rewrites.
 
-**Everything in `api/` is CommonJS.** The root `package.json` deliberately has
-no `"type": "module"`; adding it breaks the handler in production.
-
-### Where messages go
-
-`api/contact.js` emails Ian, then holds the record in a KV queue that
-[ianOS](https://github.com/ian-mccallum/ianOS) collects on its own schedule.
-ianOS files these under **Inbox** as correspondence and **never** as a lead:
-its `leads` table is Clockwork's scored call queue, and a personal inquiry
-entering it would corrupt that ordering invisibly. Design:
-[SPEC-v19](https://github.com/ian-mccallum/ianOS/blob/main/docs/SPEC-v19-personal-inbound.md).
-
-No autoresponse is sent, deliberately. This site promises nothing, and a reply
-would have to come from the Resend-verified `beatyourclock.com` sender, which
-reads as a business robot answering a personal note.
-
-### Bot verification
-
-`api/_turnstile.js` runs Cloudflare Turnstile. It **fails open** on any
-service error (timeout, 5xx, unreachable) and closed only on an explicit bot
-verdict, because a false positive silently costs a real message. A rejected
-bot gets the same success response a human does.
-
-Paste the site key into the `TURNSTILE_SITE_KEY` constant at the top of
-`js/contact-form.js` (it is public by design); the **secret** goes in Vercel
-as `TURNSTILE_SECRET` and never in this repo.
-
-### Environment variables (all optional)
-
-| Var | Effect when unset |
-|---|---|
-| `RESEND_API_KEY` | no notification email is sent |
-| `NOTIFY_TO` | alerts fall back to `contact@beatyourclock.com` |
-| `TURNSTILE_SECRET` | bot verification is skipped entirely |
-| `KV_REST_API_URL` / `_TOKEN` | nothing is queued for ianOS |
-| `IANOS_SYNC_TOKEN` | `/api/ianos-inbox` returns 503 and exposes nothing |
-
-Unconfigured is always silent, never an error: the form keeps working.
-
-## ✍️ Blog
-
-Posts are hand-authored files, one per post: `src/pages/blog-<slug>.html`,
-listed from `src/pages/blog.html`, styled by `src/css/components/blog.css`.
-
-Routing is `/blog/<slug>` via a `vercel.json` rewrite to `/blog-<slug>`.
-**The rewrite destination must not end in `.html`** — `cleanUrls` 308-redirects
-`.html` paths, so a rewrite pointing at one resolves to a redirect and 404s.
-That bug shipped once and made every post unreachable.
-
-Because a post is served from a virtual `/blog/` directory, its nav links must
-be **absolute** (`/about.html`, not `about.html`).
-
-Publishing a post is four steps, and the last two are manual:
-
-1. `src/pages/blog-<slug>.html`
-2. link it from `src/pages/blog.html`
-3. add a `<url>` to `config/sitemap.xml`
-4. add an `<item>` to `config/feed.xml`
-
-Skip 3 and 4 and the post is live but undiscoverable. See
-[DEPLOYMENT.md](./docs/DEPLOYMENT.md) for the full checklist.
-
-## 📡 Feed
-
-RSS 2.0 at `/feed.xml`, authored in `config/feed.xml` and copied to root by the
-build. Every page carries a discovery `<link rel="alternate">` in its head.
-
-## 🖼️ Background
-
-The site background is a silent looping video, `assets/aero-bg.mp4` (~400KB),
-with `assets/aero-bg-poster.jpg` behind it for first paint.
-
-It was previously an 8.6MB animated GIF at 320x214 upscaled to fill the
-viewport: roughly 64MB of decoded frames held resident and recomposited
-fullscreen and forever, which made the whole site feel sluggish. The source
-also never looped, so the wrap visibly jumped; the current clip crossfades its
-last 1.4s back over its first, which closes the seam.
-
-`src/js/features/backgrounds/gif-background.js` still owns sizing. It keeps its
-old name and the element keeps `id="background-gif"` so existing CSS selectors
-continue to apply.
-
-## 📚 Documentation
-
-Comprehensive documentation is available in the `docs/` directory:
-
-### Core Documentation
-- **[ENTERPRISE_STRUCTURE.md](./docs/ENTERPRISE_STRUCTURE.md)** - Complete structure guide
-- **[DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Deployment guide (rewrites & build)
-- **[ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - Architecture decisions
-- **[STRUCTURE.md](./docs/STRUCTURE.md)** - Detailed structure documentation
-- **[SEO_AEO_PLAN.md](./docs/SEO_AEO_PLAN.md)** - SEO & Answer Engine Optimization plan
-- **[GOOGLE_SEARCH_CONSOLE_GUIDE.md](./docs/GOOGLE_SEARCH_CONSOLE_GUIDE.md)** - Google Search Console setup guide
-
-### Additional Documentation
-- **[SEO_AEO_PLAN.md](./docs/SEO_AEO_PLAN.md)** - SEO & Answer Engine Optimization plan
-- **[SEO_IMPLEMENTATION_STATUS.md](./docs/SEO_IMPLEMENTATION_STATUS.md)** - SEO implementation status
-- **[ARCHITECTURE_PLAN.md](./docs/ARCHITECTURE_PLAN.md)** - Reorganization plan
-- **[REORGANIZATION_SUMMARY.md](./docs/REORGANIZATION_SUMMARY.md)** - Summary of changes
-- **[BUILD_SYSTEM_ANALYSIS.md](./docs/BUILD_SYSTEM_ANALYSIS.md)** - Build system analysis
-- **[WORKFLOW.md](./docs/WORKFLOW.md)** - Development workflow
-- Design system documentation
-- Setup guides
-- Feature documentation
-
-## 🎨 Design System
-
-The site uses a Windows Vista/Frutiger Aero aesthetic with:
-- Glassmorphism effects
-- Vista-style icons
-- Frutiger Aero color palette
-- Responsive mobile design
-
-## 📄 License
-
-MIT
-
+The immutable pre-migration reference is commit
+`362da3fbad0d463a3aa59f3188244cf4dab0c3f6`, retained by branch
+`codex/pre-astro-backup-2026-09-23` and tag `pre-astro-migration-2026-09-23`.
+Never move or overwrite those refs. Full release and rollback steps are in
+[Deployment](docs/DEPLOYMENT.md).

@@ -1,20 +1,11 @@
-# Vercel ignore file
-# Files that don't need to be deployed
-
-# Source files (served via rewrites, but don't need to be in root)
-# Actually, we do need these for rewrites to work, so don't ignore
-
-# Build artifacts (if using legacy build)
+# Vercel installs and builds Astro from source; only local/generated material is ignored.
 node_modules/
 .git/
+.astro/
+dist/
+.impeccable/review/
 
-# Documentation
+# Repository-only documentation and reference artifacts
 docs/
 *.md
 !README.md
-
-# scripts/ and config/ must NOT be ignored — npm run build needs them on Vercel
-
-# Archive
-src/assets/archive/
-

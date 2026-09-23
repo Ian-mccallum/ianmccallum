@@ -2,68 +2,72 @@
 
 <!-- impeccable:product-schema 1 -->
 
-## Platform
+## Purpose and audiences
 
-web
+Ian Innovates is Ian McCallum's personal brand, portfolio, CV, and writing site.
+Recruiters and employers use it to evaluate engineering and execution; general
+visitors, potential collaborators, clients, and UIUC-adjacent readers use the same
+URLs without a forced funnel.
 
-## Users
-
-Two primary audiences, both landing on the same URL with no separate funnel:
-
-- **Recruiters and employers** evaluating Ian as a candidate — reading the CV, the Beat the Clock / Clockwork work, and the freelance portfolio as evidence of engineering and execution ability.
-- **General personal-brand visitors** arriving from a shared link, LinkedIn, or search, with no single presumed intent.
-
-Freelance prospective clients and college/UIUC-adjacent readers may also land here, but are not the primary design audience.
-
-## Product Purpose
-
-A personal brand and CV site for Ian McCallum — Naperville, IL, incoming UIUC Gies College of Business student (Finance & Data Science), founder of Beat the Clock. It exists to give any of the above audiences a complete, credible picture of what Ian has built and can do, from one URL.
+The current canonical profile is: UIUC Gies College of Business student studying
+Finance + Data Science; founder of Beat the Clock; architect and sole engineer of
+Clockwork; based between Naperville and Champaign, Illinois. Do not describe Ian as
+an incoming UIUC student.
 
 ## Positioning
 
-Breadth, not a single flagship narrative. The site's core claim is that Ian moves credibly across AI/engineering (Clockwork), freelance web development (real shipped client sites), and creative work (video, YouTube/Twitch), with entrepreneurship (Beat the Clock, VEI/Luminate) running through all of it. No one track is asked to carry the whole pitch; the range itself is the evidence.
+Breadth is the pitch. Applied AI systems, business execution, shipped client sites,
+award-winning entrepreneurship, and creative work coexist as evidence. Clockwork's
+precise mechanism must remain intact: approval-gated AI behavior, deterministic
+pricing outside model output, explicit retryable failures, an auditable outbox, and
+role-separated multi-tenant access.
 
-## Operating Context
+## Product surfaces
 
-- Static site: Home, About, Portfolio, CV, Contact, Testimonials, Photos, Blog, Thank You — routed via Vercel rewrites (`/about`, `/cv`, `/photos`, `/portfolio`, `/testimonials`, `/contact`, `/blog`, `/blog/<slug>`, `/thank-you`).
-- A blog, added August 2026. Posts are hand-authored one file per post; the sitemap and the RSS feed at `/feed.xml` are updated by hand for each one.
-- A contact form at `/contact` posting to Vercel serverless functions in `api/`, which notify by email and queue the record for ianOS. `api/` is CommonJS and is not part of the `src/` build.
-- Actively linked from live outreach and applications right now — treat the deployed site as always potentially in front of a recruiter or client. No work-in-progress or placeholder states should ship.
-- Content changes (CV entries, portfolio cards) happen relatively often as Ian's work history updates; the design system needs to absorb new entries without redesign.
+- Home, About, CV, Photos, Testimonials, Contact, and Thank You
+- Explorer-style portfolio index and one evidence-led case study per project
+- Markdown blog with automatic index, static article routes, RSS, and sitemap
+- Native and enhanced contact form backed by optional CommonJS Vercel services
+- Downloadable CV and structured metadata for people, profile, projects, and posts
+- Aero 404 with recovery actions
 
-## Capabilities and Constraints
+Every route is a real URL and one semantic window state. Browser history, direct
+entry, open in new tab, keyboard navigation, and JavaScript-off contact submission
+are part of the product contract.
 
-- Static HTML/CSS/JS, no framework, no backend, no build dependencies (`package.json` has zero `dependencies`/`devDependencies`).
-- Single-source-of-truth build: everything is authored in `src/`, and `npm run build` (`scripts/build.js`) copies/flattens it into the deployed root — HTML from `src/pages/`, CSS flattened to `css/`, JS flattened to `js/`, assets to `assets/`/`img/`/`fonts/`. An edit made only to the root copy is silently overwritten by the next build.
-- Deployed on Vercel, which also runs `npm run build` itself at deploy time (per `vercel.json`) — so `src/` is authoritative for production, not just for local dev. Anything committed only to the root is deleted by the next deploy.
-- `cleanUrls` is enabled, which 308-redirects `.html` paths. A rewrite destination ending in `.html` therefore resolves to a redirect and returns 404; this broke every blog post once.
-- Desktop rendering emulates a Windows Vista/7 "Aero" desktop shell (taskbar, draggable glass windows, start menu, lock-screen boot sequence); a separate iOS-style mobile shell renders the same content as app panels below roughly 768px. New surfaces need to fit one of these two shells.
+## Principles
 
-## Brand Commitments
+1. Breadth is the evidence; do not collapse the site into one flagship funnel.
+2. Preserve technical precision over generic marketing polish.
+3. Ship only production-ready, factual content because links are used in live
+   outreach and applications.
+4. Make repeated content changes schema-driven and resilient to layout growth.
+5. Keep the Aero identity sincere, functional, accessible, and responsive.
+6. Prefer local, optimized, provenance-recorded media and no autoplaying project
+   demos.
 
-- Name: Ian McCallum. Site: ianmccallum.com.
-- Beat the Clock is the umbrella brand for Ian's automation/AI consulting; Clockwork is the specific AI operations product under it (beatyourclock.com). The language describing Clockwork's mechanism — approval-gated AI agent, deterministic pricing separated from model output, auditable outbox with retryable states — was written for factual precision and must not be softened or genericized by future copy or design passes.
-- LinkedIn: linkedin.com/in/mccallumian (the correct, current URL; an older numeric-slug URL was retired site-wide).
-- Visual identity: Windows Vista / Frutiger Aero aesthetic, formalized as the "Aero" design token system (`src/css/base/aero-system.css`) — light-source-driven glass, a six-hue palette with fill/ink twins, a six-step radius scale, and Segoe UI Semilight for display type. This is an existing, deliberately documented system, not a placeholder.
+## Evidence constraints
 
-## Evidence on Hand
+Supported claims include Ian's UIUC Gies Finance + Data Science studies, 4.25 high
+school GPA, Illinois State Scholar and Magna Cum Laude recognition, Luminate's VEI
+regional and national first-place results, real shipped client websites, verified
+testimonials, and the documented Clockwork implementation. Do not invent metrics,
+customers, testimonials, pricing, or outcomes.
 
-- Flagship project: Beat the Clock / Clockwork, an AI operations platform for trades businesses (missed-call handling, drafted replies, rate-card-driven quoting, scheduling, invoicing), described in detail on the home page and CV.
-- Freelance client portfolio, each with a real shipped site and (all but one) a demo video: Imanol VillaGomez (concert videographer), TMM Photography, Nics Marketing, Fortivus Academy (rugby academy).
-- Luminate — a Virtual Enterprise International e-commerce project that won 1st place at both the Midwest regional and national competitions; live at luminate-eta.vercel.app.
-- Real testimonials, including one from Nick Evans (Founder & CEO, Fortivus Academy).
-- Work history: Target (Food Department Team Member), Coldwell Banker Dan Firks (Real Estate Runner, summer 2025), Youth Soccer Referee (2021–2024).
-- A photo gallery of Ian's own photography/creative work.
-- No fabricated testimonials, benchmarks, or pricing exist or should be invented; "References available upon request" on the CV is a real statement, not a placeholder to fill in.
+## Technical constraints
 
-## Product Principles
+- Astro static output deployed by Vercel; no client-side router.
+- Root `api/` remains CommonJS and the root package has no `"type": "module"`.
+- Content collections are the canonical project and blog sources.
+- No duplicated mobile content tree or hidden page copies.
+- Serious/critical axe findings, missing local references, console errors, and
+  network failures are release blockers.
+- Mobile LCP budget is below 2.5 seconds under the repository's throttled test;
+  CLS budget is at most 0.1.
 
-1. Breadth is the pitch — every surface should let AI/engineering, freelance work, and creative range coexist rather than forcing one to dominate.
-2. Precision over polish in technical claims — Clockwork's mechanism (approval gating, deterministic pricing, auditability) is real engineering detail; never let a design pass round it off into vaguer marketing language.
-3. Always production-ready — because the site is actively linked from live outreach, no surface should ship in a half-finished or placeholder state.
-4. Content changes constantly, design should absorb it — CV entries and portfolio cards get added or edited often; new work should make future content edits easy rather than requiring layout rework each time.
-5. One URL, multiple audiences, no forced funnel — recruiters, general visitors, and secondarily clients or academic readers all land on the same pages; don't optimize so hard for one audience that it alienates the others.
+## Accessibility
 
-## Accessibility & Inclusion
-
-No product-specific accessibility requirement has been established by the user. The existing Aero design token system already documents WCAG contrast ratios for its ink/text colors (AA minimum, several AAA) — treat this as an existing constraint to preserve, not a fresh requirement to design against.
+The release contract includes one `<main>` and `<h1>` per route, keyboard-visible
+focus, a skip link, at least 44px touch targets, readable opaque long-form surfaces,
+semantic labels, reduced-motion support, focus-managed gallery dialog, native form
+fallback, and non-color-only status communication.

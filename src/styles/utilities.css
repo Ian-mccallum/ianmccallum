@@ -64,12 +64,26 @@
   }
 
   @media print {
-    @page { margin: .6in; }
+    @page { margin: .45in; }
     body { overflow: visible; color: #111; background: white; }
     .atmosphere, .desktop-icons, .taskbar, .start-menu, .window-titlebar, .window-statusbar, .skip-link, .no-print { display: none !important; }
     .desktop-workspace, .window-frame, .window-frame__body { display: block; width: auto; height: auto; min-height: 0; margin: 0; padding: 0; overflow: visible; border: 0; background: white; box-shadow: none; }
     .page-sheet { width: auto; max-width: none; margin: 0; padding: 0; }
     .resume-entry { break-inside: avoid; }
+    .cv-document { font-size: .8rem; line-height: 1.28; }
+    .cv-document h1 { margin: 0 0 4px; font-size: 1.85rem; }
+    .cv-document h2 { margin: 18px 0 5px; font-size: 1.18rem; break-after: avoid; }
+    .cv-document p { margin-block: 5px; }
+    .cv-document .resume-grid { gap: 12px; }
+    .cv-document .resume-entry { padding: 7px 0; }
+    .cv-document .resume-entry strong { font-size: .86rem; }
+    .cv-document .resume-entry time { font-size: .72rem; }
+    .cv-document .resume-entry ul { margin: 4px 0; padding-left: 1rem; }
+    .cv-document .resume-entry li + li,
+    .cv-document .decision-list li + li { margin-top: 2px; }
+    .cv-document .tag-list { gap: 4px; margin-block: 4px; }
+    .cv-document .tag-list li { padding: 2px 7px; font-size: .69rem; }
+    .cv-document section > h2 + * { break-before: avoid; }
     a { color: #111; text-decoration: none; }
   }
 }

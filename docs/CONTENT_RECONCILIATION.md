@@ -24,7 +24,7 @@ Recorded before removal of the legacy HTML/CSS/JavaScript build at commit
 | --- | --- | --- |
 | `src/pages/index.html` welcome and hidden windows | Positioning, primary actions, overview evidence | `src/pages/index.astro`, shared data in `src/data/` and project collection |
 | `src/pages/about.html` plus newer article biography | Identity, location, biography, education, interests, skills | `src/data/profile.ts`, `src/pages/about.astro` |
-| `src/pages/cv.html` | Summary, education, work history, skills, achievements, downloadable PDF | `src/data/profile.ts`, `src/data/experience.ts`, `src/data/education.ts`, `src/data/awards.ts`, `src/pages/cv.astro` |
+| `src/pages/cv.html` | Summary, education, work history, skills, achievements, downloadable PDF | `src/data/profile.ts`, `src/pages/cv.astro` |
 | `src/pages/portfolio.html` and richer homepage copies | Beat the Clock, Clockwork, client work, Luminate, Vokel, verified links, media, engineering decisions | validated `projects` content collection; generated `/portfolio/[slug]` routes and `/portfolio` index |
 | `src/pages/testimonials.html` | Quotes from Timmy Miller, Nicolas Villalobos, and Nick Evans with roles and verified destinations | `src/data/testimonials.ts`, `src/pages/testimonials.astro` |
 | `src/pages/photos.html` | Four published gallery images and Instagram link | `src/data/photos.ts`, `src/pages/photos.astro`; source images imported through Astro |
