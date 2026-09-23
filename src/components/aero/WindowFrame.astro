@@ -1,11 +1,23 @@
 ---
 import Titlebar from './Titlebar.astro';
 import type { IconName } from '../../data/navigation';
-interface Props { title: string; icon: IconName | 'warning' | 'project'; reading?: boolean }
-const { title, icon, reading = false } = Astro.props;
+interface Props {
+  title: string;
+  icon: IconName | 'warning' | 'project';
+  reading?: boolean;
+  path: string;
+  restored?: boolean;
+}
+const { title, icon, reading = false, path, restored = false } = Astro.props;
 ---
 
-<section class:list={['window-frame', 'is-maximized', { 'window-frame--reading': reading }]} data-window-frame aria-label={`${title} window`}>
+<section
+  class:list={['window-frame', restored ? 'is-restored' : 'is-maximized', { 'window-frame--reading': reading }]}
+  data-window-frame
+  data-window-primary
+  data-window-route={path}
+  aria-label={`${title} window`}
+>
   <Titlebar title={title} icon={icon} />
   <div class="window-frame__body" tabindex="0" aria-label={`${title} content`}><slot /></div>
   <div class="window-statusbar"><span>{title}</span><span class="window-statusbar__grip" aria-hidden="true"></span></div>

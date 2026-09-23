@@ -1,9 +1,14 @@
 ---
 import Icon from './Icon.astro';
 import StartMenu from './StartMenu.astro';
+import SocialIcon from './SocialIcon.astro';
+import { navigation } from '../../data/navigation';
+import { socialLinks } from '../../data/social';
 import type { IconName } from '../../data/navigation';
 interface Props { path: string; title: string; icon: IconName | 'warning' | 'project' }
 const { path, title, icon } = Astro.props;
+const pinned = navigation.filter((item) => ['/', '/about', '/portfolio', '/blog', '/contact'].includes(item.href));
+const currentIsPinned = pinned.some((item) => item.href === path);
 ---
 
 <StartMenu />
@@ -11,9 +16,35 @@ const { path, title, icon } = Astro.props;
   <button class="start-button" type="button" aria-controls="start-menu" aria-expanded="false" data-start-button>
     <span class="start-orb" aria-hidden="true"><span></span></span><span class="start-label">Start</span>
   </button>
-  <a class="taskbar-item is-active" href={path} data-taskbar-restore aria-label={`Restore ${title}`}>
-    <Icon name={icon} size={22} /><span>{title}</span>
-  </a>
+  <span class="taskbar-separator" aria-hidden="true"></span>
+  <nav class="taskbar-pins" aria-label="Pinned pages">
+    {pinned.map((item) => (
+      <a
+        class:list={['taskbar-item', { 'is-open is-active': item.href === path }]}
+        href={item.href}
+        data-window-link
+        data-taskbar-route={item.href}
+        aria-label={`Open ${item.label}`}
+      >
+        <Icon name={item.icon} size={22} /><span>{item.label === 'Welcome' ? 'Home' : item.label}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="taskbar-running" data-taskbar-running>
+    {!currentIsPinned && (
+      <a class="taskbar-item is-open is-active" href={path} data-taskbar-route={path} aria-label={`Restore ${title}`}>
+        <Icon name={icon} size={22} /><span>{title}</span>
+      </a>
+    )}
+  </div>
   <div class="taskbar-spacer"></div>
-  <div class="taskbar-clock" aria-label="Current local time"><time data-clock></time><span>Central</span></div>
+  <nav class="taskbar-socials" aria-label="Social profiles">
+    {socialLinks.map((link) => (
+      <a href={link.href} target="_blank" rel="me noopener" aria-label={link.label} title={link.label}>
+        <SocialIcon name={link.label} size={17} />
+      </a>
+    ))}
+  </nav>
+  <span class="taskbar-separator" aria-hidden="true"></span>
+  <div class="taskbar-clock" aria-label="Current local time"><time data-clock></time><span data-date>Central</span></div>
 </footer>

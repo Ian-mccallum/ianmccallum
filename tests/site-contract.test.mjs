@@ -32,7 +32,8 @@ for (const [route, file] of routes) {
     assert.equal((html.match(/<main\b/g) ?? []).length, 1);
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
     assert.equal((html.match(/<section[^>]+data-window-frame/g) ?? []).length, 1);
-    assert.match(html, /class="window-frame is-maximized/);
+    if (route === '/') assert.match(html, /class="window-frame is-restored/);
+    else assert.match(html, /class="window-frame is-maximized/);
     assert.match(html, /AERO-MIGRATION-CONTRACT/);
     assert.doesNotMatch(html, /cdn\.jsdelivr|cdnjs\.cloudflare|unpkg\.com/);
   });
@@ -59,6 +60,11 @@ test('navigation uses real links and no hidden page copies', () => {
   const html = readFileSync('dist/index.html', 'utf8');
   for (const href of ['/about', '/portfolio', '/cv', '/photos', '/testimonials', '/blog', '/contact']) assert.match(html, new RegExp(`href="${href}"`));
   assert.doesNotMatch(html, /id="about-window"|id="portfolio-window"|ios-app-panel/);
+  assert.doesNotMatch(html, /builds across disciplines/i);
+  assert.match(html, /Welcome to my site!/);
+  assert.match(html, /data-window-link/);
+  assert.match(html, /aria-label="Social profiles"/);
+  assert.match(html, /class="start-menu__body"/);
 });
 
 test('contact keeps progressive form and protected fallback', () => {

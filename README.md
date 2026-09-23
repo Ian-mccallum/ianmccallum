@@ -44,11 +44,15 @@ screenshots and reports live in `.impeccable/review/` and are not committed.
 
 ## Architecture
 
-- `src/pages/` owns static routes. Each page renders one maximized Aero window.
+- `src/pages/` owns static routes. Deep links render one maximized Aero window;
+  `/` restores the personal Welcome window so the desktop remains explorable.
 - `src/layouts/WindowPageLayout.astro` is the shared document, SEO, and shell
   boundary.
 - `src/components/aero/` owns the desktop, window chrome, taskbar, Start menu,
   controls, and authentic local icon treatment.
+- `src/scripts/aero-window.ts` progressively turns same-origin desktop links into
+  movable route windows. Anchors remain real links, and mobile continues to use
+  direct navigation.
 - `src/components/content/` owns the contact form, protected email, gallery, and
   project media.
 - `src/content/projects/` and `src/content/blog/` are typed Astro content

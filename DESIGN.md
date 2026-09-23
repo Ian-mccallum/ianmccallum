@@ -119,9 +119,12 @@ The checked-in font's redistribution provenance is unresolved; see
 
 ## Layout
 
-Every route renders one maximized Aero window within the usable workspace above the
-48px taskbar. The content sheet controls its own comfortable measure. At narrow
-widths the same semantic window becomes the screen, desktop shortcuts disappear,
+Every deep link renders one maximized Aero window within the usable workspace above
+the 48px taskbar. Home deliberately restores the smaller personal Welcome window,
+leaving the desktop visible and inviting exploration. On desktop, route anchors can
+open additional requested windows that stack, focus, drag, minimize, maximize, and
+close like the original site; they are never pre-rendered hidden copies. At narrow
+widths the primary semantic window becomes the screen, desktop shortcuts disappear,
 and content reflows into one column; there is no second mobile content tree.
 
 Spacing follows the 4px scale in the frontmatter. Explorer tables contain their own
@@ -155,9 +158,11 @@ remains square enough to read as period chrome rather than modern glassmorphism.
 ### Window chrome and navigation
 
 The titlebar is a compact glossy blue band with a local 64px-source icon and native
-window-control silhouette. Close is red and navigates home; minimize and restore use
-the taskbar; maximize toggles the comfortable reading size without changing URL.
-Desktop icons, Start entries, and contextual navigation are real anchors.
+window-control silhouette. Closing a secondary window removes it; closing a direct
+route returns home; closing the Home Welcome window minimizes it. Minimize and
+restore use the taskbar, and maximize toggles the comfortable reading size without
+changing URL. Desktop icons, the two-column Start menu, pinned taskbar apps, social
+tray, and contextual navigation are all real anchors.
 
 ### Buttons and fields
 

@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
 import Icon from '../components/aero/Icon.astro';
+import SocialIcon from '../components/aero/SocialIcon.astro';
 import profileImage from '../assets/images/photos/ian-mccallum-profile.jpg';
 import { profile } from '../data/profile';
+import { socialLinks } from '../data/social';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.featuredOrder - b.data.featuredOrder);
 const schema = [
   { '@context': 'https://schema.org', '@type': 'Person', name: profile.name, url: 'https://www.ianmccallum.com/', image: 'https://www.ianmccallum.com/images/ian-mccallum-social.jpg', homeLocation: { '@type': 'Place', name: profile.location }, sameAs: ['https://www.linkedin.com/in/mccallumian', 'https://github.com/Ian-mccallum'] },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Ian McCallum', url: 'https://www.ianmccallum.com/' },
@@ -14,34 +14,26 @@ const schema = [
 ---
 
 <WindowPageLayout title="Ian McCallum | Founder & AI Engineer" description="Ian McCallum builds practical AI systems, client websites, and creative work. Founder of Beat the Clock and the engineer behind Clockwork." windowTitle="Welcome — Ian McCallum" icon="welcome" path="/" root schema={schema}>
-  <div class="page-sheet">
-    <header class="profile-header">
-      <Image src={profileImage} alt="Ian McCallum" width={132} height={132} loading="eager" />
-      <div>
-        <h1>Ian McCallum builds across disciplines.</h1>
-        <p>{profile.location} · UIUC Gies · Finance + Data Science</p>
-      </div>
+  <div class="page-sheet welcome-sheet">
+    <header class="welcome-profile">
+      <Image src={profileImage} alt="Ian McCallum" width={128} height={128} loading="eager" />
+      <h1>Ian McCallum</h1>
+      <p class="welcome-role">{profile.title}</p>
+      <p class="welcome-location"><span aria-hidden="true">●</span> {profile.location} · {profile.schoolLocation}</p>
     </header>
-    <p class="lede">Practical AI systems, business execution, shipped client work, and creative range—held together by a bias toward making useful things real.</p>
-    <div class="home-paths" aria-label="Primary paths">
-      <a class="home-path" href="/portfolio/clockwork"><Icon name="portfolio" size={38} /><strong>Clockwork / Beat the Clock</strong><span>See the approval-gated AI operations platform and the engineering decisions underneath it.</span></a>
-      <a class="home-path" href="/portfolio"><Icon name="project" size={38} /><strong>Client & project work</strong><span>Browse shipped websites, entrepreneurship, and creative production in an Explorer-style index.</span></a>
-      <a class="home-path" href="/cv"><Icon name="cv" size={38} /><strong>CV & background</strong><span>Scan education, experience, technical skills, awards, and a downloadable PDF.</span></a>
-    </div>
-    <section aria-labelledby="evidence-title">
-      <h2 id="evidence-title">A quick read on the evidence</h2>
-      <div class="evidence-rail">
-        <div><strong>Clockwork engineering</strong><span>Approval gates, computed pricing, explicit failure states, and an auditable outbox.</span></div>
-        <div><strong>Luminate awards</strong><span>First place at both the VEI Midwest regional and national e-commerce competitions.</span></div>
-        <div><strong>Shipped client work</strong><span>Live sites for Imanol VillaGomez, TMM Photography, Nics Marketing, and Fortivus Academy.</span></div>
-        <div><strong>UIUC</strong><span>Finance and Data Science at the Gies College of Business, Class of 2030.</span></div>
-      </div>
+    <p class="welcome-intro">Welcome to my site! I’m an 18-year-old builder from Naperville studying Finance and Data Science at UIUC’s Gies College of Business. I founded Beat the Clock and built Clockwork, but this desktop is also home to my client work, photography, writing, and everything else I like making. Open a few windows and look around.</p>
+    <section class="welcome-facts" aria-label="Quick facts about Ian McCallum">
+      <p><strong>Who is Ian McCallum?</strong> A student, founder, engineer, and creative who likes turning ambitious ideas into things people can actually use.</p>
+      <p><strong>What does Ian build?</strong> Approval-gated AI systems, websites for real clients, automation workflows, and visual projects through Beat the Clock and independent work.</p>
     </section>
-    <section aria-labelledby="recent-work">
-      <h2 id="recent-work">Open recent work</h2>
-      <div class="button-row">
-        {projects.slice(0, 4).map((project, index) => <a class:list={['aero-button', { 'aero-button--secondary': index > 0 }]} href={`/portfolio/${project.data.slug}`}>{project.data.name}</a>)}
-      </div>
-    </section>
+    <nav class="welcome-actions" aria-label="Explore Ian's desktop">
+      <a class="aero-button" href="/about" data-window-link><Icon name="about" size={20} />About me</a>
+      <a class="aero-button aero-button--secondary" href="/portfolio" data-window-link><Icon name="portfolio" size={20} />Portfolio</a>
+      <a class="aero-button aero-button--secondary" href="/contact" data-window-link><Icon name="contact" size={20} />Contact</a>
+      <a class="aero-button aero-button--secondary" href="/cv#cv-skills" data-window-link><Icon name="cv" size={20} />Skills</a>
+    </nav>
+    <nav class="welcome-socials" aria-label="Social profiles">
+      {socialLinks.map((link) => <a href={link.href} target="_blank" rel="me noopener"><SocialIcon name={link.label} size={18} /><span>{link.label}</span></a>)}
+    </nav>
   </div>
 </WindowPageLayout>

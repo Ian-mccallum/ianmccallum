@@ -2,7 +2,9 @@
 import { Image } from 'astro:assets';
 import profileImage from '../../assets/images/photos/ian-mccallum-profile.jpg';
 import { navigation } from '../../data/navigation';
+import { socialLinks } from '../../data/social';
 import Icon from './Icon.astro';
+import SocialIcon from './SocialIcon.astro';
 ---
 
 <nav class="start-menu" id="start-menu" aria-label="Start menu" hidden>
@@ -10,10 +12,36 @@ import Icon from './Icon.astro';
     <Image src={profileImage} alt="Ian McCallum" width={52} height={52} loading="eager" />
     <div><strong>Ian McCallum</strong><span>Founder & AI Engineer</span></div>
   </div>
-  <div class="start-menu__links">
-    {navigation.map((item) => (
-      <a href={item.href}><Icon name={item.icon} size={26} /><span>{item.label}</span></a>
-    ))}
+  <div class="start-menu__body">
+    <div class="start-menu__programs">
+      <div class="start-menu__links" data-start-links>
+        {navigation.map((item) => (
+          <a href={item.href} data-window-link data-start-entry><Icon name={item.icon} size={25} /><span>{item.label}</span></a>
+        ))}
+      </div>
+      <label class="start-menu__search">
+        <span class="sr-only">Search pages</span>
+        <input type="search" placeholder="Search pages…" autocomplete="off" data-start-search />
+      </label>
+    </div>
+    <div class="start-menu__places">
+      <strong>Connect</strong>
+      {socialLinks.map((link) => (
+        <a href={link.href} target="_blank" rel="me noopener">
+          <span class:list={['social-badge', `social-badge--${link.label.toLowerCase()}`]}><SocialIcon name={link.label} size={16} /></span>
+          <span>{link.label}</span>
+        </a>
+      ))}
+      <span class="start-menu__divider"></span>
+      <a href="https://beatyourclock.com" target="_blank" rel="noopener">
+        <Icon name="welcome" size={22} /><span>Beat the Clock</span>
+      </a>
+    </div>
   </div>
-  <div class="start-menu__footer"><a href="/contact">Send a message</a><span aria-hidden="true"></span></div>
+  <div class="start-menu__footer">
+    <button type="button" data-replay-welcome>Replay welcome</button>
+    <span class="start-menu__footer-spacer"></span>
+    <a href="/contact" data-window-link>Contact</a>
+    <button type="button" data-start-close>Close</button>
+  </div>
 </nav>

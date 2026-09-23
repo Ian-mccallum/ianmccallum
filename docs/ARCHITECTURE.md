@@ -14,7 +14,8 @@ handles them.
 ## Route model
 
 `src/layouts/WindowPageLayout.astro` emits the shared HTML head, structured data,
-Aero shell, and exactly one `<main>`, `<h1>`, and window frame per content route.
+Aero shell, and exactly one initial `<main>`, `<h1>`, and window frame per content
+route.
 The current routes are:
 
 - `/`, `/about`, `/cv`, `/photos`, `/testimonials`, `/contact`, `/thank-you`
@@ -24,9 +25,17 @@ The current routes are:
 - the static Aero `/404`
 
 Navigation is ordinary `<a>` links, so URLs, browser history, Back/Forward, open in
-new tab, and direct entry all work without a client router. Desktop shortcuts,
-Start menu entries, and taskbar state are alternate controls for the same routes,
-not hidden duplicate pages.
+new tab, and direct entry all work without a client router. On desktop, an ordinary
+unmodified click on a shortcut, Start entry, pinned taskbar item, or marked home
+action may progressively fetch that same static route and open its existing window
+frame beside the current one. Modified clicks and mobile navigation retain native
+browser behavior. The homepage still contains no hidden copies of other pages;
+secondary windows are loaded only when requested.
+
+The shared window manager also initializes the existing contact form, protected
+email challenge, and photo-gallery behavior inside requested secondary windows.
+Those enhancements are idempotent, so direct-route and multi-window paths use the
+same modules without duplicate listeners.
 
 ## Content model
 
@@ -46,9 +55,13 @@ parallel lists. Smaller sources that span several pages live in `src/data/`.
 
 The established Windows Vista/7 Aero identity is implemented once in
 `src/components/aero/` and `src/styles/`. Desktop and mobile share the same semantic
-content and components. At narrow widths the same maximized window becomes the
-screen surface; desktop shortcuts are hidden and the fixed taskbar remains an
-orientation/control surface.
+content and components. Directly entered content routes start maximized; `/` starts
+with a centered, restored Welcome window. Desktop visitors can open several route
+windows, move restored windows by their titlebars, focus and stack them, minimize
+or restore them through the taskbar, maximize them, and close secondary windows.
+The two-column Start menu and taskbar retain real route and social anchors. At
+narrow widths the current route becomes the screen surface, desktop shortcuts and
+secondary windows disappear, and the fixed taskbar remains an orientation surface.
 
 Only the root route shows the brief, session-scoped boot treatment. It is
 skippable, removed immediately for reduced motion, and does not delay other routes.
@@ -91,8 +104,9 @@ to the generated sitemap index.
 - `astro check`: source and template diagnostics.
 - `scripts/validate-assets.mjs`: every generated local HTML/CSS/XML reference.
 - Node tests: CommonJS API contracts and generated-route invariants.
-- Playwright: five responsive widths, window controls, history, form recovery,
-  gallery focus, 404, console/network cleanliness, axe serious/critical scans.
+- Playwright: five responsive widths, multi-window open/drag/focus/control flows,
+  direct routes, Start menu, form recovery, gallery focus, 404, console/network
+  cleanliness, and axe serious/critical scans.
 - Throttled Playwright: mobile LCP and CLS budgets on three representative routes.
 
 The HTML comment beginning `AERO-MIGRATION-CONTRACT` in the shared layout is an

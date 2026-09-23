@@ -5,7 +5,7 @@ interface Props { href: string; label: string; icon: IconName }
 const { href, label, icon } = Astro.props;
 ---
 
-<a class="desktop-icon" href={href} aria-label={`Open ${label}`}>
+<a class="desktop-icon" href={href} aria-label={`Open ${label}`} data-window-link>
   <span class="desktop-icon__image"><Icon name={icon} size={44} /></span>
   <span>{label}</span>
 </a>

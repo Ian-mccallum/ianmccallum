@@ -22,8 +22,9 @@ const { path, title, windowTitle, icon, reading = false, root = false } = Astro.
   <nav class="desktop-icons" aria-label="Desktop shortcuts">
     {navigation.filter((item) => item.href !== '/').map((item) => <DesktopIcon {...item} />)}
   </nav>
-  <main id="main-content" class="desktop-workspace" tabindex="-1">
-    <WindowFrame title={windowTitle} icon={icon} reading={reading}><slot /></WindowFrame>
+  <main id="main-content" class="desktop-workspace" tabindex="-1" data-window-host>
+    <WindowFrame title={windowTitle} icon={icon} reading={reading} path={path} restored={root}><slot /></WindowFrame>
+    <p class="sr-only" role="status" aria-live="polite" data-window-status></p>
   </main>
   <Taskbar path={path} title={title} icon={icon} />
 </div>

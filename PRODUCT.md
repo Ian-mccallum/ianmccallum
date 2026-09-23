@@ -31,9 +31,10 @@ role-separated multi-tenant access.
 - Downloadable CV and structured metadata for people, profile, projects, and posts
 - Aero 404 with recovery actions
 
-Every route is a real URL and one semantic window state. Browser history, direct
-entry, open in new tab, keyboard navigation, and JavaScript-off contact submission
-are part of the product contract.
+Every route is a real URL and reconstructs one primary semantic window. Desktop
+visitors may then open additional route-backed windows without pre-rendered hidden
+copies. Browser history, direct entry, open in new tab, keyboard navigation, and
+JavaScript-off contact submission remain part of the product contract.
 
 ## Principles
 

@@ -32,7 +32,8 @@ for (const width of widths) {
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       frameMaximized: document.querySelector('[data-window-frame]')?.classList.contains('is-maximized'),
     }));
-    if (counts.main !== 1 || counts.h1 !== 1 || counts.windows !== 1 || counts.overflow || !counts.frameMaximized) failures.push(`${route} @ ${width}: ${JSON.stringify(counts)}`);
+    const expectedWindowState = route === '/' ? !counts.frameMaximized : counts.frameMaximized;
+    if (counts.main !== 1 || counts.h1 !== 1 || counts.windows !== 1 || counts.overflow || !expectedWindowState) failures.push(`${route} @ ${width}: ${JSON.stringify(counts)}`);
     findings.routes.push({ route, width, ...counts });
     if (width <= 760 && route === '/') {
       const backgroundVideoRequested = await page.evaluate(() => performance.getEntriesByType('resource').some((entry) => entry.name.endsWith('/media/aero-bg.mp4')));
@@ -49,25 +50,74 @@ for (const width of widths) {
 const context = await browser.newContext({ viewport: { width: 1024, height: 900 } });
 const page = await context.newPage();
 await page.addInitScript(() => sessionStorage.setItem('aero-boot-seen', '1'));
-await page.goto(`${baseURL}/about`, { waitUntil: 'networkidle' });
-await page.click('[data-window-maximize]');
-if (!(await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-restored')))) failures.push('maximize control did not restore');
-await page.click('[data-window-maximize]');
-await page.click('[data-window-minimize]');
-if (!(await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-minimized')))) failures.push('minimize control did not hide window');
-await page.click('[data-taskbar-restore]');
-if (await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-minimized'))) failures.push('taskbar did not restore window');
+await page.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
+const welcomeFrame = page.locator('[data-window-route="/"]');
+if (!(await welcomeFrame.evaluate((element) => element.classList.contains('is-restored')))) failures.push('home did not open as the restored Welcome window');
+await page.locator('.desktop-icon[href="/about"]').click();
+await page.locator('[data-window-route="/about"]').waitFor();
+await page.locator('.desktop-icon[href="/portfolio"]').click();
+await page.locator('[data-window-route="/portfolio"]').waitFor();
+if ((await page.locator('[data-window-frame]').count()) !== 3) failures.push('desktop did not keep multiple windows open');
+if (new URL(page.url()).pathname !== '/') failures.push('opening a desktop window replaced the canonical home URL');
+
+const portfolioFrame = page.locator('[data-window-route="/portfolio"]');
+const beforeDrag = await portfolioFrame.boundingBox();
+const titlebar = portfolioFrame.locator('.window-titlebar');
+const titleBox = await titlebar.boundingBox();
+if (beforeDrag && titleBox) {
+  await page.mouse.move(titleBox.x + 110, titleBox.y + 18);
+  await page.mouse.down();
+  await page.mouse.move(titleBox.x + 165, titleBox.y + 70, { steps: 4 });
+  await page.mouse.up();
+  const afterDrag = await portfolioFrame.boundingBox();
+  if (!afterDrag || (Math.abs(afterDrag.x - beforeDrag.x) < 20 && Math.abs(afterDrag.y - beforeDrag.y) < 20)) failures.push('restored window did not move when dragged');
+}
+await page.screenshot({ path: `${reviewDir}/multi-window-1024.png`, animations: 'disabled' });
+await portfolioFrame.locator('[data-window-minimize]').click();
+if (!(await portfolioFrame.evaluate((element) => element.classList.contains('is-minimized')))) failures.push('dynamic window did not minimize');
+await page.locator('[data-taskbar-route="/portfolio"]').click();
+if (await portfolioFrame.evaluate((element) => element.classList.contains('is-minimized'))) failures.push('taskbar did not restore dynamic window');
+await portfolioFrame.locator('[data-window-maximize]').click();
+if (!(await portfolioFrame.evaluate((element) => element.classList.contains('is-maximized')))) failures.push('dynamic window did not maximize');
+await portfolioFrame.locator('.window-control--close').click();
+if (await page.locator('[data-window-route="/portfolio"]').count()) failures.push('dynamic window did not close');
+
+await page.locator('[data-taskbar-route="/contact"]').click();
+const dynamicContact = page.locator('[data-window-route="/contact"]');
+await dynamicContact.waitFor();
+if (await dynamicContact.locator('[data-contact-form]').getAttribute('data-contact-enhanced') !== 'true') failures.push('dynamic contact form was not enhanced');
+await dynamicContact.locator('[data-email-reveal]').click();
+if (await dynamicContact.locator('[data-email-challenge]').getAttribute('hidden') !== null) failures.push('dynamic protected-email challenge did not open');
+await dynamicContact.locator('.window-control--close').click();
+
+await page.locator('.desktop-icon[href="/photos"]').click();
+const dynamicPhotos = page.locator('[data-window-route="/photos"]');
+await dynamicPhotos.waitFor();
+if (await dynamicPhotos.locator('[data-gallery]').getAttribute('data-gallery-enhanced') !== 'true') failures.push('dynamic photo gallery was not enhanced');
+await dynamicPhotos.locator('[data-gallery-item]').first().click();
+if (await dynamicPhotos.locator('[data-lightbox]').getAttribute('hidden') !== null) failures.push('dynamic photo lightbox did not open');
+await page.keyboard.press('Escape');
+await dynamicPhotos.locator('.window-control--close').click();
+
 await page.click('[data-start-button]');
 if (await page.locator('#start-menu').getAttribute('hidden') !== null) failures.push('Start menu did not open');
+if ((await page.locator('#start-menu .start-menu__places a').count()) < 5) failures.push('Start menu did not restore Connect links');
+await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+await page.screenshot({ path: `${reviewDir}/start-menu-1024.png`, animations: 'disabled' });
 await page.keyboard.press('Escape');
 if (await page.locator('#start-menu').getAttribute('hidden') === null) failures.push('Escape did not dismiss Start menu');
-await page.locator('.desktop-icon[href="/portfolio"]').click();
-await page.waitForURL('**/portfolio');
-await page.goBack();
-await page.waitForURL('**/about');
+
+await page.goto(`${baseURL}/about`, { waitUntil: 'networkidle' });
+await page.click('[data-window-maximize]');
+if (!(await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-restored')))) failures.push('maximize control did not restore a direct-route window');
+await page.click('[data-window-maximize]');
+await page.click('[data-window-minimize]');
+if (!(await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-minimized')))) failures.push('primary window did not minimize');
+await page.locator('[data-taskbar-route="/about"]').click();
+if (await page.locator('[data-window-frame]').evaluate((element) => element.classList.contains('is-minimized'))) failures.push('taskbar did not restore primary window');
 await page.click('[data-window-frame] .window-control--close');
 await page.waitForURL(`${baseURL}/`);
-findings.interactions.push('window restore/minimize/restore, Start/Escape, real-link navigation, Back, close-to-home');
+findings.interactions.push('multi-window open/focus/drag/minimize/restore/maximize/close, dynamic contact/email/gallery hydration, Start/Escape, direct-route controls, close-to-home');
 
 for (const route of routes) {
   await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });

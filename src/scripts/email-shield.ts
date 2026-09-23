@@ -8,39 +8,43 @@ const challenge = () => {
   return { text: `${a} + ${b}`, answer: a + b };
 };
 
-document.querySelectorAll<Shield>('[data-email-shield]').forEach((shield) => {
-  const trigger = shield.querySelector<HTMLButtonElement>('[data-email-reveal]');
-  const panel = shield.querySelector<HTMLElement>('[data-email-challenge]');
-  const question = shield.querySelector<HTMLElement>('[data-email-question]');
-  const input = shield.querySelector<HTMLInputElement>('input');
-  const verify = shield.querySelector<HTMLButtonElement>('[data-email-verify]');
-  const output = shield.querySelector<HTMLElement>('[data-email-output]');
-  const link = shield.querySelector<HTMLAnchorElement>('[data-email-link]');
-  const error = shield.querySelector<HTMLElement>('[data-email-error]');
+export function initEmailShields(root: ParentNode = document) {
+  root.querySelectorAll<Shield>('[data-email-shield]').forEach((shield) => {
+    if (shield.dataset.emailEnhanced === 'true') return;
+    shield.dataset.emailEnhanced = 'true';
+    const trigger = shield.querySelector<HTMLButtonElement>('[data-email-reveal]');
+    const panel = shield.querySelector<HTMLElement>('[data-email-challenge]');
+    const question = shield.querySelector<HTMLElement>('[data-email-question]');
+    const input = shield.querySelector<HTMLInputElement>('input');
+    const verify = shield.querySelector<HTMLButtonElement>('[data-email-verify]');
+    const output = shield.querySelector<HTMLElement>('[data-email-output]');
+    const link = shield.querySelector<HTMLAnchorElement>('[data-email-link]');
+    const error = shield.querySelector<HTMLElement>('[data-email-error]');
 
-  const reset = () => {
-    const math = challenge();
-    shield._correctAnswer = math.answer;
-    if (question) question.textContent = `What is ${math.text}?`;
-    if (input) input.value = '';
-  };
-  trigger?.addEventListener('click', () => {
-    reset();
-    trigger.hidden = true;
-    if (panel) panel.hidden = false;
-    input?.focus();
-  });
-  const check = () => {
-    if (!input || Number(input.value) !== shield._correctAnswer) {
-      if (error) error.hidden = false;
+    const reset = () => {
+      const math = challenge();
+      shield._correctAnswer = math.answer;
+      if (question) question.textContent = `What is ${math.text}?`;
+      if (input) input.value = '';
+    };
+    trigger?.addEventListener('click', () => {
       reset();
+      trigger.hidden = true;
+      if (panel) panel.hidden = false;
       input?.focus();
-      return;
-    }
-    if (panel) panel.hidden = true;
-    if (output) output.hidden = false;
-    if (link) { link.textContent = address(); link.href = `mailto:${address()}`; link.focus(); }
-  };
-  verify?.addEventListener('click', check);
-  input?.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); check(); } });
-});
+    });
+    const check = () => {
+      if (!input || Number(input.value) !== shield._correctAnswer) {
+        if (error) error.hidden = false;
+        reset();
+        input?.focus();
+        return;
+      }
+      if (panel) panel.hidden = true;
+      if (output) output.hidden = false;
+      if (link) { link.textContent = address(); link.href = `mailto:${address()}`; link.focus(); }
+    };
+    verify?.addEventListener('click', check);
+    input?.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); check(); } });
+  });
+}
