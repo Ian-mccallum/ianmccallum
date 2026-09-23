@@ -4,16 +4,16 @@ import type { IconName } from '../../data/navigation';
 interface Props { name: IconName | 'warning' | 'project'; size?: number; decorative?: boolean }
 const { name, size = 32, decorative = true } = Astro.props;
 const icons = {
-  welcome: '/icons/vista_get_started.ico',
-  about: '/icons/vista_personalization.ico',
-  portfolio: '/icons/vista_photo_gallery.ico',
-  cv: '/icons/vista_book_3.ico',
-  photos: '/icons/vista_photo_gallery.ico',
-  testimonials: '/icons/vista_info.ico',
-  contact: '/icons/thunderbird1.ico',
-  blog: '/icons/vista_sticky_notes.ico',
-  warning: '/icons/vista_warning.ico',
-  project: '/icons/explorer.ico',
+  welcome: '/icons/vista_get_started.png',
+  about: '/icons/vista_personalization.png',
+  portfolio: '/icons/vista_photo_gallery.png',
+  cv: '/icons/vista_book_3.png',
+  photos: '/icons/vista_photo_gallery.png',
+  testimonials: '/icons/vista_info.png',
+  contact: '/icons/thunderbird1.png',
+  blog: '/icons/vista_sticky_notes.png',
+  warning: '/icons/vista_warning.png',
+  project: '/icons/explorer.png',
 } as const;
 ---
 

@@ -67,3 +67,13 @@ test('project media is opt-in and broadly supported', () => {
   assert.doesNotMatch(html, /\bautoplay\b/);
   assert.doesNotMatch(html, /\.mov/);
 });
+
+test('Vercel redirects preserve the legacy article URL', () => {
+  const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  assert.equal(config.rewrites, undefined);
+  assert.deepEqual(config.redirects[0], {
+    source: '/blog-2007-thought-the-future-would-be-beautiful.html',
+    destination: '/blog/2007-thought-the-future-would-be-beautiful',
+    permanent: true,
+  });
+});

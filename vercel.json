@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/blog-2007-thought-the-future-would-be-beautiful.html",
+      "destination": "/blog/2007-thought-the-future-would-be-beautiful",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
       "permanent": true
