@@ -21,6 +21,7 @@ const routes = [
   ['/thank-you', 'dist/thank-you/index.html'],
   ['/blog', 'dist/blog/index.html'],
   ['/blog/2007-thought-the-future-would-be-beautiful', 'dist/blog/2007-thought-the-future-would-be-beautiful/index.html'],
+  ['/blog/approval-gates-ai-service-businesses', 'dist/blog/approval-gates-ai-service-businesses/index.html'],
 ];
 
 for (const [route, file] of routes) {
@@ -93,11 +94,12 @@ test('contact exposes only the protected email reveal', () => {
 });
 
 test('content automation publishes route, index, RSS, and sitemap', () => {
-  const slug = '2007-thought-the-future-would-be-beautiful';
-  assert.ok(existsSync(`dist/blog/${slug}/index.html`));
-  assert.match(readFileSync('dist/blog/index.html', 'utf8'), new RegExp(`/blog/${slug}`));
-  assert.match(readFileSync('dist/feed.xml', 'utf8'), new RegExp(`/blog/${slug}`));
-  assert.match(readFileSync('dist/sitemap-0.xml', 'utf8'), new RegExp(`/blog/${slug}`));
+  for (const slug of ['2007-thought-the-future-would-be-beautiful', 'approval-gates-ai-service-businesses']) {
+    assert.ok(existsSync(`dist/blog/${slug}/index.html`));
+    assert.match(readFileSync('dist/blog/index.html', 'utf8'), new RegExp(`/blog/${slug}`));
+    assert.match(readFileSync('dist/feed.xml', 'utf8'), new RegExp(`/blog/${slug}`));
+    assert.match(readFileSync('dist/sitemap-0.xml', 'utf8'), new RegExp(`/blog/${slug}`));
+  }
 });
 
 test('draft blog entries stay out of every generated surface', () => {

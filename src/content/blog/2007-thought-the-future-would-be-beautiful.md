@@ -2,6 +2,7 @@
 title: 2007 thought the future would be beautiful
 description: Why I am an optimist about AI, and why I am pointing it at trades businesses instead of everyone else.
 publishedAt: 2026-08-26
+updatedAt: 2026-09-29
 author: Ian McCallum
 slug: 2007-thought-the-future-would-be-beautiful
 socialImage: /images/ian-mccallum-social.jpg
@@ -54,9 +55,9 @@ That is not a glamorous problem. There is no demo video in it. It is also enormo
 
 ## What I am building
 
-I run a company called Beat the Clock, and the product is called Clockwork. It catches the call he missed and texts the customer back in seconds. It drafts the reply in his voice. It prices the quote off his own rate card instead of a guess. It chases the follow-up he was never going to get around to, and it collects the invoice.
+I run a company called Beat the Clock, and I am building a product called Clockwork. Its current app is a lead-oriented CRM: it takes in requests, helps triage them, schedules follow-ups, and keeps quote and invoice work visible. Tock drafts some messages; configured acknowledgements and follow-ups can run automatically when channel and consent rules allow them. A deeper residential service workflow is the direction, but it is still in development.
 
-He approves the messages. It works for him, not around him.
+The owner still needs to see what was sent, what failed, and what needs a decision. It should work for him, not around him.
 
 ## The hard part was not the part I expected
 
@@ -64,7 +65,7 @@ Making it smart was not the hard part. Making it honest was.
 
 Most AI products are built so that there is always an answer. That is the default behavior, and in a chat window it is mostly harmless. Inside somebody’s business it is a disaster. If my software invents a price, promises a Thursday his calendar cannot cover, or claims it made him money it cannot trace to a real job, then it did not save him any time. It started a small fire in his name.
 
-So a lot of the build went into teaching it to say nothing. It is not allowed to cite a number it cannot point at. It is not allowed to promise capacity it cannot see. When it does not know, it says so, and a person decides.
+For work that matches a company's rate card, a price can be calculated. For unmatched work, some current draft paths can include estimates; those are not verified company prices. An open calendar slot is not proof that a technician can make a visit. That is why the next version needs checked facts, action-specific permissions, and uncertainty that stays visible instead of being polished away.
 
 A contractor who gets burned once by software that lied to his customer in his name will never trust software again, and he would be right not to. Trust is not a feature of the product. Trust is the product.
 
