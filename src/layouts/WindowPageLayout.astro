@@ -21,19 +21,20 @@ interface Props {
   type?: 'website' | 'article' | 'profile';
   image?: string;
   publishedAt?: Date;
+  noindex?: boolean;
   schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
   title, description, windowTitle, icon, path = Astro.url.pathname,
-  reading = false, root = false, type = 'website', image, publishedAt, schema,
+  reading = false, root = false, type = 'website', image, publishedAt, noindex = false, schema,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} type={type} image={image} publishedAt={publishedAt} />
+    <BaseHead title={title} description={description} type={type} image={image} publishedAt={publishedAt} noindex={noindex} />
     {schema && <StructuredData data={schema} />}
   </head>
   <body>

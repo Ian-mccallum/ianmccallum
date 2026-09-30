@@ -5,9 +5,10 @@ interface Props {
   image?: string;
   type?: 'website' | 'article' | 'profile';
   publishedAt?: Date;
+  noindex?: boolean;
 }
 
-const { title, description, image = '/images/ian-mccallum-social.jpg', type = 'website', publishedAt } = Astro.props;
+const { title, description, image = '/images/ian-mccallum-social.jpg', type = 'website', publishedAt, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
 ---
@@ -15,6 +16,7 @@ const imageUrl = new URL(image, Astro.site);
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex" />}
 <meta name="theme-color" content="#0067bc" />
 <meta name="color-scheme" content="light" />
 <link rel="canonical" href={canonical} />

@@ -58,6 +58,20 @@ test('404 is an Aero window with recovery links', () => {
   assert.match(html, /data-aero-shell/);
   assert.match(html, /That window could not be opened/);
   assert.match(html, /href="\/portfolio"/);
+  assert.match(html, /<meta name="robots" content="noindex">/);
+});
+
+test('sitemap discovery uses a conventional endpoint and excludes utility pages', () => {
+  const robots = readFileSync('dist/robots.txt', 'utf8');
+  const sitemapIndex = readFileSync('dist/sitemap.xml', 'utf8');
+  const sitemap = readFileSync('dist/sitemap-0.xml', 'utf8');
+  const thankYou = readFileSync('dist/thank-you/index.html', 'utf8');
+
+  assert.match(robots, /Sitemap: https:\/\/www\.ianmccallum\.com\/sitemap\.xml/);
+  assert.match(sitemapIndex, /<sitemapindex[^>]+http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9/);
+  assert.match(sitemapIndex, /<loc>https:\/\/www\.ianmccallum\.com\/sitemap-0\.xml<\/loc>/);
+  assert.doesNotMatch(sitemap, /https:\/\/www\.ianmccallum\.com\/(404|thank-you)(?:<|\/)/);
+  assert.match(thankYou, /<meta name="robots" content="noindex">/);
 });
 
 test('navigation uses real links and no hidden page copies', () => {
