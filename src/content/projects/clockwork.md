@@ -5,6 +5,7 @@ category: AI & Engineering
 role: Architect & Sole Engineer
 dateRange: Late 2025 – Present
 summary: An approval-gated AI operations platform that helps trades businesses carry work from a missed call through a paid invoice.
+seoTitle: 'Clockwork: Approval-Gated AI for Trades | Ian McCallum'
 technologies: [Python, LLM integration, Prompt engineering, Multi-tenant SaaS, Messaging, Payments]
 website: https://beatyourclock.com/clockwork
 featuredOrder: 1

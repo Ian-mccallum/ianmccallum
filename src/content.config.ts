@@ -11,6 +11,7 @@ const projects = defineCollection({
     role: z.string(),
     dateRange: z.string(),
     summary: z.string(),
+    seoTitle: z.string().optional(),
     technologies: z.array(z.string()),
     website: z.url(),
     media: z.string().optional(),

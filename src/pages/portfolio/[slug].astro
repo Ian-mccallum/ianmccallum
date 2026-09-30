@@ -14,7 +14,7 @@ const d = project.data;
 const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name: d.name, description: d.summary, url: `https://www.ianmccallum.com/portfolio/${d.slug}`, creator: { '@type': 'Person', name: 'Ian McCallum' }, sameAs: d.website };
 ---
 
-<WindowPageLayout title={`${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading schema={schema}>
+<WindowPageLayout title={d.seoTitle ?? `${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading schema={schema}>
   <article class="page-sheet">
     <header><h1>{d.name}</h1><p class="page-intro">{d.summary}</p></header>
     {d.media && d.poster && <ProjectMedia src={d.media} poster={d.poster} title={d.name} />}
