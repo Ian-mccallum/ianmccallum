@@ -3,8 +3,10 @@ import { Image } from 'astro:assets';
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
 import profileImage from '../assets/images/photos/ian-mccallum-profile.jpg';
 import { profile } from '../data/profile';
+import { person } from '../data/identity';
+import { socialLinks } from '../data/social';
 
-const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: 'About Ian McCallum', url: 'https://www.ianmccallum.com/about', mainEntity: { '@type': 'Person', name: profile.name, jobTitle: profile.title, homeLocation: profile.location, alumniOf: 'Metea Valley High School', affiliation: 'University of Illinois Urbana-Champaign' } };
+const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', '@id': 'https://www.ianmccallum.com/about#profile', name: 'About Ian McCallum', url: 'https://www.ianmccallum.com/about', mainEntity: person };
 ---
 
 <WindowPageLayout title="About Ian McCallum | Founder & AI Engineer" description="Ian McCallum is a UIUC Finance and Data Science student, founder of Beat the Clock, and the engineer behind Clockwork." windowTitle="About Ian McCallum" icon="about" type="profile" schema={schema}>
@@ -13,9 +15,12 @@ const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', name:
       <Image src={profileImage} alt="Ian McCallum" width={132} height={132} loading="eager" />
       <div><h1>About Ian McCallum</h1><p>{profile.title} · {profile.location}</p></div>
     </header>
+    <p class="page-intro">{profile.shortBio}</p>
     <div class="stack measure">{profile.about.map((paragraph) => <p>{paragraph}</p>)}</div>
+    <section aria-labelledby="work-heading"><h2 id="work-heading">Selected work</h2><p class="measure">I founded <a href="/portfolio/beat-the-clock">Beat the Clock</a>, design and build <a href="/portfolio/clockwork">Clockwork</a>, and led development of <a href="/portfolio/luminate">Luminate’s award-winning VEI e-commerce website</a>. My <a href="/portfolio">portfolio</a> also includes client websites and creative work. I write about what I’m building on the <a href="/blog">blog</a>.</p></section>
     <section aria-labelledby="education-heading"><h2 id="education-heading">Education</h2><div class="fact-grid">{profile.education.map((entry) => <div class="fact-row"><strong>{entry.school}</strong><span>{entry.location} · {entry.date}</span><p>{entry.detail}</p></div>)}</div></section>
     <section aria-labelledby="skills-heading"><h2 id="skills-heading">Skills & technologies</h2><ul class="tag-list">{profile.skills.map((skill) => <li>{skill}</li>)}</ul></section>
     <section aria-labelledby="interests-heading"><h2 id="interests-heading">Away from the screen</h2><p class="measure">{profile.interests.join(', ')}.</p></section>
+    <section aria-labelledby="profiles-heading"><h2 id="profiles-heading">Official profiles</h2><p class="measure">You can also find me on these profiles, or <a href="/contact">contact me through this site</a>.</p><div class="button-row">{socialLinks.map((link) => <a class="aero-button aero-button--secondary" href={link.href} target="_blank" rel="me noopener">{link.label}</a>)}</div></section>
   </article>
 </WindowPageLayout>

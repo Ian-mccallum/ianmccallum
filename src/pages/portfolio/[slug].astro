@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
 import ProjectMedia from '../../components/content/ProjectMedia.astro';
+import { personReference } from '../../data/identity';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -11,7 +12,7 @@ interface Props { project: CollectionEntry<'projects'> }
 const { project } = Astro.props;
 const { Content } = await render(project);
 const d = project.data;
-const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name: d.name, description: d.summary, url: `https://www.ianmccallum.com/portfolio/${d.slug}`, creator: { '@type': 'Person', name: 'Ian McCallum' }, sameAs: d.website };
+const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name: d.name, description: d.summary, url: `https://www.ianmccallum.com/portfolio/${d.slug}`, creator: personReference, sameAs: d.website };
 ---
 
 <WindowPageLayout title={d.seoTitle ?? `${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading schema={schema}>
@@ -25,7 +26,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name
         {d.awards.length > 0 && <section aria-labelledby="awards"><h2 id="awards">Awards</h2><ul class="decision-list">{d.awards.map((award) => <li>{award}</li>)}</ul></section>}
         <div class="button-row"><a class="aero-button" href={d.website} target="_blank" rel="noopener">Visit project</a><a class="aero-button aero-button--secondary" href="/portfolio">Back to Project Explorer</a></div>
       </div>
-      <dl class="property-list"><div><dt>Category</dt><dd>{d.category}</dd></div><div><dt>Role</dt><dd>{d.role}</dd></div><div><dt>Date</dt><dd>{d.dateRange}</dd></div><div><dt>Evidence</dt><dd>{d.evidence}</dd></div><div><dt>Tools</dt><dd>{d.technologies.join(', ')}</dd></div></dl>
+      <dl class="property-list"><div><dt>Category</dt><dd>{d.category}</dd></div><div><dt>By</dt><dd><a href="/about">{personReference.name}</a></dd></div><div><dt>Role</dt><dd>{d.role}</dd></div><div><dt>Date</dt><dd>{d.dateRange}</dd></div><div><dt>Evidence</dt><dd>{d.evidence}</dd></div><div><dt>Tools</dt><dd>{d.technologies.join(', ')}</dd></div></dl>
     </div>
   </article>
 </WindowPageLayout>

@@ -1,7 +1,8 @@
 ---
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
 import { profile, experience, awards } from '../data/profile';
-const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: 'Ian McCallum CV', url: 'https://www.ianmccallum.com/cv', mainEntity: { '@type': 'Person', name: profile.name, jobTitle: profile.title, alumniOf: profile.education.map((entry) => entry.school), knowsAbout: profile.skills } };
+import { person } from '../data/identity';
+const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: 'Ian McCallum CV', url: 'https://www.ianmccallum.com/cv', mainEntity: person };
 ---
 
 <WindowPageLayout title="CV | Ian McCallum — Founder & AI Engineer" description="Ian McCallum's CV: founder of Beat the Clock, engineer behind Clockwork, and UIUC Finance and Data Science student." windowTitle="Ian McCallum — CV" icon="cv" reading schema={schema}>
