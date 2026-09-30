@@ -17,6 +17,23 @@ function walk(directory) {
 }
 walk(root);
 
+const fontSignatures = new Map([
+  ['.ttf', [Buffer.from([0x00, 0x01, 0x00, 0x00]), Buffer.from('true'), Buffer.from('typ1')]],
+  ['.otf', [Buffer.from('OTTO')]],
+  ['.woff', [Buffer.from('wOFF')]],
+  ['.woff2', [Buffer.from('wOF2')]],
+]);
+const invalidFonts = files.filter((file) => {
+  const signatures = fontSignatures.get(extname(file).toLowerCase());
+  if (!signatures) return false;
+  const header = readFileSync(file).subarray(0, 4);
+  return !signatures.some((signature) => header.equals(signature));
+});
+if (invalidFonts.length) {
+  console.error(`Invalid font assets (${invalidFonts.length}):\n${invalidFonts.map((file) => file.replace(`${root}/`, '')).join('\n')}`);
+  process.exit(1);
+}
+
 const checkable = files.filter((file) => ['.html', '.css', '.xml'].includes(extname(file)));
 const refs = [];
 const patterns = [/(?:src|href|poster|data-src)=["']([^"']+)["']/g, /url\(["']?([^"')]+)["']?\)/g];

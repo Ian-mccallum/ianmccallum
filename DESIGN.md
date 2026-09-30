@@ -114,8 +114,9 @@ Regular Segoe UI carries body copy and compact controls. Long-form text stays ne
 **The Semilight Floor Rule.** Semilight is used only above 16px. Smaller type uses
 regular weight because fragile strokes read as broken rendering rather than polish.
 
-The checked-in font's redistribution provenance is unresolved; see
-`docs/ASSET_PROVENANCE.md` before deployment.
+Segoe UI Semilight is used when it is installed on the visitor's system, with the
+documented system-sans fallback stack everywhere else. The site does not
+redistribute Segoe UI.
 
 ## Layout
 

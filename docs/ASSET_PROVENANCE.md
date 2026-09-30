@@ -21,12 +21,16 @@ carried into the production build.
 
 ## Manual review required
 
-The repository did not contain authoritative licensing provenance for the Segoe UI
-Semilight font or the Microsoft/Vista-style icons. The migration preserves one
-existing font file and a small converted icon subset to maintain the established
-Aero identity. This is a provenance record, not a legal conclusion. The owner
-should confirm redistribution rights before public deployment or replace them with
-licensed, locally controlled equivalents that preserve the same visual world.
+The repository does not redistribute Segoe UI. The font stack uses the visitor's
+installed Segoe UI Semilight or Segoe UI when available, then falls back to the
+documented system sans-serif stack.
+
+The repository did not contain authoritative licensing provenance for the
+Microsoft/Vista-style icons. The migration preserves a small converted icon subset
+to maintain the established Aero identity. This is a provenance record, not a legal
+conclusion. The owner should confirm redistribution rights before public deployment
+or replace them with licensed, locally controlled equivalents that preserve the
+same visual world.
 
 ## Audit command
 
