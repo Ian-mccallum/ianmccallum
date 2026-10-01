@@ -4,7 +4,7 @@ description: A build-time fixture that proves draft posts stay private.
 publishedAt: 2026-09-23
 author: Ian McCallum
 slug: draft-fixture-never-publish
-socialImage: /images/ian-mccallum-social.jpg
+socialImage: /images/seniorheadshot.jpg
 imageAlt: Test fixture only
 draft: true
 schemaType: BlogPosting

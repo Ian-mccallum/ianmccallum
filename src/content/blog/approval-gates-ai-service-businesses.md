@@ -4,7 +4,7 @@ description: A practical way to decide what an AI assistant can draft, send, or 
 publishedAt: 2026-09-29
 author: Ian McCallum
 slug: approval-gates-ai-service-businesses
-socialImage: /images/ian-mccallum-social.jpg
+socialImage: /images/seniorheadshot.jpg
 imageAlt: Ian McCallum’s Aero-inspired personal website
 draft: false
 schemaType: BlogPosting

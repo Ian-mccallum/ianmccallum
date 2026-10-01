@@ -20,7 +20,7 @@ const projects = defineCollection({
     decisions: z.array(z.string()).default([]),
     featuredOrder: z.number(),
     evidence: z.string(),
-    socialImage: z.string().default('/images/ian-mccallum-social.jpg'),
+    socialImage: z.string().default('/images/seniorheadshot.jpg'),
   }),
 });
 

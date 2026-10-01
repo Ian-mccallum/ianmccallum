@@ -12,7 +12,7 @@ export const personReference = {
 export const person = {
   ...personReference,
   description: profile.shortBio,
-  image: 'https://www.ianmccallum.com/images/ian-mccallum-social.jpg',
+  image: 'https://www.ianmccallum.com/images/seniorheadshot.jpg',
   jobTitle: profile.title,
   homeLocation: { '@type': 'Place', name: profile.location },
   worksFor: { '@type': 'Organization', name: 'Beat the Clock', url: 'https://beatyourclock.com/' },
