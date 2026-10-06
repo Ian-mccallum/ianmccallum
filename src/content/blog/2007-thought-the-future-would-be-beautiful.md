@@ -5,7 +5,7 @@ publishedAt: 2026-08-26
 updatedAt: 2026-09-29
 author: Ian McCallum
 slug: 2007-thought-the-future-would-be-beautiful
-socialImage: /images/seniorheadshot.jpg
+socialImage: /images/ian-mccallum-headshot.jpg
 imageAlt: Ian McCallum’s Aero-inspired personal website
 draft: false
 schemaType: BlogPosting

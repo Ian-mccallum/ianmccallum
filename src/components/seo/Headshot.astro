@@ -1,0 +1,14 @@
+---
+interface Props { width: number; height: number; }
+const { width, height } = Astro.props;
+---
+<img
+  src="/images/ian-mccallum-headshot.jpg"
+  srcset={[132, 264, 528, 1056].map((size) => `/images/ian-mccallum-headshot-${size}.webp ${size}w`).join(', ')}
+  sizes={`${width}px`}
+  alt="Portrait of Ian McCallum"
+  width={width}
+  height={height}
+  loading="eager"
+  decoding="async"
+/>

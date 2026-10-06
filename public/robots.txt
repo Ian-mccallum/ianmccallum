@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.ianmccallum.com/sitemap.xml
+Sitemap: https://www.ianmccallum.com/image-sitemap.xml

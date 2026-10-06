@@ -1,18 +1,17 @@
 ---
-import { Image } from 'astro:assets';
+import Headshot from '../components/seo/Headshot.astro';
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
-import profileImage from '../assets/images/photos/seniorheadshot.jpg';
 import { profile } from '../data/profile';
 import { person } from '../data/identity';
 import { socialLinks } from '../data/social';
 
-const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', '@id': 'https://www.ianmccallum.com/about#profile', name: 'About Ian McCallum', url: 'https://www.ianmccallum.com/about', mainEntity: person };
+const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', '@id': 'https://www.ianmccallum.com/about#profile', name: 'About Ian McCallum', url: 'https://www.ianmccallum.com/about', primaryImageOfPage: person.image, mainEntity: person };
 ---
 
 <WindowPageLayout title="About Ian McCallum | Founder & AI Engineer" description="Ian McCallum is a UIUC Finance and Data Science student, founder of Beat the Clock, and the engineer behind Clockwork." windowTitle="About Ian McCallum" icon="about" type="profile" schema={schema}>
   <article class="page-sheet page-sheet--narrow">
     <header class="profile-header">
-      <Image src={profileImage} alt="Ian McCallum" width={132} height={132} loading="eager" />
+      <Headshot width={132} height={132} />
       <div><h1>About Ian McCallum</h1><p>{profile.title} · {profile.location}</p></div>
     </header>
     <p class="page-intro">{profile.shortBio}</p>
