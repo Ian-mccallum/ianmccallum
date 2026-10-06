@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Ian McCallum — IM</title>
+  <!-- FAVICON-AERO-IM: Inherit the site's water-blue, top-lit Aero material.
+       Bold outlined IM letterforms preserve the legacy initials at 16px.
+       A quiet gloss and dark rim hold the silhouette on light and dark tabs.
+       Code-native geometry, not an AI-generated raster or a font dependency. -->
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#42c5f5"/>
+      <stop offset=".48" stop-color="#0078d7"/>
+      <stop offset=".52" stop-color="#005a9e"/>
+      <stop offset="1" stop-color="#0078d7"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fff" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="water" cx=".5" cy="1" r=".8">
+      <stop stop-color="#87e9ff" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#87e9ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#0a2c4d"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="url(#body)"/>
+  <path d="M5 31V16A11 11 0 0 1 16 5h32a11 11 0 0 1 11 11v9c-17 9-35 11-54 6Z" fill="url(#shine)"/>
+  <path d="M5 39v9a11 11 0 0 0 11 11h32a11 11 0 0 0 11-11v-9Z" fill="url(#water)"/>
+  <rect x="3" y="3" width="58" height="58" rx="13" fill="none" stroke="#fff" stroke-opacity=".42"/>
+  <path d="M12 19h8v29h-8Zm14 0h8l7 12 7-12h8v29h-8V32l-7 11-7-11v16h-8Z" fill="#003f77" opacity=".65"/>
+  <path d="M12 17h8v29h-8Zm14 0h8l7 12 7-12h8v29h-8V30l-7 11-7-11v16h-8Z" fill="#fff"/>
+</svg>

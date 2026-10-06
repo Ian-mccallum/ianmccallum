@@ -22,7 +22,9 @@ const imageUrl = new URL(image, Astro.site);
 <meta name="color-scheme" content="light" />
 <link rel="canonical" href={canonical} />
 <link rel="alternate" type="application/rss+xml" title="Ian McCallum" href={new URL('/feed.xml', Astro.site)} />
-<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <title>{title}</title>
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content="Ian McCallum" />

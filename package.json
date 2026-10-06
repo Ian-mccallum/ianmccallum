@@ -10,7 +10,7 @@
     "check": "astro check",
     "validate:assets": "node scripts/validate-assets.mjs",
     "test:api": "node --test tests/api-contract.test.cjs",
-    "test:site": "node --test tests/site-contract.test.mjs tests/image-seo.test.mjs",
+    "test:site": "node --test tests/site-contract.test.mjs tests/image-seo.test.mjs tests/favicon.test.mjs",
     "test:browser": "node tests/browser-qa.mjs",
     "test:performance": "node tests/performance-qa.mjs",
     "test": "npm run check && npm run build && npm run validate:assets && npm run test:api && npm run test:site"
