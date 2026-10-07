@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
 import ProjectMedia from '../../components/content/ProjectMedia.astro';
 import { personReference } from '../../data/identity';
+import { breadcrumbs } from '../../data/breadcrumbs';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -12,10 +13,11 @@ interface Props { project: CollectionEntry<'projects'> }
 const { project } = Astro.props;
 const { Content } = await render(project);
 const d = project.data;
+const image = d.socialImage ?? d.poster ?? '/images/ian-mccallum-headshot.jpg';
 const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name: d.name, description: d.summary, url: `https://www.ianmccallum.com/portfolio/${d.slug}`, creator: personReference, sameAs: d.website };
 ---
 
-<WindowPageLayout title={d.seoTitle ?? `${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading schema={schema}>
+<WindowPageLayout title={d.seoTitle ?? `${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading image={image} schema={[schema, breadcrumbs('portfolio', d.name, d.slug)]}>
   <article class="page-sheet">
     <header><h1>{d.name}</h1><p class="page-intro">{d.summary}</p></header>
     {d.media && d.poster && <ProjectMedia src={d.media} poster={d.poster} title={d.name} />}

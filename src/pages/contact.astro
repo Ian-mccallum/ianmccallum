@@ -1,7 +1,8 @@
 ---
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
 import EmailShield from '../components/content/EmailShield.astro';
-const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Ian McCallum', url: 'https://www.ianmccallum.com/contact', mainEntity: { '@type': 'Person', name: 'Ian McCallum' } };
+import { personReference } from '../data/identity';
+const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Ian McCallum', url: 'https://www.ianmccallum.com/contact', mainEntity: personReference };
 ---
 
 <WindowPageLayout title="Contact Ian McCallum | AI, Web & Collaboration" description="Contact Ian McCallum about practical AI systems, web development, projects, or collaboration." windowTitle="Contact — Get in Touch" icon="contact" schema={schema}>

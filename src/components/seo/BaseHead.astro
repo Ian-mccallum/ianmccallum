@@ -17,7 +17,7 @@ const imageUrl = new URL(image, Astro.site);
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
 <meta name="msvalidate.01" content="AFF3B15771E77519B6D2364A2F2F85A9" />
-{noindex && <meta name="robots" content="noindex" />}
+<meta name="robots" content={noindex ? 'noindex' : 'max-image-preview:large'} />
 <meta name="theme-color" content="#0067bc" />
 <meta name="color-scheme" content="light" />
 <link rel="canonical" href={canonical} />
@@ -32,7 +32,7 @@ const imageUrl = new URL(image, Astro.site);
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={imageUrl} />
-<meta property="og:image:alt" content="Ian McCallum" />
+<meta property="og:image:alt" content={image === '/images/ian-mccallum-headshot.jpg' ? 'Portrait of Ian McCallum' : title} />
 {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />

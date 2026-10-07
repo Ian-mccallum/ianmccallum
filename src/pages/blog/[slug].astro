@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
 import { personReference } from '../../data/identity';
+import { breadcrumbs } from '../../data/breadcrumbs';
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
@@ -15,7 +16,7 @@ const author = d.author === personReference.name ? personReference : { '@type': 
 const schema = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.description, datePublished: d.publishedAt.toISOString(), dateModified: (d.updatedAt ?? d.publishedAt).toISOString(), author, mainEntityOfPage: `https://www.ianmccallum.com/blog/${d.slug}`, image: `https://www.ianmccallum.com${d.socialImage}` };
 ---
 
-<WindowPageLayout title={`${d.title} | Ian McCallum`} description={d.description} windowTitle={`${d.title} — Document`} icon="blog" reading type="article" image={d.socialImage} publishedAt={d.publishedAt} schema={schema}>
+<WindowPageLayout title={`${d.title} | Ian McCallum`} description={d.description} windowTitle={`${d.title} — Document`} icon="blog" reading type="article" image={d.socialImage} publishedAt={d.publishedAt} schema={[schema, breadcrumbs('blog', d.title, d.slug)]}>
   <article class="page-sheet article">
     <header class="article-header"><h1>{d.title}</h1><div class="article-byline"><strong>{d.author === personReference.name ? <a href="/about" rel="author">{d.author}</a> : d.author}</strong><span>·</span><time datetime={d.publishedAt.toISOString()}>{d.publishedAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time><span>·</span><span>{minutes} min read</span></div></header>
     <div class="article-content"><Content /></div>
