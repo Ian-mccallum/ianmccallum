@@ -1,0 +1,203 @@
+{
+  "/": {
+    "files": [
+      "src/pages/index.astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts",
+      "src/components/seo/Headshot.astro",
+      "public/images/ian-mccallum-headshot.jpg"
+    ],
+    "fingerprint": "1c64e8e47a4c20e5a0410118c6baa594e09fee1f7f0ff9fe8d927e8b3ba55315",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/about": {
+    "files": [
+      "src/pages/about.astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts",
+      "src/components/seo/Headshot.astro",
+      "public/images/ian-mccallum-headshot.jpg"
+    ],
+    "fingerprint": "df46dede98da70e927e8f9c5ee447b7b887285b4befc08653fc2c7b1456aafa1",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/cv": {
+    "files": [
+      "src/pages/cv.astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "9a55a8e7550c04c33cdf979b523f92aac6da5e6b57acf753a427326cd1cd5e1f",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/contact": {
+    "files": [
+      "src/pages/contact.astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "d917bd50c77083cc1f776314e165e6a386af47a2953cee0691ba684c3f8dd2b3",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/photos": {
+    "files": [
+      "src/pages/photos.astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts",
+      "src/components/content/PhotoGallery.astro",
+      "src/data/photos.ts"
+    ],
+    "fingerprint": "0cea36c51fc5937aacaa517dcb45a5c01068fb20c7fb94ebb5df8ea084cb6c20",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/testimonials": {
+    "files": [
+      "src/pages/testimonials.astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts",
+      "src/data/testimonials.ts"
+    ],
+    "fingerprint": "7b6687ea5bb0d78b94315150168243b835840cbf5916d6f83e7a1c5a228b0c13",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/blog/2007-thought-the-future-would-be-beautiful": {
+    "files": [
+      "src/content/blog/2007-thought-the-future-would-be-beautiful.md",
+      "src/pages/blog/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "25afe6c18e78b319449a2f4721057d71986443df92f009c6eae67f755fb48afb",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/blog/approval-gates-ai-service-businesses": {
+    "files": [
+      "src/content/blog/approval-gates-ai-service-businesses.md",
+      "src/pages/blog/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "48aafef5283b64769e1403c56e976e830bddb9963bc9f59a4d2d366a7cdcb84b",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/blog": {
+    "files": [
+      "src/pages/blog/index.astro",
+      "src/content/blog/2007-thought-the-future-would-be-beautiful.md",
+      "src/content/blog/approval-gates-ai-service-businesses.md"
+    ],
+    "fingerprint": "61d375b6dc10310c19905de134c7764fd2afdac4ac823b4a3e3246165c4f2b67",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/beat-the-clock": {
+    "files": [
+      "src/content/projects/beat-the-clock.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "ed8f337b3036e9b3996d89f957136c93debf5e0691c4bb65a26b7a8194010c55",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/clockwork": {
+    "files": [
+      "src/content/projects/clockwork.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "e315bad2816123ac72bfc42c97019c0a36257f52eff96669523dc1cd13a7d810",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/fortivus-academy": {
+    "files": [
+      "src/content/projects/fortivus-academy.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "0bf138c62eb444f0e8a0feec9e483e600944d144af906c8e18611549f4f74ee9",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/imanol-villagomez": {
+    "files": [
+      "src/content/projects/imanol-villagomez.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "334b041dced85a76713ab8a4a51606c69263e95a0fa0553e75722a66f9c545fb",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/luminate": {
+    "files": [
+      "src/content/projects/luminate.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "2a6731166d2760409698828af3698c487526346a352044ab3bcdd544e7988405",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/nics-marketing": {
+    "files": [
+      "src/content/projects/nics-marketing.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "b540267f2aaf26e68ec59ca456f086dadce7a5b40a9543f58bd08c40b100942b",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/tmm-photography": {
+    "files": [
+      "src/content/projects/tmm-photography.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "9452848679a3b78cc386d6512623e9cbfc71f77e96c82083c0a7a8877d79f6d1",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio/vokel": {
+    "files": [
+      "src/content/projects/vokel.md",
+      "src/pages/portfolio/[slug].astro",
+      "src/data/identity.ts",
+      "src/data/profile.ts",
+      "src/data/social.ts"
+    ],
+    "fingerprint": "271f8ac685c4451ffd7b3d886b177c57603767ee26cc3ead1d68d86f346fec41",
+    "lastmod": "2026-10-06T20:41:54.000Z"
+  },
+  "/portfolio": {
+    "files": [
+      "src/pages/portfolio/index.astro",
+      "src/content/projects/beat-the-clock.md",
+      "src/content/projects/clockwork.md",
+      "src/content/projects/fortivus-academy.md",
+      "src/content/projects/imanol-villagomez.md",
+      "src/content/projects/luminate.md",
+      "src/content/projects/nics-marketing.md",
+      "src/content/projects/tmm-photography.md",
+      "src/content/projects/vokel.md"
+    ],
+    "fingerprint": "868905313d06daa3f7eb5a891347ffd5819e3b55a5f60a03efc296f419bb2986",
+    "lastmod": "2026-09-30T04:30:52.000Z"
+  }
+}

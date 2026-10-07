@@ -5,12 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/build-sitemaps.mjs",
+    "sitemap:dates": "node scripts/sitemap-dates.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "validate:assets": "node scripts/validate-assets.mjs",
     "test:api": "node --test tests/api-contract.test.cjs",
-    "test:site": "node --test tests/site-contract.test.mjs tests/image-seo.test.mjs tests/favicon.test.mjs",
+    "test:site": "node --test tests/site-contract.test.mjs tests/image-seo.test.mjs tests/favicon.test.mjs tests/sitemap.test.mjs",
     "test:browser": "node tests/browser-qa.mjs",
     "test:performance": "node tests/performance-qa.mjs",
     "test": "npm run check && npm run build && npm run validate:assets && npm run test:api && npm run test:site"

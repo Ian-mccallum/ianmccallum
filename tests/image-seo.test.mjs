@@ -17,7 +17,7 @@ test('headshot is crawlable, responsive, and consistently identified', () => {
   assert.ok(existsSync('dist/images/seniorheadshot.jpg'), 'preserve old public links');
   assert.ok(statSync('dist/images/ian-mccallum-headshot.jpg').size < statSync('dist/images/seniorheadshot.jpg').size);
   const sitemap = readFileSync('dist/image-sitemap.xml', 'utf8');
-  assert.equal((sitemap.match(/<image:image>/g) ?? []).length, 2);
+  assert.ok((sitemap.match(/<image:image>/g) ?? []).length >= 6);
   assert.ok(sitemap.includes(`<image:loc>${image}</image:loc>`));
   assert.match(readFileSync('dist/sitemap.xml', 'utf8'), /image-sitemap.xml/);
   assert.match(readFileSync('dist/robots.txt', 'utf8'), /Sitemap: https:\/\/www.ianmccallum.com\/image-sitemap.xml/);
