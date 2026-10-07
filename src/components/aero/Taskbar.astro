@@ -13,8 +13,8 @@ const currentIsPinned = pinned.some((item) => item.href === path);
 
 <StartMenu />
 <footer class="taskbar">
-  <button class="start-button" type="button" aria-controls="start-menu" aria-expanded="false" data-start-button>
-    <span class="start-orb" aria-hidden="true"><span></span></span><span class="start-label">Start</span>
+  <button class="start-button" type="button" aria-label="Start" aria-controls="start-menu" aria-expanded="false" data-start-button>
+    <span class="start-im" aria-hidden="true"><img src="/images/im-start-green.svg" width="36" height="36" alt="" /></span><span class="start-label">Start</span>
   </button>
   <span class="taskbar-separator" aria-hidden="true"></span>
   <nav class="taskbar-pins" aria-label="Pinned pages">
@@ -48,3 +48,18 @@ const currentIsPinned = pinned.some((item) => item.href === path);
   <span class="taskbar-separator" aria-hidden="true"></span>
   <div class="taskbar-clock" aria-label="Current local time"><time data-clock></time><span data-date>Central</span></div>
 </footer>
+
+<style>
+  .start-button { min-width: 44px; height: 44px; border-radius: 12px 4px 4px 12px; }
+  .start-im { position: relative; display: block; flex: 0 0 36px; width: 36px; height: 36px; overflow: hidden; border-radius: 9px; }
+  .start-im img { display: block; width: 36px; height: 36px; }
+  .start-im::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / .65) 48%, transparent 66%); transform: translateX(-120%); pointer-events: none; }
+  .start-button:is(:hover, :focus-visible) .start-im::after { animation: im-gleam 480ms steps(6, end) 1; }
+  .start-button:is(:hover, :focus-visible, [aria-expanded="true"]) .start-im { box-shadow: 0 1px 6px rgb(156 237 114 / .65); }
+  .start-button:active .start-im { transform: translateY(1px); }
+  @keyframes im-gleam { to { transform: translateX(120%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .start-button:is(:hover, :focus-visible) .start-im::after { animation: none; transform: none; opacity: .2; }
+    .start-button:active .start-im { transform: none; }
+  }
+</style>
