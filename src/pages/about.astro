@@ -14,8 +14,22 @@ const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', '@id'
       <Headshot width={132} height={132} />
       <div><h1>About Ian McCallum</h1><p>{profile.title} · {profile.location}</p></div>
     </header>
-    <p class="page-intro">{profile.shortBio}</p>
-    <div class="stack measure">{profile.about.map((paragraph) => <p>{paragraph}</p>)}</div>
+    <section aria-labelledby="who-heading"><h2 id="who-heading">Who is Ian McCallum?</h2><p class="page-intro">Ian McCallum is an 18-year-old innovator, entrepreneur, futurist, and Finance &amp; Data Science student at the University of Illinois Urbana-Champaign.</p></section>
+    <section aria-labelledby="luminate-heading">
+      <h2 id="luminate-heading">What did Ian do for Luminate?</h2>
+      <p class="measure">Ian designed, developed, and maintained the website for his Virtual Enterprises International firm, <a href="/portfolio/luminate">Luminate</a>. Instead of relying on a conventional site builder, he combined his coding skills with AI-assisted development.</p>
+      <p class="measure">Luminate earned first place in the 2025 Midwest E-Commerce Website competition, followed by first place nationally in the 2026 E-Commerce Website competition, competing against more than 500 firms in the national website competition.</p>
+    </section>
+    <section aria-labelledby="btc-heading">
+      <h2 id="btc-heading">What is Beat the Clock?</h2>
+      <p class="measure"><a href="/portfolio/beat-the-clock">Beat the Clock</a> is a software business founded by Ian McCallum. It helps residential service companies keep customer work organized, with an initial focus on HVAC service and repair.</p>
+      <p class="measure">Its principal product, Clockwork, is in development. Beat the Clock is currently seeking HVAC design partners to review demonstrations and help shape the product around real operating needs.</p>
+    </section>
+    <section aria-labelledby="clockwork-heading">
+      <h2 id="clockwork-heading">What is Clockwork?</h2>
+      <p class="measure"><a href="/portfolio/clockwork">Clockwork</a> is a pre-launch service operations CRM being developed by Ian McCallum through Beat the Clock. It connects customer requests, scheduling, technician findings, repair approvals, parts, return visits, and invoicing.</p>
+      <p class="measure">A working development build has been tested locally. The new HVAC product is not yet available for general production use. Its planned assistant, Tock, is not yet operating the new service workflow.</p>
+    </section>
     <section aria-labelledby="work-heading"><h2 id="work-heading">Selected work</h2><p class="measure">I founded <a href="/portfolio/beat-the-clock">Beat the Clock</a>, design and build <a href="/portfolio/clockwork">Clockwork</a>, and led development of <a href="/portfolio/luminate">Luminate’s award-winning VEI e-commerce website</a>. My <a href="/portfolio">portfolio</a> also includes client websites and creative work. I write about what I’m building on the <a href="/blog">blog</a>.</p></section>
     <section aria-labelledby="education-heading"><h2 id="education-heading">Education</h2><div class="fact-grid">{profile.education.map((entry) => <div class="fact-row"><strong>{entry.school}</strong><span>{entry.location} · {entry.date}</span><p>{entry.detail}</p></div>)}</div></section>
     <section aria-labelledby="skills-heading"><h2 id="skills-heading">Skills & technologies</h2><ul class="tag-list">{profile.skills.map((skill) => <li>{skill}</li>)}</ul></section>
