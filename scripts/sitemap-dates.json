@@ -20,8 +20,8 @@
       "src/components/seo/Headshot.astro",
       "public/images/ian-mccallum-headshot.jpg"
     ],
-    "fingerprint": "df46dede98da70e927e8f9c5ee447b7b887285b4befc08653fc2c7b1456aafa1",
-    "lastmod": "2026-10-06T20:41:54.000Z"
+    "fingerprint": "3a9acea824b69f0194408146e36e0bbfec2ab77294c89b4eff9f132c9a0322fd",
+    "lastmod": "2026-10-08T00:19:47.000Z"
   },
   "/cv": {
     "files": [
@@ -149,8 +149,8 @@
       "src/data/profile.ts",
       "src/data/social.ts"
     ],
-    "fingerprint": "09567240a0e98e6cc9fbdcfd0207a9403f94bf804974a638c204cabb4ceb373f",
-    "lastmod": "2026-10-07T18:33:48.000Z"
+    "fingerprint": "f308211117b9b9e33ce0ab5b2fd6f6c61041c87293aee351397af9a260549331",
+    "lastmod": "2026-10-08T00:19:47.000Z"
   },
   "/portfolio/nics-marketing": {
     "files": [
@@ -197,7 +197,7 @@
       "src/content/projects/tmm-photography.md",
       "src/content/projects/vokel.md"
     ],
-    "fingerprint": "868905313d06daa3f7eb5a891347ffd5819e3b55a5f60a03efc296f419bb2986",
-    "lastmod": "2026-09-30T04:30:52.000Z"
+    "fingerprint": "a7b14691a5df3fe3dab29feed00edea766cb7dcef82d313b1fc7649e9f1656d7",
+    "lastmod": "2026-10-08T00:19:47.000Z"
   }
 }
