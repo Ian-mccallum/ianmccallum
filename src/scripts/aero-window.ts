@@ -1,3 +1,4 @@
+import { initCvViewers } from './cv-mode';
 import { initEmailShields } from './email-shield';
 import { initPhotoGalleries } from './photo-gallery';
 
@@ -160,6 +161,7 @@ function initAero() {
     frame.querySelectorAll<HTMLElement>('[autofocus]').forEach((element) => element.removeAttribute('autofocus'));
     initEmailShields(frame);
     initPhotoGalleries(frame);
+    initCvViewers(frame);
   };
 
   const openRouteWindow = async (href: string) => {
@@ -347,6 +349,7 @@ function initAero() {
   const primary = host.querySelector<HTMLElement>('[data-window-primary]');
   initEmailShields(document);
   initPhotoGalleries(document);
+  initCvViewers(document);
   if (primary) {
     syncMaximizeLabel(primary);
     ensureTaskbarItem(primary);

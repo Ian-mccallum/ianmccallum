@@ -93,6 +93,16 @@ test('contact exposes only the protected email reveal', () => {
   assert.match(html, /Protected email/);
 });
 
+test('CV mirrors the one-page PDF and offers corporate mode', () => {
+  const html = readFileSync('dist/cv/index.html', 'utf8');
+  assert.match(html, /data-cv-viewer data-cv-mode="aero"/);
+  assert.match(html, /role="switch" aria-checked="false" data-cv-mode-switch hidden/);
+  assert.match(html, /href="\/downloads\/Ian-McCallum-CV\.pdf" download/);
+  for (const heading of ['Education', 'Experience', 'Projects', 'Technical Skills', 'Honors &amp; Activities']) assert.match(html, new RegExp(`<h2 id="cv-[a-z]+">${heading}</h2>`));
+  assert.doesNotMatch(html, /@beatyourclock\.com/);
+  assert.ok(existsSync('dist/downloads/Ian-McCallum-CV.pdf'));
+});
+
 test('content automation publishes route, index, RSS, and sitemap', () => {
   for (const slug of ['2007-thought-the-future-would-be-beautiful', 'approval-gates-ai-service-businesses']) {
     assert.ok(existsSync(`dist/blog/${slug}/index.html`));

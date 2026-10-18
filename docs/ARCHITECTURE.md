@@ -32,8 +32,9 @@ frame beside the current one. Modified clicks and mobile navigation retain nativ
 browser behavior. The homepage still contains no hidden copies of other pages;
 secondary windows are loaded only when requested.
 
-The shared window manager also initializes the protected email challenge and
-photo-gallery behavior inside requested secondary windows.
+The shared window manager also initializes the protected email challenge,
+photo-gallery behavior, and the CV's Corporate mode switch inside requested
+secondary windows.
 Those enhancements are idempotent, so direct-route and multi-window paths use the
 same modules without duplicate listeners.
 
@@ -50,6 +51,8 @@ collections:
 Dynamic routes call `getStaticPaths()`. The blog index, RSS endpoint, and Astro
 sitemap use the same collection data, so publishing does not require hand-editing
 parallel lists. Smaller sources that span several pages live in `src/data/`.
+`src/data/resume.ts` mirrors the downloadable one-page PDF word for word; update
+it and `public/downloads/Ian-McCallum-CV.pdf` together.
 
 ## Aero shell
 

@@ -5,7 +5,7 @@ import AxeBuilder from '@axe-core/playwright';
 const baseURL = 'http://127.0.0.1:4321';
 const chrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const launchOptions = existsSync(chrome) ? { headless: true, executablePath: chrome } : { headless: true };
-const routes = ['/', '/about', '/portfolio', '/portfolio/clockwork', '/cv', '/photos', '/testimonials', '/contact', '/thank-you', '/blog', '/blog/2007-thought-the-future-would-be-beautiful'];
+const routes = ['/', '/about', '/portfolio', '/portfolio/clockwork', '/cv', '/cv?mode=corporate', '/photos', '/testimonials', '/contact', '/thank-you', '/blog', '/blog/2007-thought-the-future-would-be-beautiful'];
 const widths = [360, 390, 768, 1024, 1440];
 const reviewDir = '.impeccable/review';
 mkdirSync(reviewDir, { recursive: true });
@@ -39,7 +39,7 @@ for (const width of widths) {
       const backgroundVideoRequested = await page.evaluate(() => performance.getEntriesByType('resource').some((entry) => entry.name.endsWith('/media/aero-bg.mp4')));
       if (backgroundVideoRequested) failures.push(`${route} @ ${width}: mobile requested hidden background video`);
     }
-    const name = route === '/' ? 'home' : route.slice(1).replaceAll('/', '--');
+    const name = route === '/' ? 'home' : route.slice(1).replaceAll('/', '--').replace(/[?=]/g, '-');
     const screenshot = `${reviewDir}/${name}-${width}.png`;
     await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });
     findings.screenshots.push(screenshot);
@@ -177,6 +177,15 @@ findings.interactions.push('unknown URL returns Aero 404');
 
 await page.goto(`${baseURL}/cv`, { waitUntil: 'networkidle' });
 await page.pdf({ path: `${reviewDir}/cv-print.pdf`, format: 'Letter', printBackground: false });
+await page.locator('[data-cv-mode-switch]').click();
+await page.waitForFunction(() => document.querySelector('[data-cv-viewer]')?.dataset.cvMode === 'corporate');
+if (new URL(page.url()).search !== '?mode=corporate') failures.push('corporate mode did not update the shareable CV URL');
+const corporatePdf = await page.pdf({ path: `${reviewDir}/cv-print-corporate.pdf`, format: 'Letter', printBackground: false });
+const corporatePages = (corporatePdf.toString('latin1').match(/\/Type\s*\/Page\b(?!s)/g) ?? []).length;
+if (corporatePages !== 1) failures.push(`corporate CV printed ${corporatePages} pages instead of one Letter page`);
+await page.goto(`${baseURL}/cv`, { waitUntil: 'networkidle' });
+if (await page.locator('[data-cv-mode-switch]').getAttribute('aria-checked') !== 'true') failures.push('corporate mode choice did not persist');
+findings.interactions.push('CV corporate mode switch, shareable URL, saved choice, and one-page Letter print');
 await context.close();
 
 const reduced = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });

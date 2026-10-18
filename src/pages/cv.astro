@@ -1,18 +1,91 @@
 ---
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
-import { profile, experience, awards } from '../data/profile';
+import { resume } from '../data/resume';
 import { person } from '../data/identity';
 const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: 'Ian McCallum CV', url: 'https://www.ianmccallum.com/cv', mainEntity: person };
+const entrySections = [
+  { id: 'cv-education', heading: 'Education', entries: resume.education },
+  { id: 'cv-experience', heading: 'Experience', entries: resume.experience },
+];
+const factSections = [
+  { id: 'cv-skills', heading: 'Technical Skills', groups: resume.skills, separator: ', ', tags: true },
+  { id: 'cv-honors', heading: 'Honors & Activities', groups: resume.honors, separator: '; ', tags: false },
+];
+const linkProps = (href: string) => (href.startsWith('/') ? { 'data-window-link': true } : { target: '_blank', rel: 'noopener' });
 ---
 
 <WindowPageLayout title="CV | Ian McCallum — Founder & AI Engineer" description="Ian McCallum's CV: founder of Beat the Clock, engineer behind Clockwork, and UIUC Finance and Data Science student." windowTitle="Ian McCallum — CV" icon="cv" reading schema={schema}>
-  <article class="page-sheet page-sheet--narrow cv-document">
-    <header><h1>Ian McCallum</h1><p class="page-intro">Founder & Lead Engineer · UIUC Finance + Data Science · Naperville, Illinois</p><div class="button-row no-print"><a class="aero-button" href="/downloads/Ian-McCallum-CV.pdf" download>Download PDF</a><a class="aero-button aero-button--secondary" href="/portfolio/clockwork">View Clockwork case study</a></div></header>
-    <section aria-labelledby="cv-summary"><h2 id="cv-summary">Professional summary</h2><p>Ian McCallum is a tech builder, University of Illinois Gies College of Business student, and founder of Beat the Clock. His experience spans applied AI systems, web development, automation, customer-facing work, entrepreneurship, and creative digital projects.</p></section>
-    <section aria-labelledby="cv-education"><h2 id="cv-education">Education</h2><div class="resume-grid">{profile.education.map((entry) => <div class="resume-entry"><strong>{entry.school}</strong><time>{entry.location} · {entry.date}</time><p>{entry.detail}</p></div>)}</div></section>
-    <section aria-labelledby="cv-skills"><h2 id="cv-skills">Skills</h2><ul class="tag-list">{profile.skills.map((skill) => <li>{skill}</li>)}</ul></section>
-    <section aria-labelledby="cv-experience"><h2 id="cv-experience">Experience</h2>{experience.map((entry) => <div class="resume-entry"><strong>{entry.company} — {entry.role}</strong><time>{entry.date}</time><ul>{entry.bullets.map((bullet) => <li>{bullet}</li>)}</ul></div>)}</section>
-    <section aria-labelledby="cv-awards"><h2 id="cv-awards">Achievements</h2><ul class="decision-list">{awards.map((award) => <li>{award}</li>)}</ul></section>
-    <p>References available upon request.</p>
-  </article>
+  <div class="cv-viewer" data-cv-viewer data-cv-mode="aero">
+    <div class="cv-toolbar no-print" data-cv-toolbar>
+      <a class="aero-button" href={resume.pdf} download>Download PDF</a>
+      <button class="cv-switch" type="button" role="switch" aria-checked="false" data-cv-mode-switch hidden>
+        <span>Corporate mode</span>
+        <span class="cv-switch__track" aria-hidden="true"><span class="cv-switch__thumb"></span></span>
+      </button>
+    </div>
+    <script is:inline>
+      // Mirrors src/scripts/cv-mode.ts so a shared ?mode= link or a saved choice paints first time.
+      (() => {
+        const viewer = document.currentScript.parentElement;
+        let mode = new URLSearchParams(location.search).get('mode');
+        try { if (mode !== 'aero' && mode !== 'corporate') mode = localStorage.getItem('cv-mode'); } catch { /* storage is optional */ }
+        if (mode !== 'corporate') return;
+        viewer.dataset.cvMode = mode;
+        viewer.querySelector('[data-cv-mode-switch]').setAttribute('aria-checked', 'true');
+      })();
+    </script>
+
+    <article class="cv-document" data-cv-document aria-labelledby="cv-name">
+      <header class="cv-head">
+        <h1 id="cv-name">{resume.name}</h1>
+        <ul class="cv-contact" aria-label="Contact">
+          {resume.contact.map((item) => <li>{item.href ? <a href={item.href} {...linkProps(item.href)}>{item.label}</a> : item.label}</li>)}
+        </ul>
+      </header>
+
+      {entrySections.map(({ id, heading, entries }) => (
+        <section class="cv-section" aria-labelledby={id}>
+          <h2 id={id}>{heading}</h2>
+          {entries.map((entry) => (
+            <div class="cv-entry">
+              <div class="cv-entry__head">
+                <h3 class="cv-entry__title">{entry.title}</h3>
+                <p class="cv-entry__date">{entry.date}</p>
+                <p class="cv-entry__org">{entry.org}</p>
+                <p class="cv-entry__place">{entry.place}</p>
+              </div>
+              {entry.points.length > 0 && <ul class="cv-points">{entry.points.map((point) => <li>{point.split('**').map((part, index) => (index % 2 ? <strong>{part}</strong> : part))}</li>)}</ul>}
+            </div>
+          ))}
+        </section>
+      ))}
+
+      <section class="cv-section" aria-labelledby="cv-projects">
+        <h2 id="cv-projects">Projects</h2>
+        {resume.projects.map((project) => (
+          <div class="cv-entry cv-entry--project">
+            <div class="cv-entry__head">
+              <h3 class="cv-entry__title"><a href={project.href} {...linkProps(project.href)}>{project.title}</a></h3>
+              <p class="cv-entry__stack">{project.stack}</p>
+              <p class="cv-entry__date">{project.date}</p>
+            </div>
+            <ul class="cv-points">{project.points.map((point) => <li>{point}</li>)}</ul>
+          </div>
+        ))}
+      </section>
+
+      {factSections.map(({ id, heading, groups, separator, tags }) => (
+        <section class="cv-section" aria-labelledby={id}>
+          <h2 id={id}>{heading}</h2>
+          <dl class="cv-facts">
+            {groups.map((group) => (
+              <div>
+                <dt>{group.label}</dt><dd><span class="cv-sep">: </span><ul class:list={{ 'tag-list': tags }}>{group.items.map((item, index) => <li>{item}{index < group.items.length - 1 && <span class="cv-sep">{separator}</span>}</li>)}</ul></dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))}
+    </article>
+  </div>
 </WindowPageLayout>

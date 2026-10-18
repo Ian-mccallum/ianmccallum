@@ -4,8 +4,39 @@
     {
       "name": "ianinnovates",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "4200", "."],
+      "runtimeArgs": [
+        "serve",
+        "-p",
+        "4200",
+        "."
+      ],
       "port": 4200
+    },
+    {
+      "name": "astro-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
+    },
+    {
+      "name": "astro-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "preview",
+        "--",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
     }
   ]
 }

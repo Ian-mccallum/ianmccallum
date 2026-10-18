@@ -181,6 +181,22 @@ and a minimum 44px target. Secondary buttons use a pale water surface and Ink te
 The protected-email check uses a simple white recessed field with an explicit
 label and the shared focus ring. Errors are announced in text, never color alone.
 
+### CV and Corporate mode
+
+The CV is one semantic document with two skins, chosen by the Corporate mode
+switch in the CV window's command bar. Aero is the default reading bed. Corporate
+mode sets the same markup as a plain Letter page in the classic one-page resume
+format, measured from the downloadable PDF in points and inches, on a neutral
+desk. Its printout matches that PDF line for line. The switch is a glossy
+water-blue track with a glass thumb and a real `role="switch"`. It appears only
+when JavaScript can honor it; without it, the Aero CV and the PDF remain.
+
+Switching keeps the reader's place: the block they were reading stays fixed
+while the layout changes length, and a round trip returns exactly. The document
+fades out briefly and settles back in with the window-arrival curve. Reduced
+motion swaps instantly. `/cv?mode=corporate` is a shareable link, and the
+visitor's last explicit choice is remembered. Print follows the visible mode.
+
 ### Cards, Explorer, and media
 
 Cards use a restrained glass wash, paired edge treatment, and low ambient lift.
