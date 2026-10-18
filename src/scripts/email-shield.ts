@@ -20,6 +20,10 @@ export function initEmailShields(root: ParentNode = document) {
     const output = shield.querySelector<HTMLElement>('[data-email-output]');
     const link = shield.querySelector<HTMLAnchorElement>('[data-email-link]');
     const error = shield.querySelector<HTMLElement>('[data-email-error]');
+    const copy = shield.querySelector<HTMLButtonElement>('[data-email-copy]');
+    const copied = shield.querySelector<HTMLElement>('[data-email-copied]');
+    const errorText = error?.textContent ?? '';
+    let copyTimer = 0;
 
     const reset = () => {
       const math = challenge();
@@ -35,16 +39,38 @@ export function initEmailShields(root: ParentNode = document) {
     });
     const check = () => {
       if (!input || Number(input.value) !== shield._correctAnswer) {
-        if (error) error.hidden = false;
+        if (error) {
+          // Rewriting the text makes a repeated miss announce again.
+          error.textContent = '';
+          error.hidden = false;
+          requestAnimationFrame(() => { error.textContent = errorText; });
+        }
         reset();
         input?.focus();
         return;
       }
       if (panel) panel.hidden = true;
       if (output) output.hidden = false;
+      if (copy && navigator.clipboard) copy.hidden = false;
       if (link) { link.textContent = address(); link.href = `mailto:${address()}`; link.focus(); }
     };
     verify?.addEventListener('click', check);
     input?.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); check(); } });
+
+    // A phone often has no mail app signed in; copying is the reliable path.
+    copy?.addEventListener('click', async () => {
+      window.clearTimeout(copyTimer);
+      try {
+        await navigator.clipboard.writeText(address());
+        copy.textContent = 'Copied';
+        if (copied) copied.textContent = 'Email address copied to clipboard.';
+      } catch {
+        if (copied) copied.textContent = 'Couldn’t copy. Select the address instead.';
+      }
+      copyTimer = window.setTimeout(() => {
+        copy.textContent = 'Copy address';
+        if (copied) copied.textContent = '';
+      }, 2400);
+    });
   });
 }

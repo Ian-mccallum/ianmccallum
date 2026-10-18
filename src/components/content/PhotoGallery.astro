@@ -11,5 +11,10 @@ import { photos } from '../../data/photos';
   ))}
 </div>
 <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
-  <button type="button" data-lightbox-close aria-label="Close photo viewer">Close</button>
+  <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close photo viewer"><span aria-hidden="true"></span></button>
+  <figure class="lightbox__stage" data-lightbox-stage>
+    <figcaption class="lightbox__caption"><span data-lightbox-caption></span><span class="lightbox__count" data-lightbox-count></span></figcaption>
+  </figure>
+  <button class="lightbox__step lightbox__step--prev" type="button" data-lightbox-prev aria-label="Previous photo"><span aria-hidden="true"></span></button>
+  <button class="lightbox__step lightbox__step--next" type="button" data-lightbox-next aria-label="Next photo"><span aria-hidden="true"></span></button>
 </div>

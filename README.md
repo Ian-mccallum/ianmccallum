@@ -39,7 +39,8 @@ otherwise uses Playwright's Chromium. Install that fallback once with:
 npx playwright install chromium
 ```
 
-Run `npm run preview -- --host 127.0.0.1` before either browser command. Generated
+Run `npm run preview -- --host 127.0.0.1` before either browser command (set
+`QA_BASE_URL` when the preview runs on a port other than 4321). Generated
 screenshots and reports live in `.impeccable/review/` and are not committed.
 
 ### Review the welcome sequence

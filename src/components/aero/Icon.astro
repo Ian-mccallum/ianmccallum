@@ -1,8 +1,8 @@
 ---
 import type { IconName } from '../../data/navigation';
 
-interface Props { name: IconName | 'warning' | 'project'; size?: number; decorative?: boolean }
-const { name, size = 32, decorative = true } = Astro.props;
+interface Props { name: IconName | 'warning' | 'project'; size?: number; decorative?: boolean; loading?: 'eager' | 'lazy' }
+const { name, size = 32, decorative = true, loading = 'eager' } = Astro.props;
 const icons = {
   welcome: '/icons/vista_get_started.png',
   about: '/icons/vista_personalization.png',
@@ -17,4 +17,4 @@ const icons = {
 } as const;
 ---
 
-<img src={icons[name]} width={size} height={size} alt={decorative ? '' : name} aria-hidden={decorative ? 'true' : undefined} loading="eager" decoding="async" />
+<img src={icons[name]} width={size} height={size} alt={decorative ? '' : name} aria-hidden={decorative ? 'true' : undefined} loading={loading} decoding="async" />

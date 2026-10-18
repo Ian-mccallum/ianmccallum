@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import WindowPageLayout from '../../layouts/WindowPageLayout.astro';
 import ProjectMedia from '../../components/content/ProjectMedia.astro';
+import BackLink from '../../components/aero/BackLink.astro';
 import { personReference } from '../../data/identity';
 import { breadcrumbs } from '../../data/breadcrumbs';
 
@@ -19,6 +20,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'CreativeWork', name
 
 <WindowPageLayout title={d.seoTitle ?? `${d.name} | Ian McCallum Portfolio`} description={d.summary} windowTitle={`${d.name} — Project Properties`} icon="project" reading image={image} schema={[schema, breadcrumbs('portfolio', d.name, d.slug)]}>
   <article class="page-sheet">
+    <BackLink href="/portfolio" label="Project Explorer" />
     <header><h1>{d.name}</h1><p class="page-intro">{d.summary}</p></header>
     {d.media && d.poster && <ProjectMedia src={d.media} poster={d.poster} title={d.name} />}
     <div class="project-layout">

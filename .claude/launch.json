@@ -25,6 +25,34 @@
       "port": 4321
     },
     {
+      "name": "astro-dev-4330",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4330"
+      ],
+      "port": 4330
+    },
+    {
+      "name": "astro-preview-4331",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "preview",
+        "--",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4331"
+      ],
+      "port": 4331
+    },
+    {
       "name": "astro-preview",
       "runtimeExecutable": "npm",
       "runtimeArgs": [

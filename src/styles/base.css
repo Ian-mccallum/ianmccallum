@@ -1,12 +1,14 @@
 @layer base {
   :root { font-family: var(--aero-font-body); color: var(--aero-ink); background: #376e8b; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { min-height: 100svh; overflow: hidden; }
   ::selection { color: #fff; background: var(--aero-water-ink); }
   :focus-visible { outline: 0; box-shadow: var(--aero-focus); }
   a { color: var(--aero-water-ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   a:hover { color: var(--aero-water-deep); }
   button { color: inherit; }
+  /* Rapid repeat taps (a photo stepper, a tab bar) must never read as a double-tap zoom. */
+  a, button, input, label, summary { touch-action: manipulation; }
   input, textarea { caret-color: var(--aero-water-ink); }
   h1, h2, h3 { font-family: var(--aero-font-display); font-weight: 300; color: var(--aero-ink); text-wrap: balance; }
   h1 { font-size: clamp(2rem, 1.45rem + 2vw, 3.35rem); line-height: 1.08; letter-spacing: -0.025em; }
@@ -17,6 +19,9 @@
   strong { font-weight: 650; }
   small, time { color: var(--aero-haze); font-variant-numeric: tabular-nums; }
   .taskbar-clock time, .taskbar-clock span { color: #fff; text-shadow: 0 1px 2px rgba(0, 20, 42, .9); }
+  /* Base-layer type steps, so any component's own heading rule still wins. */
+  @media (max-width: 760px), (max-height: 520px) and (pointer: coarse) { h2 { margin-top: 2.4rem; } }
+  @media (max-width: 390px) { h1 { font-size: 1.9rem; } }
   * { scrollbar-width: thin; scrollbar-color: rgba(0, 103, 188, 0.65) rgba(232, 243, 252, 0.75); }
   *::-webkit-scrollbar { width: 12px; height: 12px; }
   *::-webkit-scrollbar-track { background: rgba(232, 243, 252, 0.75); }

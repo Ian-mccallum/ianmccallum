@@ -1,17 +1,18 @@
 import { initCvViewers } from './cv-mode';
 import { initEmailShields } from './email-shield';
 import { initPhotoGalleries } from './photo-gallery';
+import { isCompact } from './viewport';
 
 // Progressive desktop window manager: the static route remains canonical, while
 // ordinary same-origin clicks can open that route's existing frame beside it.
-// Native links remain intact for modified clicks, mobile, and JavaScript-off use.
-const DESKTOP_BREAKPOINT = 760;
+// Native links remain intact for modified clicks, compact screens, and JavaScript-off use.
 
 function initAero() {
   const shell = document.querySelector<HTMLElement>('[data-aero-shell]');
   const host = document.querySelector<HTMLElement>('[data-window-host]');
   const startButton = document.querySelector<HTMLButtonElement>('[data-start-button]');
   const startMenu = document.querySelector<HTMLElement>('#start-menu');
+  const startScrim = document.querySelector<HTMLElement>('[data-start-scrim]');
   const runningItems = document.querySelector<HTMLElement>('[data-taskbar-running]');
   const status = document.querySelector<HTMLElement>('[data-window-status]');
   const clock = document.querySelector<HTMLTimeElement>('[data-clock]');
@@ -21,7 +22,7 @@ function initAero() {
 
   if (!shell || !host) return;
 
-  const desktopMode = () => window.innerWidth > DESKTOP_BREAKPOINT;
+  const desktopMode = () => !isCompact();
   const normalizeRoute = (href: string) => new URL(href, window.location.href).pathname;
   const frames = () => Array.from(host.querySelectorAll<HTMLElement>('[data-window-frame]'));
   const frameForRoute = (route: string) => frames().find((frame) => frame.dataset.windowRoute === route);
@@ -145,7 +146,8 @@ function initAero() {
   const closeFrame = (frame: HTMLElement) => {
     if (frame.dataset.windowPrimary !== undefined) {
       if (window.location.pathname !== '/') window.location.assign('/');
-      else minimizeFrame(frame);
+      // On a compact screen the Welcome window is the screen; there is no desktop to reveal.
+      else if (desktopMode()) minimizeFrame(frame);
       return;
     }
     const title = frameTitle(frame);
@@ -210,6 +212,8 @@ function initAero() {
     if (!startMenu || !startButton) return;
     startMenu.classList.remove('is-open');
     startMenu.hidden = true;
+    if (startScrim) startScrim.hidden = true;
+    document.body.classList.remove('is-start-open');
     startButton.setAttribute('aria-expanded', 'false');
     if (returnFocus) startButton.focus();
   };
@@ -217,10 +221,18 @@ function initAero() {
   const openMenu = () => {
     if (!startMenu || !startButton) return;
     startMenu.hidden = false;
+    if (startScrim) startScrim.hidden = false;
+    // Compact screens show Start as a sheet over the page, so the page holds still.
+    document.body.classList.add('is-start-open');
     requestAnimationFrame(() => startMenu.classList.add('is-open'));
     startButton.setAttribute('aria-expanded', 'true');
-    startMenu.querySelector<HTMLAnchorElement>('a')?.focus();
+    (startMenu.querySelector<HTMLAnchorElement>('[data-start-entry][aria-current]') ?? startMenu.querySelector<HTMLAnchorElement>('a'))?.focus({ preventScroll: true });
   };
+
+  // A page restored from the back/forward cache must not come back mid-gesture.
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) closeMenu();
+  });
 
   startButton?.addEventListener('click', (event) => {
     event.stopPropagation();
@@ -239,6 +251,16 @@ function initAero() {
       if (control.matches('[data-window-minimize]')) minimizeFrame(frame);
       else if (control.matches('[data-window-maximize]')) toggleMaximize(frame);
       else if (control.classList.contains('window-control--close')) closeFrame(frame);
+      return;
+    }
+
+    // Like a native tab bar, choosing the page already on screen returns to its top.
+    const sameRoute = target.closest<HTMLAnchorElement>('[data-taskbar-route], [data-start-entry]');
+    if (sameRoute && !desktopMode() && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
+      && normalizeRoute(sameRoute.href) === window.location.pathname && !new URL(sameRoute.href).hash) {
+      event.preventDefault();
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       return;
     }
 
@@ -277,6 +299,9 @@ function initAero() {
     if (frame && !frame.classList.contains('is-minimized')) setActive(frame);
     if (!startMenu?.hidden && !startMenu?.contains(target) && !startButton?.contains(target)) closeMenu();
   });
+
+  // iOS Safari only applies :active press states once a touch listener exists.
+  document.addEventListener('touchstart', () => undefined, { passive: true });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !startMenu?.hidden) {
@@ -434,7 +459,8 @@ if (boot) {
       sky.style.setProperty('--mx', x.toFixed(3));
       sky.style.setProperty('--my', y.toFixed(3));
     });
-    document.querySelector<HTMLAnchorElement>('[data-skip-boot]')?.addEventListener('click', dismiss, { once: true });
+    // The skip link is the named affordance; a tap anywhere on the sequence also lets a visitor in.
+    boot.addEventListener('click', dismiss);
     onBootKey = (event) => {
       if (event.key === 'Escape') dismiss();
     };

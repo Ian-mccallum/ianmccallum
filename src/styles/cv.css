@@ -10,7 +10,7 @@
   .cv-toolbar { position: sticky; z-index: 5; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; min-height: 58px; padding: 6px max(clamp(14px, 3vw, 24px), calc((100% - 880px) / 2 + clamp(24px, 4vw, 56px))); background: linear-gradient(#fdfeff, #eef5fb 48%, #e1edf7 52%, #eaf3fa); border-bottom: 1px solid rgba(10,44,77,.2); box-shadow: inset 0 1px #fff, 0 1px 5px rgba(10,44,77,.1); }
 
   .cv-switch { display: inline-flex; align-items: center; gap: 11px; min-height: 44px; margin: 0 -9px 0 auto; padding: 5px 8px 5px 12px; color: var(--aero-ink); border: 1px solid transparent; border-radius: var(--aero-r-sm); background: transparent; font-size: .86rem; font-weight: 600; cursor: pointer; }
-  .cv-switch:hover { border-color: rgba(0,103,188,.28); background: linear-gradient(rgba(255,255,255,.95), rgba(219,237,250,.85)); box-shadow: inset 0 1px #fff; }
+  @media (hover: hover) { .cv-switch:hover { border-color: rgba(0,103,188,.28); background: linear-gradient(rgba(255,255,255,.95), rgba(219,237,250,.85)); box-shadow: inset 0 1px #fff; } }
   .cv-switch__track { position: relative; flex: 0 0 auto; width: 46px; height: 24px; overflow: hidden; border: 1px solid #7d9bb2; border-radius: 12px; background: linear-gradient(#c9d7e2, #eef4f8 60%, #f8fbfd); box-shadow: inset 0 1px 3px rgba(0,36,64,.32); transition: border-color 200ms ease, box-shadow 200ms ease; }
   .cv-switch__track::before, .cv-switch__track::after { position: absolute; content: ''; pointer-events: none; }
   .cv-switch__track::before { inset: 0; background: linear-gradient(#8fd0f7, #2b95e2 48%, #0070c9 52%, #2a92de); opacity: 0; transition: opacity 200ms ease; }
@@ -94,9 +94,17 @@
      Corporate mode makes outside its own document. */
   .window-frame__body:has(> .cv-viewer[data-cv-mode="corporate"]) { background: #d5dde4; }
 
-  @media (max-width: 760px) {
-    .cv-toolbar { position: static; padding-inline: 20px; }
+  /* Same query as COMPACT_QUERY in src/scripts/viewport.ts. One toolbar row:
+     the download on the left, the switch on the right. */
+  @media (max-width: 760px), (max-height: 520px) and (pointer: coarse) {
+    .cv-toolbar { position: static; flex-wrap: wrap; min-height: 0; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); }
+    .cv-toolbar { column-gap: 8px; }
+    .cv-toolbar .aero-button { padding-inline: 13px; font-size: .9rem; }
+    .cv-switch { gap: 9px; margin-right: -6px; padding-inline: 6px; font-size: .84rem; }
     .cv-document { padding: 26px 20px 48px; }
+    /* Contact links keep their line but gain a thumb-sized hit area. */
+    .cv-contact { row-gap: 4px; }
+    .cv-contact a { padding-block: 9px; margin-block: -9px; }
     .cv-facts > div { grid-template-columns: 1fr; gap: 8px; }
     .cv-viewer[data-cv-mode="corporate"] .cv-document { width: calc(100% - 20px); min-height: 0; margin: 10px auto 28px; padding: 26px 18px 30px; }
     .cv-viewer[data-cv-mode="corporate"] .cv-entry, .cv-viewer[data-cv-mode="corporate"] .cv-facts { padding-left: 0; }
@@ -114,9 +122,8 @@
     .cv-viewer[data-cv-mode="corporate"] .cv-entry__stack::before { content: none; }
   }
 
-  @media (max-width: 420px) {
-    .cv-toolbar { flex-wrap: wrap; padding-block: 10px; }
-    .cv-toolbar .aero-button, .cv-switch { flex: 1 1 100%; width: 100%; }
+  @media (max-width: 340px) {
+    .cv-toolbar .aero-button, .cv-switch { flex: 1 1 100%; }
     .cv-switch { justify-content: space-between; margin: 0; }
   }
 

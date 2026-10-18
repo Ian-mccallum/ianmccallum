@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { chromium } from 'playwright';
+import { chromium, devices } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 
-const baseURL = 'http://127.0.0.1:4321';
+const baseURL = process.env.QA_BASE_URL || 'http://127.0.0.1:4321';
 const chrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const launchOptions = existsSync(chrome) ? { headless: true, executablePath: chrome } : { headless: true };
 const routes = ['/', '/about', '/portfolio', '/portfolio/clockwork', '/cv', '/cv?mode=corporate', '/photos', '/testimonials', '/contact', '/thank-you', '/blog', '/blog/2007-thought-the-future-would-be-beautiful'];
@@ -187,6 +187,59 @@ await page.goto(`${baseURL}/cv`, { waitUntil: 'networkidle' });
 if (await page.locator('[data-cv-mode-switch]').getAttribute('aria-checked') !== 'true') failures.push('corporate mode choice did not persist');
 findings.interactions.push('CV corporate mode switch, shareable URL, saved choice, and one-page Letter print');
 await context.close();
+
+// Compact (phone) contract: a labeled tab bar, a Start sheet, a screen-sized Welcome
+// window that cannot be closed into a blank page, and a swipeable photo viewer.
+const phone = await browser.newContext({ ...devices['iPhone 13'], viewport: { width: 360, height: 740 }, deviceScaleFactor: 1 });
+await phone.addInitScript(() => sessionStorage.setItem('aero-boot-seen', '1'));
+const phonePage = await phone.newPage();
+await phonePage.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
+const tabs = await phonePage.evaluate(() => Array.from(document.querySelectorAll('.taskbar-pins .taskbar-item')).filter((item) => getComputedStyle(item).display !== 'none').map((item) => {
+  const rect = item.getBoundingClientRect();
+  return { label: item.querySelector('span')?.textContent, labelShown: getComputedStyle(item.querySelector('span')).display !== 'none', width: rect.width, height: rect.height };
+}));
+if (tabs.map((tab) => tab.label).join() !== 'Home,About,Portfolio,CV,Contact') failures.push(`compact tab bar showed ${tabs.map((tab) => tab.label).join()}`);
+if (tabs.some((tab) => !tab.labelShown || tab.width < 44 || tab.height < 44)) failures.push(`compact tabs were unlabeled or under 44px: ${JSON.stringify(tabs)}`);
+if (await phonePage.locator('[data-window-primary] .window-control--close').isVisible()) failures.push('compact Welcome window offered a close control');
+await phonePage.evaluate(() => window.scrollTo(0, 400));
+await phonePage.tap('.taskbar-item[data-taskbar-route="/"]');
+await phonePage.waitForFunction(() => window.scrollY === 0);
+if (new URL(phonePage.url()).pathname !== '/') failures.push('tapping the current tab navigated away');
+await phonePage.tap('[data-start-button]');
+if (await phonePage.locator('[data-start-scrim]').getAttribute('hidden') !== null) failures.push('compact Start opened without its scrim');
+if (await phonePage.evaluate(() => getComputedStyle(document.body).overflow) !== 'hidden') failures.push('compact Start sheet did not hold the page still');
+if (await phonePage.locator('#start-menu [data-start-entry][aria-current="page"]').count() !== 1) failures.push('Start did not mark the current page');
+await phonePage.tap('[data-start-scrim]', { position: { x: 180, y: 30 } });
+if (await phonePage.locator('#start-menu').getAttribute('hidden') === null) failures.push('tapping the scrim did not close Start');
+await phonePage.goto(`${baseURL}/portfolio/clockwork`, { waitUntil: 'networkidle' });
+if (!(await phonePage.locator('.taskbar-item[data-taskbar-route="/portfolio"]').evaluate((item) => item.classList.contains('is-section')))) failures.push('nested project did not highlight its Portfolio tab');
+if (!(await phonePage.locator('.back-link[href="/portfolio"]').isVisible())) failures.push('nested project lacked its back link');
+await phonePage.goto(`${baseURL}/photos`, { waitUntil: 'networkidle' });
+await phonePage.tap('[data-gallery-item="0"]');
+const lightboxOnTop = await phonePage.evaluate(() => {
+  const close = document.querySelector('[data-lightbox-close]').getBoundingClientRect();
+  return document.elementFromPoint(close.x + close.width / 2, close.y + close.height / 2)?.closest('[data-lightbox]') !== null
+    && document.elementFromPoint(innerWidth / 2, innerHeight - 10)?.closest('.taskbar') === null;
+});
+if (!lightboxOnTop) failures.push('compact photo viewer sat beneath the taskbar');
+await phonePage.tap('[data-lightbox-next]');
+if ((await phonePage.locator('[data-lightbox-count]').textContent()) !== '2 of 4') failures.push('photo viewer did not step forward');
+await phonePage.keyboard.press('Escape');
+for (const route of routes) {
+  await phonePage.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
+  const results = await new AxeBuilder({ page: phonePage }).analyze();
+  const material = results.violations.filter((violation) => ['critical', 'serious'].includes(violation.impact ?? ''));
+  if (material.length) failures.push(`${route} @ 360: axe ${JSON.stringify(material.map((violation) => violation.id))}`);
+}
+await phone.close();
+
+const landscape = await browser.newContext({ ...devices['iPhone 14 Pro Max landscape'], deviceScaleFactor: 1 });
+await landscape.addInitScript(() => sessionStorage.setItem('aero-boot-seen', '1'));
+const landscapePage = await landscape.newPage();
+await landscapePage.goto(`${baseURL}/about`, { waitUntil: 'networkidle' });
+if (await landscapePage.locator('.desktop-icons').isVisible()) failures.push('landscape phone received the desktop layout');
+await landscape.close();
+findings.interactions.push('compact tab bar, Start sheet, current-tab scroll, nested section highlight, photo viewer stacking and stepping, 360px axe scans, landscape phone layout');
 
 const reduced = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
 const reducedPage = await reduced.newPage();

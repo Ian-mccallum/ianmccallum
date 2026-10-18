@@ -1,0 +1,7 @@
+---
+// Vista Explorer's round Back button, pointing a nested route at its index.
+interface Props { href: string; label: string }
+const { href, label } = Astro.props;
+---
+
+<a class="back-link" href={href}><span class="back-link__orb" aria-hidden="true"></span>{label}</a>

@@ -4,8 +4,11 @@ import { navigation } from '../../data/navigation';
 import { socialLinks } from '../../data/social';
 import Icon from './Icon.astro';
 import SocialIcon from './SocialIcon.astro';
+interface Props { path: string }
+const { path } = Astro.props;
 ---
 
+<div class="start-scrim" data-start-scrim hidden></div>
 <nav class="start-menu" id="start-menu" aria-label="Start menu" hidden>
   <div class="start-menu__identity">
     <Headshot width={52} height={52} />
@@ -15,12 +18,12 @@ import SocialIcon from './SocialIcon.astro';
     <div class="start-menu__programs">
       <div class="start-menu__links" data-start-links>
         {navigation.map((item) => (
-          <a href={item.href} data-window-link data-start-entry><Icon name={item.icon} size={25} /><span>{item.label}</span></a>
+          <a href={item.href} data-window-link data-start-entry aria-current={item.href === path ? 'page' : undefined}><Icon name={item.icon} size={25} /><span>{item.label}</span></a>
         ))}
       </div>
       <label class="start-menu__search">
         <span class="sr-only">Search pages</span>
-        <input type="search" placeholder="Search pages…" autocomplete="off" data-start-search />
+        <input type="search" placeholder="Search pages…" autocomplete="off" enterkeyhint="go" data-start-search />
       </label>
     </div>
     <div class="start-menu__places">

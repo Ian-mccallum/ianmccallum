@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 
-const baseURL = 'http://127.0.0.1:4321';
+const baseURL = process.env.QA_BASE_URL || 'http://127.0.0.1:4321';
 const chrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const launchOptions = existsSync(chrome) ? { headless: true, executablePath: chrome } : { headless: true };
 const routes = ['/', '/portfolio/clockwork', '/blog/2007-thought-the-future-would-be-beautiful'];

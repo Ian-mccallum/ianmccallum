@@ -128,6 +128,16 @@ close like the original site; they are never pre-rendered hidden copies. At narr
 widths the primary semantic window becomes the screen, desktop shortcuts disappear,
 and content reflows into one column; there is no second mobile content tree.
 
+**Compact screens.** "Compact" is one query, shared by CSS and
+`src/scripts/viewport.ts`: up to 760px wide, or a coarse pointer under 520px tall,
+so a phone gets the same layout in either orientation. There, deep routes fill
+the screen edge to edge, while Home keeps the Welcome window floating on the
+wallpaper, as it does on the desktop. The Welcome window has no close control on
+a compact screen, because there is no desktop behind it to reveal. The titlebar
+scrolls away with the page. The taskbar stays and becomes the navigation.
+Layout respects the device's safe areas, and the page never scrolls sideways
+at 320px.
+
 Spacing follows the 4px scale in the frontmatter. Explorer tables contain their own
 horizontal overflow rather than widening the document.
 
@@ -170,9 +180,29 @@ original site: a luminous horizon, colored atmosphere, floating bubbles, the IM
 glass orb, changing system phrases, and live progress. It runs for roughly 4.6
 seconds before a short circular reveal, remains immediately skippable, can be
 replayed from Start, and is omitted under reduced motion. Its skip action is a
-small, quiet text link—not a competing button—and Escape provides the keyboard
-shortcut. This is the authored focal sequence; routine desktop transitions stay
+small, quiet text link—not a competing button. Escape provides the keyboard
+shortcut, and a tap anywhere on the sequence also skips it. This is the authored focal sequence; routine desktop transitions stay
 brief.
+
+### Compact taskbar and Start sheet
+
+On compact screens the taskbar is a labeled tab bar: Start, then Home, About,
+Portfolio, CV, and Contact, each an icon over a short label and at least 44px
+square. The current route takes the active-item glass. A nested route lights its
+section's tab. A page that lives only in Start lights the Start button. Choosing
+the tab already on screen returns to the top of the page instead of reloading.
+Start opens as a full-width sheet over a dim scrim that holds the page still. It
+marks the current page and drops the search field, which eight entries don't
+need. A tap on the scrim, Escape, or a return through the browser's back/forward
+cache closes it.
+
+### Touch
+
+Hover lift and highlight apply only where a pointer can hover, so a tap never
+leaves an element stuck in its hover state. Every touch control has its own
+pressed state. Controls opt out of double-tap zoom so repeated taps register.
+Nested routes open with Vista Explorer's round Back button, pointing at their
+index.
 
 ### Buttons and fields
 
@@ -180,6 +210,8 @@ Primary buttons use the violet token family, a two-part glossy gradient, white t
 and a minimum 44px target. Secondary buttons use a pale water surface and Ink text.
 The protected-email check uses a simple white recessed field with an explicit
 label and the shared focus ring. Errors are announced in text, never color alone.
+Once revealed, the address offers Copy address beside it, because many phones
+have no mail app signed in.
 
 ### CV and Corporate mode
 
@@ -201,7 +233,11 @@ visitor's last explicit choice is remembered. Print follows the visible mode.
 
 Cards use a restrained glass wash, paired edge treatment, and low ambient lift.
 Explorer rows optimize scanning rather than imitate every file-manager control.
-Gallery items are real buttons with a focus-managed dialog. Project video is
+Gallery items are real buttons with a focus-managed dialog. The viewer sits
+above all chrome. It shows the photo's description and position, steps with
+buttons, arrow keys, or a swipe that follows the finger, and keeps focus inside
+itself. On compact screens the step buttons move beneath the photo, within thumb
+reach. Project video is
 poster-first, user-controlled, H.264 MP4, and never autoplayed.
 
 ### Motion

@@ -6,9 +6,7 @@
 
   @media (max-width: 900px) {
     .desktop-workspace { padding-left: 96px; }
-    .evidence-rail { grid-template-columns: repeat(2, 1fr); }
-    .evidence-rail > div:nth-child(2) { border-right: 0; }
-    .home-paths, .project-layout { grid-template-columns: 1fr; }
+    .project-layout { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 1100px) and (min-width: 761px) {
@@ -16,76 +14,152 @@
     .taskbar-item span { display: none; }
   }
 
-  @media (max-width: 760px) {
-    :root { --taskbar-h: 48px; }
+  /* Compact: the route's window becomes the screen and the taskbar becomes a
+     labeled tab bar. Same query as COMPACT_QUERY in src/scripts/viewport.ts. */
+  @media (max-width: 760px), (max-height: 520px) and (pointer: coarse) {
+    :root { --taskbar-h: 58px; --safe-bottom: env(safe-area-inset-bottom, 0px); --safe-left: env(safe-area-inset-left, 0px); --safe-right: env(safe-area-inset-right, 0px); }
+    html { scroll-padding-bottom: calc(var(--taskbar-h) + var(--safe-bottom) + 12px); }
     body { overflow: auto; background: #dceef7; }
-    .atmosphere { position: absolute; height: 210px; }
+    body.is-start-open { overflow: hidden; }
+
+    /* Only Home leaves the desktop visible, so only Home pays for the wallpaper. */
     .atmosphere-video { display: none; }
-    .atmosphere-light { background: linear-gradient(rgba(255,255,255,.18), rgba(0,83,145,.48)); }
+    body:not([data-home]) .atmosphere-poster { display: none; }
+    .atmosphere-light { background: linear-gradient(rgba(255,255,255,.2), transparent 30%, rgba(0,60,110,.28)); }
     .desktop-icons { display: none; }
-    .desktop-workspace { height: auto; min-height: calc(100svh - var(--taskbar-h)); padding: 0 0 var(--taskbar-h); }
-    .window-frame, .window-frame.is-restored, .window-frame.is-floating { position: relative; inset: auto; display: block; width: 100% !important; height: auto !important; min-height: calc(100svh - var(--taskbar-h)); margin: 0 !important; overflow: visible; border: 0; background: transparent; box-shadow: none; backdrop-filter: none; filter: none; animation: none; }
+    .desktop-workspace { height: auto; min-height: 100svh; overflow: visible; padding: 0 0 calc(var(--taskbar-h) + var(--safe-bottom)); }
+
+    /* Inline geometry from desktop dragging must never leak into the compact layout. */
+    .window-frame, .window-frame.is-restored, .window-frame.is-floating { position: relative; inset: auto !important; z-index: auto !important; display: block; width: 100% !important; height: auto !important; min-height: calc(100svh - var(--taskbar-h) - var(--safe-bottom)); margin: 0 !important; overflow: visible; border: 0; background: transparent; box-shadow: none; backdrop-filter: none; filter: none; animation: none; }
+    .window-frame[data-window-primary].is-minimized { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
     .window-frame.is-dynamic-window { display: none; }
-    .window-titlebar { position: sticky; z-index: 10; top: 0; min-height: 48px; padding-left: 12px; }
+    .window-titlebar { min-height: 48px; padding: env(safe-area-inset-top, 0px) var(--safe-right) 0 max(14px, var(--safe-left)); cursor: default; touch-action: auto; }
+    .window-titlebar__title { gap: 9px; font-size: .9rem; }
     .window-control--minimize, .window-control--maximize { display: none; }
-    .window-control { width: 48px; min-height: 48px; }
-    .window-frame__body { min-height: calc(100svh - 96px); margin: 0; overflow: visible; border: 0; background: var(--aero-glass-solid); }
+    .window-control { width: 52px; min-height: 48px; }
+    [data-home] [data-window-primary] .window-control--close { display: none; }
+    .window-frame__body { min-height: calc(100svh - 48px - var(--taskbar-h) - var(--safe-bottom)); margin: 0; overflow: visible; border: 0; background: var(--aero-glass-solid); }
     .window-statusbar { display: none; }
-    .page-sheet { padding: 28px 20px 48px; }
-    .profile-header { grid-template-columns: 82px 1fr; gap: 16px; }
-    .profile-header img { width: 82px; }
+
+    /* Home: the Welcome window floats on the wallpaper, as it does on the desktop. */
+    [data-home] .window-frame.is-restored { width: auto !important; min-height: 0; margin: max(14px, env(safe-area-inset-top, 0px)) max(10px, var(--safe-right)) 18px max(10px, var(--safe-left)) !important; overflow: hidden; border-top: 1px solid var(--aero-specular); border-left: 1px solid rgba(255,255,255,.6); border-right: 1px solid rgba(10,44,77,.36); border-bottom: 1px solid rgba(10,44,77,.4); border-radius: 8px 8px 5px 5px; background: rgba(226,241,249,.4); backdrop-filter: blur(16px) saturate(1.3); box-shadow: 0 16px 44px rgba(3,25,43,.34), inset 0 1px rgba(255,255,255,.85); }
+    [data-home] .window-frame.is-restored .window-titlebar { padding-top: 0; }
+    [data-home] .window-frame.is-restored .window-frame__body { min-height: 0; margin: 0 4px 4px; border: 1px solid rgba(7,50,83,.22); border-radius: 0 0 3px 3px; }
+
+    /* Taskbar → tab bar: Start plus five labeled destinations, clear of the home indicator. */
+    .taskbar { align-items: stretch; height: calc(var(--taskbar-h) + var(--safe-bottom)); padding: 0 max(4px, var(--safe-right)) var(--safe-bottom) max(4px, var(--safe-left)); }
+    .taskbar-separator, .taskbar-running, .taskbar-spacer, .taskbar-socials, .taskbar-clock, .taskbar-item--wide-only { display: none; }
+    .start-button { position: relative; flex: 0 0 58px; flex-direction: column; justify-content: center; gap: 3px; width: 58px; height: auto; margin: 5px 2px 5px 0; padding: 0; border: 1px solid transparent; border-radius: 8px; background: none; box-shadow: none; }
+    .start-im { flex: none; width: 28px; height: 28px; border-radius: 7px; box-shadow: 0 1px 3px rgba(0,30,60,.5); }
+    .start-label { font-size: .6875rem; font-style: normal; font-weight: 600; line-height: 1.1; letter-spacing: .01em; }
+    .taskbar-pins { flex: 1; align-items: stretch; gap: 0; }
+    .taskbar-item { flex: 1 1 0; flex-direction: column; justify-content: center; gap: 4px; width: auto; min-width: 0; max-width: none; height: auto; margin: 5px 1px; padding: 0 2px; color: #e2f3ff; border-color: transparent; border-radius: 8px; background: none; box-shadow: none; }
+    .taskbar-item img { width: 24px; height: 24px; filter: drop-shadow(0 1px 1px rgba(0,25,48,.45)); }
+    .taskbar-item span { display: block; max-width: 100%; font-size: .6875rem; font-weight: 500; line-height: 1.1; text-shadow: 0 1px 2px rgba(0,30,60,.8); }
+    .taskbar-item:is(.is-active, .is-section), .start-button[data-holds-current] { color: #fff; border-color: rgba(255,255,255,.5); background: linear-gradient(rgba(255,255,255,.34), rgba(0,91,159,.42)); box-shadow: inset 0 1px rgba(255,255,255,.45), 0 1px 4px rgba(0,24,45,.4); }
+    .taskbar-item:is(.is-active, .is-section) span { font-weight: 650; }
+    .taskbar-item::after { content: none; }
+    .taskbar-item:active, .start-button:active { background: rgba(255,255,255,.24); }
+
+    /* Start → a sheet over a scrim, sized to the screen. */
+    .start-scrim { position: fixed; z-index: 105; inset: 0; display: block; background: rgba(2,25,43,.45); animation: lightbox-in 160ms ease-out; }
+    .start-menu { inset: auto 0 calc(var(--taskbar-h) + var(--safe-bottom) - 1px); width: auto; max-height: calc(100svh - var(--taskbar-h) - var(--safe-bottom) - 12px); overflow: auto; overscroll-behavior: contain; padding: 8px max(8px, var(--safe-right)) 8px max(8px, var(--safe-left)); border-width: 1px 0 0; border-radius: 14px 14px 0 0; transform: translateY(24px); transform-origin: 50% 100%; }
+    .start-menu.is-open { transform: none; }
+    .start-button[aria-expanded="true"] { border-color: rgba(255,255,255,.5); background: linear-gradient(rgba(255,255,255,.3), rgba(0,91,159,.4)); }
+    .start-menu__identity { padding: 6px 8px 12px; }
+    .start-menu__search { display: none; }
+    .start-menu__body { grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr); min-height: 0; }
+    .start-menu__links { padding: 5px; }
+    .start-menu__links a, .start-menu__places a { min-height: 46px; }
+    .start-menu__places a { padding-inline: 6px; overflow-wrap: anywhere; }
+    .start-menu__footer { padding-top: 8px; }
+    .start-menu__footer a, .start-menu__footer button { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 12px; font-size: .78rem; }
+
+    /* Reading surfaces. */
+    .page-sheet { padding: 24px max(20px, var(--safe-right)) 44px max(20px, var(--safe-left)); }
+    .button-row > .aero-button { flex: 1 1 auto; }
+    .profile-header { grid-template-columns: 84px 1fr; gap: 16px; margin-bottom: var(--aero-s-5); }
+    .profile-header img { width: 84px; }
     .profile-header h1 { font-size: 2rem; }
     .fact-grid, .gallery { grid-template-columns: 1fr; }
-    .home-paths { gap: 10px; }
-    .home-path { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; min-height: 0; padding: 15px; }
-    .home-path strong { margin: 1px 0 3px; }
-    .home-path span { grid-column: 2; }
-    .evidence-rail { grid-template-columns: 1fr; }
-    .evidence-rail > div { border-right: 0; border-bottom: 1px solid rgba(10,44,77,.15); }
-    .evidence-rail > div:last-child { border-bottom: 0; }
-    .testimonial { grid-template-columns: 56px 1fr; gap: 14px; }
-    .testimonial-avatar { width: 54px; height: 54px; }
+    .gallery { gap: 12px; margin-top: var(--aero-s-5); }
     .gallery img { height: auto; aspect-ratio: 4 / 3; }
-    .taskbar { padding-inline: 5px; }
-    .start-label, .taskbar-clock span, .taskbar-socials { display: none; }
-    .start-button { width: 42px; padding: 0 4px; }
-    .taskbar-pins .taskbar-item:nth-child(n+4) { display: none; }
-    .taskbar-item { min-width: 40px; width: 40px; padding-inline: 8px; }
-    .taskbar-item span { display: none; }
-    .taskbar-clock { min-width: 70px; padding-inline: 8px; }
-    .start-menu { width: calc(100vw - 12px); left: 6px; max-height: calc(100svh - 58px); overflow: auto; }
-    .start-menu__body { grid-template-columns: minmax(0, 1.2fr) minmax(132px, .8fr); }
-    .start-menu__links a, .start-menu__places a { min-height: 44px; }
-    .document-link { grid-template-columns: auto 1fr; }
-    .document-link time { grid-column: 2; }
-    .contact-reveal-page { align-content: start; }
-    .contact-reveal { grid-template-columns: 1fr; }
-    .explorer { overflow: visible; }
-    .explorer__toolbar { justify-content: space-between; }
-    .project-list { min-width: 0; }
+
+    .welcome-sheet { padding: 26px 18px 22px; }
+    .welcome-profile img { width: 112px; }
+    .welcome-profile h1 { margin-top: 10px; font-size: 2.15rem; }
+    .welcome-intro { margin-top: 16px; }
+    .welcome-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+    .welcome-actions .aero-button { min-height: 48px; padding-inline: 10px; }
+    .welcome-facts { margin-top: 18px; }
+    .welcome-socials { flex-wrap: wrap; gap: 2px; margin-top: 12px; }
+    .welcome-socials a { justify-content: center; min-width: 44px; min-height: 44px; }
+
+    /* Explorer rows become tappable project cards. */
+    .explorer { overflow: visible; border-radius: var(--aero-r-sm); }
+    .explorer__toolbar span + span { display: none; }
+    .project-list, .project-list tbody { display: block; min-width: 0; }
     .project-list thead { display: none; }
-    .project-list tbody { display: grid; }
-    .project-list tr { display: grid; grid-template-columns: 1fr; padding: 14px; border-bottom: 1px solid #c8d7e0; }
+    .project-list tr { display: grid; grid-template-columns: minmax(0, 1fr); padding: 14px 38px 16px 16px; border-bottom: 1px solid #dfe8ee; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath d='M1 1l6 6-6 6' fill='none' stroke='%235c6f80' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 15px center / 8px 14px no-repeat; }
     .project-list tr:last-child { border-bottom: 0; }
-    .project-list td { display: grid; grid-template-columns: 78px 1fr; gap: 8px; padding: 4px 0; border: 0; }
-    .project-list td::before { color: var(--aero-haze); content: attr(data-label); font-size: .72rem; font-weight: 600; }
-    .project-list .project-name { align-items: start; }
+    .project-list td { display: block; padding: 0; border: 0; font-size: .9rem; }
+    .project-list td[data-label="Name"] { grid-row: 2; font-size: 1.05rem; }
     .project-list .project-name img { display: none; }
-    .project-list .project-summary { max-width: none; }
+    .project-list td[data-label="Category"] { grid-row: 1; margin-bottom: 3px; color: var(--aero-water-ink); font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .project-list td[data-label="Role"] { grid-row: 3; margin-top: 2px; color: var(--aero-haze); font-size: .82rem; }
+    .project-list .project-summary { grid-row: 4; max-width: none; margin-top: 8px; color: var(--aero-ink-soft); line-height: 1.5; }
+
+    /* A project's property sheet leads, so role, dates, and tools come first. */
+    .project-layout { display: flex; flex-direction: column; gap: 0; }
+    .property-list { order: -1; margin: var(--aero-s-5) 0 var(--aero-s-2); }
+    .property-list div { grid-template-columns: 80px 1fr; padding: 9px 12px; }
+    .project-media { margin-inline: -8px; border-radius: var(--aero-r-sm); }
+
+    .testimonial { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: 'quote quote' 'avatar cite'; align-items: center; gap: 14px 12px; }
+    .testimonial > div:not(.testimonial-avatar) { display: contents; }
+    .testimonial blockquote { grid-area: quote; }
+    .testimonial-avatar { grid-area: avatar; width: 44px; height: 44px; border-width: 2px; font-size: .78rem; }
+    .testimonial cite { grid-area: cite; margin: 0; line-height: 1.45; }
+
+    .document-link { grid-template-columns: 36px 1fr; gap: 6px 12px; padding: 14px; }
+    .document-link time { grid-column: 2; }
+    .article-end a { display: inline-flex; align-items: center; min-height: 44px; }
+
+    .contact-reveal-page { align-content: start; }
+    .contact-reveal { grid-template-columns: 1fr; gap: 10px; margin-top: var(--aero-s-6); padding: 22px 18px; }
+    .contact-reveal > img { width: 52px; height: 52px; }
+    .email-challenge { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 10px; }
+    .email-challenge label { grid-column: 1 / -1; font-weight: 600; }
+    .email-challenge input { width: 100%; }
+    .email-challenge .aero-button { min-width: 108px; }
+    .email-error { grid-column: 1 / -1; }
+    .email-output .aero-button { flex: 1 1 auto; }
+
+    /* The photo viewer steps sit under the photo, within thumb reach. */
+    .lightbox { padding: max(72px, calc(env(safe-area-inset-top, 0px) + 68px)) 12px calc(max(16px, var(--safe-bottom)) + 70px); }
+    .lightbox__stage img { max-width: 100%; max-height: calc(100svh - 250px); border-width: 3px; }
+    .lightbox__step { top: auto; bottom: max(16px, var(--safe-bottom)); transform: none; }
+    .lightbox__step--prev { left: max(16px, var(--safe-left)); }
+    .lightbox__step--next { right: max(16px, var(--safe-right)); }
+
+    .boot-sun { top: 3%; width: 112px; height: 112px; }
+    .boot-skip { font-size: .75rem; }
   }
 
   @media (max-width: 390px) {
-    .page-sheet { padding-inline: 16px; }
-    h1 { font-size: 1.9rem; }
-    .button-row { display: grid; }
-    .aero-button { width: 100%; }
+    .page-sheet { padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
     .welcome-profile img { width: 104px; }
     .welcome-profile h1 { font-size: 2rem; }
-    .welcome-intro { font-size: .94rem; }
-    .welcome-actions { display: grid; }
-    .welcome-socials a span { display: none; }
-    .start-menu__body { grid-template-columns: 1.25fr .75fr; }
-    .start-menu__places a { padding-inline: 5px; }
+    .welcome-intro { font-size: .96rem; }
+    .welcome-socials a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  }
+
+  @media (max-width: 340px) {
+    .start-button { flex-basis: 50px; width: 50px; }
+    .taskbar-item { padding: 0; }
+    .taskbar-item span, .start-label { font-size: .625rem; }
+    .welcome-sheet { padding-inline: 14px; }
+    .welcome-actions .aero-button { gap: 6px; padding-inline: 6px; font-size: .92rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -93,6 +167,8 @@
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     .atmosphere-video { display: none; }
     .boot-overlay { display: none !important; }
+    .start-button:is(:hover, :focus-visible) .start-im::after { animation: none; transform: none; opacity: .2; }
+    .start-button:active .start-im, .aero-button:active { transform: none; }
   }
 
   @media print {

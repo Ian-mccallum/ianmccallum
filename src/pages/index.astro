@@ -23,16 +23,16 @@ const schema = [
       <p class="welcome-location"><span aria-hidden="true">●</span> {profile.location} · {profile.schoolLocation}</p>
     </header>
     <p class="welcome-intro">Welcome to my site! I founded <a href="/portfolio/beat-the-clock" data-window-link>Beat the Clock</a> and <a href="/portfolio/clockwork" data-window-link>built Clockwork</a>. This desktop is also home to my client work, photography, writing, and everything else I like making. Open a few windows and look around.</p>
-    <section class="welcome-facts" aria-label="Quick facts about Ian McCallum">
-      <p><strong>Who is Ian McCallum?</strong> {profile.shortBio}</p>
-      <p><strong>What does Ian build?</strong> AI-assisted workflows, websites for real clients, and visual projects. Explore the <a href="/portfolio" data-window-link>project portfolio</a> or read <a href="/blog" data-window-link>Ian’s writing</a>.</p>
-    </section>
     <nav class="welcome-actions" aria-label="Explore Ian's desktop">
       <a class="aero-button" href="/about" data-window-link><Icon name="about" size={20} />About me</a>
       <a class="aero-button aero-button--secondary" href="/portfolio" data-window-link><Icon name="portfolio" size={20} />Portfolio</a>
       <a class="aero-button aero-button--secondary" href="/contact" data-window-link><Icon name="contact" size={20} />Contact</a>
       <a class="aero-button aero-button--secondary" href="/cv#cv-skills" data-window-link><Icon name="cv" size={20} />Skills</a>
     </nav>
+    <section class="welcome-facts" aria-label="Quick facts about Ian McCallum">
+      <p><strong>Who is Ian McCallum?</strong> {profile.shortBio}</p>
+      <p><strong>What does Ian build?</strong> AI-assisted workflows, websites for real clients, and visual projects. Explore the <a href="/portfolio" data-window-link>project portfolio</a> or read <a href="/blog" data-window-link>Ian’s writing</a>.</p>
+    </section>
     <nav class="welcome-socials" aria-label="Social profiles">
       {socialLinks.map((link) => <a href={link.href} target="_blank" rel="me noopener"><SocialIcon name={link.label} size={18} /><span>{link.label}</span></a>)}
     </nav>

@@ -38,7 +38,7 @@ const {
     <BaseHead title={title} description={description} type={type} image={image} publishedAt={publishedAt} noindex={noindex} />
     {schema && <StructuredData data={schema} />}
   </head>
-  <body>
+  <body data-home={root ? '' : undefined}>
     <!-- AERO-MIGRATION-CONTRACT
     THESIS: Every canonical URL reconstructs one useful Aero window; desktop visitors may then open additional real-route windows without hidden page copies.
     OWN-WORLD: 2009 Aero atmosphere, water-blue chrome, warm-white reading beds, tight titlebars, locally controlled period icons, and violet gloss actions.

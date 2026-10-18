@@ -1,14 +1,16 @@
 <div class="atmosphere" aria-hidden="true">
   <div class="atmosphere-poster"></div>
-  <video class="atmosphere-video" muted loop playsinline poster="/media/aero-bg-poster.jpg" data-src="/media/aero-bg.mp4"></video>
+  <video class="atmosphere-video" muted loop playsinline data-src="/media/aero-bg.mp4"></video>
   <div class="atmosphere-light"></div>
 </div>
 
 <script>
+  import { isCompact } from '../../scripts/viewport';
+
   const video = document.querySelector<HTMLVideoElement>('.atmosphere-video');
   if (video) {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const mobile = matchMedia('(max-width: 760px)').matches;
+    const mobile = isCompact();
     const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
     const allowVideo = !reduced && !mobile && !saveData;
     if (allowVideo && video.dataset.src) {

@@ -62,9 +62,14 @@ content and components. Directly entered content routes start maximized; `/` sta
 with a centered, restored Welcome window. Desktop visitors can open several route
 windows, move restored windows by their titlebars, focus and stack them, minimize
 or restore them through the taskbar, maximize them, and close secondary windows.
-The two-column Start menu and taskbar retain real route and social anchors. At
-narrow widths the current route becomes the screen surface, desktop shortcuts and
-secondary windows disappear, and the fixed taskbar remains an orientation surface.
+The two-column Start menu and taskbar retain real route and social anchors. On
+compact screens the current route becomes the screen surface, desktop shortcuts
+and secondary windows disappear, and the fixed taskbar becomes a labeled tab bar
+with Start as a bottom sheet. Compact is defined once as `COMPACT_QUERY` in
+`src/scripts/viewport.ts` (≤760px wide, or a coarse pointer under 520px tall).
+The CSS twins in `utilities.css`, `cv.css`, and `base.css` must stay in step with
+it. Compact rules clear any inline geometry left over from desktop dragging, so a
+window resized down to phone width always lands in the compact layout.
 
 Only the root route shows the session-scoped welcome sequence. Its original Aero
 language returns through the luminous horizon, light fields, glass orb, bubbles,
@@ -112,7 +117,10 @@ to the generated sitemap index.
 - `astro check`: source and template diagnostics.
 - `scripts/validate-assets.mjs`: every generated local HTML/CSS/XML reference.
 - Node tests: CommonJS API contracts and generated-route invariants.
-- Playwright: five responsive widths, multi-window open/drag/focus/control flows,
+- Playwright: five responsive widths, a 360px phone pass (tab bar labels and
+  targets, Start sheet scrim and scroll hold, current-tab return to top, nested
+  section highlight, photo viewer stacking and stepping, axe on every route),
+  landscape phone layout, multi-window open/drag/focus/control flows,
   direct routes, welcome timing and skip behavior, Start menu, protected email,
   gallery focus, 404, console/network
   cleanliness, and axe serious/critical scans.
