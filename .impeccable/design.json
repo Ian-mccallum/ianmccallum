@@ -97,7 +97,7 @@
     "donts": [
       "Don't introduce a client router, hidden full-page copies, or a second mobile shell.",
       "Don't replace the established world with generic modern glassmorphism.",
-      "Don't add icon libraries, emoji, autoplaying project media, or remote font/CDN dependencies.",
+      "Don't add icon libraries, emoji, project media with audio or without a pause control, or remote font/CDN dependencies.",
       "Don't place long-form type directly over moving or translucent imagery."
     ]
   }

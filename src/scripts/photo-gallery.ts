@@ -1,13 +1,16 @@
 // Focus-managed photo viewer: buttons, arrow keys, and (on touch) a swipe that
-// follows the finger. The thumbnails' own srcset supplies the large image.
+// follows the finger. The thumbnails' own srcset supplies the large image: the
+// smallest candidate that fills the viewer at the screen's pixel density.
 const SWIPE_DISTANCE = 56;
+const VIEWER_MAX_WIDTH = 1100;
 
-const largestSource = (image: HTMLImageElement) => {
+const viewerSource = (image: HTMLImageElement) => {
   const candidates = (image.getAttribute('srcset') ?? '').split(',').map((entry) => {
     const [url, size = '0w'] = entry.trim().split(/\s+/);
     return { url, width: Number.parseInt(size, 10) || 0 };
-  }).filter((candidate) => candidate.url);
-  return candidates.sort((a, b) => b.width - a.width)[0]?.url ?? image.currentSrc ?? image.src;
+  }).filter((candidate) => candidate.url).sort((a, b) => a.width - b.width);
+  const needed = Math.min(window.innerWidth, VIEWER_MAX_WIDTH) * (window.devicePixelRatio || 1);
+  return (candidates.find((candidate) => candidate.width >= needed) ?? candidates.at(-1))?.url ?? image.currentSrc ?? image.src;
 };
 
 export function initPhotoGalleries(root: ParentNode = document) {
@@ -36,7 +39,7 @@ export function initPhotoGalleries(root: ParentNode = document) {
       current = Math.max(0, Math.min(items.length - 1, index));
       const thumb = items[current].querySelector<HTMLImageElement>('img');
       if (!thumb) return;
-      image.src = largestSource(thumb);
+      image.src = viewerSource(thumb);
       image.alt = thumb.alt;
       if (caption) caption.textContent = thumb.alt;
       if (count) count.textContent = `${current + 1} of ${items.length}`;

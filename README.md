@@ -83,8 +83,9 @@ See [Architecture](docs/ARCHITECTURE.md), [Deployment](docs/DEPLOYMENT.md), and
 Create `src/content/projects/<slug>.md` and satisfy the schema in
 `src/content.config.ts`. The collection automatically publishes the Explorer row
 and `/portfolio/<slug>` case-study route. Optional demos belong in
-`public/media/projects/` as H.264 MP4 with a WebP poster; media stays
-`preload="none"` and must never autoplay.
+`public/media/projects/` as H.264 4:2:0 MP4 with faststart, plus a WebP poster
+that is the video's own first frame at native width. Demos load when they come on
+screen and play muted and looping, with a pause toggle. Keep them silent.
 
 ### Add a blog post
 

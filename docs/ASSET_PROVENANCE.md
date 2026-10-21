@@ -9,11 +9,16 @@ origin when no generative prompt exists.
 - Gallery, profile, testimonial, social, and favicon images are pre-existing Ian
   Innovates repository assets selected or renamed during the migration.
 - The Aero background poster is a frame derived from the pre-existing background
-  video.
-- Project posters are frames derived from their matching pre-existing demo videos.
-- The selected 64px PNG icons are direct conversions of the same-named legacy ICO
-  files, not newly generated art.
-- Project MP4 files are H.264 transcodes of the pre-existing MOV demonstrations.
+  video. The background MP4 is an H.264 4:2:0 re-encode of the original, which
+  used a 4:4:4 profile that Safari cannot decode.
+- Project posters are the first frames of their matching demo videos, at native
+  width, so playback starts without a visible jump.
+- Icons are direct conversions of the 256px frame in the same-named legacy ICO
+  files, not newly generated art, served at 64px (PNG) and 128px and 256px (WebP).
+  The Contact icon uses `thunderbird2.ico`, because the earlier `thunderbird1.ico`
+  art exists only up to 48px.
+- Project MP4 files are H.264 transcodes of the pre-existing MOV demonstrations,
+  re-encoded once more for size where the result kept SSIM at or above 0.99.
 
 The original legacy files remain recoverable from the immutable pre-migration
 branch and tag documented in [Deployment](DEPLOYMENT.md); unused originals are not

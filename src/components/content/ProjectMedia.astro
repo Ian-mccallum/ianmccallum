@@ -3,9 +3,10 @@ interface Props { src: string; poster: string; title: string }
 const { src, poster, title } = Astro.props;
 ---
 
-<figure class="project-media">
-  <video controls muted playsinline preload="none" poster={poster} aria-label={`${title} project demonstration`}>
+<figure class="project-media" data-project-video>
+  <video controls muted loop playsinline disablepictureinpicture preload="none" poster={poster} aria-label={`${title} project demonstration`}>
     <source src={src} type="video/mp4" />
     Your browser does not support embedded video. <a href={src}>Open the project video</a>.
   </video>
+  <button class="project-media__toggle" type="button" data-video-toggle aria-label="Pause demo video" hidden><span aria-hidden="true"></span></button>
 </figure>

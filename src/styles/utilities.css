@@ -30,7 +30,7 @@
     .desktop-workspace { height: auto; min-height: 100svh; overflow: visible; padding: 0 0 calc(var(--taskbar-h) + var(--safe-bottom)); }
 
     /* Inline geometry from desktop dragging must never leak into the compact layout. */
-    .window-frame, .window-frame.is-restored, .window-frame.is-floating { position: relative; inset: auto !important; z-index: auto !important; display: block; width: 100% !important; height: auto !important; min-height: calc(100svh - var(--taskbar-h) - var(--safe-bottom)); margin: 0 !important; overflow: visible; border: 0; background: transparent; box-shadow: none; backdrop-filter: none; filter: none; animation: none; }
+    .window-frame, .window-frame.is-restored, .window-frame.is-floating { position: relative; inset: auto !important; z-index: auto !important; display: block; width: 100% !important; height: auto !important; min-height: calc(100svh - var(--taskbar-h) - var(--safe-bottom)); margin: 0 !important; overflow: visible; border: 0; background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; filter: none; animation: none; }
     .window-frame[data-window-primary].is-minimized { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
     .window-frame.is-dynamic-window { display: none; }
     .window-titlebar { min-height: 48px; padding: env(safe-area-inset-top, 0px) var(--safe-right) 0 max(14px, var(--safe-left)); cursor: default; touch-action: auto; }
@@ -42,7 +42,7 @@
     .window-statusbar { display: none; }
 
     /* Home: the Welcome window floats on the wallpaper, as it does on the desktop. */
-    [data-home] .window-frame.is-restored { width: auto !important; min-height: 0; margin: max(14px, env(safe-area-inset-top, 0px)) max(10px, var(--safe-right)) 18px max(10px, var(--safe-left)) !important; overflow: hidden; border-top: 1px solid var(--aero-specular); border-left: 1px solid rgba(255,255,255,.6); border-right: 1px solid rgba(10,44,77,.36); border-bottom: 1px solid rgba(10,44,77,.4); border-radius: 8px 8px 5px 5px; background: rgba(226,241,249,.4); backdrop-filter: blur(16px) saturate(1.3); box-shadow: 0 16px 44px rgba(3,25,43,.34), inset 0 1px rgba(255,255,255,.85); }
+    [data-home] .window-frame.is-restored { width: auto !important; min-height: 0; margin: max(14px, env(safe-area-inset-top, 0px)) max(10px, var(--safe-right)) 18px max(10px, var(--safe-left)) !important; overflow: hidden; border-top: 1px solid var(--aero-specular); border-left: 1px solid rgba(255,255,255,.6); border-right: 1px solid rgba(10,44,77,.36); border-bottom: 1px solid rgba(10,44,77,.4); border-radius: 8px 8px 5px 5px; background: rgba(226,241,249,.62); box-shadow: 0 16px 44px rgba(3,25,43,.34), inset 0 1px rgba(255,255,255,.85); }
     [data-home] .window-frame.is-restored .window-titlebar { padding-top: 0; }
     [data-home] .window-frame.is-restored .window-frame__body { min-height: 0; margin: 0 4px 4px; border: 1px solid rgba(7,50,83,.22); border-radius: 0 0 3px 3px; }
 
@@ -114,6 +114,7 @@
     .property-list { order: -1; margin: var(--aero-s-5) 0 var(--aero-s-2); }
     .property-list div { grid-template-columns: 80px 1fr; padding: 9px 12px; }
     .project-media { margin-inline: -8px; border-radius: var(--aero-r-sm); }
+    .project-media + .project-layout .property-list { margin-top: 0; }
 
     .testimonial { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: 'quote quote' 'avatar cite'; align-items: center; gap: 14px 12px; }
     .testimonial > div:not(.testimonial-avatar) { display: contents; }

@@ -70,7 +70,7 @@ Recorded before removal of the legacy HTML/CSS/JavaScript build at commit
 - Keep the approximately 400 KB `aero-bg.mp4` and its poster as the one ambient
   background request. Do not publish the 8.6 MB legacy GIF or `src/assets/archive/`.
 - Convert project `.mov` demonstrations to broadly supported MP4 with poster
-  frames; project media is opt-in, `preload="none"`, and never all-autoplaying.
+  frames; demos load only when on screen, play muted and looping, and always offer a pause control.
 - Publish only images used by a route. Astro supplies dimensions and optimized
   responsive outputs for gallery photographs.
 - The Segoe UI Semilight file and Microsoft/Vista-style icon archive have unclear

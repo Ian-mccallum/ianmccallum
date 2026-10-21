@@ -45,8 +45,9 @@ JavaScript-off route navigation remain part of the product contract.
    outreach and applications.
 4. Make repeated content changes schema-driven and resilient to layout growth.
 5. Keep the Aero identity sincere, functional, accessible, and responsive.
-6. Prefer local, optimized, provenance-recorded media and no autoplaying project
-   demos.
+6. Prefer local, optimized, provenance-recorded media. Project demos play muted
+   and looping while on screen, always with a pause control, and hold still for
+   reduced motion.
 
 ## Evidence constraints
 

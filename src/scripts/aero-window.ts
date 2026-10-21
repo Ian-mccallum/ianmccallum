@@ -1,6 +1,7 @@
 import { initCvViewers } from './cv-mode';
 import { initEmailShields } from './email-shield';
 import { initPhotoGalleries } from './photo-gallery';
+import { initProjectVideos } from './project-video';
 import { isCompact } from './viewport';
 
 // Progressive desktop window manager: the static route remains canonical, while
@@ -62,6 +63,7 @@ function initAero() {
       const icon = sourceIcon.cloneNode(true) as HTMLImageElement;
       icon.width = 22;
       icon.height = 22;
+      icon.sizes = '22px';
       item.append(icon);
     }
     const label = document.createElement('span');
@@ -126,8 +128,12 @@ function initAero() {
     setActive(frame);
   };
 
+  // Media inside a window (project demos) pauses and resumes with it.
+  const windowStateChanged = (frame: HTMLElement) => frame.dispatchEvent(new CustomEvent('aero:window-state'));
+
   const minimizeFrame = (frame: HTMLElement) => {
     frame.classList.add('is-minimized');
+    windowStateChanged(frame);
     frame.classList.remove('is-active');
     ensureTaskbarItem(frame);
     updateTaskbar();
@@ -138,6 +144,7 @@ function initAero() {
 
   const restoreFrame = (frame: HTMLElement) => {
     frame.classList.remove('is-minimized');
+    windowStateChanged(frame);
     setActive(frame);
     updateTaskbar();
     announce(`${frameTitle(frame)} restored.`);
@@ -164,6 +171,7 @@ function initAero() {
     initEmailShields(frame);
     initPhotoGalleries(frame);
     initCvViewers(frame);
+    initProjectVideos(frame);
   };
 
   const openRouteWindow = async (href: string) => {
@@ -375,6 +383,7 @@ function initAero() {
   initEmailShields(document);
   initPhotoGalleries(document);
   initCvViewers(document);
+  initProjectVideos(document);
   if (primary) {
     syncMaximizeLabel(primary);
     ensureTaskbarItem(primary);

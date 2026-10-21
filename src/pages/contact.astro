@@ -1,6 +1,7 @@
 ---
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
 import EmailShield from '../components/content/EmailShield.astro';
+import Icon from '../components/aero/Icon.astro';
 import { personReference } from '../data/identity';
 const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Ian McCallum', url: 'https://www.ianmccallum.com/contact', mainEntity: personReference };
 ---
@@ -10,7 +11,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name:
     <h1>Email Ian</h1>
     <p class="page-intro">A quick check keeps the address away from crawlers. Reveal it, then use whichever mail app you prefer.</p>
     <section class="contact-reveal" aria-labelledby="protected-email-heading">
-      <img src="/icons/thunderbird1.png" width="64" height="64" alt="" />
+      <Icon name="contact" size={64} />
       <div>
         <h2 id="protected-email-heading">Protected email</h2>
         <p>I read every message and reply personally.</p>

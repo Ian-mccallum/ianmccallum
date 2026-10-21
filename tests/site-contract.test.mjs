@@ -120,12 +120,24 @@ test('draft blog entries stay out of every generated surface', () => {
   assert.doesNotMatch(readFileSync('dist/sitemap-0.xml', 'utf8'), new RegExp(slug));
 });
 
-test('project media is opt-in and broadly supported', () => {
+test('project demos loop inline, muted, with a no-JavaScript fallback', () => {
   const html = readFileSync('dist/portfolio/imanol-villagomez/index.html', 'utf8');
-  assert.match(html, /preload="none"/);
+  const video = html.match(/data-project-video[^]*?(<video[^>]*>)/)?.[1] ?? '';
+  for (const attribute of ['controls', 'muted', 'loop', 'playsinline', 'preload="none"', 'poster="/media/projects/imanol.webp"']) assert.ok(video.includes(attribute), `video lacks ${attribute}`);
+  // Script starts playback, so reduced motion and data saving are honored before any frame moves.
+  assert.doesNotMatch(video, /\bautoplay\b/);
+  assert.match(html, /data-project-video/);
+  assert.match(html, /data-video-toggle/);
   assert.match(html, /type="video\/mp4"/);
-  assert.doesNotMatch(html, /\bautoplay\b/);
   assert.doesNotMatch(html, /\.mov/);
+});
+
+test('icons ship a 3x source so iPhone never upscales them', () => {
+  const html = readFileSync('dist/contact/index.html', 'utf8');
+  assert.match(html, /srcset="\/icons\/thunderbird2\.png 64w, \/icons\/thunderbird2-128\.webp 128w, \/icons\/thunderbird2-256\.webp 256w" sizes="64px"/);
+  for (const name of ['explorer', 'thunderbird2', 'vista_book_3', 'vista_get_started', 'vista_info', 'vista_personalization', 'vista_photo_gallery', 'vista_sticky_notes', 'vista_warning']) {
+    for (const file of [`${name}.png`, `${name}-128.webp`, `${name}-256.webp`, `${name}-128.webp.json`, `${name}-256.webp.json`]) assert.ok(existsSync(`public/icons/${file}`), `${file} missing`);
+  }
 });
 
 test('Vercel redirects preserve the legacy article URL', () => {

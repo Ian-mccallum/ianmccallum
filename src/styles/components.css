@@ -6,7 +6,7 @@
   .desktop-icon:hover, .desktop-icon:focus-visible { color: white; background: rgba(116, 204, 255, .24); border-color: rgba(255,255,255,.55); }
   .desktop-icon__image { filter: drop-shadow(0 4px 4px rgba(0,31,57,.32)); }
 
-  .window-titlebar { display: flex; align-items: center; justify-content: space-between; min-width: 0; padding-left: 9px; color: #fff; background: linear-gradient(180deg, rgba(122,195,238,.94) 0%, rgba(0,120,215,.9) 48%, rgba(0,78,140,.96) 52%, rgba(0,92,164,.96) 100%); text-shadow: 0 1px 2px rgba(4,20,36,.6); box-shadow: inset 0 1px rgba(255,255,255,.8), inset 0 -1px rgba(0,35,66,.45); cursor: grab; user-select: none; touch-action: none; }
+  .window-titlebar { display: flex; align-items: center; justify-content: space-between; min-width: 0; padding-left: 9px; color: #fff; background: linear-gradient(180deg, rgba(122,195,238,.94) 0%, rgba(0,120,215,.9) 48%, rgba(0,78,140,.96) 52%, rgba(0,92,164,.96) 100%); text-shadow: 0 1px 2px rgba(4,20,36,.6); box-shadow: inset 0 1px rgba(255,255,255,.8), inset 0 -1px rgba(0,35,66,.45); cursor: grab; -webkit-user-select: none; user-select: none; touch-action: none; }
   .window-frame.is-dragging .window-titlebar { cursor: grabbing; }
   .window-titlebar__title { display: flex; align-items: center; gap: 7px; min-width: 0; font-size: .84rem; font-weight: 600; }
   .window-titlebar__title span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
@@ -24,7 +24,7 @@
   .window-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 0 7px; color: #244761; background: linear-gradient(#f5fbfe, #cde5f3); border-top: 1px solid rgba(255,255,255,.9); font-size: .7rem; }
   .window-statusbar__grip { width: 14px; height: 14px; opacity: .35; background: linear-gradient(135deg, transparent 45%, #35506b 46%, #35506b 51%, transparent 52%, transparent 64%, #35506b 65%, #35506b 70%, transparent 71%); }
 
-  .taskbar { position: fixed; z-index: 100; inset: auto 0 0; display: flex; align-items: center; height: var(--taskbar-h); padding: 0 8px; color: white; background: linear-gradient(180deg, rgba(102,192,241,.84), rgba(0,111,192,.95) 47%, rgba(0,61,116,.98) 51%, rgba(0,78,143,.98)); border-top: 1px solid rgba(255,255,255,.9); box-shadow: 0 -2px 12px rgba(0,33,60,.42), inset 0 1px rgba(255,255,255,.42); backdrop-filter: blur(18px) saturate(1.45); }
+  .taskbar { position: fixed; z-index: 100; inset: auto 0 0; display: flex; align-items: center; height: var(--taskbar-h); padding: 0 8px; color: white; background: linear-gradient(180deg, rgba(102,192,241,.84), rgba(0,111,192,.95) 47%, rgba(0,61,116,.98) 51%, rgba(0,78,143,.98)); border-top: 1px solid rgba(255,255,255,.9); box-shadow: 0 -2px 12px rgba(0,33,60,.42), inset 0 1px rgba(255,255,255,.42); -webkit-backdrop-filter: blur(18px) saturate(1.45); backdrop-filter: blur(18px) saturate(1.45); }
   .start-button { display: inline-flex; align-items: center; gap: 7px; min-width: 44px; height: 44px; padding: 0 14px 0 4px; color: white; border: 0; border-radius: 12px 4px 4px 12px; background: linear-gradient(#4d93c4,#174d75); box-shadow: inset 0 1px rgba(255,255,255,.56), 0 1px 3px rgba(0,20,36,.55); cursor: pointer; }
   .start-im { position: relative; display: block; flex: 0 0 36px; width: 36px; height: 36px; overflow: hidden; border-radius: 9px; }
   .start-im img { display: block; width: 100%; height: 100%; }
@@ -49,7 +49,7 @@
   .taskbar-clock { display: grid; justify-items: end; min-width: 84px; padding: 3px 8px; font-size: .72rem; line-height: 1.25; text-shadow: 0 1px 2px #00355d; }
   .taskbar-clock span { font-size: .62rem; color: #d8f1ff; }
 
-  .start-menu { position: fixed; z-index: 110; bottom: calc(var(--taskbar-h) - 1px); left: 8px; width: min(418px, calc(100vw - 16px)); padding: 7px; color: white; border: 1px solid rgba(255,255,255,.76); border-radius: 9px 9px 0 0; background: linear-gradient(135deg, rgba(21,91,140,.98), rgba(2,38,67,.99)); box-shadow: 0 18px 50px rgba(0,22,40,.58), inset 0 1px rgba(255,255,255,.5); opacity: 0; transform: translateY(18px) scale(.98); transform-origin: 28px 100%; backdrop-filter: blur(22px) saturate(1.3); }
+  .start-menu { position: fixed; z-index: 110; bottom: calc(var(--taskbar-h) - 1px); left: 8px; width: min(418px, calc(100vw - 16px)); padding: 7px; color: white; border: 1px solid rgba(255,255,255,.76); border-radius: 9px 9px 0 0; background: linear-gradient(135deg, rgba(21,91,140,.98), rgba(2,38,67,.99)); box-shadow: 0 18px 50px rgba(0,22,40,.58), inset 0 1px rgba(255,255,255,.5); opacity: 0; transform: translateY(18px) scale(.98); transform-origin: 28px 100%; -webkit-backdrop-filter: blur(22px) saturate(1.3); backdrop-filter: blur(22px) saturate(1.3); }
   .start-scrim { display: none; }
   .start-menu.is-open { opacity: 1; transform: none; transition: transform 180ms cubic-bezier(.16,1,.3,1), opacity 120ms ease-out; }
   .start-menu__identity { display: flex; align-items: center; gap: 12px; padding: 9px 11px 11px; background: linear-gradient(100deg, rgba(4,65,113,.72), transparent); }
@@ -135,7 +135,14 @@
   .property-list dt { color: var(--aero-haze); font-size: .76rem; }
   .property-list dd { color: var(--aero-ink-soft); font-size: .84rem; }
   .project-media { margin-block: var(--aero-s-5); overflow: hidden; border-radius: var(--aero-r-md); background: #d9e9f2; box-shadow: 0 6px 16px rgba(10,44,77,.14), inset 0 1px rgba(255,255,255,.8); }
+  .project-media { position: relative; }
   .project-media video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #08223a; }
+  .project-media[data-video-enhanced] video { cursor: pointer; }
+  .project-media__toggle { position: absolute; right: 10px; bottom: 10px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; color: #fff; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; background: radial-gradient(circle at 50% 20%, rgba(255,255,255,.34), transparent 60%), rgba(4,32,58,.62); -webkit-backdrop-filter: blur(8px) saturate(1.3); backdrop-filter: blur(8px) saturate(1.3); box-shadow: 0 3px 10px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.4); cursor: pointer; opacity: .9; transition: opacity 160ms ease-out; }
+  .project-media__toggle span { width: 0; height: 0; margin-left: 3px; border-block: 7px solid transparent; border-left: 11px solid currentColor; }
+  .project-media.is-playing .project-media__toggle span { width: 11px; height: 13px; margin: 0; border: 0; border-inline: 4px solid currentColor; }
+  .project-media.is-playing .project-media__toggle { opacity: .72; }
+  .project-media__toggle:active { filter: brightness(.86); }
   .decision-list { padding-left: 1.2rem; } .decision-list li + li { margin-top: 8px; }
 
   .document-list { margin-top: var(--aero-s-5); padding: 0; list-style: none; border: 1px solid rgba(10,44,77,.2); background: #fff; }
@@ -170,9 +177,9 @@
   .gallery button { display: block; width: 100%; padding: 0; overflow: hidden; border: 0; border-radius: var(--aero-r-md); background: #d5e8f3; box-shadow: 0 6px 16px rgba(10,44,77,.14), inset 0 1px white; cursor: zoom-in; }
   .gallery img { width: 100%; height: 320px; object-fit: cover; transition: transform 220ms ease-out; }
 
-  .lightbox { position: fixed; z-index: 300; inset: 0; display: grid; place-items: center; padding: max(72px, calc(env(safe-area-inset-top) + 64px)) 84px max(28px, env(safe-area-inset-bottom)); overscroll-behavior: contain; background: rgba(2,25,43,.92); backdrop-filter: blur(12px); animation: lightbox-in 180ms ease-out; }
+  .lightbox { position: fixed; z-index: 300; inset: 0; display: grid; place-items: center; padding: max(72px, calc(env(safe-area-inset-top) + 64px)) 84px max(28px, env(safe-area-inset-bottom)); overscroll-behavior: contain; background: rgba(2,25,43,.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); animation: lightbox-in 180ms ease-out; }
   .lightbox__stage { display: grid; justify-items: center; gap: 14px; min-width: 0; max-width: 100%; margin: 0; touch-action: pan-y pinch-zoom; }
-  .lightbox__stage img { width: auto; max-width: min(100%, 1100px); height: auto; max-height: calc(100svh - 200px); object-fit: contain; border: 5px solid #fff; box-shadow: 0 24px 70px rgba(0,0,0,.55); transition: transform 240ms cubic-bezier(.16,1,.3,1); user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
+  .lightbox__stage img { width: auto; max-width: min(100%, 1100px); height: auto; max-height: calc(100svh - 200px); object-fit: contain; border: 5px solid #fff; box-shadow: 0 24px 70px rgba(0,0,0,.55); transition: transform 240ms cubic-bezier(.16,1,.3,1); -webkit-user-select: none; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
   .lightbox__caption { display: grid; gap: 4px; max-width: 62ch; color: #e6f4ff; font-size: .9rem; line-height: 1.45; text-align: center; text-wrap: balance; }
   .lightbox__count { color: #a9d2ef; font-size: .74rem; font-variant-numeric: tabular-nums; letter-spacing: .05em; text-transform: uppercase; }
   .lightbox__close, .lightbox__step { position: fixed; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; color: #fff; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; background: radial-gradient(circle at 50% 22%, rgba(255,255,255,.42), transparent 58%), linear-gradient(#2f7fbd, #0b4d86 52%, #063a68 53%, #0d5793); box-shadow: 0 4px 14px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.55); cursor: pointer; }
@@ -214,6 +221,7 @@
     .gallery button:hover img { transform: scale(1.02); }
     .back-link:hover { color: var(--aero-water-deep); background: var(--aero-water-wash); }
     .lightbox__close:hover, .lightbox__step:not(:disabled):hover { filter: brightness(1.15); }
+    .project-media:hover .project-media__toggle { opacity: 1; }
   }
 
   /* Press feedback follows hover in the cascade so a touch or click always reads as pressed. */
@@ -233,14 +241,14 @@
   .boot-aurora--cyan { background: radial-gradient(ellipse 50% 36% at 22% 63%, rgba(0,255,194,.6), transparent 68%), radial-gradient(ellipse 46% 34% at 80% 26%, rgba(88,194,255,.64), transparent 64%); animation: boot-aurora-a 7s ease-in-out infinite alternate; }
   .boot-aurora--violet { background: radial-gradient(ellipse 46% 35% at 62% 72%, rgba(197,92,255,.52), transparent 68%), radial-gradient(ellipse 36% 30% at 30% 20%, rgba(0,229,255,.44), transparent 64%); animation: boot-aurora-b 8.5s ease-in-out .4s infinite alternate-reverse; }
   .boot-horizon { position: absolute; inset: auto 0 0; height: 30%; background: linear-gradient(to top, rgba(42,172,66,.55), rgba(56,199,83,.2) 38%, rgba(0,103,174,.06) 72%, transparent); box-shadow: inset 0 -70px 100px rgba(0,21,20,.3); animation: boot-horizon-breathe 3.2s ease-in-out infinite alternate; }
-  .boot-horizon::after { position: absolute; content: ''; inset: auto 0 0; height: 54%; opacity: .5; background: repeating-linear-gradient(96deg, transparent 0 10px, rgba(98,233,106,.17) 10px 11px); mask-image: linear-gradient(to top, #000, transparent); }
+  .boot-horizon::after { position: absolute; content: ''; inset: auto 0 0; height: 54%; opacity: .5; background: repeating-linear-gradient(96deg, transparent 0 10px, rgba(98,233,106,.17) 10px 11px); -webkit-mask-image: linear-gradient(to top, #000, transparent); mask-image: linear-gradient(to top, #000, transparent); }
   .boot-bubbles, .boot-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
   .boot-bubbles span { position: absolute; bottom: -48px; left: var(--x); width: var(--size); height: var(--size); border: 1px solid rgba(255,255,255,.48); border-radius: 50%; background: radial-gradient(circle at 30% 24%, rgba(255,255,255,.9), transparent 35%), radial-gradient(circle at 55% 70%, rgba(51,220,255,.42), rgba(87,73,196,.18)); box-shadow: inset 0 -3px 8px rgba(0,30,70,.22), 0 5px 18px rgba(66,221,255,.35); animation: boot-bubble-rise 5.4s ease-in var(--delay) infinite; }
   .boot-particles span { position: absolute; left: var(--px); top: var(--py); width: var(--size); height: var(--size); border-radius: 50%; background: rgba(167,249,255,.9); box-shadow: 0 2px 14px rgba(91,231,255,.82); animation: boot-particle-float var(--duration) ease-in-out var(--delay) infinite alternate; }
   .boot-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 76% 66% at 50% 45%, transparent 28%, rgba(0,5,29,.58)); pointer-events: none; }
   .boot-content { position: relative; z-index: 2; display: grid; justify-items: center; width: min(340px, calc(100vw - 40px)); animation: boot-content-in 820ms cubic-bezier(.16,1,.3,1) 120ms both; }
   .boot-orb { position: relative; display: grid; place-items: center; width: 92px; height: 92px; margin-bottom: 18px; }
-  .boot-orb__ring { position: absolute; inset: -13px; border-radius: 50%; background: conic-gradient(from 0deg, #41e9ff, #89ff6d, #ffe66d, #ff86d8, #987dff, #41e9ff); mask: radial-gradient(circle, transparent 57%, #000 59%); animation: boot-ring-spin 4s linear infinite; }
+  .boot-orb__ring { position: absolute; inset: -13px; border-radius: 50%; background: conic-gradient(from 0deg, #41e9ff, #89ff6d, #ffe66d, #ff86d8, #987dff, #41e9ff); -webkit-mask: radial-gradient(circle, transparent 57%, #000 59%); mask: radial-gradient(circle, transparent 57%, #000 59%); animation: boot-ring-spin 4s linear infinite; }
   .boot-orb__halo { position: absolute; inset: -27px; border-radius: 50%; background: radial-gradient(circle, rgba(73,225,255,.42), rgba(180,96,255,.16) 44%, transparent 70%); animation: boot-halo 2.6s ease-in-out infinite; }
   .boot-orb__glass { position: relative; display: grid; place-items: center; width: 100%; height: 100%; color: rgba(255,255,255,.98); border: 1px solid rgba(255,255,255,.65); border-radius: 50%; background: radial-gradient(circle at 34% 27%, rgba(255,255,255,.72), rgba(255,255,255,.1) 24%, transparent 46%), radial-gradient(circle at 50% 82%, rgba(0,172,255,.66), rgba(111,57,193,.5)); box-shadow: 0 12px 38px rgba(0,177,255,.5), 0 3px 80px rgba(182,79,255,.32), inset 0 2px 5px rgba(255,255,255,.72), inset 0 -5px 10px rgba(0,43,118,.45); font-family: var(--aero-font-display); font-size: 1.8rem; font-weight: 300; letter-spacing: -.02em; text-shadow: 0 2px 12px rgba(0,173,255,.9); animation: boot-orb-float 3s ease-in-out infinite; }
   .boot-name { color: white; font-family: var(--aero-font-display); font-size: clamp(2rem, 7vw, 2.55rem); font-weight: 300; line-height: 1; letter-spacing: .13em; text-shadow: 0 2px 22px rgba(92,225,255,.74); }

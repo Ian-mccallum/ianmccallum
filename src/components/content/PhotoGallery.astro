@@ -6,7 +6,7 @@ import { photos } from '../../data/photos';
 <div class="gallery" data-gallery>
   {photos.map((photo, index) => (
     <button type="button" data-gallery-item={index} aria-label={`Open image ${index + 1}: ${photo.alt}`}>
-      <Image src={photo.src} alt={photo.alt} widths={[360, 640, 960]} sizes="(max-width: 760px) 100vw, 50vw" format="webp" loading={index < 2 ? 'eager' : 'lazy'} />
+      <Image src={photo.src} alt={photo.alt} widths={[360, 640, 960, 1280, 1600]} sizes="(max-width: 760px) 100vw, 50vw" format="webp" loading={index < 2 ? 'eager' : 'lazy'} />
     </button>
   ))}
 </div>

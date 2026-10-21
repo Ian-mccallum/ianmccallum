@@ -168,7 +168,7 @@ remains square enough to read as period chrome rather than modern glassmorphism.
 
 ### Window chrome and navigation
 
-The titlebar is a compact glossy blue band with a local 64px-source icon and native
+The titlebar is a compact glossy blue band with a local 256px-source icon and native
 window-control silhouette. Closing a secondary window removes it; closing a direct
 route returns home; closing the Home Welcome window minimizes it. Minimize and
 restore use the taskbar, and maximize toggles the comfortable reading size without
@@ -204,6 +204,16 @@ pressed state. Controls opt out of double-tap zoom so repeated taps register.
 Nested routes open with Vista Explorer's round Back button, pointing at their
 index.
 
+### Apple screens
+
+Every raster is sharp at the 3× density of an iPhone screen. Icons come from one
+256px master, served as 64px PNG and 128px and 256px WebP, so the browser picks
+the smallest file that fills the device's pixels. Gallery photos reach 1600px,
+and the photo viewer loads the size the screen needs. Glass surfaces carry the
+`-webkit-` prefixes Safari needs before version 18. Video stays in the H.264
+4:2:0 profile that iPhone hardware decodes. The page turns off phone-number
+auto-linking and names itself for the Home Screen.
+
 ### Buttons and fields
 
 Primary buttons use the violet token family, a two-part glossy gradient, white text,
@@ -237,14 +247,23 @@ Gallery items are real buttons with a focus-managed dialog. The viewer sits
 above all chrome. It shows the photo's description and position, steps with
 buttons, arrow keys, or a swipe that follows the finger, and keeps focus inside
 itself. On compact screens the step buttons move beneath the photo, within thumb
-reach. Project video is
-poster-first, user-controlled, H.264 MP4, and never autoplayed.
+reach.
+
+Project demos play on their own: muted, looping, and inline, with no play button
+standing between the visitor and the work. They play only while on screen and
+pause when scrolled away, when the tab is hidden, or when their window is
+minimized. A small glass toggle in the corner pauses them, because moving content
+longer than five seconds must be stoppable. Reduced motion, data saving, and
+iPhone Low Power Mode keep the poster, which is the video's own first frame, and
+the toggle offers Play. Without JavaScript the native controls remain. Demos are
+H.264 4:2:0 MP4 with faststart, encoded as small as they can be without a visible
+quality loss.
 
 ### Motion
 
 Boot exit, hover lift, Start reveal, and window state changes are brief,
-interruptible feedback. Reduced motion collapses transitions and removes ambient
-video. The background also honors data-saving preferences and pauses with the tab.
+interruptible feedback. Reduced motion collapses transitions, removes ambient
+video, and holds project demos on their poster. The background also honors data-saving preferences and pauses with the tab.
 
 ## Do's and Don'ts
 
@@ -261,6 +280,6 @@ video. The background also honors data-saving preferences and pauses with the ta
 - **Don't** introduce a client router, hidden full-page copies, or a second mobile
   shell.
 - **Don't** replace the established world with generic modern glassmorphism.
-- **Don't** add icon libraries, emoji, autoplaying project media, or remote font/CDN
+- **Don't** add icon libraries, emoji, project media with audio or without a pause control, or remote font/CDN
   dependencies.
 - **Don't** place long-form type directly over moving or translucent imagery.

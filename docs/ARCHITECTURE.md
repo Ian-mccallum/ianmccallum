@@ -84,9 +84,15 @@ pauses when the document is hidden. Long-form reading surfaces use an opaque bed
 
 Imported profile and gallery images use Astro's image pipeline for dimensions and
 responsive WebP output. Direct public media is restricted to stable URL assets:
-the downloadable CV, background, social preview, selected 64px local Aero icons,
-and project demos. Project videos are H.264 MP4 with WebP posters,
-`preload="none"`, controls, and no autoplay.
+the downloadable CV, background, social preview, local Aero icons (each a 64px PNG
+plus 128px and 256px WebP from one 256px master, chosen per screen density through
+`srcset`), and project demos. Project videos are H.264 4:2:0 MP4 with faststart and
+first-frame WebP posters. They ship `preload="none"` with native controls for
+JavaScript-off visitors. `src/scripts/project-video.ts` removes the controls and
+plays them muted and looping while on screen. It pauses them offscreen, in hidden
+tabs, and in minimized windows, which signal it with an `aero:window-state` event.
+It leaves them on their poster for reduced motion, data saving, or a refused
+autoplay.
 
 Raster origin or generation intent is embedded in PNG/JPEG metadata or stored in a
 WebP `.json` sidecar. See [Asset provenance](ASSET_PROVENANCE.md).
@@ -120,7 +126,8 @@ to the generated sitemap index.
 - Playwright: five responsive widths, a 360px phone pass (tab bar labels and
   targets, Start sheet scrim and scroll hold, current-tab return to top, nested
   section highlight, photo viewer stacking and stepping, axe on every route),
-  landscape phone layout, multi-window open/drag/focus/control flows,
+  landscape phone layout, project demo autoplay and pause with a reduced-motion
+  poster, icon sharpness on a 3x screen, multi-window open/drag/focus/control flows,
   direct routes, welcome timing and skip behavior, Start menu, protected email,
   gallery focus, 404, console/network
   cleanliness, and axe serious/critical scans.

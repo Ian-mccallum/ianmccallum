@@ -186,6 +186,19 @@ if (corporatePages !== 1) failures.push(`corporate CV printed ${corporatePages} 
 await page.goto(`${baseURL}/cv`, { waitUntil: 'networkidle' });
 if (await page.locator('[data-cv-mode-switch]').getAttribute('aria-checked') !== 'true') failures.push('corporate mode choice did not persist');
 findings.interactions.push('CV corporate mode switch, shareable URL, saved choice, and one-page Letter print');
+
+const demoState = () => page.evaluate(() => {
+  const video = document.querySelector('[data-project-video] video');
+  return { paused: video.paused, controls: video.controls, label: document.querySelector('[data-video-toggle]').getAttribute('aria-label') };
+});
+await page.goto(`${baseURL}/portfolio/imanol-villagomez`, { waitUntil: 'networkidle' });
+await page.waitForFunction(() => !document.querySelector('[data-project-video] video').paused);
+let demo = await demoState();
+if (demo.controls || demo.label !== 'Pause demo video') failures.push(`project demo did not play on its own without controls: ${JSON.stringify(demo)}`);
+await page.click('[data-video-toggle]');
+demo = await demoState();
+if (!demo.paused || demo.label !== 'Play demo video') failures.push(`project demo toggle did not pause: ${JSON.stringify(demo)}`);
+findings.interactions.push('project demo autoplay, no native controls, pause toggle');
 await context.close();
 
 // Compact (phone) contract: a labeled tab bar, a Start sheet, a screen-sized Welcome
@@ -233,6 +246,17 @@ for (const route of routes) {
 }
 await phone.close();
 
+const retina = await browser.newContext({ ...devices['iPhone 13'] });
+await retina.addInitScript(() => sessionStorage.setItem('aero-boot-seen', '1'));
+const retinaPage = await retina.newPage();
+await retinaPage.goto(`${baseURL}/contact`, { waitUntil: 'networkidle' });
+// naturalWidth is normalized by srcset density, so read the chosen file's pixels from its name.
+const softIcons = await retinaPage.evaluate(() => Array.from(document.querySelectorAll('img[srcset*="/icons/"]')).filter((icon) => icon.offsetWidth && icon.currentSrc)
+  .map((icon) => ({ icon, pixels: Number(icon.currentSrc.match(/-(\d+)\.webp$/)?.[1] ?? 64) }))
+  .filter(({ icon, pixels }) => pixels < icon.offsetWidth * devicePixelRatio).map(({ icon, pixels }) => `${icon.currentSrc} ${pixels}px for ${icon.offsetWidth}pt`));
+if (softIcons.length) failures.push(`icons upscaled on a 3x screen: ${softIcons.join(', ')}`);
+await retina.close();
+
 const landscape = await browser.newContext({ ...devices['iPhone 14 Pro Max landscape'], deviceScaleFactor: 1 });
 await landscape.addInitScript(() => sessionStorage.setItem('aero-boot-seen', '1'));
 const landscapePage = await landscape.newPage();
@@ -245,6 +269,11 @@ const reduced = await browser.newContext({ viewport: { width: 390, height: 844 }
 const reducedPage = await reduced.newPage();
 await reducedPage.goto(baseURL, { waitUntil: 'networkidle' });
 if (await reducedPage.locator('[data-boot-overlay]').count()) failures.push('reduced-motion root retained boot overlay');
+await reducedPage.goto(`${baseURL}/portfolio/imanol-villagomez`, { waitUntil: 'networkidle' });
+await reducedPage.waitForTimeout(600);
+if (!(await reducedPage.locator('[data-project-video] video').evaluate((video) => video.paused))) failures.push('project demo moved for a reduced-motion visitor');
+if (await reducedPage.locator('[data-video-toggle]').getAttribute('aria-label') !== 'Play demo video') failures.push('reduced-motion demo did not offer Play');
+await reducedPage.goto(baseURL, { waitUntil: 'networkidle' });
 await reducedPage.screenshot({ path: `${reviewDir}/home-reduced-motion-390.png`, fullPage: true, animations: 'disabled' });
 await reduced.close();
 await browser.close();
