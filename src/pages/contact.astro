@@ -8,8 +8,16 @@ const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name:
 
 <WindowPageLayout title="Contact Ian McCallum | AI, Web & Collaboration" description="Contact Ian McCallum about practical AI systems, web development, projects, or collaboration." windowTitle="Contact — Get in Touch" icon="contact" schema={schema}>
   <div class="page-sheet page-sheet--narrow contact-reveal-page">
-    <h1>Email Ian</h1>
-    <p class="page-intro">A quick check keeps the address away from crawlers. Reveal it, then use whichever mail app you prefer.</p>
+    <h1>Meet or email Ian</h1>
+    <p class="page-intro">Book a Zoom call at a time that suits you, or reveal my email and write from whichever mail app you prefer.</p>
+    <section class="contact-reveal" aria-labelledby="meet-heading">
+      <Icon name="welcome" size={64} />
+      <div>
+        <h2 id="meet-heading">Meet with Ian</h2>
+        <p>Pick an open time and the Zoom link lands in your inbox, with a reminder an hour before.</p>
+        <div class="button-row"><a class="aero-button" href="https://meet.ianmccallum.com">Book a call</a></div>
+      </div>
+    </section>
     <section class="contact-reveal" aria-labelledby="protected-email-heading">
       <Icon name="contact" size={64} />
       <div>

@@ -86,9 +86,10 @@ test('navigation uses real links and no hidden page copies', () => {
   assert.match(html, /class="start-menu__body"/);
 });
 
-test('contact exposes only the protected email reveal', () => {
+test('contact offers booking a call and the protected email reveal, no form', () => {
   const html = readFileSync('dist/contact/index.html', 'utf8');
   assert.doesNotMatch(html, /<form|\/api\/contact|data-contact-form/);
+  assert.match(html, /href="https:\/\/meet\.ianmccallum\.com"/);
   assert.match(html, /data-email-shield/);
   assert.match(html, /Protected email/);
 });
