@@ -1,5 +1,6 @@
 import timmyMiller from '../assets/images/photos/timmy-miller.jpg';
 import nickEvans from '../assets/images/photos/Nick-Evans-1.jpg';
+import imanolVillagomez from '../assets/images/photos/imanol-villagomez.jpg';
 
 export const testimonials = [
   {
@@ -13,5 +14,9 @@ export const testimonials = [
   {
     name: 'Nick Evans', role: 'Founder & CEO', company: 'Fortivus Academy', href: 'https://fortivusrugby.com', image: nickEvans, initials: 'NE',
     quote: 'I have worked with lots of agencies and produced lots of websites over the years, but none of them works as effectively as Ian. Ian took on a base understanding of the project and produced a website that is well above its class. His attention to detail, creativity, knowledge of the way we needed to target users were second to none. Thank you Ian and we would recommend Ian to any and all requiring state of the art websites.',
+  },
+  {
+    name: 'Imanol VillaGomez', role: 'Concert Photographer & Videographer', company: 'imanolvillagomez.com', href: 'https://imanolvillagomez.com', image: imanolVillagomez, initials: 'IV',
+    quote: 'I’m incredibly grateful to Ian for building my website and creating a professional platform to showcase my concert photography. I regularly use it when networking with artists, managers, and media teams, especially when asking for press passes, and it has made a great impression in professional settings. I’ve had multiple people compliment how clean and professional the site looks, which has really helped me present my work more seriously. Ian did an amazing job bringing my vision to life, and I couldn’t be happier with the result.',
   },
 ] as const;

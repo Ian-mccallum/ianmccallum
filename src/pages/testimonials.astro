@@ -8,7 +8,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'CollectionPage', na
 <WindowPageLayout title="Ian McCallum Testimonials | Client Reviews" description="Verified client testimonials for Ian McCallum's custom web development work." windowTitle="Testimonials — What People Say" icon="testimonials" reading schema={schema}>
   <div class="page-sheet page-sheet--narrow">
     <h1>What clients say after the work ships</h1>
-    <p class="page-intro">Three clients describe the working process, attention to detail, and result in their own words.</p>
+    <p class="page-intro">Four clients describe the working process, attention to detail, and result in their own words.</p>
     <div class="testimonial-list">
       {testimonials.map((testimonial) => <figure class="testimonial"><div class="testimonial-avatar">{'image' in testimonial ? <Image src={testimonial.image} alt={testimonial.name} width={72} height={72} densities={[1, 2]} /> : testimonial.initials}</div><div><blockquote>“{testimonial.quote}”</blockquote><cite><strong>{testimonial.name}</strong> · {testimonial.role}<br /><a href={testimonial.href} target="_blank" rel="noopener">{testimonial.company}</a></cite></div></figure>)}
     </div>

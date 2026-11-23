@@ -10,7 +10,7 @@ website: https://imanolvillagomez.com
 media: /media/projects/imanol.mp4
 poster: /media/projects/imanol.webp
 featuredOrder: 3
-evidence: Shipped client website for concert videographer Imanol VillaGomez.
+evidence: Shipped client website with a verified testimonial from Imanol VillaGomez.
 ---
 
 Ian built a custom portfolio website for concert videographer Imanol VillaGomez, whose live-show work includes artists such as Charli XCX, Playboi Carti, and The Hellp.
