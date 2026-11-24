@@ -45,10 +45,13 @@ screenshots and reports live in `.impeccable/review/` and are not committed.
 
 ### Review the welcome sequence
 
-The welcome sequence appears once per browser session on `/`. To inspect it again,
-open Start and choose **Replay welcome**. It can be dismissed through the small
-**Skip welcome** text link or the Escape key; reduced-motion visitors bypass it.
-The browser suite captures its in-progress state at
+The welcome sequence ("First Light") appears once per browser session on `/`. It
+follows real page readiness: at least 1.2 seconds, gone as soon as the page is
+ready, and starting its exit by 3 seconds, when the IM orb flies into the taskbar
+as the Start button. To inspect it again, open Start and choose **Replay welcome**.
+It can be dismissed through the small **Skip welcome** text link, the Escape key,
+or a tap anywhere; reduced-motion and no-JavaScript visitors never see it. The
+browser suite checks its timing, skip, and session memory, and captures it at
 `.impeccable/review/welcome-sequence-1440.png`.
 
 ## Architecture

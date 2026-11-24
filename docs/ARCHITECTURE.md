@@ -71,12 +71,20 @@ The CSS twins in `utilities.css`, `cv.css`, and `base.css` must stay in step wit
 it. Compact rules clear any inline geometry left over from desktop dragging, so a
 window resized down to phone width always lands in the compact layout.
 
-Only the root route shows the session-scoped welcome sequence. Its original Aero
-language returns through the luminous horizon, light fields, glass orb, bubbles,
-status phrases, and live progress. It runs for roughly 4.6 seconds, is skippable,
-and does not delay other routes. The skip affordance is a small text link to
-`#main-content`; Escape triggers the same dismissal. Start → Replay welcome clears
-the session marker and returns to `/`. Reduced-motion visitors bypass the sequence.
+Only the root route shows the session-scoped welcome sequence, "First Light". An
+inline script in the document head adds `is-booting` to `<html>` before first paint
+when the session marker is unset and reduced motion is off; the overlay is
+`display: none` without that class, so no-JS and reduced-motion visitors never see
+it. `aero-window.ts` then gates the exit on real readiness (the parsed document,
+`document.fonts.ready`, the Welcome photo's `decode()`, and window `load`), timed
+from when the orb's animation started painting: it holds at least 1.2 seconds,
+leaves once ready, and starts its exit by 3 seconds. On exit it measures the
+taskbar's `.start-im`, flies the orb there on an arc, morphs it into the green
+Start tile, and removes the overlay after 700 ms. A CSS failsafe hides the overlay
+at 4.5 seconds if the module never runs. It does not delay other routes. The skip
+affordance is a small text link to `#main-content` (it also works before the
+script loads, through `:target`); Escape or a tap anywhere triggers the same
+dismissal. Start → Replay welcome clears the session marker and returns to `/`.
 The background video is loaded only when motion and data preferences allow it and
 pauses when the document is hidden. Long-form reading surfaces use an opaque bed.
 
