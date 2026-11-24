@@ -166,12 +166,27 @@ function initAero() {
     announce(`${title} closed.`);
   };
 
+  // "Read more" disclosures: a link to an id inside one opens it, and its own
+  // close button folds it back and returns the reader to its summary.
+  const initDisclosures = (root: ParentNode) => {
+    root.querySelectorAll<HTMLButtonElement>('[data-details-close]').forEach((button) => { button.hidden = false; });
+  };
+  const openLinkedDisclosure = () => {
+    const target = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
+    const details = target?.closest('details');
+    if (details && !details.open) {
+      details.open = true;
+      target?.scrollIntoView({ block: 'start' });
+    }
+  };
+
   const hydrateDynamicWindow = (frame: HTMLElement) => {
     frame.querySelectorAll<HTMLElement>('[autofocus]').forEach((element) => element.removeAttribute('autofocus'));
     initEmailShields(frame);
     initPhotoGalleries(frame);
     initCvViewers(frame);
     initProjectVideos(frame);
+    initDisclosures(frame);
   };
 
   const openRouteWindow = async (href: string) => {
@@ -285,6 +300,15 @@ function initAero() {
       return;
     }
 
+    const disclosureClose = target.closest<HTMLElement>('[data-details-close]')?.closest('details');
+    if (disclosureClose) {
+      disclosureClose.open = false;
+      const summary = disclosureClose.querySelector<HTMLElement>('summary');
+      summary?.focus({ preventScroll: true });
+      summary?.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      return;
+    }
+
     if (target.closest('[data-start-close]')) {
       closeMenu(true);
       return;
@@ -384,6 +408,9 @@ function initAero() {
   initPhotoGalleries(document);
   initCvViewers(document);
   initProjectVideos(document);
+  initDisclosures(document);
+  openLinkedDisclosure();
+  window.addEventListener('hashchange', openLinkedDisclosure);
   if (primary) {
     syncMaximizeLabel(primary);
     ensureTaskbarItem(primary);

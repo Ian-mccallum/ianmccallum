@@ -1,7 +1,7 @@
 ---
 import Headshot from '../components/seo/Headshot.astro';
 import WindowPageLayout from '../layouts/WindowPageLayout.astro';
-import { profile } from '../data/profile';
+import { profile, story } from '../data/profile';
 import { person } from '../data/identity';
 import { socialLinks } from '../data/social';
 
@@ -9,31 +9,51 @@ const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', '@id'
 ---
 
 <WindowPageLayout title="About Ian McCallum | Founder & AI Engineer" description="Ian McCallum is a UIUC Finance and Data Science student, founder of Beat the Clock, and the engineer behind Clockwork." windowTitle="About Ian McCallum" icon="about" type="profile" schema={schema}>
-  <article class="page-sheet page-sheet--narrow">
+  <article class="page-sheet page-sheet--wide">
     <header class="profile-header">
       <Headshot width={132} height={132} />
       <div><h1>About Ian McCallum</h1><p>{profile.title} · {profile.location}</p></div>
     </header>
-    <section aria-labelledby="who-heading"><h2 id="who-heading">Who is Ian McCallum?</h2><p class="page-intro">Ian McCallum is an 18-year-old innovator, entrepreneur, futurist, and Finance &amp; Data Science student at the University of Illinois Urbana-Champaign.</p></section>
-    <section aria-labelledby="luminate-heading">
-      <h2 id="luminate-heading">What did Ian do for Luminate?</h2>
-      <p class="measure">Ian designed, developed, and maintained the website for his Virtual Enterprises International firm, <a href="/portfolio/luminate">Luminate</a>. Instead of relying on a conventional site builder, he combined his coding skills with AI-assisted development.</p>
-      <p class="measure">Luminate earned first place in the 2025 Midwest E-Commerce Website competition, followed by first place nationally in the 2026 E-Commerce Website competition, competing against more than 500 firms in the national website competition.</p>
+    <section aria-labelledby="who-heading"><h2 id="who-heading">Who is Ian McCallum?</h2><p class="page-intro">Ian McCallum is an 18-year-old innovator, entrepreneur, futurist, and Finance &amp; Data Science student at the University of Illinois Urbana-Champaign.</p>
+      <details class="story" id="story">
+        <summary><span class="story__orb" aria-hidden="true"></span><span class="story__more">Read my full story</span><span class="story__less">Hide my story</span></summary>
+        <div class="story__body">
+          <p class="measure">{story.intro}</p>
+          <div class="story__chapters">{story.chapters.map((chapter) => <div class="story__chapter"><h3>{chapter.heading}</h3>{chapter.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div>)}</div>
+          <h3 class="story__passions">Hobbies &amp; interests</h3>
+          <p class="measure">{story.hobbiesIntro}</p>
+          <div class="story__hobbies">{story.hobbies.map((hobby) => <div class="story__hobby"><h4>{hobby.name}</h4><p>{hobby.text}</p></div>)}</div>
+          <p class="measure story__closing">{story.closing}</p>
+          <button class="aero-button aero-button--secondary story__collapse" type="button" data-details-close hidden>Hide my story</button>
+        </div>
+      </details>
+    </section>
+    <section aria-labelledby="what-heading">
+      <h2 id="what-heading">What does Ian McCallum do?</h2>
+      <p class="measure">Ian McCallum is a founder and AI engineer who builds AI software for real businesses. He runs <a href="/portfolio/beat-the-clock">Beat the Clock</a>, where he designs and builds <a href="/portfolio/clockwork">Clockwork</a>, software that helps service companies keep customer work organized.</p>
+      <p class="measure">He got his start building custom websites for clients, including concert videographer <a href="/portfolio/imanol-villagomez">Imanol VillaGomez</a>, <a href="/portfolio/fortivus-academy">Fortivus Academy</a>, <a href="/portfolio/tmm-photography">TMM Photography</a>, and <a href="/portfolio/nics-marketing">Nics Marketing</a>. In high school, he also led development of <a href="/portfolio/luminate">Luminate’s</a> national award-winning website for Virtual Enterprises International. See his <a href="/portfolio">portfolio</a>, or read what he’s building on the <a href="/blog">blog</a>.</p>
     </section>
     <section aria-labelledby="btc-heading">
       <h2 id="btc-heading">What is Beat the Clock?</h2>
       <p class="measure"><a href="/portfolio/beat-the-clock">Beat the Clock</a> is a software business founded by Ian McCallum. It helps residential service companies keep customer work organized, with an initial focus on HVAC service and repair.</p>
-      <p class="measure">Its principal product, Clockwork, is in development. Beat the Clock is currently seeking HVAC design partners to review demonstrations and help shape the product around real operating needs.</p>
+      <p class="measure">Its principal product, <a href="/portfolio/clockwork">Clockwork</a>, is in development. Beat the Clock is currently seeking HVAC design partners to review demonstrations and help shape the product around real operating needs.</p>
     </section>
-    <section aria-labelledby="clockwork-heading">
-      <h2 id="clockwork-heading">What is Clockwork?</h2>
-      <p class="measure"><a href="/portfolio/clockwork">Clockwork</a> is a pre-launch service operations CRM being developed by Ian McCallum through Beat the Clock. It connects customer requests, scheduling, technician findings, repair approvals, parts, return visits, and invoicing.</p>
-      <p class="measure">A working development build has been tested locally. The new HVAC product is not yet available for general production use. Its planned assistant, Tock, is not yet operating the new service workflow.</p>
+    <section aria-labelledby="from-heading">
+      <h2 id="from-heading">Where is Ian McCallum from?</h2>
+      <p class="measure">Ian McCallum is from Naperville, Illinois. He was born in Chicago and lived in the city until he was five, then grew up in the western suburbs. He now splits his time between Naperville and Champaign, where he studies at the University of Illinois.</p>
     </section>
-    <section aria-labelledby="work-heading"><h2 id="work-heading">Selected work</h2><p class="measure">I founded <a href="/portfolio/beat-the-clock">Beat the Clock</a>, design and build <a href="/portfolio/clockwork">Clockwork</a>, and led development of <a href="/portfolio/luminate">Luminate’s award-winning VEI e-commerce website</a>. My <a href="/portfolio">portfolio</a> also includes client websites and creative work. I write about what I’m building on the <a href="/blog">blog</a>.</p></section>
-    <section aria-labelledby="education-heading"><h2 id="education-heading">Education</h2><div class="fact-grid">{profile.education.map((entry) => <div class="fact-row"><strong>{entry.school}</strong><span>{entry.location} · {entry.date}</span><p>{entry.detail}</p></div>)}</div></section>
+    <section aria-labelledby="college-heading">
+      <h2 id="college-heading">Where does Ian McCallum go to college?</h2>
+      <p class="measure">Ian studies Finance and Data Science at the University of Illinois Urbana-Champaign’s Gies College of Business. He graduated magna cum laude from Metea Valley High School in Aurora, Illinois, with a 4.25 GPA and Illinois State Scholar honors.</p>
+      <div class="fact-grid">{profile.education.map((entry) => <div class="fact-row"><strong>{entry.school}</strong><span>{entry.location} · {entry.date}</span><p>{entry.detail}</p></div>)}</div>
+    </section>
+    <section aria-labelledby="awards-heading">
+      <h2 id="awards-heading">What awards has Ian McCallum won?</h2>
+      <p class="measure">Ian’s website for <a href="/portfolio/luminate">Luminate</a>, his Virtual Enterprises International firm, won first place nationally in the 2026 E-Commerce Website competition against more than 500 firms, after taking first place in the 2025 Midwest E-Commerce Website competition.</p>
+      <p class="measure">Ian designed, developed, and maintained the site himself. Instead of relying on a conventional site builder, he combined his coding skills with AI-assisted development.</p>
+    </section>
     <section aria-labelledby="skills-heading"><h2 id="skills-heading">Skills & technologies</h2><ul class="tag-list">{profile.skills.map((skill) => <li>{skill}</li>)}</ul></section>
-    <section aria-labelledby="interests-heading"><h2 id="interests-heading">Away from the screen</h2><p class="measure">{profile.interests.join(', ')}.</p></section>
-    <section aria-labelledby="profiles-heading"><h2 id="profiles-heading">Official profiles</h2><p class="measure">You can also find me on these profiles, or <a href="/contact">contact me through this site</a>.</p><div class="button-row">{socialLinks.map((link) => <a class="aero-button aero-button--secondary" href={link.href} target="_blank" rel="me noopener">{link.label}</a>)}</div></section>
+    <section aria-labelledby="hobbies-heading"><h2 id="hobbies-heading">What are Ian McCallum’s hobbies?</h2><p class="measure">Live music comes first: Ian has seen more than 75 artists in concert, with Kanye West at Soldier Field and Rüfüs Du Sol at Lollapalooza at the top of his list. He also plays soccer and ping pong, lifts, trains MMA, fishes, and shoots <a href="/photos">photo</a> and video. His favorite movie is Martin Scorsese’s <cite>After Hours</cite>. <a href="/about#story">Read his full story</a> for more.</p></section>
+    <section aria-labelledby="contact-heading"><h2 id="contact-heading">How can I contact Ian McCallum?</h2><p class="measure">The best way to reach Ian is through his <a href="/contact">contact page</a>, where you can book a call or reveal his email. You can also find him on these official profiles.</p><div class="button-row">{socialLinks.map((link) => <a class="aero-button aero-button--secondary" href={link.href} target="_blank" rel="me noopener">{link.label}</a>)}</div></section>
   </article>
 </WindowPageLayout>

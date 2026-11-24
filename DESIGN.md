@@ -214,6 +214,23 @@ and the photo viewer loads the size the screen needs. Glass surfaces carry the
 4:2:0 profile that iPhone hardware decodes. The page turns off phone-number
 auto-linking and names itself for the Home Screen.
 
+### About story
+
+Ian's original About stays whole, in his own voice, behind a Vista-style round
+"Read my full story" expander under the first answer on About. It is a native
+`<details>`, so it works without JavaScript and is searchable in the page. A
+link to `/about#story` opens it, and a "Hide my story" button at its end folds
+it back to the summary. The question-led answers above and below stay short.
+About reads like a feature, one section at a time in a single centered column.
+Only the passions spread out: the open story's card spans the full sheet and its
+passion cards sit in two columns of level rows, paired by subject and length, folding to one in a narrow window or on a
+phone, with no breakpoints.
+The column is 42rem with headings and text sharing one right edge. Answers sit
+tight inside and open between: a hairline rule with equal air above and below
+starts each section. The first paragraph under a question is the lede, a step
+larger in full ink; follow-on paragraphs use ink-soft. Body text scales from 16px
+on phones to 17px on wide screens.
+
 ### Buttons and fields
 
 Primary buttons use the violet token family, a two-part glossy gradient, white text,

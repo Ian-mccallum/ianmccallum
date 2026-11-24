@@ -86,6 +86,23 @@ test('navigation uses real links and no hidden page copies', () => {
   assert.match(html, /class="start-menu__body"/);
 });
 
+test('About keeps Ian\'s full story, in his voice, behind Read my full story', () => {
+  const html = readFileSync('dist/about/index.html', 'utf8');
+  assert.match(html, /<details class="story" id="story">/);
+  assert.match(html, /Read my full story/);
+  for (const heading of ['Early influences', 'Personal growth', 'Technical journey', 'Work experience', 'Community involvement', 'Building Beat the Clock']) assert.match(html, new RegExp(`<h3>${heading}</h3>`));
+  for (const passion of ['Finding beauty in unexpected places', 'Concerts &amp; music', 'Movies', 'Ping pong']) assert.match(html, new RegExp(`<h4>${passion}</h4>`));
+  assert.match(html, /more than 75 artists/);
+  assert.match(html, /Kanye West at Soldier Field/);
+  assert.match(html, /After Hours/);
+  assert.match(html, /My first job was refereeing/);
+  assert.match(html, /our adorable dog Zoey/);
+  assert.match(html, /Who is Ian McCallum\?/);
+  // Search questions lead with identity; Luminate's award closes them; no standalone Clockwork question.
+  const questions = [...html.matchAll(/<h2 id="[a-z]+-heading">([^<]*\?)<\/h2>/g)].map((match) => match[1]);
+  assert.deepEqual(questions, ['Who is Ian McCallum?', 'What does Ian McCallum do?', 'What is Beat the Clock?', 'Where is Ian McCallum from?', 'Where does Ian McCallum go to college?', 'What awards has Ian McCallum won?', 'What are Ian McCallum’s hobbies?', 'How can I contact Ian McCallum?']);
+});
+
 test('contact offers booking a call and the protected email reveal, no form', () => {
   const html = readFileSync('dist/contact/index.html', 'utf8');
   assert.doesNotMatch(html, /<form|\/api\/contact|data-contact-form/);
