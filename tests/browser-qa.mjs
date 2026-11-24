@@ -49,20 +49,26 @@ for (const width of widths) {
 
 const bootContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
 const bootPage = await bootContext.newPage();
-await bootPage.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
+await bootPage.goto(`${baseURL}/`, { waitUntil: 'commit' });
 const bootOverlay = bootPage.locator('[data-boot-overlay]');
 await bootOverlay.waitFor({ state: 'visible' });
-await bootPage.waitForTimeout(1200);
-if (!(await bootOverlay.isVisible())) failures.push('welcome sequence ended before its longer authored timing');
-const bootPercent = Number.parseInt((await bootPage.locator('[data-boot-percent]').textContent()) || '0', 10);
-if (bootPercent < 10 || bootPercent >= 100) failures.push(`welcome progress was not active after 1.2s (${bootPercent}%)`);
+const bootShownAt = Date.now();
+await bootPage.waitForTimeout(900);
 await bootPage.screenshot({ path: `${reviewDir}/welcome-sequence-1440.png` });
-await bootPage.locator('[data-skip-boot]').click();
-await bootOverlay.waitFor({ state: 'detached' });
+await bootOverlay.waitFor({ state: 'detached', timeout: 6000 }).catch(() => failures.push('welcome sequence did not leave on its own'));
+const bootHeldFor = Date.now() - bootShownAt;
+// First Light holds at least 1.2 s, leaves once the page is ready, and starts its exit by 3 s.
+if (bootHeldFor < 1100) failures.push(`welcome sequence flashed by in ${bootHeldFor}ms`);
+if (bootHeldFor > 4500) failures.push(`welcome sequence held the desktop for ${bootHeldFor}ms`);
 if (await bootPage.evaluate(() => sessionStorage.getItem('aero-boot-seen')) !== '1') failures.push('welcome sequence did not remember dismissal');
 await bootPage.reload({ waitUntil: 'networkidle' });
 if (await bootPage.locator('[data-boot-overlay]').count()) failures.push('welcome sequence repeated within the same session');
-findings.interactions.push('longer welcome sequence progress, visual capture, skip, and session memory');
+await bootPage.evaluate(() => sessionStorage.removeItem('aero-boot-seen'));
+await bootPage.reload({ waitUntil: 'commit' });
+await bootOverlay.waitFor({ state: 'visible' });
+await bootPage.locator('[data-skip-boot]').click();
+await bootOverlay.waitFor({ state: 'detached', timeout: 2000 }).catch(() => failures.push('skip welcome did not dismiss the sequence'));
+findings.interactions.push('welcome sequence readiness timing, visual capture, skip, and session memory');
 await bootContext.close();
 
 const context = await browser.newContext({ viewport: { width: 1024, height: 900 } });

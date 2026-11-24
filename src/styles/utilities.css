@@ -143,7 +143,6 @@
     .lightbox__step--prev { left: max(16px, var(--safe-left)); }
     .lightbox__step--next { right: max(16px, var(--safe-right)); }
 
-    .boot-sun { top: 3%; width: 112px; height: 112px; }
     .boot-skip { font-size: .75rem; }
   }
 

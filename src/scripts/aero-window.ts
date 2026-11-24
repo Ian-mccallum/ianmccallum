@@ -420,88 +420,74 @@ function initAero() {
 
 const boot = document.querySelector<HTMLElement>('[data-boot-overlay]');
 if (boot) {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let seen = false;
-    try { seen = sessionStorage.getItem('aero-boot-seen') === '1'; } catch { seen = true; }
-  const timers: number[] = [];
-  let progressFrame = 0;
-  let dismissed = false;
-  let onBootKey: ((event: KeyboardEvent) => void) | undefined;
-  const dismiss = () => {
-    if (dismissed) return;
-    dismissed = true;
-    timers.forEach(window.clearTimeout);
-    cancelAnimationFrame(progressFrame);
-    if (onBootKey) document.removeEventListener('keydown', onBootKey);
-    boot.classList.add('is-leaving');
-    window.setTimeout(() => boot.remove(), reduced ? 0 : 720);
-    try { sessionStorage.setItem('aero-boot-seen', '1'); } catch { /* storage is optional */ }
-  };
-  if (seen || reduced) boot.remove();
+  const root = document.documentElement;
+  // The inline head script raises the overlay only for a first visit this session with motion allowed.
+  if (!root.classList.contains('is-booting')) boot.remove();
   else {
-    boot.hidden = false;
-    const sky = boot.querySelector<HTMLElement>('[data-boot-sky]');
-    const particles = boot.querySelector<HTMLElement>('[data-boot-particles]');
+    const MIN_MS = 1200;
+    const CAP_MS = 3000;
+    const EXIT_MS = 700;
     const progress = boot.querySelector<HTMLElement>('[data-boot-progress]');
-    const progressBar = boot.querySelector<HTMLElement>('[data-boot-progress-bar]');
-    const percent = boot.querySelector<HTMLOutputElement>('[data-boot-percent]');
-    const statusLine = boot.querySelector<HTMLElement>('[data-boot-status]');
-    const statusLines = [
-      'Preparing your atmosphere…',
-      'Gathering the light fields…',
-      'Composing glass surfaces…',
-      'Floating the bubbles…',
-      'Warming up the colors…',
-      'Opening your personal desktop…',
-      'Welcome.',
-    ];
-    const statusTimes = [0, 720, 1380, 2040, 2700, 3360, 4060];
+    const orb = boot.querySelector<HTMLElement>('[data-boot-orb]');
+    const timers: number[] = [];
+    let dismissed = false;
+    // Time the sequence from when the orb's animation started painting, not from navigation.
+    const startedAt = boot.querySelector('.boot-orb__glass')?.getAnimations()[0]?.startTime;
+    const t0 = typeof startedAt === 'number' ? startedAt : performance.now();
+    const wait = (until: number) => Math.max(0, until - performance.now());
 
-    for (let index = 0; index < 22; index += 1) {
-      const particle = document.createElement('span');
-      particle.style.setProperty('--px', `${(index * 37) % 101}%`);
-      particle.style.setProperty('--py', `${(index * 61) % 97}%`);
-      particle.style.setProperty('--size', `${2 + (index % 4)}px`);
-      particle.style.setProperty('--delay', `${(index % 7) * -.42}s`);
-      particle.style.setProperty('--duration', `${3.2 + (index % 5) * .7}s`);
-      particles?.append(particle);
-    }
-
-    const startedAt = performance.now();
-    const updateProgress = (now: number) => {
-      const value = Math.min(100, Math.round(((now - startedAt) / 4100) * 100));
-      progress?.setAttribute('aria-valuenow', String(value));
-      if (progressBar) progressBar.style.transform = `scaleX(${value / 100})`;
-      if (percent) percent.value = `${value}%`;
-      if (!dismissed && value < 100) progressFrame = requestAnimationFrame(updateProgress);
+    const finish = () => {
+      boot.remove();
+      root.classList.remove('is-booting', 'boot-handoff');
     };
-    progressFrame = requestAnimationFrame(updateProgress);
-
-    statusTimes.forEach((delay, index) => {
-      timers.push(window.setTimeout(() => {
-        if (!statusLine || dismissed) return;
-        statusLine.classList.add('is-changing');
-        timers.push(window.setTimeout(() => {
-          statusLine.textContent = statusLines[index];
-          statusLine.classList.remove('is-changing');
-        }, index === 0 ? 0 : 120));
-      }, delay));
-    });
-
-    boot.addEventListener('pointermove', (event) => {
-      if (!sky || dismissed) return;
-      const x = (event.clientX / window.innerWidth - .5) * 2;
-      const y = (event.clientY / window.innerHeight - .5) * 2;
-      sky.style.setProperty('--mx', x.toFixed(3));
-      sky.style.setProperty('--my', y.toFixed(3));
-    });
-    // The skip link is the named affordance; a tap anywhere on the sequence also lets a visitor in.
-    boot.addEventListener('click', dismiss);
-    onBootKey = (event) => {
+    const dismiss = () => {
+      if (dismissed) return;
+      dismissed = true;
+      timers.forEach(window.clearTimeout);
+      document.removeEventListener('keydown', onBootKey);
+      try { sessionStorage.setItem('aero-boot-seen', '1'); } catch { /* storage is optional */ }
+      const startTile = document.querySelector<HTMLElement>('.start-im');
+      const to = startTile?.getBoundingClientRect();
+      const from = orb?.getBoundingClientRect();
+      // Nothing to hand off when the overlay is already hidden (skip link target, CSS failsafe) or Start is missing.
+      if (!orb || !startTile || !to?.width || !from?.width || getComputedStyle(boot).visibility === 'hidden') {
+        finish();
+        return;
+      }
+      orb.style.setProperty('--dx', `${to.left + to.width / 2 - (from.left + from.width / 2)}px`);
+      (orb.firstElementChild as HTMLElement).style.setProperty('--dy', `${to.top + to.height / 2 - (from.top + from.height / 2)}px`);
+      (orb.firstElementChild as HTMLElement).style.setProperty('--s', (to.width / from.width).toFixed(3));
+      root.classList.add('boot-handoff');
+      boot.classList.add('is-leaving');
+      window.setTimeout(() => {
+        finish();
+        startTile.classList.add('is-landing');
+        window.setTimeout(() => startTile.classList.remove('is-landing'), 520);
+      }, EXIT_MS);
+    };
+    const onBootKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') dismiss();
     };
+
+    // Real readiness: parsed document (this module running), fonts, the Welcome photo, and window load.
+    const steps: Promise<unknown>[] = [
+      document.fonts.ready,
+      document.querySelector<HTMLImageElement>('.welcome-profile img')?.decode().catch(() => undefined) ?? Promise.resolve(),
+      document.readyState === 'complete' ? Promise.resolve() : new Promise((resolve) => window.addEventListener('load', resolve, { once: true })),
+    ];
+    let done = 1;
+    const report = () => {
+      const share = done / (steps.length + 1);
+      progress?.style.setProperty('--p', share.toFixed(3));
+      progress?.setAttribute('aria-valuenow', String(Math.round(share * 100)));
+    };
+    report();
+    steps.forEach((step) => void step.then(() => { done += 1; if (!dismissed) report(); }));
+    void Promise.all(steps).then(() => { if (!dismissed) timers.push(window.setTimeout(dismiss, wait(t0 + MIN_MS))); });
+    timers.push(window.setTimeout(dismiss, wait(t0 + CAP_MS)));
+    // The skip link is the named affordance; Escape or a tap anywhere also lets a visitor in.
+    boot.addEventListener('click', dismiss);
     document.addEventListener('keydown', onBootKey);
-    timers.push(window.setTimeout(dismiss, 4600));
   }
 }
 }

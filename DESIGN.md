@@ -175,11 +175,16 @@ restore use the taskbar, and maximize toggles the comfortable reading size witho
 changing URL. Desktop icons, the two-column Start menu, pinned taskbar apps, social
 tray, and contextual navigation are all real anchors.
 
-The root route opens with one session-scoped startup ritual derived from the
-original site: a luminous horizon, colored atmosphere, floating bubbles, the IM
-glass orb, changing system phrases, and live progress. It runs for roughly 4.6
-seconds before a short circular reveal, remains immediately skippable, can be
-replayed from Start, and is omitted under reduced motion. Its skip action is a
+The root route opens with one session-scoped startup ritual, "First Light": on a
+water-blue sky with one off-axis lens flare, four motes in the water, violet,
+spring, and sun colors spiral into the IM glass orb, and a thin glossy green bar
+tracks real readiness (fonts, the Welcome photo, window load). An inline head
+script raises it before first paint. It holds at least 1.2 seconds, leaves as
+soon as the page is ready, and starts its exit by 3 seconds at the latest; a CSS
+failsafe hides it at 4.5 seconds if the script never runs. On exit the orb arcs
+into the taskbar, morphs into the green Start tile, and the tile gleams, so the
+boot hands off to the desktop instead of covering it. It remains immediately
+skippable, can be replayed from Start, and is omitted under reduced motion. Its skip action is a
 small, quiet text link—not a competing button. Escape provides the keyboard
 shortcut, and a tap anywhere on the sequence also skips it. This is the authored focal sequence; routine desktop transitions stay
 brief.

@@ -37,6 +37,8 @@ const {
   <head>
     <BaseHead title={title} description={description} type={type} image={image} publishedAt={publishedAt} noindex={noindex} />
     {schema && <StructuredData data={schema} />}
+    {/* Raises the boot overlay before first paint, so the desktop never flashes underneath it. */}
+    {root && <script is:inline>try{if(sessionStorage.getItem('aero-boot-seen')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-booting')}catch{}</script>}
   </head>
   <body data-home={root ? '' : undefined}>
     <!-- AERO-MIGRATION-CONTRACT
