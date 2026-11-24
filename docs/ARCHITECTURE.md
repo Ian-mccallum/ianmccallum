@@ -81,10 +81,9 @@ from when the orb's animation started painting: it holds at least 1.2 seconds,
 leaves once ready, and starts its exit by 3 seconds. On exit it measures the
 taskbar's `.start-im`, flies the orb there on an arc, morphs it into the green
 Start tile, and removes the overlay after 700 ms. A CSS failsafe hides the overlay
-at 4.5 seconds if the module never runs. It does not delay other routes. The skip
-affordance is a small text link to `#main-content` (it also works before the
-script loads, through `:target`); Escape or a tap anywhere triggers the same
-dismissal. Start → Replay welcome clears the session marker and returns to `/`.
+at 4.5 seconds if the module never runs. It does not delay other routes. There is no
+visible skip control: Escape or a tap anywhere dismisses it, and the page's own
+"Skip to content" link hides it through `:target` even before the script loads. Start → Replay welcome clears the session marker and returns to `/`.
 The background video is loaded only when motion and data preferences allow it and
 pauses when the document is hidden. Long-form reading surfaces use an opaque bed.
 
@@ -136,7 +135,7 @@ to the generated sitemap index.
   section highlight, photo viewer stacking and stepping, axe on every route),
   landscape phone layout, project demo autoplay and pause with a reduced-motion
   poster, icon sharpness on a 3x screen, multi-window open/drag/focus/control flows,
-  direct routes, welcome timing and skip behavior, Start menu, protected email,
+  direct routes, welcome timing and Escape dismissal, Start menu, protected email,
   gallery focus, 404, console/network
   cleanliness, and axe serious/critical scans.
 - Throttled Playwright: mobile LCP and CLS budgets on three representative routes.

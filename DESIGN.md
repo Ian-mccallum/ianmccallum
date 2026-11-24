@@ -183,10 +183,9 @@ script raises it before first paint. It holds at least 1.2 seconds, leaves as
 soon as the page is ready, and starts its exit by 3 seconds at the latest; a CSS
 failsafe hides it at 4.5 seconds if the script never runs. On exit the orb arcs
 into the taskbar, morphs into the green Start tile, and the tile gleams, so the
-boot hands off to the desktop instead of covering it. It remains immediately
-skippable, can be replayed from Start, and is omitted under reduced motion. Its skip action is a
-small, quiet text link—not a competing button. Escape provides the keyboard
-shortcut, and a tap anywhere on the sequence also skips it. This is the authored focal sequence; routine desktop transitions stay
+boot hands off to the desktop instead of covering it. It is short enough to
+need no visible skip control: Escape or a tap anywhere ends it early, it can be
+replayed from Start, and it is omitted under reduced motion. This is the authored focal sequence; routine desktop transitions stay
 brief.
 
 ### Compact taskbar and Start sheet

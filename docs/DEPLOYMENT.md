@@ -65,7 +65,7 @@ never belongs in the repository.
    throttled report.
 6. Confirm `/api/contact` and `/api/ianos-inbox` environment variables in Vercel.
 7. Deploy through the repository's normal Vercel integration.
-8. Smoke-test `/`, Start → Replay welcome, the small Skip welcome text link, one
+8. Smoke-test `/`, Start → Replay welcome, Escape on the welcome sequence, one
    project, the long article, `/feed.xml`, an unknown URL, and the protected email
    reveal.
 

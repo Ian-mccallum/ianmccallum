@@ -66,9 +66,9 @@ if (await bootPage.locator('[data-boot-overlay]').count()) failures.push('welcom
 await bootPage.evaluate(() => sessionStorage.removeItem('aero-boot-seen'));
 await bootPage.reload({ waitUntil: 'commit' });
 await bootOverlay.waitFor({ state: 'visible' });
-await bootPage.locator('[data-skip-boot]').click();
-await bootOverlay.waitFor({ state: 'detached', timeout: 2000 }).catch(() => failures.push('skip welcome did not dismiss the sequence'));
-findings.interactions.push('welcome sequence readiness timing, visual capture, skip, and session memory');
+await bootPage.keyboard.press('Escape');
+await bootOverlay.waitFor({ state: 'detached', timeout: 2000 }).catch(() => failures.push('Escape did not dismiss the welcome sequence'));
+findings.interactions.push('welcome sequence readiness timing, visual capture, Escape dismissal, and session memory');
 await bootContext.close();
 
 const context = await browser.newContext({ viewport: { width: 1024, height: 900 } });

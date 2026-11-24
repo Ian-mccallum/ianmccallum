@@ -449,7 +449,7 @@ if (boot) {
       const startTile = document.querySelector<HTMLElement>('.start-im');
       const to = startTile?.getBoundingClientRect();
       const from = orb?.getBoundingClientRect();
-      // Nothing to hand off when the overlay is already hidden (skip link target, CSS failsafe) or Start is missing.
+      // Nothing to hand off when the overlay is already hidden (page skip link target, CSS failsafe) or Start is missing.
       if (!orb || !startTile || !to?.width || !from?.width || getComputedStyle(boot).visibility === 'hidden') {
         finish();
         return;
@@ -485,7 +485,7 @@ if (boot) {
     steps.forEach((step) => void step.then(() => { done += 1; if (!dismissed) report(); }));
     void Promise.all(steps).then(() => { if (!dismissed) timers.push(window.setTimeout(dismiss, wait(t0 + MIN_MS))); });
     timers.push(window.setTimeout(dismiss, wait(t0 + CAP_MS)));
-    // The skip link is the named affordance; Escape or a tap anywhere also lets a visitor in.
+    // Escape or a tap anywhere lets a visitor in early.
     boot.addEventListener('click', dismiss);
     document.addEventListener('keydown', onBootKey);
   }

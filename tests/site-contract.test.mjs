@@ -35,8 +35,7 @@ for (const [route, file] of routes) {
     assert.equal((html.match(/<section[^>]+data-window-frame/g) ?? []).length, 1);
     if (route === '/') {
       assert.match(html, /class="window-frame is-restored/);
-      assert.match(html, /<a[^>]+data-skip-boot/);
-      assert.doesNotMatch(html, /<button[^>]+data-skip-boot/);
+      assert.match(html, /data-boot-overlay/);
     }
     else assert.match(html, /class="window-frame is-maximized/);
     assert.match(html, /AERO-MIGRATION-CONTRACT/);
