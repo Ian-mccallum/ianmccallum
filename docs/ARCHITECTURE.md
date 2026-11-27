@@ -76,12 +76,13 @@ inline script in the document head adds `is-booting` to `<html>` before first pa
 when the session marker is unset and reduced motion is off; the overlay is
 `display: none` without that class, so no-JS and reduced-motion visitors never see
 it. `aero-window.ts` then gates the exit on real readiness (the parsed document,
-`document.fonts.ready`, the Welcome photo's `decode()`, and window `load`), timed
-from when the orb's animation started painting: it holds at least 1.2 seconds,
-leaves once ready, and starts its exit by 3 seconds. On exit it measures the
+`document.fonts.ready`, and the Welcome photo's `decode()`; deliberately not window
+`load`, which on cellular waits for every icon and the background), timed from when
+the orb's animation started painting: it holds at least 1 second, leaves once
+ready, and starts its exit by 2 seconds. On exit it measures the
 taskbar's `.start-im`, flies the orb there on an arc, morphs it into the green
-Start tile, and removes the overlay after 700 ms. A CSS failsafe hides the overlay
-at 4.5 seconds if the module never runs. It does not delay other routes. There is no
+Start tile, and removes the overlay after 600 ms. A CSS failsafe hides the overlay
+at 3 seconds if the module never runs. It does not delay other routes. There is no
 visible skip control: Escape or a tap anywhere dismisses it, and the page's own
 "Skip to content" link hides it through `:target` even before the script loads. Start → Replay welcome clears the session marker and returns to `/`.
 The background video is loaded only when motion and data preferences allow it and

@@ -424,9 +424,9 @@ if (boot) {
   // The inline head script raises the overlay only for a first visit this session with motion allowed.
   if (!root.classList.contains('is-booting')) boot.remove();
   else {
-    const MIN_MS = 1200;
-    const CAP_MS = 3000;
-    const EXIT_MS = 700;
+    const MIN_MS = 1000;
+    const CAP_MS = 2000;
+    const EXIT_MS = 600;
     const progress = boot.querySelector<HTMLElement>('[data-boot-progress]');
     const orb = boot.querySelector<HTMLElement>('[data-boot-orb]');
     const timers: number[] = [];
@@ -469,11 +469,11 @@ if (boot) {
       if (event.key === 'Escape') dismiss();
     };
 
-    // Real readiness: parsed document (this module running), fonts, the Welcome photo, and window load.
+    // Ready means what the Welcome window shows: parsed document (this module running), fonts, and the photo.
+    // Not window load: on cellular that waits for every icon, the background poster and video.
     const steps: Promise<unknown>[] = [
       document.fonts.ready,
       document.querySelector<HTMLImageElement>('.welcome-profile img')?.decode().catch(() => undefined) ?? Promise.resolve(),
-      document.readyState === 'complete' ? Promise.resolve() : new Promise((resolve) => window.addEventListener('load', resolve, { once: true })),
     ];
     let done = 1;
     const report = () => {

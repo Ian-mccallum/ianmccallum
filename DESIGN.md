@@ -178,10 +178,10 @@ tray, and contextual navigation are all real anchors.
 The root route opens with one session-scoped startup ritual, "First Light": on a
 water-blue sky with one off-axis lens flare, four motes in the water, violet,
 spring, and sun colors spiral into the IM glass orb, and a thin glossy green bar
-tracks real readiness (fonts, the Welcome photo, window load). An inline head
-script raises it before first paint. It holds at least 1.2 seconds, leaves as
-soon as the page is ready, and starts its exit by 3 seconds at the latest; a CSS
-failsafe hides it at 4.5 seconds if the script never runs. On exit the orb arcs
+tracks what the Welcome window needs (fonts and the photo, not every desktop
+asset). An inline head script raises it before first paint. It holds at least 1
+second, leaves as soon as those are ready, and starts its 600 ms exit by 2 seconds
+at the latest; a CSS failsafe hides it at 3 seconds if the script never runs. On exit the orb arcs
 into the taskbar, morphs into the green Start tile, and the tile gleams, so the
 boot hands off to the desktop instead of covering it. It is short enough to
 need no visible skip control: Escape or a tap anywhere ends it early, it can be

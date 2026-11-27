@@ -273,7 +273,7 @@
 
   /* First Light: four motes fuse into the IM orb, which lands in the taskbar as Start. Shown only while html.is-booting. */
   .boot-overlay { position: fixed; z-index: 200; inset: 0; display: none; place-items: center; padding-bottom: 8vh; overflow: hidden; isolation: isolate; color: white; }
-  .is-booting .boot-overlay { display: grid; animation: boot-failsafe 1ms 4.5s forwards; }
+  .is-booting .boot-overlay { display: grid; animation: boot-failsafe 1ms 3s forwards; }
   html:has(#main-content:target) .boot-overlay { display: none; }
   .boot-overlay.is-leaving { pointer-events: none; }
   .boot-sky { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse 90% 40% at 50% 112%, rgba(77,229,150,.45), transparent 60%), linear-gradient(180deg, #0a63c0 0%, #0a4aa4 32%, #082c74 70%, #04163d 100%); }
@@ -287,21 +287,21 @@
   .boot-ghost:nth-of-type(3) { left: 91%; top: 72%; width: 3vmin; background: rgba(255,200,120,.3); }
   .boot-content { position: relative; z-index: 1; display: grid; justify-items: center; }
   .boot-orb { --orb: clamp(84px, 14vmin, 128px); position: relative; width: var(--orb); height: var(--orb); margin-bottom: 20px; }
-  .boot-mote { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px; border-radius: 50%; background: radial-gradient(circle, #fff 0%, var(--c) 35%, transparent 70%); box-shadow: 0 0 22px var(--c); opacity: 0; animation: boot-mote 900ms cubic-bezier(.33,0,.2,1) both; }
+  .boot-mote { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px; border-radius: 50%; background: radial-gradient(circle, #fff 0%, var(--c) 35%, transparent 70%); box-shadow: 0 0 22px var(--c); opacity: 0; animation: boot-mote 600ms cubic-bezier(.33,0,.2,1) both; }
   .boot-orb__x, .boot-orb__y { position: absolute; inset: 0; }
-  .boot-orb__glass { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; color: #fff; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: radial-gradient(circle at 34% 26%, rgba(255,255,255,.8), rgba(255,255,255,.12) 26%, transparent 46%), radial-gradient(circle at 50% 85%, #2cc4ff, #2b6fe0 55%, #6a3fc6); box-shadow: 0 10px 30px rgba(0,170,255,.55), 0 0 70px rgba(189,140,230,.35), inset 0 2px 5px rgba(255,255,255,.7), inset 0 -6px 11px rgba(0,40,120,.5); font-family: var(--aero-font-display); font-size: calc(var(--orb) * .36); font-weight: 300; letter-spacing: -.02em; text-shadow: 0 2px 12px rgba(0,140,255,.9); animation: boot-orb-in 520ms cubic-bezier(.16,1,.3,1) 800ms both; }
-  .boot-orb__glass::before { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%); transform: translateX(-130%); animation: boot-sweep 2.4s ease-in-out 1.5s infinite; }
+  .boot-orb__glass { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; color: #fff; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: radial-gradient(circle at 34% 26%, rgba(255,255,255,.8), rgba(255,255,255,.12) 26%, transparent 46%), radial-gradient(circle at 50% 85%, #2cc4ff, #2b6fe0 55%, #6a3fc6); box-shadow: 0 10px 30px rgba(0,170,255,.55), 0 0 70px rgba(189,140,230,.35), inset 0 2px 5px rgba(255,255,255,.7), inset 0 -6px 11px rgba(0,40,120,.5); font-family: var(--aero-font-display); font-size: calc(var(--orb) * .36); font-weight: 300; letter-spacing: -.02em; text-shadow: 0 2px 12px rgba(0,140,255,.9); animation: boot-orb-in 420ms cubic-bezier(.16,1,.3,1) 450ms both; }
+  .boot-orb__glass::before { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%); transform: translateX(-130%); animation: boot-sweep 2.4s ease-in-out 900ms infinite; }
   .boot-orb__glass::after { content: ''; position: absolute; inset: 0; background: url('/images/im-start-green.svg') center / cover; opacity: 0; }
-  .boot-name { color: white; font-family: var(--aero-font-display); font-size: clamp(1.8rem, 6vw, 2.55rem); font-weight: 300; line-height: 1; letter-spacing: .13em; text-shadow: 0 2px 22px rgba(92,225,255,.7); animation: boot-name-in 400ms ease-out 950ms both; }
-  .boot-progress { width: min(240px, 60vw); height: 6px; margin-top: 22px; overflow: hidden; background: rgba(0,10,40,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 99px; box-shadow: inset 0 1px 3px rgba(0,0,0,.5); animation: boot-fade-in 300ms ease-out 1100ms both; }
+  .boot-name { color: white; font-family: var(--aero-font-display); font-size: clamp(1.8rem, 6vw, 2.55rem); font-weight: 300; line-height: 1; letter-spacing: .13em; text-shadow: 0 2px 22px rgba(92,225,255,.7); animation: boot-name-in 360ms ease-out 550ms both; }
+  .boot-progress { width: min(240px, 60vw); height: 6px; margin-top: 22px; overflow: hidden; background: rgba(0,10,40,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 99px; box-shadow: inset 0 1px 3px rgba(0,0,0,.5); animation: boot-fade-in 260ms ease-out 650ms both; }
   .boot-progress span { display: block; height: 100%; transform: scaleX(var(--p, 0)); transform-origin: left; background: linear-gradient(180deg, #c8f7ad, #5fcf3d 50%, #3fae23 51%, #79de56); box-shadow: 0 0 10px rgba(120,240,120,.8); transition: transform 300ms ease-out; }
-  .boot-overlay.is-leaving .boot-sky { animation: boot-fade-out 420ms ease-out 120ms both; }
+  .boot-overlay.is-leaving .boot-sky { animation: boot-fade-out 380ms ease-out 100ms both; }
   .boot-overlay.is-leaving :is(.boot-name, .boot-progress, .boot-mote) { animation: boot-fade-up 240ms ease-in both; }
-  .boot-overlay.is-leaving .boot-orb__x { transform: translateX(var(--dx, 0)); transition: transform 700ms cubic-bezier(.2,.7,.3,1); }
-  .boot-overlay.is-leaving .boot-orb__y { transform: translateY(var(--dy, 0)) scale(var(--s, .4)); transition: transform 700ms cubic-bezier(.6,0,.9,.5); }
-  .boot-overlay.is-leaving .boot-orb__glass { animation: boot-orb-morph 700ms ease-in-out both; }
+  .boot-overlay.is-leaving .boot-orb__x { transform: translateX(var(--dx, 0)); transition: transform 600ms cubic-bezier(.2,.7,.3,1); }
+  .boot-overlay.is-leaving .boot-orb__y { transform: translateY(var(--dy, 0)) scale(var(--s, .4)); transition: transform 600ms cubic-bezier(.6,0,.9,.5); }
+  .boot-overlay.is-leaving .boot-orb__glass { animation: boot-orb-morph 600ms ease-in-out both; }
   .boot-overlay.is-leaving .boot-orb__glass::before { animation: none; opacity: 0; }
-  .boot-overlay.is-leaving .boot-orb__glass::after { animation: boot-tile-in 700ms ease-in-out both; }
+  .boot-overlay.is-leaving .boot-orb__glass::after { animation: boot-tile-in 600ms ease-in-out both; }
   .boot-handoff .start-im { opacity: 0; }
   .start-im.is-landing::after { animation: im-gleam 480ms steps(6, end) 1; }
 

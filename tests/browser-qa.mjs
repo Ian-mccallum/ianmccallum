@@ -53,13 +53,13 @@ await bootPage.goto(`${baseURL}/`, { waitUntil: 'commit' });
 const bootOverlay = bootPage.locator('[data-boot-overlay]');
 await bootOverlay.waitFor({ state: 'visible' });
 const bootShownAt = Date.now();
-await bootPage.waitForTimeout(900);
+await bootPage.waitForTimeout(950);
 await bootPage.screenshot({ path: `${reviewDir}/welcome-sequence-1440.png` });
 await bootOverlay.waitFor({ state: 'detached', timeout: 6000 }).catch(() => failures.push('welcome sequence did not leave on its own'));
 const bootHeldFor = Date.now() - bootShownAt;
-// First Light holds at least 1.2 s, leaves once the page is ready, and starts its exit by 3 s.
-if (bootHeldFor < 1100) failures.push(`welcome sequence flashed by in ${bootHeldFor}ms`);
-if (bootHeldFor > 4500) failures.push(`welcome sequence held the desktop for ${bootHeldFor}ms`);
+// First Light holds at least 1 s, leaves once the Welcome window is ready, and starts its 600 ms exit by 2 s.
+if (bootHeldFor < 1300) failures.push(`welcome sequence flashed by in ${bootHeldFor}ms`);
+if (bootHeldFor > 3200) failures.push(`welcome sequence held the desktop for ${bootHeldFor}ms`);
 if (await bootPage.evaluate(() => sessionStorage.getItem('aero-boot-seen')) !== '1') failures.push('welcome sequence did not remember dismissal');
 await bootPage.reload({ waitUntil: 'networkidle' });
 if (await bootPage.locator('[data-boot-overlay]').count()) failures.push('welcome sequence repeated within the same session');

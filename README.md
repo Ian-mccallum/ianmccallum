@@ -46,8 +46,8 @@ screenshots and reports live in `.impeccable/review/` and are not committed.
 ### Review the welcome sequence
 
 The welcome sequence ("First Light") appears once per browser session on `/`. It
-follows real page readiness: at least 1.2 seconds, gone as soon as the page is
-ready, and starting its exit by 3 seconds, when the IM orb flies into the taskbar
+follows what the Welcome window needs (fonts and the photo): at least 1 second,
+gone as soon as those are ready, and starting its exit by 2 seconds, when the IM orb flies into the taskbar
 as the Start button. To inspect it again, open Start and choose **Replay welcome**.
 Escape or a tap anywhere dismisses it early; reduced-motion and no-JavaScript
 visitors never see it. The browser suite checks its timing, Escape dismissal, and
